@@ -23,6 +23,33 @@
 		FROM BOARD
 		ORDER BY BOARD_NUM DESC
 	</select>
+	
+	<insert id="insertBoard">
+		INSERT INTO BOARD (
+			BOARD_NUM
+			, TITLE
+			, WRITER
+			, CONTENT
+			, IS_PRIVATE
+		) VALUES (
+			(SELECT NVL(MAX(BOARD_NUM), 0) + 1 FROM BOARD)
+			, #{title}
+			, #{writer}
+			, #{content}
+			, 'N'
+		)
+	</insert>
+	
+	<select id="boardDetail" resultMap="board">
+		SELECT BOARD_NUM
+			, TITLE
+			, CONTENT
+			, WRITER
+			, CREATE_DATE
+			, READ_CNT
+		FROM BOARD
+		WHERE BOARD_NUM = #{boardNum}
+	</select>
 </mapper>
 
 
