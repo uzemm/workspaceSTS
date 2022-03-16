@@ -1,0 +1,104 @@
+
+1. web.xml
+-index.jsp를 시작페이지로 설정
+-프로젝트 전체 경로의 인코딩을 UTF-8로 설정
+- root-context.xml 로드
+- appServlet명으로 컨트롤러 생성
+- servlet-context.xml 로드
+
+2.root-context.xml(필요한 객체를 생성하는 코드)
+-전체적으로 필요한 객체를 생성
+- BasicDataSource dataSourceSpied = new BasicDataSource();
+- Log4jdbcProxyDataSource dataSource = new Log4jdbcProxyDataSource();
+- SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
+- SqlSessionTemplate sqlSessionTemplate = new SqlSessionTemplate();
+- com.kh.board.service 패키지 안의 파일을 로드
+  -> BoardService, BoardServiceImpl
+  -> BoardServiceImpl 객체 생성
+      BoardServiceImpl boardService = new BoardServiceImpl();
+
+3. servlet-context.xml(필요한 객체를 생성하는 코드 + 페이지 요청 응답 처리 설정)
+- 어노테이션 사용이 가능하게 설정
+- resource의 경로 지정
+- 페이지 이동 경로 설정
+- com.kh.board.controller 패키지 안의 파일을 로드
+  -> BoardController = new BoardController();
+
+--
+
+public String boardWrite(BoardVO boardVO)
+데이터 다 받아옴
+
+제목 클릭 시 상세보기 페이지로 이동
+글번호, 제목, 내용, 작성자, 작성일, 조회수
+
+jsp ->BoardDTO(DATA TRANSFER OBJECT)
+sts -> BoardVO(VALUE OBJECT)
+
+--
+쇼핑몰
+
+무결성 제약조건 오류 - 테이블 제약조건 확인
+MEM_ID VARCHAR2(100) CONSTRAINT PK_SHOP_MEMBER PRIMARY KEY
+무결성제약조건 이름 설정
+
+UNIQUE - 중복 X
+
+우선순위 타일즈
+<beans:property name="order" value="2" /> 2순위 - 안되면 이걸로
+
+--
+
+template.jsp
+<tiles:insertAttribute name="title"/>
+->
+tiles-config.xml
+<put-attribute name="title" value="Shop"/>
+
+--
+
+<definition name="*/*" extends="baseLayout">
+
+return baseLayout이면 
+<definition name="baseLayout" template="/WEB-INF/views/template/template.jsp">
+	<put-attribute name="title" value="Shop"/>
+	<put-attribute name="menu" value="/WEB-INF/views/template/menu.jsp"/>
+	<put-attribute name="body" value=""/>
+</definition>
+실행
+
+baseLayout 아니고 어쩌구/저쩌구 면
+<definition name="*/*" extends="baseLayout">
+	<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp"/>
+</definition>
+실행
+
+ex - return "board_list"; 
+-> 둘다 실행 x, 
+<beans:property name="prefix" value="/WEB-INF/views/" />
+<beans:property name="suffix" value=".jsp" />
+-> 2순위 실행
+
+return "item/item_list"; 열리는건 template.jsp
+왜냐면 baseLayout 확장이라서 일단 baseLayout이 기본
+body만 달라짐 
+
+{1}/{2} - 변수 - 별표 순서 = item/itemList
+*/* = item/itemList
+
+
+
+--
+
+index 실행 -> 
+컨트롤러 return "item/item_list"; 
+-> tiles
+<definition name="baseLayout" template="/WEB-INF/views/template/template.jsp">
+
+template.jsp
+<div>
+	<tiles:insertAttribute name="menu"/>
+</div>
+
+
+페이지를 어떻게 호출하냐에 따라 달라짐
