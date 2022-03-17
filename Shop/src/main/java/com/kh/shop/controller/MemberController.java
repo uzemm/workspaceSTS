@@ -13,9 +13,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fasterxml.jackson.annotation.JsonCreator.Mode;
+import com.kh.shop.service.MemberService;
+import com.kh.shop.vo.MemberVO;
 
 @Controller
 @RequestMapping("/member")
 public class MemberController {
+	@Resource(name = "memberService")
+	private MemberService memberService;
 	
+	@PostMapping("/join")
+	public String join(MemberVO meberVO) {
+		memberService.insertJoin(meberVO);
+		return "redirect:/item/itemList";
+	}
 }
