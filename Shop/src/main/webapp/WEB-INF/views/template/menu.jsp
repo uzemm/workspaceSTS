@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,13 +10,23 @@
 .loginSpan:hover{
 	cursor: pointer;
 }
+
 </style>
 </head>
 <body>
 <div class="row">
 	<div class="col text-end">
-		<span class="loginSpan" data-bs-target="#loginModal" data-bs-toggle="modal" >Login</span> 
-		<span class="loginSpan" data-bs-target="#joinModal" data-bs-toggle="modal" >join</span> 
+		<c:choose>
+			<c:when test="${not empty sessionScope.loginInfo  }">
+				${sessionScope.loginInfo.memName }님 반갑습니다.
+				내정보보기
+				<a href="/member/logout">Logout</a>
+			</c:when>
+			<c:otherwise>
+				<span class="loginSpan" data-bs-target="#loginModal" data-bs-toggle="modal" >Login</span> 
+				<span class="loginSpan" data-bs-target="#joinModal" data-bs-toggle="modal" >join</span> 
+			</c:otherwise>
+		</c:choose>
 	</div>
 </div>
 <div class="row">
@@ -27,23 +38,27 @@
 	<div class="col">
 		<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="#">Navbar</a>
+				<!-- <a class="navbar-brand" href="#">Navbar</a>
 					<button class="navbar-toggler" type="button"
 						data-bs-toggle="collapse" data-bs-target="#navbarNav"
 						aria-controls="navbarNav" aria-expanded="false"
 						aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
-					</button>
+					</button> -->
 				<div class="collapse navbar-collapse" id="navbarNav">
 					<ul class="navbar-nav">
 						<li class="nav-item"><a class="nav-link active"
-							aria-current="page" href="#">Home</a></li>
+							aria-current="page" href="#">전체상품</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">IT/인터넷</a>
 						</li>
 						<li class="nav-item"><a class="nav-link" href="#">사회/과학</a>
 						</li>
 						<li class="nav-item"><a class="nav-link">경제/경영</a>
 						</li>
+						<c:if test="${sessionScope.loginInfo.isAdmin eq 'Y' }">
+							<li class="nav-item"><a class="nav-link" href="/admin/regItem">관리자메뉴</a>
+						</li>
+						</c:if>
 					</ul>
 				</div>
 			</div>
@@ -62,21 +77,23 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+      	<form action="/member/login" method="post">
         <div class="row">
         	<div class="mb-3">
-        		<input class="form-control" type="text" placeholder="ID" >
+        		<input name="memId" class="form-control" type="text" placeholder="ID" required>
         	</div>
         </div>
         <div class="row">
         	<div class="mb-3">
-        		<input class="form-control" type="text" placeholder="PASSWORD" >
+        		<input name="memPw" class="form-control" type="password" placeholder="PASSWORD" required>
         	</div>
         </div>
         <div class="row">
         	<div class="col d-grid gap-2">
-        		<button type="button" class="btn btn-primary">login</button>
+        		<button type="submit" class="btn btn-primary">login</button>
         	</div>
         </div>
+        </form>
       </div>
     </div>
   </div>
@@ -145,44 +162,8 @@
   </div>
 </div>
 
-
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
+<script src="/resources/js/common/menu.js" type="text/javascript"></script>
 
-//joinModalEl 선택
-var joinModalEl = document.getElementById('joinModal');
-//joinModalEl이 닫힐 때 자동 시작하는 이벤트
-joinModalEl.addEventListener('hidden.bs.modal', function (event) {
-	//joinModal안에 있는 모든 input태그 선택
-	var tags = document.querySelectorAll('#joinModal input');
-	
-
-	for(var i = 0; i<tags.length; i++){
-		tags[i].value = '';
-	}
-});
-
-//loginModalEl 선택
-var joinModalEl = document.getElementById('loginModal');
-//loginModalEl이 닫힐 때 자동 시작하는 이벤트
-joinModalEl.addEventListener('hidden.bs.modal', function (event) {
-	//loginModal안에 있는 모든 input태그 선택
-	var tags = document.querySelectorAll('#loginModal input');
-
-	for(var i = 0; i<tags.length; i++){
-		tags[i].value = '';
-	}
-});
-
-//우편번호 검색 api
-function sample4_execDaumPostcode() {
-        new daum.Postcode({
-            oncomplete: function(data) {
-                var roadAddr = data.roadAddress; // 도로명 주소 변수
-                document.getElementById("addr").value = roadAddr;
-            }
-        }).open();
-    }
-</script>
 </body>
 </html>
