@@ -47,17 +47,11 @@
 					</button> -->
 				<div class="collapse navbar-collapse" id="navbarNav">
 					<ul class="navbar-nav">
-						<li class="nav-item"><a class="nav-link <c:if test="${empty selectedCategory }">active</c:if>"
-							aria-current="page" href="/item/itemList">전체상품</a></li>
-						<c:forEach items="${categoryList }" var="category">
+						<c:forEach items="${menuList }" var="menu">
 							<li class="nav-item">
-								<a class="nav-link <c:if test="${category.cateCode eq selectedCategory }">active</c:if>" href="/item/itemList?cateCode=${category.cateCode }" >${category.cateName }</a>
+								<a class="nav-link" aria-current="page" href="/item/itemList">${menu.menuName }</a>
 							</li>
 						</c:forEach>
-						<c:if test="${sessionScope.loginInfo.isAdmin eq 'Y' }">
-							<li class="nav-item"><a class="nav-link" href="/admin/categoryManage">관리자메뉴</a>
-						</li>
-						</c:if>
 					</ul>
 				</div>
 			</div>

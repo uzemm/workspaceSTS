@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.shop.vo.CategoryVO;
+import com.kh.shop.vo.ItemVO;
 
 
 @Service("itemService")
@@ -21,6 +22,4 @@ public class ItemServiceImpl implements ItemService {
 		return sqlSession.selectList("itemMapper.selectCategoryList");
 	}
 
-
-	
 }

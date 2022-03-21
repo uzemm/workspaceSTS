@@ -5,7 +5,7 @@ public class ItemVO {
 	private String itemName;
 	private int itemPrice;
 	private String itemDetail;
-	private String itemStock;
+	private int itemStock;
 	private String cateCode;
 	
 	public String getItemCode() {
@@ -32,10 +32,10 @@ public class ItemVO {
 	public void setItemDetail(String itemDetail) {
 		this.itemDetail = itemDetail;
 	}
-	public String getItemStock() {
+	public int getItemStock() {
 		return itemStock;
 	}
-	public void setItemStock(String itemStock) {
+	public void setItemStock(int itemStock) {
 		this.itemStock = itemStock;
 	}
 	public String getCateCode() {
