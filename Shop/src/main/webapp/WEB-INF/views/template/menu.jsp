@@ -84,7 +84,7 @@
         </div>
         <div class="row">
         	<div class="mb-3">
-        		<input name="memPw" class="form-control" type="password" placeholder="PASSWORD" required>
+        		<input name="memPw" class="form-control" type="text" placeholder="PASSWORD" required>
         	</div>
         </div>
         <div class="row">

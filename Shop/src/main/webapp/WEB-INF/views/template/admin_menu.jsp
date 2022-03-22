@@ -49,9 +49,12 @@
 					<ul class="navbar-nav">
 						<c:forEach items="${menuList }" var="menu">
 							<li class="nav-item">
-								<a class="nav-link" aria-current="page" href="/item/itemList">${menu.menuName }</a>
+								<a class="nav-link <c:if test="${menu.menuCode eq selectedMenu }">active</c:if>" aria-current="page" href="/admin/${menu.menuUri }?menuCode=${menu.menuCode}">${menu.menuName }</a>
 							</li>
 						</c:forEach>
+						<li class="nav-item">
+							<a class="nav-link" aria-current="page" href="/item/itemList">HOME</a>
+						</li>
 					</ul>
 				</div>
 			</div>
