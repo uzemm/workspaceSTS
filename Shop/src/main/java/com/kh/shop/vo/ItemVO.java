@@ -7,7 +7,14 @@ public class ItemVO {
 	private String itemDetail;
 	private int itemStock;
 	private String cateCode;
+	private String attachedImgName;
 	
+	public String getAttachedImgName() {
+		return attachedImgName;
+	}
+	public void setAttachedImgName(String attachedImgName) {
+		this.attachedImgName = attachedImgName;
+	}
 	public String getItemCode() {
 		return itemCode;
 	}

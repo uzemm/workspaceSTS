@@ -24,6 +24,10 @@ public class ItemController {
 		
 		//메뉴에서 클릭한 카테고리의 코드값
 		model.addAttribute("selectedCategory", cateCode);
+		
+		//아이템 목록
+		model.addAttribute("itemList", itemService.selectItemList());
 		return "item/item_list";
 	}
+	
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,16 +8,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-상품 목록 페이지 입니다.<br>
-<button type="button" class="btn btn-primary">Primary</button>
-<button type="button" class="btn btn-secondary">Secondary</button>
-<button type="button" class="btn btn-success">Success</button>
-<button type="button" class="btn btn-danger">Danger</button>
-<button type="button" class="btn btn-warning">Warning</button>
-<button type="button" class="btn btn-info">Info</button>
-<button type="button" class="btn btn-light">Light</button>
-<button type="button" class="btn btn-dark">Dark</button>
-
-<button type="button" class="btn btn-link">Link</button>
+<div class="card" style="width: 18rem;">
+	<c:forEach items="${itemList }" var="item">
+	  	<img src="resources/images/${item.attachedImgName }" class="card-img-top" >
+	  	<div class="card-body">
+	   	 <h5 class="card-title">${item.itemName }</h5>
+	   	 <p class="card-text">${item.itemPrice }</p>
+	  	</div>
+	</c:forEach>
+</div>
 </body>
 </html>

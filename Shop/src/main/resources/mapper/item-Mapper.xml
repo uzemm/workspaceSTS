@@ -7,12 +7,13 @@
  		<result column="CATE_NAME" property="cateName"/>
  	</resultMap>
  	<resultMap type="com.kh.shop.vo.ItemVO" id="item">
- 		<id column="ITEM_CODE" 			property="itemCode"/>
- 		<result column="ITEM_NAME" 		property="itemName"/>
- 		<result column="ITEM_PRICE" 	property="itemPrice"/>
- 		<result column="ITEM_DETAIL" 	property="itemDetail"/>
- 		<result column="ITEM_STOCK" 	property="itemStock"/>
- 		<result column="CATE_CODE"		property="cateCode"/>
+ 		<id column="ITEM_CODE" 					property="itemCode"/>
+ 		<result column="ITEM_NAME" 				property="itemName"/>
+ 		<result column="ITEM_PRICE" 			property="itemPrice"/>
+ 		<result column="ITEM_DETAIL" 			property="itemDetail"/>
+ 		<result column="ITEM_STOCK" 			property="itemStock"/>
+ 		<result column="CATE_CODE"				property="cateCode"/>
+ 		<result column="ATTACHED_IMG_NAME" 		property="attachedImgName"/>
  	</resultMap>
 	
 	<select id="selectCategoryList" resultMap="category">
@@ -21,6 +22,15 @@
 		FROM ITEM_CATEGORY
 	</select>
 	
+	<select id="selectItemList" resultMap="item">
+		SELECT ITEM.ITEM_CODE
+			, ITEM_NAME
+			, ITEM_PRICE
+			, ATTACHED_IMG_NAME
+		FROM SHOP_ITEM ITEM, ITEM_IMAGE IMG
+		WHERE ITEM.ITEM_CODE = IMG.ITEM_CODE
+		AND IS_MAIN = 'Y'
+	</select>
 </mapper>
 
 
