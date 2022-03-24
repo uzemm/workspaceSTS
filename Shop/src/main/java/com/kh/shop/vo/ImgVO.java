@@ -47,5 +47,9 @@ public class ImgVO {
 		this.itemCode = itemCode;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "ImgVO [imgCode=" + imgCode + ", originImgName=" + originImgName + ", attachedImgName=" + attachedImgName
+				+ ", isMain=" + isMain + ", itemCode=" + itemCode + ", imgList=" + imgList + "]";
+	}
 }

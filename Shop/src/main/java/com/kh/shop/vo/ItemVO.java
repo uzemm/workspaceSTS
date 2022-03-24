@@ -1,5 +1,7 @@
 package com.kh.shop.vo;
 
+import java.util.List;
+
 public class ItemVO {
 	private String itemCode;
 	private String itemName;
@@ -8,7 +10,14 @@ public class ItemVO {
 	private int itemStock;
 	private String cateCode;
 	private String attachedImgName;
+	private List<ImgVO> imgList;
 	
+	public List<ImgVO> getImgList() {
+		return imgList;
+	}
+	public void setImgList(List<ImgVO> imgList) {
+		this.imgList = imgList;
+	}
 	public String getAttachedImgName() {
 		return attachedImgName;
 	}
@@ -55,6 +64,7 @@ public class ItemVO {
 	@Override
 	public String toString() {
 		return "ItemVO [itemCode=" + itemCode + ", itemName=" + itemName + ", itemPrice=" + itemPrice + ", itemDetail="
-				+ itemDetail + ", itemStock=" + itemStock + ", cateCode=" + cateCode + "]";
+				+ itemDetail + ", itemStock=" + itemStock + ", cateCode=" + cateCode + ", attachedImgName="
+				+ attachedImgName + ", imgList=" + imgList + "]";
 	}
 }

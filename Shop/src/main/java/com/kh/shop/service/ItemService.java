@@ -14,4 +14,6 @@ public interface ItemService {
 	//아이템 목록 조회
 	List<ItemVO> selectItemList();
 	
+	//상품 상세정보 조회
+	ItemVO selectItemDetail(String itemCode);
 }

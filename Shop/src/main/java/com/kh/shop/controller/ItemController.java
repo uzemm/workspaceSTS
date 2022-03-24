@@ -17,6 +17,7 @@ public class ItemController {
 	@Resource(name = "itemService")
 	private ItemService itemService;
 	
+	//전체상품 목록 페이지
 	@GetMapping("/itemList")
 	public String itemList(Model model, String cateCode) {
 		//카테고리 목록
@@ -25,9 +26,21 @@ public class ItemController {
 		//메뉴에서 클릭한 카테고리의 코드값
 		model.addAttribute("selectedCategory", cateCode);
 		
-		//아이템 목록
+		//상품 목록 조회
 		model.addAttribute("itemList", itemService.selectItemList());
 		return "item/item_list";
+	}
+	
+	//상품 상세보기 페이지
+	@GetMapping("/itemDetail")
+	public String itemDetail(Model model, String itemCode) {
+		//카테고리 목록
+		model.addAttribute("categoryList", itemService.selectCategoryList());
+		ItemVO result = itemService.selectItemDetail(itemCode);
+		System.out.println(result);
+		
+		model.addAttribute("item", result);
+		return "item/item_datail";
 	}
 	
 }
