@@ -21,7 +21,7 @@
 			<div class="card" style="width: 12rem;">
 			  	<a href="/item/itemDetail?itemCode=${item.itemCode }"><img src="/resources/images/${item.attachedImgName }" class="card-img-top" height="260px;" ></a>
 			  	<div class="card-body" style="padding: 0.5rem 0.8rem;">
-			   	 <h5 class="card-title">${item.itemName }</h5>
+			   	 <h5 class="card-title" style="font-size: 17px;">${item.itemName }</h5>
 			   	 <p class="card-text"><fmt:formatNumber value="${item.itemPrice }" pattern="#,###원"/></p>
 			  	</div>
 			</div>
