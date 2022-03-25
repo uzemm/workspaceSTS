@@ -11,6 +11,7 @@
 		<mapper resource="/mapper/member-Mapper.xml"/>
 		<mapper resource="/mapper/item-Mapper.xml"/>
 		<mapper resource="/mapper/admin-Mapper.xml"/>
+		<mapper resource="/mapper/cart-Mapper.xml"/>
 	</mappers>
 </configuration>
 

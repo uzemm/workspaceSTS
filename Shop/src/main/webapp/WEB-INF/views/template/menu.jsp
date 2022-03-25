@@ -19,7 +19,7 @@
 		<c:choose>
 			<c:when test="${not empty sessionScope.loginInfo  }">
 				${sessionScope.loginInfo.memName }님 반갑습니다.
-				내정보보기
+				<a href="/cart/cartList">장바구니</a>
 				<a href="/member/logout">Logout</a>
 			</c:when>
 			<c:otherwise>

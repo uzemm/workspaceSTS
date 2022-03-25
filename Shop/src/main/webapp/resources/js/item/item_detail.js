@@ -22,3 +22,26 @@ function setTotalPrice(){
 	document.getElementById('totalPriceSpan').innerText = '￦' + totalPrice;
 }
 
+//--------------------장바구니 코드-----------------------//
+
+function insertCart(){
+	var formTag = document.getElementById('itemForm');
+	formTag.action = '/cart/insertCart';
+	formTag.submit();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
