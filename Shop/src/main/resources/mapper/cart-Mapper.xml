@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 모든 SQL문을 mapper태그 안에 작성 -->
 <mapper namespace="cartMapper">
- 	<resultMap type="com.kh.shopo.vo.CartVO" id="cart">
+ 	<resultMap type="com.kh.shop.vo.CartVO" id="cart">
  		<id column="CART_NUM" 			property="cartNum"/>
  		<result column="ITEM_CODE" 		property="itemCode"/>
  		<result column="MEM_ID" 		property="memId"/>
