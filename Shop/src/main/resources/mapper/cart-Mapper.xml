@@ -44,6 +44,7 @@
 				, #{itemCnt}
 			)
  	</insert>
+ 	
  	<select id="selectCartList" resultMap="cartView">
  		SELECT CART_NUM
  			, ITEM_CODE
@@ -58,6 +59,7 @@
 		WHERE MEM_ID = #{memId}
 		ORDER BY CART_NUM DESC
  	</select>
+ 	
  	<delete id="deleteCart">
  		DELETE SHOP_CART
  		WHERE ITEM_CODE = #{itemCode}

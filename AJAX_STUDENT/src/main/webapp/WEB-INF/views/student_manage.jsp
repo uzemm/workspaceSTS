@@ -7,16 +7,20 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-table {
+.stuTable {
 	margin: 0;
-	width: 800px;
+	width: 400px;
+	border: 1px solid black;
+	border-collapse: collapse;
+	text-align: center;
 }
-table tr{
+.stuTable tr, td{
+	border: 1px solid black;
 }
 </style>
 </head>
 <body>
-<table>
+<table class="class">
 	<tr>
 		<td>
 			<select>
@@ -28,23 +32,23 @@ table tr{
 		</td>
 	</tr>
 </table>
-	<table>
-		<thead>
+<table class="stuTable">
+	<thead>
+		<tr>
+			<td>No</td>
+			<td>학생명</td>
+			<td>반이름</td>
+		</tr>
+	</thead>
+	<tbody>
+		<c:forEach items="${studentList }" var="student">
 			<tr>
-				<td>No</td>
-				<td>학생명</td>
-				<td>반이름</td>
+				<td>${student.stuNum }</td>
+				<td>${student.stuName }</td>
+				<td>${student.className }</td>
 			</tr>
-		</thead>
-		<tbody>
-			<tr>
- 				<c:forEach items="${studentList }" var="student">
-					<td>${student.stuNum }</td>
-					<td>${student.stuName }</td>
-					<td>${student.className }</td>
-				</c:forEach> 
-			</tr>
-		</tbody>
-	</table>
+		</c:forEach> 
+	</tbody>
+</table>
 </body>
 </html>

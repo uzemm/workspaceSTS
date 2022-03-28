@@ -25,10 +25,10 @@
  	<select id="selectStudent" resultMap="student">
  		SELECT STU_NUM
  			, STU_NAME
- 			, CAL.CLASS_CODE
+ 			, CLA.CLASS_CODE
  			, CLASS_NAME
- 		FROM STUDENT_INFO STU, CLASS_INFO CAL
- 		WHERE STU.CLASS_CODE = CAL.CLASS_CODE
+ 		FROM STUDENT_INFO STU, CLASS_INFO CLA
+ 		WHERE STU.CLASS_CODE = CLA.CLASS_CODE
  	</select>
 </mapper>
 
