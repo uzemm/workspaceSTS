@@ -1,5 +1,7 @@
 package com.kh.shop.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.shop.service.CartService;
 import com.kh.shop.vo.CartVO;
+import com.kh.shop.vo.CartViewVO;
 import com.kh.shop.vo.MemberVO;
 
 @Controller
@@ -33,7 +36,25 @@ public class CartController {
 	
 	//장바구니 목록 페이지
 	@GetMapping("/cartList")
-	public String cartList() {
+	public String cartList(Model model, HttpSession session) {
+		String memId = ((MemberVO)session.getAttribute("loginInfo")).getMemId();
+		
+		//장바구니 목록 조회
+		List<CartViewVO> cartList = cartService.selectCartList(memId);
+		model.addAttribute("cartList", cartList);
+		
+		//구매가격
+		int totalPrice = 0;
+		for(CartViewVO e : cartList) {
+			totalPrice = totalPrice + e.getTotalPrice();
+		}
+		model.addAttribute("totalPrice", totalPrice);
 		return "cart/cart_list";
+	}
+	
+	@GetMapping("/cartDelete")
+	public String cartDelete(String itemCode) {
+		return "redirect:/cartList";
+				
 	}
 }

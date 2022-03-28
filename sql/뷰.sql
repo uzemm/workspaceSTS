@@ -1,3 +1,7 @@
+--VIEW : 가상 테이블
+--1. 데이터 보안
+--2. 자주쓰는 조인, 서브쿼리를 편하게 사용하기 위해서.
+
 SELECT * FROM EMP;
 
 CREATE OR REPLACE VIEW V_EMP
