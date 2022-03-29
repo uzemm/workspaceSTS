@@ -11,5 +11,8 @@ public interface StudentService {
 	List<ClassVO> selectClass();
 	
 	//학생 조회
-	List<StudentVO> selectStudent();
+	List<StudentVO> selectStudent(ClassVO classVO);
+	
+	//학생 상세조회
+	StudentVO selectStuDetail(String stuNum);
 }
