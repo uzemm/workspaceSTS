@@ -3,6 +3,7 @@ package com.kh.shop.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.shop.service.CartService;
 import com.kh.shop.vo.CartVO;
@@ -52,9 +54,19 @@ public class CartController {
 		return "cart/cart_list";
 	}
 	
-	@GetMapping("/cartDelete")
-	public String cartDelete(String itemCode) {
-		return "redirect:/cartList";
-				
+	@PostMapping("/cartDelete")
+	public String cartDelete(CartVO cartVO, HttpSession session) {
+		String memId = ((MemberVO)session.getAttribute("loginInfo")).getMemId();
+		cartVO.setMemId(memId);
+		cartService.deleteCart(cartVO);
+		return "redirect:/cart/cartList";
+	}
+	
+	@ResponseBody
+	@PostMapping("/updateItemCnt")
+	public void updateItemCnt(CartVO cartVO, HttpSession session) {
+		String memId = ((MemberVO)session.getAttribute("loginInfo")).getMemId();
+		cartVO.setMemId(memId);
+		cartService.updateItemCnt(cartVO);
 	}
 }

@@ -33,39 +33,22 @@
 </style>
 </head>
 <body>
-<table>
-	<colgroup>
-		<col width="50%">
-		<col width="50%">
-	<tr>
-		<td>
-			<div style="text-align: center;">
-				<select>
-					<option>전체</option>
-					<c:forEach items="${classList }" var="classInfo">
-						<option>${classInfo.className }</option>
-					</c:forEach>
-				</select>
-			</div>
-			<div>
-				<table class="stuTable">
+<table class="stuInfoTable">
+					<colgroup>
+						<col width="20%">
+						<col width="30%">
+						<col width="20%">
+						<col width="30%">
 					<tr>
-						<td>No</td>
-						<td>학생명</td>
-						<td>반이름</td>
+						<td>이름</td>
+						<td colspan="3"></td>
 					</tr>
-					<c:forEach items="${studentList }" var="stuInfo">
 					<tr>
+						<td>국어점수</td>
 						<td></td>
-						<td>${stuInfo.stuName }</td>
-						<td>${stuInfo.className }</td>
+						<td>영어점수</td>
+						<td></td>
 					</tr>
-					</c:forEach> 
 				</table>
-			</div>
-		</td>
-		<td></td>
-	</tr>
-</table>
 </body>
 </html>

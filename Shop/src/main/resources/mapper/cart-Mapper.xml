@@ -65,6 +65,14 @@
  		WHERE ITEM_CODE = #{itemCode}
  		AND MEM_ID = #{memId}
  	</delete>
+ 	
+ 	<update id="updateItemCnt">
+ 		UPDATE SHOP_CART
+ 		SET
+ 		ITEM_CNT = #{itemCnt}
+ 		WHERE MEM_ID = #{memId}
+ 		AND ITEM_CODE = #{itemCode}
+ 	</update>
 </mapper>
 
 

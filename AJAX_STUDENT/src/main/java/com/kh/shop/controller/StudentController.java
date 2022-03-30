@@ -42,7 +42,12 @@ public class StudentController {
 	@ResponseBody
 	@PostMapping("/stuDetail")
 	public StudentVO stuDetail(String stuNum) {
-		StudentVO stu = studentService.selectStuDetail(stuNum);
-		return stu;
+		return studentService.selectStuDetail(stuNum);
+	}
+	
+	@ResponseBody
+	@PostMapping("/updateScore")
+	public void updateScore(StudentVO studentVO) {
+		studentService.updateScore(studentVO);
 	}
 }

@@ -39,6 +39,7 @@
 .stuInfoTable tr, .stuInfoTable td{
 	border: 1px soild black;
 }
+
 </style>
 </head>
 <body>
@@ -78,29 +79,12 @@
 			</div>
 		</td>
 		<td>
-			<div>
-				<table class="stuInfoTable">
-					<colgroup>
-						<col width="20%">
-						<col width="30%">
-						<col width="20%">
-						<col width="30%">
-					<tr>
-						<td>이름</td>
-						<td colspan="3"></td>
-					</tr>
-					<tr>
-						<td>국어점수</td>
-						<td></td>
-						<td>영어점수</td>
-						<td></td>
-					</tr>
-				</table>
+			<div id="stuDetailDiv">
 			</div>
 		</td>
 	</tr>
 </table>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript" src="/resources/student_manage.js?ver=21"></script>
+<script type="text/javascript" src="/resources/student_manage.js?ver=49"></script>
 </body>
 </html>

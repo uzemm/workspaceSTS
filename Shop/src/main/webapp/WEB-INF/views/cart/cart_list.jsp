@@ -89,7 +89,7 @@ thead tr{
 											<input class="form-control" type="number" value="${item.itemCnt }">
 										</div>
 										<div class="col-5 d-grid">
-											<button class="btn btn-primary" type="button">변경</button>
+											<button class="btn btn-primary" type="button" onclick="updateItemCnt(this, '${item.itemCode}');">변경</button>
 										</div>
 									</div>
 								</td>
@@ -97,7 +97,10 @@ thead tr{
 									<fmt:formatNumber value="${item.totalPrice }" pattern="￦#,###"/> 
 								</td>
 								<td>
-									<button class="btn btn-primary" type="button" onclick="location.href='/cart/cartDelete';">삭제</button>
+									<form action="cartDelete" method="post" id="deleteCartForm">
+										<input type="hidden" name="itemCode" value="${item.itemCode }">
+										<button class="btn btn-primary" type="button" onclick="cartDelete(this);">삭제</button>
+									</form>
 								</td>
 							</tr>
 							</c:forEach>
@@ -131,5 +134,6 @@ thead tr{
 		</div>
 	</div>
 </div>
+<script type="text/javascript" src="/resources/js/cart/cart_list.js?ver=8"></script>
 </body>
 </html>

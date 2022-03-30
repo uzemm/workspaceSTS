@@ -14,4 +14,8 @@ public interface CartService {
 	List<CartViewVO> selectCartList(String memId);
 	
 	//장바구니 삭제
+	void deleteCart(CartVO cartVO);
+	
+	void updateItemCnt(CartVO cartVO);
+	
 }

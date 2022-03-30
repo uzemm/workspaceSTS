@@ -15,4 +15,6 @@ public interface StudentService {
 	
 	//학생 상세조회
 	StudentVO selectStuDetail(String stuNum);
+	
+	void updateScore(StudentVO studentVO);
 }
