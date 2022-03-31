@@ -39,7 +39,7 @@ thead tr{
 				<thead style="border-top: 2px solid #BADCE3; ">
 					<tr class="table-info">
 						<th scope="col">
-							<input class="form-check-input" type="checkbox"> 
+							<input class="form-check-input" type="checkbox" id="cartCheck" onclick="checkAll();" checked> 
 						</th>
 						<th scope="col">
 							No
@@ -69,7 +69,7 @@ thead tr{
 						<c:forEach items="${cartList }" var="item" >
 							<tr>
 								<td>
-									<input class="form-check-input" type="checkbox"> 
+									<input class="form-check-input cartCheckBoxes" type="checkbox"  value="${item.itemCode }" checked> 
 								</td>
 								<td>
 									1
@@ -89,12 +89,12 @@ thead tr{
 											<input class="form-control" type="number" value="${item.itemCnt }">
 										</div>
 										<div class="col-5 d-grid">
-											<button class="btn btn-primary" type="button" onclick="updateItemCnt(this, '${item.itemCode}');">변경</button>
+											<button class="btn btn-primary" type="button" onclick="updateItemCnt(this, '${item.itemCode}', ${item.itemPrice });">변경</button>
 										</div>
 									</div>
 								</td>
-								<td>
-									<fmt:formatNumber value="${item.totalPrice }" pattern="￦#,###"/> 
+								<td class="totalPriceTd">
+									<fmt:formatNumber value="${item.totalPrice }" pattern="￦#,###"/>
 								</td>
 								<td>
 									<form action="cartDelete" method="post" id="deleteCartForm">
@@ -119,21 +119,22 @@ thead tr{
 		<div class="col-12">
 			<div class="row">
 				<div class="col-1 offset-10 text-end" style="background-color: #BADCE3; padding: 6px; border: 1px solid white; font-style: italic; font-weight: bold; border-top-left-radius: 10px; border-bottom-left-radius: 10px;">구매 가격</div>
-				<div class="col-1" style="padding: 6px; border-bottom: 1px solid #BADCE3"><fmt:formatNumber value="${totalPrice }" pattern="￦#,###"/> </div>
+				<div class="col-1" style="padding: 6px; border-bottom: 1px solid #BADCE3" id="buyPriceDiv">
+				<fmt:formatNumber value="${totalPrice }" pattern="￦#,###"/> </div>
 			</div>
 		</div>
 		<div class="col-12">
 			<div class="row" style="margin-top: 20px;">
 				<div class="col">
 					<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-					  <button class="btn btn-primary me-md-2" type="button">선택구매</button>
-					  <button class="btn btn-primary" type="button">선택삭제</button>
+					  <button class="btn btn-primary me-md-2" type="button" onclick="buyItem();">선택구매</button>
+					  <button class="btn btn-primary" type="button" onclick="deleteCarts();">선택삭제</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<script type="text/javascript" src="/resources/js/cart/cart_list.js?ver=8"></script>
+<script type="text/javascript" src="/resources/js/cart/cart_list.js?ver=33"></script>
 </body>
 </html>

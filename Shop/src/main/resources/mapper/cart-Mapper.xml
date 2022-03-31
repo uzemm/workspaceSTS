@@ -73,6 +73,16 @@
  		WHERE MEM_ID = #{memId}
  		AND ITEM_CODE = #{itemCode}
  	</update>
+ 	
+ 	<delete id="deleteCarts">
+ 		DELETE SHOP_CART
+		WHERE MEM_ID = #{memId}
+		AND ITEM_CODE IN
+		<foreach collection="itemCodeArr" item="itemCode" open="(" close=")" separator=",">
+			#{itemCode}
+		</foreach>
+ 	</delete>
+ 	
 </mapper>
 
 

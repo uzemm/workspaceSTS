@@ -12,7 +12,7 @@ function cartDelete(tag){
 }
 
 //상품 수량 변경
-function updateItemCnt(selectedTag, itemCode){
+function updateItemCnt(selectedTag, itemCode, itemPrice){
 	var itemCnt = selectedTag.parentNode.previousElementSibling.firstElementChild.value;
 
 	$.ajax({
@@ -22,10 +22,87 @@ function updateItemCnt(selectedTag, itemCode){
 		success: function(result) {
 			//ajax 실행 성공 후 실행할 코드 작성
 			alert('수량이 변경되었습니다.');
+			
+			//총 가격 변경
+			var totalPrice = itemCnt * itemPrice;
+			//closest() : 선택한 태그 기준으로 가장 가까운 부모태그를 찾아감.
+			selectedTag.closest('td').nextElementSibling.innerText = '￦'+totalPrice.toLocaleString();
+
+			//구매가격 변경
+			var buyPrice = 0;
+			var totalPriceTds = document.getElementsByClassName('totalPriceTd');
+			for(var i = 0; i < totalPriceTds.length; i++){
+				var originPrice = totalPriceTds[i].innerText; //￦10,000
+				//substr(시작인덱스, 길이): 문자열 자르기 함수
+				var price = parseInt(originPrice.substr(1, originPrice.length-1).replace(/,/g, '')); //10,000 -> 문자
+				buyPrice += price;
+			}
+			document.getElementById('buyPriceDiv').innerText = '￦' + buyPrice.toLocaleString();
+			
 		},
 		error: function() {
 			//ajax 실행 실패 시 실행되는 구간
 			alert('실패');
 		}
 	});
+}
+
+//전체선택, 전체 해제
+function checkAll(){
+	var allCheck = document.getElementById('cartCheck').checked;
+	var checkBoxes = document.getElementsByClassName('cartCheckBoxes');
+	
+	//제목줄의 체크박스가 체크 되었을 때
+	if(allCheck){  //id 를 사용하여 하나의 객체만을 호출
+	         for(var i = 0; i < checkBoxes.length; i++) 
+	         	checkBoxes[i].checked = true;   //name 을 사용하여 배열 형태로 담아 호출
+	      }
+	else{
+         for(var i = 0; i < checkBoxes.length; i++) 
+         	checkBoxes[i].checked = false;  
+      }
+}
+
+//선택삭제
+function deleteCarts(){
+/*	var checkBoxes = document.getElementsByName('cartCheckBoxes');
+	
+	var cnt = 0;
+	for(var i = 0; i < checkBoxes.length; i++){
+		if(checkBoxes[i].checked){
+			cnt++;
+		}
+	}*/
+	var checkBoxes = document.querySelectorAll('.cartCheckBoxes:checked');
+	
+	if(checkBoxes.length == 0){
+		alert('삭제할 상품을 선택해주세요.');
+		return;
+	}
+	
+	//선택한 상품코드를 저장할 배열을 생성
+	var itemCodeArr = [];
+	for(var i = 0; i < checkBoxes.length; i++){
+		itemCodeArr[i] = checkBoxes[i].value;
+	}
+	
+	location.href = '/cart/deleteCarts?itemCodeArr=' + itemCodeArr;	
+}
+
+//선택구매
+function buyItem(){
+	var checkBoxes = document.querySelectorAll('.cartCheckBoxes:checked');
+	
+	if(checkBoxes.length == 0){
+		alert('구매할 상품을 선택해주세요.');
+		return;
+	}
+	
+	//선택한 상품코드를 저장할 배열을 생성
+	var itemCodeArr = [];
+	for(var i = 0; i < checkBoxes.length; i++){
+		itemCodeArr[i] = checkBoxes[i].value;
+	}
+	
+	location.href = '/buy/buyItem?itemCodeArr=' + itemCodeArr;
 }

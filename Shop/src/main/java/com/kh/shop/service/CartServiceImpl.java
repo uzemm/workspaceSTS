@@ -34,4 +34,9 @@ public class CartServiceImpl implements CartService{
 	public void updateItemCnt(CartVO cartVO) {
 		sqlSession.update("cartMapper.updateItemCnt", cartVO);
 	}
+
+	@Override
+	public void deleteCarts(CartVO cartVO) {
+		sqlSession.delete("cartMapper.deleteCarts", cartVO);
+	}
 }
