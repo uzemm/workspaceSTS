@@ -91,18 +91,47 @@ function deleteCarts(){
 
 //선택구매
 function buyItem(){
+	//필요한 데이터를 가져온다(상품코드, 수량)
+	//체크한 상품의 상품코드
 	var checkBoxes = document.querySelectorAll('.cartCheckBoxes:checked');
+	var objArr = [];
 	
-	if(checkBoxes.length == 0){
-		alert('구매할 상품을 선택해주세요.');
-		return;
-	}
-	
-	//선택한 상품코드를 저장할 배열을 생성
-	var itemCodeArr = [];
 	for(var i = 0; i < checkBoxes.length; i++){
-		itemCodeArr[i] = checkBoxes[i].value;
-	}
+		var obj = new Object();
+		
+		obj.itemCode = checkBoxes[i].value; //itemCode 빼기
+		obj.itemCnt = checkBoxes[i].closest('tr').querySelector('input[type="number"]').value;
 	
-	location.href = '/buy/buyItem?itemCodeArr=' + itemCodeArr;
+		objArr[i] = obj;
+	}
+	//JSON.stringify(objArr);
+	$.ajax({
+		url: '/buy/buyItem', //요청경로
+		type: 'post',
+		data: {'data':JSON.stringify(objArr)}, //필요한 데이터 '데이터이름':값
+		success: function(result) {
+			//ajax 실행 성공 후 실행할 코드 작성
+			alert('상품을 구매하셨습니다.');
+			
+			location.href = '/cart/cartList';
+		},
+		error: function() {
+			//ajax 실행 실패 시 실행되는 구간
+			alert('실패');
+		}
+	});
 }
+//json(javascript Object notaion )  vs  javascript Object
+
+
+
+
+
+
+
+
+
+
+
+
+

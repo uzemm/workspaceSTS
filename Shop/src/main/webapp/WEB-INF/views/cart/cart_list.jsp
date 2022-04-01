@@ -135,6 +135,6 @@ thead tr{
 		</div>
 	</div>
 </div>
-<script type="text/javascript" src="/resources/js/cart/cart_list.js?ver=33"></script>
+<script type="text/javascript" src="/resources/js/cart/cart_list.js?ver=39"></script>
 </body>
 </html>
