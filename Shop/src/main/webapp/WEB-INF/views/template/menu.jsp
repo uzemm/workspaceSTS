@@ -10,7 +10,6 @@
 .loginSpan:hover{
 	cursor: pointer;
 }
-
 </style>
 </head>
 <body>

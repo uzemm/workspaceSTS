@@ -2,6 +2,7 @@ package com.kh.shop.service;
 
 import java.util.List;
 
+import com.kh.shop.vo.BuyVO;
 import com.kh.shop.vo.ImgVO;
 import com.kh.shop.vo.ItemVO;
 import com.kh.shop.vo.MenuVO;
@@ -10,7 +11,7 @@ import com.kh.shop.vo.SubMenuVO;
 public interface AdminService {
 
 	//상품 등록
-	void insertItem(ItemVO itemVO);
+	void insertItem(ItemVO itemVO, ImgVO imgVO);
 	
 	//관리자 메뉴 목록 조회
 	List<MenuVO> selectMenuList();
@@ -26,4 +27,10 @@ public interface AdminService {
 	
 	//다음에 들어갈 ITEM_CODE 조회
 	String selectNextItemCode();
+	
+	//구매목록조회
+	List<BuyVO> selectBuyList();
+	
+	//구매내역 상세조회
+	List<BuyVO> selectBuyListDetail(String orderNum);
 }

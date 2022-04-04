@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.reflection.SystemMetaObject;
 import org.springframework.stereotype.Controller;
@@ -17,10 +18,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.kh.shop.service.AdminService;
+import com.kh.shop.service.CartService;
 import com.kh.shop.service.ItemService;
 import com.kh.shop.vo.ImgVO;
 import com.kh.shop.vo.ItemVO;
+import com.kh.shop.vo.MemberVO;
 
 @Controller
 @RequestMapping("/admin")
@@ -29,7 +33,6 @@ public class AdminController {
 	private AdminService adminService;
 	@Resource(name = "itemService")
 	private ItemService itemService;
-	
 	
 	//카테고리관리 페이지로 이동(상단에 관리자 메뉴 클릭 시 실행)
 	@GetMapping("/categoryManage")
@@ -165,11 +168,11 @@ public class AdminController {
 		
 		//상품 정보를 INSERT(SHOP_ITEM)
 		itemVO.setItemCode(nextItemCode);
-		adminService.insertItem(itemVO);
-		
 		//상품 이미지 정보 INSERT(ITEM_IMAGE)
 		imgVO.setImgList(imgList);
-		adminService.insertImages(imgVO);
+		adminService.insertItem(itemVO, imgVO);
+		
+		//adminService.insertImages(imgVO);
 		
 		
 		return "redirect:/admin/regItem?menuCode=MENU_001&subMenuCode=SUB_MENU_002";
@@ -207,4 +210,23 @@ public class AdminController {
 		model.addAttribute("selectedSubMenu", subMenuCode);
 		return "admin/member_list";
 	}
+	
+	//구매목록관리 페이지로 이동
+	@GetMapping("/buyListManage")
+	public String buyListManage(Model model, String menuCode, String subMenuCode, HttpSession session) {
+		//관리자 메뉴 목록 조회
+		model.addAttribute("menuList",adminService.selectMenuList());
+		//상품관리 메뉴의 하위메뉴 목록 조회
+		model.addAttribute("subMenuList", adminService.selectSubMenuList(menuCode));
+		
+		model.addAttribute("selectedMenu", menuCode);
+		model.addAttribute("selectedSubMenu", subMenuCode);
+		
+		//구매목록 조회
+		model.addAttribute("buyList", adminService.selectBuyList());
+		
+		return "admin/buy_list";
+	}
+	
+	//
 }

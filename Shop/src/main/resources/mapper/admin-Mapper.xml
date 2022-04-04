@@ -14,6 +14,18 @@
  		<result column="MENU_URI" 			property="menuUri"/>
  	</resultMap>
  	
+ 	<resultMap type="com.kh.shop.vo.BuyVO" id="buyInfo">
+ 		<id column="BUY_NUM" property="buyNum"/>
+ 		<result column="MEM_ID" property="memId"/>
+ 		<result column="ITEM_CODE" property="itemCode"/>
+ 		<result column="ITEM_CNT" property="itemCnt"/>
+ 		<result column="BUY_PRICE" property="buyPrice"/>
+ 		<result column="BUY_DATE" property="buyDate"/>
+ 		<result column="ORDER_NUM" property="orderNum"/>
+ 		<association property="memberVO" resultMap="memberMapper.member"/>
+ 		<association property="itemVO" resultMap="itemMapper.item2"/>
+ 	</resultMap>
+ 	
  	<select id="selectMenuList" resultMap="menu">
  		SELECT MENU_CODE
  			, MENU_NAME
@@ -73,16 +85,31 @@
 		SELECT 'ITEM_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(ITEM_CODE, 6))), 0) + 1, 3, 0)
 		FROM SHOP_ITEM
 	</select>
+	
+	<select id="selectBuyList" resultMap="buyInfo">
+		SELECT DISTINCT ORDER_NUM
+		     , MEM_ID
+		     , (SELECT MEM_NAME 
+		        FROM SHOP_MEMBER
+		        WHERE MEM_ID = SHOP_BUY.MEM_ID) AS MEM_NAME
+		    , TO_CHAR(BUY_DATE, 'YYYY-MM-DD HH24:MI') AS BUY_DATE
+		FROM SHOP_BUY
+		ORDER BY BUY_DATE DESC
+	</select>
+	
+	<select id="selectBuyListDetail" resultMap="buyInfo">
+		SELECT IMG.ATTACHED_IMG_NAME
+		    , ITEM.ITEM_NAME
+		    , BUY.ITEM_CNT
+		    , BUY.BUY_PRICE
+		    , BUY.MEM_ID
+		    , MEM.MEM_NAME
+		FROM SHOP_BUY BUY, SHOP_ITEM ITEM, ITEM_IMAGE IMG, SHOP_MEMBER MEM
+		WHERE BUY.ITEM_CODE = ITEM.ITEM_CODE
+		AND BUY.ITEM_CODE = IMG.ITEM_CODE
+		AND BUY.MEM_ID = MEM.MEM_ID
+		AND IS_MAIN = 'Y'
+		AND ORDER_NUM = #{orderNum}
+	</select>
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
 
