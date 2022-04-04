@@ -5,21 +5,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="/resources/common.css" rel="stylesheet">
 <style type="text/css">
-.container{
-	width: 800px;
-	margin: 0 auto;
-}
 table{
-	width: 600px;
+	width: 100%;
 	border: 1px solid black;
 	border-collapse: collapse;
-	height: 100px;
 	text-align: center;
 	margin-top: 30px;
 }
 table tr, td{
-	border: 1px solid black;
+	border: 0.5px solid black;
+	height: 40px;
 }
 </style>
 </head>
@@ -27,6 +24,11 @@ table tr, td{
 <div class="container">
 	<div>
 		<table>
+			<colgroup>
+				<col width="15%">
+				<col width="20%">
+				<col width="20%">
+				<col width="*">
 			<tr>
 				<td>글번호</td>
 				<td>${board.boardNum }</td>
@@ -45,9 +47,7 @@ table tr, td{
 			</tr>
 		</table>
 	</div>
-	<div style="text-align: center; width: 600px; margin-top: 20px;">
-		<input type="button" value="뒤로가기" onclick="location.href='/board/boardList';">
-	</div>
+		<input class="btn" type="button" value="뒤로가기" onclick="location.href='/board/boardList';">
 </div>
 </body>
 </html>

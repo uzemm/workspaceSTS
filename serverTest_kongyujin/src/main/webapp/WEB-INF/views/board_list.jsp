@@ -6,37 +6,45 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="/resources/common.css" rel="stylesheet">
 <style type="text/css">
-.container{
-	width: 800px;
-	margin: 0 auto;
-}
 table{
-	width: 800px;
+	width: 100%;
 	text-align: center;
-	border: 1px solid black;
 	margin-top: 30px;
+	border-collapse: collapse;
 }
 thead tr{
-	margin-bottom: 20px;
-	border: 1px solid black;
-	
+	background-color: #F0F4FD;
+	height: 30px;
+	border-top: 1px solid #5489E0;
+	border-bottom: 1px solid #5489E0;
 }
-.btnDiv{
-	text-align: center;
-	margin-top: 20px;
+tbody tr:nth-child(even) {
+	background-color: #FeFeFe;
+}
+tbody tr{
+   height: 30px;
+   border-bottom: 0.1px solid #F0F4FD;
+}
+a{
+	text-decoration: none;
+	color: black;
 }
 </style>
 </head>
 <body>
 <div class="container">
 	<div>
+		<h1>B O A R D</h1>
+	</div>
+	<div>
 		<table>
 			<colgroup>
-				<col width="25%">
-				<col width="25%">
-				<col width="25%">
-				<col width="25%">
+				<col width="15%">
+				<col width="*">
+				<col width="20%">
+				<col width="20%">
 			<thead>
 				<tr>
 					<td>글번호</td>
@@ -57,9 +65,7 @@ thead tr{
 			</tbody>
 		</table>
 	</div>
-	<div class="btnDiv">
-		<input type="button" value="글쓰기" onclick="location.href='/board/boardWriteForm';">
-	</div>
+		<input class="btn" type="button" value="글쓰기" onclick="location.href='/board/boardWriteForm';">
 </div>
 </body>
 </html>
