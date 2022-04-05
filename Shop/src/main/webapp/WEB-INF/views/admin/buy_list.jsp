@@ -29,7 +29,7 @@
 				<table class="table align-middle searchTable">
 					<colgroup>
 						<col width="15%">
-						<col width="">
+						<col width="*">
 						<col width="15%">
 						<col width="*">
 						<col width="15%">
@@ -49,11 +49,11 @@
 							<td colspan="3">
 								<div class="row">
 									<div class="col-5">
-										<input type="date" class="form-control" value="2022-04-01">
+										<input type="date" class="form-control" value="${firstDate}">
 									</div>
 									<div class="col-1 text-center align-self-center">~</div>
 									<div class="col-5">
-										<input type="date" class="form-control" id="nowDate">
+										<input type="date" class="form-control" value="${nowDate}">
 									</div>
 								</div>
 							</td>
@@ -86,7 +86,7 @@
 									1
 								</td>
 								<td>
-									<span class="datailSpan" onclick="selectBuyListDetail();" >${buyInfo.orderNum }</span>
+									<span class="datailSpan" onclick="selectBuyListDetail('${buyInfo.orderNum }');" >${buyInfo.orderNum }</span>
 								</td>
 								<td>
 									${buyInfo.memId }(${buyInfo.memberVO.memName })
@@ -113,51 +113,11 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-	      <div class="row">
-            <div class="col text-center">
-               <table class="table table-striped table-hover align-middle">
-		              <colgroup>
-		                 <col width="10%">
-		                 <col width="15%">
-		                 <col width="*">
-		                 <col width="10%">
-		                 <col width="15%">
-		                 <col width="15%%">
-		              </colgroup>
-		        	<thead>
-			        	<tr>
-			        		<th scope="row">NO</th>
-			        		<th scope="row">상품이미지</th>
-			        		<th scope="row">상품명</th>
-			        		<th scope="row">수량</th>
-			        		<th scope="row">구매가격</th>
-			        		<th scope="row">구매자</th>
-			        	</tr>
-		        	</thead>
-		        	<tbody>
-		        		<tr>
-		        			<td>1</td>
-		        			<td><img width="60px;" alt="" src="/resources/images/1648136276892_기적적 계산법_메인.jpg"></td>
-		        			<td>도서</td>
-		        			<td>10</td>
-		        			<td>1----</td>
-		        			<td>ㅇㅇㅇ</td>
-		        		</tr>
-		        	</tbody>
-		        </table>
-		      </div>
-		  </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
+
       </div>
     </div>
   </div>
 </div>
-<script type="text/javascript" src="/resources/js/admin/buy_list.js"></script>
-<script type="text/javascript">
-	document.getElementById('nowDate').value = new Date().toISOString().substring(0, 10);;
-</script>
+<script type="text/javascript" src="/resources/js/admin/buy_list.js?ver=42"></script>
 </body>
 </html>

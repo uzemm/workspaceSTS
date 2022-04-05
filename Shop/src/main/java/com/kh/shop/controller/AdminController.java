@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -22,6 +23,8 @@ import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.kh.shop.service.AdminService;
 import com.kh.shop.service.CartService;
 import com.kh.shop.service.ItemService;
+import com.kh.shop.util.MyDateUtil;
+import com.kh.shop.vo.BuyVO;
 import com.kh.shop.vo.ImgVO;
 import com.kh.shop.vo.ItemVO;
 import com.kh.shop.vo.MemberVO;
@@ -225,8 +228,20 @@ public class AdminController {
 		//구매목록 조회
 		model.addAttribute("buyList", adminService.selectBuyList());
 		
+		//이달의 1일과 오늘날짜를 구함
+		String firstDate = MyDateUtil.getFirstDateOfNowMonth();
+		String nowDate = MyDateUtil.getNowDateToString();
+		
+		model.addAttribute("firstDate", firstDate);
+		model.addAttribute("nowDate", nowDate);
+		
 		return "admin/buy_list";
 	}
 	
-	//
+	//구매내역 조회
+	@ResponseBody
+	@PostMapping("/selectBuyListDetail")
+	public List<BuyVO> selectBuyListDetail(String orderNum) {
+		return adminService.selectBuyListDetail(orderNum);
+	}
 }
