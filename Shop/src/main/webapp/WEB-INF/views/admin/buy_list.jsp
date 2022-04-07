@@ -26,40 +26,44 @@
 <div class="row">
 	<div class="col">
 		<div class="col">
-				<table class="table align-middle searchTable">
-					<colgroup>
-						<col width="15%">
-						<col width="*">
-						<col width="15%">
-						<col width="*">
-						<col width="15%">
-					</colgroup>
-					<tbody>
-						<tr>
-							<td class="searchTitle">주문번호</td>
-							<td><input type="text" class="form-control"></td>
-							<td class="searchTitle">구매자</td>
-							<td><input type="text" class="form-control"></td>
-							<td rowspan="2">
-								<button type="button" class="btn btn-secondary w-100 h-100">검색</button>
-							</td>
-						</tr>
-						<tr>
-							<td class="searchTitle">구매일시</td>
-							<td colspan="3">
-								<div class="row">
-									<div class="col-5">
-										<input type="date" class="form-control" value="${firstDate}">
+				<form action="/admin/buyListManage" method="post">
+					<input type="hidden" name="menuCode" value="${selectedMenu }">
+					<input type="hidden" name="subMenuCode" value="${selectedSubMenu }">
+					<table class="table align-middle searchTable">
+						<colgroup>
+							<col width="15%">
+							<col width="*">
+							<col width="15%">
+							<col width="*">
+							<col width="15%">
+						</colgroup>
+						<tbody>
+							<tr>
+								<td class="searchTitle">주문번호</td>
+								<td><input type="text" class="form-control" name="searchOrderNum" value="${buySearchVO.searchOrderNum }"></td>
+								<td class="searchTitle">구매자</td>
+								<td><input type="text" class="form-control" name="searchBuyer" value="${buySearchVO.searchBuyer }"></td>
+								<td rowspan="2">
+									<button type="submit" class="btn btn-secondary w-100 h-100" style="height: 190px;">검 색</button>
+								</td>
+							</tr>
+							<tr>
+								<td class="searchTitle">구매일시</td>
+								<td colspan="3">
+									<div class="row">
+										<div class="col-5">
+											<input type="date" class="form-control" value="${buySearchVO.searchFromDate}" name="searchFromDate">
+										</div>
+										<div class="col-1 text-center align-self-center">~</div>
+										<div class="col-5">
+											<input type="date" class="form-control" value="${buySearchVO.searchToDate}" name="searchToDate">
+										</div>
 									</div>
-									<div class="col-1 text-center align-self-center">~</div>
-									<div class="col-5">
-										<input type="date" class="form-control" value="${nowDate}">
-									</div>
-								</div>
-							</td>
-						</tr>
-					</tbody>
-				</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
 			</div>
 		<div class="row">
 			<div class="col">

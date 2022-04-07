@@ -4,15 +4,18 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.kh.shop.vo.BuySearchVO;
 import com.kh.shop.vo.BuyVO;
 import com.kh.shop.vo.ImgVO;
 import com.kh.shop.vo.ItemVO;
 import com.kh.shop.vo.MenuVO;
 import com.kh.shop.vo.SubMenuVO;
 
+@Repository
 @Service("adminService")
 public class AdminServiceImpl implements AdminService{
 	@Autowired
@@ -52,8 +55,8 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public List<BuyVO> selectBuyList() {
-		return sqlSession.selectList("adminMapper.selectBuyList");
+	public List<BuyVO> selectBuyList(BuySearchVO buySearchVO) {
+		return sqlSession.selectList("adminMapper.selectBuyList", buySearchVO);
 	}
 
 	@Override

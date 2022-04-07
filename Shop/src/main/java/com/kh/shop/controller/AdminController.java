@@ -24,6 +24,7 @@ import com.kh.shop.service.AdminService;
 import com.kh.shop.service.CartService;
 import com.kh.shop.service.ItemService;
 import com.kh.shop.util.MyDateUtil;
+import com.kh.shop.vo.BuySearchVO;
 import com.kh.shop.vo.BuyVO;
 import com.kh.shop.vo.ImgVO;
 import com.kh.shop.vo.ItemVO;
@@ -215,8 +216,8 @@ public class AdminController {
 	}
 	
 	//구매목록관리 페이지로 이동
-	@GetMapping("/buyListManage")
-	public String buyListManage(Model model, String menuCode, String subMenuCode, HttpSession session) {
+	@RequestMapping("/buyListManage") //get, post 둘다 
+	public String buyListManage(Model model, String menuCode, String subMenuCode, HttpSession session, BuySearchVO buySearchVO) {
 		//관리자 메뉴 목록 조회
 		model.addAttribute("menuList",adminService.selectMenuList());
 		//상품관리 메뉴의 하위메뉴 목록 조회
@@ -225,15 +226,21 @@ public class AdminController {
 		model.addAttribute("selectedMenu", menuCode);
 		model.addAttribute("selectedSubMenu", subMenuCode);
 		
-		//구매목록 조회
-		model.addAttribute("buyList", adminService.selectBuyList());
 		
 		//이달의 1일과 오늘날짜를 구함
 		String firstDate = MyDateUtil.getFirstDateOfNowMonth();
 		String nowDate = MyDateUtil.getNowDateToString();
 		
-		model.addAttribute("firstDate", firstDate);
-		model.addAttribute("nowDate", nowDate);
+		if(buySearchVO.getSearchFromDate() == null) {
+			buySearchVO.setSearchFromDate(firstDate); 
+		}
+		if(buySearchVO.getSearchToDate() == null) {
+			buySearchVO.setSearchToDate(nowDate);
+		}
+		
+		//구매목록 조회
+		model.addAttribute("buyList", adminService.selectBuyList(buySearchVO));
+		
 		
 		return "admin/buy_list";
 	}

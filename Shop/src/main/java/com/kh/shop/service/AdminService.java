@@ -2,6 +2,7 @@ package com.kh.shop.service;
 
 import java.util.List;
 
+import com.kh.shop.vo.BuySearchVO;
 import com.kh.shop.vo.BuyVO;
 import com.kh.shop.vo.ImgVO;
 import com.kh.shop.vo.ItemVO;
@@ -29,7 +30,7 @@ public interface AdminService {
 	String selectNextItemCode();
 	
 	//구매목록조회
-	List<BuyVO> selectBuyList();
+	List<BuyVO> selectBuyList(BuySearchVO buySearchVO);
 	
 	//구매내역 상세조회
 	List<BuyVO> selectBuyListDetail(String orderNum);
