@@ -1,40 +1,54 @@
 package com.kh.board.vo;
 
 public class MemberVO {
-	private String memId;
-	private String memPw;
-	private String memName;
-	private int memAge;
-	private String joinDate;
+	private String memberId;
+	private String memberPassword;
+	private String memberName;
+	private int memberAge;
+	private String memberAddr;
+	private String memberBirthday;
+	private String adminYn;
 	
-	public String getMemId() {
-		return memId;
+	public String getMemberId() {
+		return memberId;
 	}
-	public void setMemId(String memId) {
-		this.memId = memId;
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
-	public String getMemPw() {
-		return memPw;
+	public String getMemberPassword() {
+		return memberPassword;
 	}
-	public void setMemPw(String memPw) {
-		this.memPw = memPw;
+	public void setMemberPassword(String memberPassword) {
+		this.memberPassword = memberPassword;
 	}
-	public String getMemName() {
-		return memName;
+	public String getMemberName() {
+		return memberName;
 	}
-	public void setMemName(String memName) {
-		this.memName = memName;
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
 	}
-	public int getMemAge() {
-		return memAge;
+	public int getMemberAge() {
+		return memberAge;
 	}
-	public void setMemAge(int memAge) {
-		this.memAge = memAge;
+	public void setMemberAge(int memberAge) {
+		this.memberAge = memberAge;
 	}
-	public String getJoinDate() {
-		return joinDate;
+	public String getMemberAddr() {
+		return memberAddr;
 	}
-	public void setJoinDate(String joinDate) {
-		this.joinDate = joinDate;
+	public void setMemberAddr(String memberAddr) {
+		this.memberAddr = memberAddr;
+	}
+	public String getMemberBirthday() {
+		return memberBirthday;
+	}
+	public void setMemberBirthday(String memberBirthday) {
+		this.memberBirthday = memberBirthday;
+	}
+	public String getAdminYn() {
+		return adminYn;
+	}
+	public void setAdminYn(String adminYn) {
+		this.adminYn = adminYn;
 	}
 }
