@@ -40,7 +40,38 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.kh.shop.controller" />
+	<context:component-scan base-package="com.kh.shop.interceptor" />
 	
+	<!-- 객체 하나를 만들겠다 -->
+	<!-- <beans:bean id="testInterceptor" class="com.kh.shop.interceptor.TestInterceptor"></beans:bean>
+	<beans:bean id="loginInterceptor" class="com.kh.shop.interceptor.LoginInterceptor"></beans:bean> -->
 	
-	
+	<!-- 인터셉터 설정 -->
+	<interceptors>
+		<interceptor>
+			<!-- 인터셉터가 실행되는 메소드를 지정 -->
+	<!-- 		<mapping path="/test/test1"/>
+			<mapping path="/test/test2"/> -->
+			
+			<mapping path="/test/*"/>
+			<exclude-mapping path="/test/test3"/> <!-- 내가 제외하고 싶은 메소드-->
+			<!-- testInterceptor 객체를 참조하겠다 -->
+			<!-- testInterceptor 인터셉트를 사용하겠다. -->
+			<beans:ref bean="testInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/cart/cartList"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/admin/itemManage"/>
+			<mapping path="/admin/buyListManage"/>
+			<mapping path="/admin/memberList"/>
+			<mapping path="/admin/regItem"/>
+			<mapping path="/admin/categoryManage"/>
+			<beans:ref bean="menuInterceptor"/>
+		</interceptor>
+	</interceptors>
 </beans:beans>

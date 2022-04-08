@@ -34,6 +34,8 @@ public class MemberController {
 		
 		if(result != null) {
 			session.setAttribute("loginInfo", result);
+			//세션에 데이터가 저장되는 시간을 설정
+			//session.setMaxInactiveInterval(5);
 		}
 		
 		return "redirect:/item/itemList";

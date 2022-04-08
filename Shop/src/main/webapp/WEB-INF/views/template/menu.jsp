@@ -57,6 +57,9 @@
 							<li class="nav-item"><a class="nav-link" href="/admin/categoryManage">관리자메뉴</a>
 						</li>
 						</c:if>
+						<li class="nav-item">
+							<a class="nav-link" href="/test/test1">인터셉터테스트</a>
+						</li>
 					</ul>
 				</div>
 			</div>
