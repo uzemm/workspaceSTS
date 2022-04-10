@@ -36,9 +36,10 @@ table{
 		</tr>
 	</table>
 	<div>
-		<input type="submit" value="로그인" >
+		<input type="submit" value="로그인" onclick="login()" >
 	</div>
 </div>
 </form>
+<script type="text/javascript" src="/resources/login.js?ver=1"></script>
 </body>
 </html>
