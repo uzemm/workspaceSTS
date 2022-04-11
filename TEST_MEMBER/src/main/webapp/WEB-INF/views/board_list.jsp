@@ -34,6 +34,9 @@ table{
 table tr{
 	border: 1px solid black;
 }
+.btnDiv{
+	margin-top: 20px;
+}
 </style>
 </head>
 <body>
@@ -73,8 +76,10 @@ table tr{
 			</tbody>
 		</table>
 	</div>
-	<div>
+	<div class="btnDiv">
+	<c:if test="${sessionScope.loginInfo.adminYn eq 'Y' }">
 		<input type="button" value="관리자메뉴" onclick="location.href='/board/adminMenu'">
+	</c:if>
 	</div>
 </div>
 </body>

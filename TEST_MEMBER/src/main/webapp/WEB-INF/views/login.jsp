@@ -19,27 +19,40 @@ table{
 </style>
 </head>
 <body>
-<form action="/board/login" method="post">
+<form action="/board/login" method="post" id="formTag">
 <div class="container">
 	<table>
 		<tr>
 			<td>아이디</td>
 		</tr>
 		<tr>
-			<td><input type="text" name="memberId" id="memId" required></td>
+			<td><input type="text" name="memberId" id="memberId" ></td>
 		</tr>
 		<tr>
 			<td>비밀번호</td>
 		</tr>
 		<tr>
-			<td><input type="text" name="memberPassword" id="memPw" required></td>
+			<td><input type="text" name="memberPassword" id="memberPassword" ></td>
 		</tr>
 	</table>
 	<div>
-		<input type="submit" value="로그인" onclick="login()" >
+		<input type="submit" value="로그인" onclick="login();" >
 	</div>
 </div>
 </form>
-<script type="text/javascript" src="/resources/login.js?ver=1"></script>
+<script type="text/javascript">
+function login(){
+	var memberId = document.getElementById('memberId').value;
+	var memberPassword = document.getElementById('memberPassword').value;
+	
+	var formTag = document.getElementById('formTag');
+	if(memberId != '' && memberPassword != ''){
+		alert('로그인 성공');
+	}
+	else{
+		alert('로그인 실패');
+	}
+}
+</script>
 </body>
 </html>

@@ -37,6 +37,10 @@ public class BoardController {
 			session.setAttribute("loginInfo", result);
 			
 		}
+		else {
+			return "redirect:/board/login";
+		}
+
 		return "redirect:/board/boardList";
 	}
 	
