@@ -34,4 +34,8 @@ public interface AdminService {
 	
 	//구매내역 상세조회
 	List<BuyVO> selectBuyListDetail(String orderNum);
+	
+	//
+	int selectBuyListCnt(BuySearchVO buySearchVO);
+	
 }

@@ -201,6 +201,14 @@ public class AdminController {
 			buySearchVO.setSearchToDate(nowDate);
 		}
 		
+		//-----------------페이징 정보 세팅
+		//1.전체 데이터의 개수 조회
+		int listCnt = adminService.selectBuyListCnt(buySearchVO);
+		buySearchVO.setTotalCnt(listCnt);
+		
+		//2.페이징 처리를 위한 세팅 메소드 호출
+		buySearchVO.setPageInfo();
+		
 		//구매목록 조회
 		model.addAttribute("buyList", adminService.selectBuyList(buySearchVO));
 		

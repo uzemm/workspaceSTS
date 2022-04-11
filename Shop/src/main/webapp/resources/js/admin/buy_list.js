@@ -59,8 +59,13 @@ function selectBuyListDetail(orderNum){
 			alert('실패');
 		}
 	});
-	
-	
-
-	
 }
+
+function search(nowPage){
+	document.getElementById('nowPage').value = nowPage;
+	var formTag = document.getElementById('searchForm');
+	formTag.submit();
+}
+
+
+
