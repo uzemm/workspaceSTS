@@ -1,5 +1,6 @@
 package com.kh.shop.controller;
 
+import java.security.SecureRandom;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -57,15 +58,30 @@ public class MemberController {
 		String memEmail = memberService.selectEmail(memberVO);
 		
 		//임시비밀번호 생성 소문자 + 대문자 + 숫자 포함 8자리
+		System.out.println(getImsiPw());
+		
 		return "";
 	}
 	
 	//소문자 + 대문자 + 숫자 포함 8자리
 	public String getImsiPw() {
-		String pw = "abcdefg";
+		String lowerCase = "abcdefghijklmnopqrstuvwxyz";
+		String upperCase = lowerCase.toUpperCase();
+		String number = "0123456789";
+		String baseStr = lowerCase + upperCase + number;
 		
-		//0.0 <= Math.random() < 1.0
-		pw.charAt(3);
+		//String imsiPw = "";
+		StringBuilder imsiPw = new StringBuilder();
 		
+		for(int i = 0; i < 8; i++) {
+			//rand.nextInt(10);// 0 <= rand.nextInt(10) < 10
+			SecureRandom rand = new SecureRandom();
+			int index = rand.nextInt(baseStr.length()); // 0~9 랜덤점수
+			char c = baseStr.charAt(index);
+			imsiPw.append(String.valueOf(c));
+			
+		}
+		
+		return imsiPw.toString();
 	}
 }

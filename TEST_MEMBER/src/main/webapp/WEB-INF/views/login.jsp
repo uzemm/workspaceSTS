@@ -38,13 +38,13 @@ table{
 			<td>아이디</td>
 		</tr>
 		<tr>
-			<td><input type="text" name="memberId" id="memberId" ></td>
+			<td><input type="text" name="memberId"></td>
 		</tr>
 		<tr>
 			<td>비밀번호</td>
 		</tr>
 		<tr>
-			<td><input type="text" name="memberPassword" id="memberPassword" ></td>
+			<td><input type="text" name="memberPassword"></td>
 		</tr>
 	</table>
 	<div class="btnDiv">
