@@ -60,7 +60,12 @@ public class MemberController {
 		return "";
 	}
 	
+	//소문자 + 대문자 + 숫자 포함 8자리
 	public String getImsiPw() {
+		String pw = "abcdefg";
+		
+		//0.0 <= Math.random() < 1.0
+		pw.charAt(3);
 		
 	}
 }

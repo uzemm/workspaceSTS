@@ -23,7 +23,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public MemberVO selectEmail(MemberVO memberVO) {
+	public String selectEmail(MemberVO memberVO) {
 		return sqlSession.selectOne("memberMapper.selectEmail", memberVO);
 	}
 	

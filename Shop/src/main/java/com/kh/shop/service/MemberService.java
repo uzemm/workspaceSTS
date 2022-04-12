@@ -10,5 +10,5 @@ public interface MemberService {
 	MemberVO selectLogin(MemberVO memberVO);
 	
 	//메일 정보 조회
-	MemberVO selectEmail(MemberVO memberVO);
+	String selectEmail(MemberVO memberVO);
 }
