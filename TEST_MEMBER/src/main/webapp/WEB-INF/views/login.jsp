@@ -7,13 +7,25 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+@font-face {
+    font-family: 'MinSans-Medium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/MinSans-Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+body{
+	font-family: 'MinSans-Medium';
+}
 .container{
 	width: 700px;
 	margin: 0 auto;
 }
 table{
-	width: 700px;
-	margin-bottom: 20px;
+	margin: 0 auto;
+}
+.btnDiv{
+	text-align: center;
+	margin-top: 20px;
 }
 
 </style>
@@ -35,24 +47,10 @@ table{
 			<td><input type="text" name="memberPassword" id="memberPassword" ></td>
 		</tr>
 	</table>
-	<div>
-		<input type="submit" value="로그인" onclick="login();" >
+	<div class="btnDiv">
+		<input type="submit" value="로그인" >
 	</div>
 </div>
 </form>
-<script type="text/javascript">
-function login(){
-	var memberId = document.getElementById('memberId').value;
-	var memberPassword = document.getElementById('memberPassword').value;
-	
-	var formTag = document.getElementById('formTag');
-	if(memberId != '' && memberPassword != ''){
-		alert('로그인 성공');
-	}
-	else{
-		alert('로그인 실패');
-	}
-}
-</script>
 </body>
 </html>

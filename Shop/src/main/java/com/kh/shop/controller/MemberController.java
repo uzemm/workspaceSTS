@@ -45,4 +45,22 @@ public class MemberController {
 		session.removeAttribute("loginInfo");
 		return "redirect:/item/itemList";
 	}
+	
+	@GetMapping("/findPw")
+	public String findPw() {
+		return "member/find_pw";
+	}
+	
+	@PostMapping("/findPw")
+	public String postFindPw(MemberVO memberVO) {
+		//메일 정보 조회
+		String memEmail = memberService.selectEmail(memberVO);
+		
+		//임시비밀번호 생성 소문자 + 대문자 + 숫자 포함 8자리
+		return "";
+	}
+	
+	public String getImsiPw() {
+		
+	}
 }

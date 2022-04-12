@@ -39,6 +39,12 @@
 		WHERE MEM_ID = #{memId}
 		AND MEM_PW = #{memPw}
 	</select>
+	
+	<select id="selectEmail" resultType="String">
+		SELECT MEM_EMAIL
+		FROM SHOP_MEMBER
+		WHERE MEM_ID = #{memId}
+	</select>
 </mapper>
 
 

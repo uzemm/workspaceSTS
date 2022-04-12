@@ -30,18 +30,15 @@ public class BoardController {
 	}
 	
 	@PostMapping("/login")
-	public String login(HttpSession session, MemberVO memberVO) {
+	public String login(HttpSession session, MemberVO memberVO, Model model) {
 		MemberVO result = boardService.selectLogin(memberVO);
+		model.addAttribute("result", result);
 		
 		if(result != null) {
 			session.setAttribute("loginInfo", result);
-			
-		}
-		else {
-			return "redirect:/board/login";
 		}
 
-		return "redirect:/board/boardList";
+		return "login_result";
 	}
 	
 	@GetMapping("/adminMenu")
