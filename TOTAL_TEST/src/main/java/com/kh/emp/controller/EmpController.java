@@ -10,6 +10,7 @@ public class EmpController {
 	
 	@GetMapping("/deptManage")
 	public String boardList() {
+		
 		return "dept_manage";
 	}
 	
