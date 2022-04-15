@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 모든 SQL문을 mapper태그 안에 작성 -->
+<mapper namespace="clubMapper">
+	<resultMap type="com.kh.library.club.vo.ClubVO" id="club">
+<!-- 		<id column="CLUB_CODE" property="clubCode"/>
+		<result column="CLUB_NAME" property="clubName"/>
+		<result column="CLUB_HEAD_CNT" property="clubHeadCnt"/>
+		<result column="CLUB_COMPLIT_CNT" property="clubComplitCnt"/>
+		<result column="MEM_ID" property="memId"/>
+		<result column="CLUB_INTRO" property="clubIntro"/> -->
+	</resultMap>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
