@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:forward page="/emp/deptManage"></jsp:forward>
+<jsp:forward page="/emp/deptHome"></jsp:forward>
 </body>
 </html>
 

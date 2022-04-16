@@ -2,7 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 모든 SQL문을 mapper태그 안에 작성 -->
 <mapper namespace="empMapper">
+	<resultMap type="com.kh.emp.vo.MenuVO" id="menu">
+		<id column="MENU_CODE" property="menuCode"/>
+		<result column="MENU_NAME" property="menuName"/>
+		<result column="MENU_URI" property="menuUri"/>
+	</resultMap>
 	
+	<select id="selectMenu" resultMap="menu">
+		SELECT MENU_CODE
+			, MENU_NAME
+			, MENU_URI
+		FROM MENU
+	</select>
 </mapper>
 
 
