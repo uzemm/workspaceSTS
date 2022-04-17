@@ -84,7 +84,7 @@ INSERT INTO MENU VALUES ('MENU_001', '부서관리', 'deptManage');
 INSERT INTO MENU VALUES ('MENU_002', '사원등록', 'empEnrollment');
 INSERT INTO MENU VALUES ('MENU_003', '사원목록', 'empList');
 
-
+SELECT * FROM TEST_DEPARTMENT;
 
 
 
