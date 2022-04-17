@@ -1,11 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+table{
+	width: 800px;
+	margin: 0 auto;
+	border: 1px solid black;
+	text-align: center;
+	border-collapse: collapse;
+	margin-top: 30px;
+	color: 
+}
+table td{
+	border: 1px solid black;
+}
+</style>
 </head>
 <body>
 <table>
@@ -16,9 +29,9 @@
 		<col width="25%">
 	<tr>
 		<td>홈</td>
-<%-- 		<c:forEach items="${menuList }" var="menu">
-			<td><a href="/emp/${menu.menuUri }?menuCode=${menu.menuCode }">${menu.menuName }</a></td>
-		</c:forEach> --%>
+		<td><a href="/emp/deptManage">부서관리</a></td>
+		<td>사원등록</td>
+		<td>사원목록</td>
 	</tr>
 </table>
 </body>

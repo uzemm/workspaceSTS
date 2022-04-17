@@ -2,17 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 모든 SQL문을 mapper태그 안에 작성 -->
 <mapper namespace="empMapper">
-	<resultMap type="com.kh.emp.vo.MenuVO" id="menu">
-		<id column="MENU_CODE" property="menuCode"/>
-		<result column="MENU_NAME" property="menuName"/>
-		<result column="MENU_URI" property="menuUri"/>
+	<resultMap type="com.kh.emp.vo.DeptVO" id="dept">
+		<id column="DEPTNO" 		property="deptNo"/>
+		<result column="DNAME" 		property="dName"/>
+		<result column="REGION" 	property="region"/>
 	</resultMap>
 	
-	<select id="selectMenu" resultMap="menu">
-		SELECT MENU_CODE
-			, MENU_NAME
-			, MENU_URI
-		FROM MENU
+	<insert id="insertDept">
+		INSERT INTO TEST_DEPARTMENT (
+			DEPTNO
+			, DNAME
+			, REGION
+		) VALUES (
+			(SELECT NVL(MAX(DEPTNO), 0) + 1 FROM TEST_DEPARTMENT)
+			, #{dName}
+			, #{region}
+		)
+	</insert>
+	
+	<select id="selectDeptList" resultMap="dept">
+		SELECT DEPTNO
+			, DNAME
+			, REGION
+		FROM TEST_DEPARTMENT
+		ORDER BY DEPTNO
 	</select>
 </mapper>
 
