@@ -3,14 +3,21 @@
 <!-- 모든 SQL문을 mapper태그 안에 작성 -->
 <mapper namespace="clubMapper">
 	<resultMap type="com.kh.library.club.vo.ClubVO" id="club">
-<!-- 		<id column="CLUB_CODE" property="clubCode"/>
-		<result column="CLUB_NAME" property="clubName"/>
-		<result column="CLUB_HEAD_CNT" property="clubHeadCnt"/>
-		<result column="CLUB_COMPLIT_CNT" property="clubComplitCnt"/>
-		<result column="MEM_ID" property="memId"/>
-		<result column="CLUB_INTRO" property="clubIntro"/> -->
 	</resultMap>
-	
+
+	<insert id="insertClubCreate">
+		INSERT INTO BOOK_CLUB (  
+		    CLUB_CODE
+		    , CLUB_NAME
+		    , CLUB_HEAD_CNT
+		    , CLUB_INTRO
+		) VALUES (
+		    (SELECT 'CLUB_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(CLUB_CODE, 6))), 0) + 1, 3, 0) AS CLUB_CODE FROM BOOK_CLUB)
+		    , #{clubName}
+		    , #{clubHeadCnt}
+		    , #{clubIntro}
+		)
+	</insert>
 </mapper>
 
 

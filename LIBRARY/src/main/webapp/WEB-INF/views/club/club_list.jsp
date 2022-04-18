@@ -56,7 +56,7 @@ table tr, td{
 	</table>
 </div>
 <div class="clubCreate">
-북클럽 생성
+<a href="/club/clubCreate">북클럽 생성</a>
 </div>
 </body>
 </html>
