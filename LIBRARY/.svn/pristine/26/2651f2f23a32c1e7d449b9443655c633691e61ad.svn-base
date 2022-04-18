@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-test파일입니다.
+제목 : ${clubBoardInfo.cbBoardTitle } <br>
+작성자 :
+날짜 :
+내용 :
 </body>
 </html>
