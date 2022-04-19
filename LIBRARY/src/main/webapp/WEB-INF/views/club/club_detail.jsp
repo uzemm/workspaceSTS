@@ -29,7 +29,7 @@
 	<div>
 	모임명 : ${club.clubName } <br>
 	모임 인원수 : ${club.clubHeadCnt }<br>
-	모임장 : ${club.memId }<br>
+	모임장 : ${club.memName }<br>
 	모임소개 : ${club.clubIntro }
 	</div>
 	
@@ -48,7 +48,7 @@
 				<tr>
 					<td>${boardList.size() - status.index }</td>
 					<td><a href="/club/clubBoardDetail?cbBoardNum=${boardInfo.cbBoardNum }&&clubCode=${boardInfo.clubCode}">${boardInfo.cbBoardTitle }</a></td>
-					<td>${boardInfo.memId }</td>
+					<td>${boardInfo.memName }</td>
 					<td>${boardInfo.cbBoardDate }</td>
 				</tr>
 			</c:forEach>

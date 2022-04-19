@@ -15,7 +15,7 @@ div{
 <body>
 <div>
 제목 : ${clubBoard.cbBoardTitle } <br>
-작성자 : ${clubBoard.memId }<br>
+작성자 : ${clubBoard.memName }<br>
 날짜 : ${clubBoard.cbBoardDate }<br>
 내용 : ${clubBoard.cbBoardContent }<br>
 

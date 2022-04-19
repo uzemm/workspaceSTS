@@ -26,7 +26,9 @@ public class ClubController {
 	public String clubList(Model model, HttpSession session, ClubVO clubVO) {
 		model.addAttribute("clubList", clubService.selectClubList());
 		
+		
 		String memId = ((MemberVO)(session.getAttribute("loginInfo"))).getMemId();
+		
 		
 		
 		return "club/club_list";

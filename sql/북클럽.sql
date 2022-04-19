@@ -1,5 +1,10 @@
 INSERT INTO BOOK_MEMBER VALUES('admin', '1111', '모임장', '울산', '1111', '1111', null, '남', '2022/04/18' ,  'N', 'Y', 'Y', null );
 
+select * from book_member;
+update book_member
+set
+is_admin = 'Y'
+where mem_id = 'admin';
 
 --북클럽조회
 SELECT CLUB_CODE
@@ -7,10 +12,12 @@ SELECT CLUB_CODE
     , CLUB_HEAD_CNT
     , CLUB_INTRO
     , CLUB_DATE 
+    , mem_id
+    , mem_name
 FROM BOOK_CLUB
 ORDER BY CLUB_DATE;
 
-
+select * from book_club_board;
 
 --북클럽 등록
 INSERT INTO BOOK_CLUB (  

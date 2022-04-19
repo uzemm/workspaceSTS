@@ -65,18 +65,15 @@ table tr, td{
 </div>
 <div class="clubCreate">
 <a href="/club/clubCreate">북클럽 생성</a>
+<input type="hidden" id="memId" value="${sessionScope.loginInfo.memId }">
 <input type="button" value="북클럽 생성" onclick="createClub();">
 </div>
 <script type="text/javascript">
 function createClub(){
 	var memId = '<%=(String)session.getAttribute("memId")%>';
-	
-	if(memId == "null"){
-		alert('로그인이 필요합니다.')
-	}
-	if(memId != "null"){
-		location.href = '/club/clubCreate'
-	}
+	if(memId=="null"){ 
+        alert("로그인 필요");
+     }
 }
 </script>
 </body>

@@ -6,9 +6,16 @@ public class ClubVO {
 	private int clubHeadCnt;
 	private int clubComplitCnt;
 	private String memId;
+	private String memName;
 	private String clubIntro;
 	private String clubDate;
 	
+	public String getMemName() {
+		return memName;
+	}
+	public void setMemName(String memName) {
+		this.memName = memName;
+	}
 	public String getClubDate() {
 		return clubDate;
 	}
