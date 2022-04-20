@@ -11,14 +11,14 @@
 
 --> 비로그인 --> 로그인하라고 alert 띄우기--> 로그인 페이지로 이동?
 
-'로그인이 필요합니다'
+'로그인이 필요합니다' - 0420 완
 
 
 2. 독서모임 등록페이지 club_create
 
 -->등록누르면 게시판으로 이동
 
-confirm('모임을 생성하시겠습니까?')
+confirm('모임을 생성하시겠습니까?') - 0420완
 
 예 --> 리스트 페이지
 
@@ -45,14 +45,12 @@ String loginId = ((MemberVO)(session.getAttribute("loginInfo"))).getMemId();
 
 
 수정 --> confrim 정말 수정하시겠습니까?
+찾아보기+
 
 
 4. 독서모임원 관리 club_manage
 
 --> 게시판 이동시 클럽코드 넘겨줌
-
--ALERT <모임장만 ~>
-
 
 - 독서모임 회원 리스트 <프로필 사진, 이름>
 
@@ -94,7 +92,7 @@ String loginId = ((MemberVO)(session.getAttribute("loginInfo"))).getMemId();
 모임신청 버튼 누르면 --> 바로 신청 --> 수락까지 기달
 
 
---바로신청할지 아님 가입말 받을지.
+--바로신청할지 confirm
 
 
 =--------------------------------------------------
@@ -160,7 +158,7 @@ String loginId = ((MemberVO)(session.getAttribute("loginInfo"))).getMemId();
 
 버튼 두개
 
-예 -> 신청 --> alert('신청되셨습니다. 멤버장의 승인을 기다려주십시오.')
+예 -> 신청 --> alert('신청되셨습니다. 모임장의 승인을 기다려주십시오.')
 
 아니요-> 뒤로가기
 
