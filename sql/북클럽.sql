@@ -6,6 +6,10 @@ set
 is_admin = 'Y'
 where mem_id = 'admin';
 
+select * from book_club_apply;
+
+delete book_club_apply;
+
 --북클럽조회
 SELECT CLUB_CODE
     , CLUB_NAME

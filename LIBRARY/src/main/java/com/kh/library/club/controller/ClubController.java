@@ -31,13 +31,6 @@ public class ClubController {
 		return "club/club_list";
 	}
 	
-	//클럽관리
-	@GetMapping("/clubAdmin")
-	public String clubAdmin() {
-		
-		return "club/club_manage";
-	}
-	
 	//북클럽 생성페이지 이동
 	@GetMapping("/clubCreate")
 	public String clubCreate(HttpSession session) {
@@ -128,6 +121,7 @@ public class ClubController {
 		return "club/club_join";
 	}
 	
+	//모임 가입
 	@PostMapping("/clubJoin")
 	public String clubJoin(ClubApplyVO clubApplyVO) {
 		clubService.insertClubJoin(clubApplyVO);

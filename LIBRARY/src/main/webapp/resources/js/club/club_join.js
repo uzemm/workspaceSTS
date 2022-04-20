@@ -1,15 +1,5 @@
-function clubJoin(tag){
+function clubJoin(){
 	
-	let result = confirm('모임에 가입하시겠습니까?')
-	let formTag = document.getElementById('clubJoinForm');
-	
-	if(result){
-		formTag.submit();
-		location.href='/club/clubList';
-	}
-	else{
-		
-		return;
-	}
-	
+	alert('모임 가입신청이 완료되었습니다. 모임장의 승인을 기다려주십시오.')
+	location.href='/club/clubList';
 }

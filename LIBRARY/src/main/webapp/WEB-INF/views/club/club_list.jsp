@@ -35,7 +35,7 @@ table tr, td{
 <div class="subDiv">
 	북클럽조회<br>
 	<%-- <c:if test="${sessionScope.loginInfo.clubAdmin eq 'Y' }"> --%>
-		<a href="/club/clubAdmin">북클럽관리</a>
+		<a href="/clubAdmin/clubAdmin?clubCode=${club.clubCode }">북클럽관리</a>
 	<%-- </c:if> --%>
 </div>
 
@@ -57,7 +57,7 @@ table tr, td{
 				<td><a href="/club/clubDetail?clubCode=${club.clubCode }">${club.clubName }</a><br>
 					${club.clubIntro }</td>
 				<td> 0 / ${club.clubHeadCnt }</td>
-				<td><input type="button" value="가입하기" onclick="location.href='/club/clubJoinWrite?clubCode=${club.clubCode}';"> </td>
+				<td><input type="button" value="가입하기" onclick="clubJoin('${club.clubCode}')"> </td>
 			</tr>
 		</c:forEach>	
 		</tbody>
@@ -68,6 +68,6 @@ table tr, td{
 <%-- <input type="hidden" id="clubAdmin" value="${sessionScope.loginInfo.memId }"> --%>
 <input type="button" style="margin-right: 100px;" value="북클럽 생성" onclick="createClub();" >
 </div>
-<script type="text/javascript" src="/resources/js/club/club_list.js"></script>
+<script type="text/javascript" src="/resources/js/club/club_list.js?ver=1"></script>
 </body>
 </html>

@@ -89,4 +89,5 @@ public class ClubServiceImpl implements ClubService {
 		sqlSession.insert("clubMapper.insertClubJoin", clubApplyVO);
 	}
 
+
 }

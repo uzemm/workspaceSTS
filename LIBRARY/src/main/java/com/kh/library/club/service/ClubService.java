@@ -50,4 +50,5 @@ public interface ClubService {
 	
 	//모입 가입
 	void insertClubJoin(ClubApplyVO clubApplyVO);
+	
 }
