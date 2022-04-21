@@ -1,9 +1,5 @@
 package com.kh.library.club.vo;
 
-import java.util.List;
-
-import com.kh.library.member.vo.MemberVO;
-
 public class ClubVO {
 	private String clubCode;
 	private String clubName;
@@ -13,13 +9,13 @@ public class ClubVO {
 	private String memName;
 	private String clubIntro;
 	private String clubDate;
-	private List<MemberVO> memberList;
+	private int clubNumberPeople;
 	
-	public List<MemberVO> getMemberList() {
-		return memberList;
+	public int getClubNumberPeople() {
+		return clubNumberPeople;
 	}
-	public void setMemberList(List<MemberVO> memberList) {
-		this.memberList = memberList;
+	public void setClubNumberPeople(int clubNumberPeople) {
+		this.clubNumberPeople = clubNumberPeople;
 	}
 	public String getMemName() {
 		return memName;

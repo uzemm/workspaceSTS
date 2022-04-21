@@ -47,4 +47,10 @@ public class ClubAdminServiceImpl implements ClubAdminService{
 	}
 
 
+	@Override
+	public void clubMemberKick(MemberVO memberVO) {
+		sqlSession.update("clubMapper.clubMemberKick", memberVO);
+	}
+
+
 }

@@ -17,4 +17,7 @@ public interface ClubAdminService {
 	
 	//클럽멤버리스트 조회
 	List<MemberVO> selectClubMemberList(MemberVO memberVO);
+	
+	//모임 강퇴
+	void clubMemberKick(MemberVO memberVO);
 }

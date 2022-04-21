@@ -32,17 +32,15 @@ div{
 <input type="hidden" name="memName" value="${sessionScope.loginInfo.memName }">
 <input type="hidden" name="cbBoardNum" value="${clubBoard.cbBoardNum }">
 <textarea rows="2" cols="30" name="cbCmtContent" style="resize: none;"></textarea> <br>
-<div><input type="button" value="댓글 등록"  onclick="clubBoardRegCmt();"></div>
+<div><input type="submit" value="댓글 등록" ></div>
 </form>
 
 <div id="cmtDiv">
 <c:forEach items="${cbCmtList }" var="cmt">
 <div>
-${cmt.memName }<br>
+${cmt.memName }
 ${cmt.cbCmtDate }<br>
 ${cmt.cbCmtContent }
-</div>
-<div>
 <input type="submit" value="수정">
 </div>
 
@@ -50,6 +48,6 @@ ${cmt.cbCmtContent }
 </div>
 
 </div>
-<script type="text/javascript" src="/resources/js/club/club_board_detail.js?ver=1"></script>
+<!-- <script type="text/javascript" src="/resources/js/club/club_board_detail.js?ver=1"></script> -->
 </body>
 </html>

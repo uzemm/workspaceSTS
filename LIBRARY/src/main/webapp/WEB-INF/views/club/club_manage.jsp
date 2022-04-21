@@ -85,13 +85,15 @@ table td{
 				</tr>
 			</thead>
 			<tbody>
-			<c:forEach items="${clubMemList }" var="clubMem">
+			<c:forEach items="${clubMemList }" var="clubMem" varStatus="status">
 				<tr>
-					<td>1</td>
+					<td></td>
 					<td>${clubMem.memId }</td>
 					<td>${clubMem.memName }</td>
 					<td>
-						<input type="button" value="강퇴" onclick="kick();">
+						<c:if test="${clubMem.clubAdmin eq 'N' }">
+							<input type="button" value="강퇴" onclick="kick('${clubMem.memId }');">
+						</c:if>
 					</td>
 				</tr>
 			</c:forEach>
@@ -118,9 +120,9 @@ table td{
 				</tr>
 			</thead>
 			<tbody>
-			<c:forEach items="${applyList }" var="apply">
+			<c:forEach items="${applyList }" var="apply" varStatus="status">
 				<tr>
-					<td>1</td>
+					<td></td>
 					<td>${apply.memId }</td>
 					<td>${apply.memName }</td>
 					<td>
@@ -136,6 +138,6 @@ table td{
     </div>
 </div>
 
-<script type="text/javascript" src="/resources/js/club/club_manage.js?ver=6"></script>
+<script type="text/javascript" src="/resources/js/club/club_manage.js?ver=7"></script>
 </body>
 </html>

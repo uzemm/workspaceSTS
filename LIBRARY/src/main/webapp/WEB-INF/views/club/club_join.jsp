@@ -20,6 +20,7 @@ div{
 	<input type="hidden" name="clubCode" value="${club.clubCode }">
 	<input type="hidden" name="memId" value="${sessionScope.loginInfo.memId }">
 	<input type="hidden" name="memName" value="${sessionScope.loginInfo.memName }">
+	<input type="hidden" id="clubAdmin" value="${sessionScope.loginInfo.clubAdmin }">
 
 	<input type="submit" value="가입하기" onclick="clubJoin();">
 	<input type="button" value="뒤로가기" onclick="history.back();">

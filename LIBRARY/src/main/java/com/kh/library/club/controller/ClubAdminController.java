@@ -38,11 +38,18 @@ public class ClubAdminController {
 		
 	}
 	
+	//거절
 	@ResponseBody
 	@PostMapping("/clubJoinRejection")
-	public String clubJoinRejection(ClubApplyVO clubApplyVO) {
+	public void clubJoinRejection(ClubApplyVO clubApplyVO) {
 		clubAdminService.deleteApplyList(clubApplyVO);
-		return "redirect:/club/clubAdmin";
+	}
+	
+	//모임강퇴
+	@ResponseBody
+	@PostMapping("/clubMemKick")
+	public void clubMemKick(MemberVO memberVO) {
+		clubAdminService.clubMemberKick(memberVO);
 	}
 	
 }

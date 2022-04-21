@@ -30,6 +30,9 @@ public class ClubController {
 	public String clubList(Model model, HttpSession session, ClubVO clubVO) {
 		model.addAttribute("clubList", clubService.selectClubList());
 		
+//		int clubMemCnt = clubService.selectClubMemCnt();
+//		model.addAttribute("clubMemCnt", clubMemCnt);
+		
 		return "club/club_list";
 	}
 	
@@ -111,8 +114,9 @@ public class ClubController {
 	
 	//댓등록
 	@PostMapping("/clubBoardRegCmt")
-	public void clubBoardRegCmt(ClubBoardCmtVO clubBoardCmtVO) {
+	public String clubBoardRegCmt(ClubBoardCmtVO clubBoardCmtVO) {
 		clubService.insertRegBoardCmt(clubBoardCmtVO);
+		return "redirect:/club/clubBoardDetail";
 	}
 	
 	//모임가입페이지로 이동
@@ -129,10 +133,7 @@ public class ClubController {
 		return "redirect:/club/clubList";
 	}
 	
-	//댓글등록
-	@PostMapping("/selectCbCmtList")
-	public List<ClubBoardCmtVO> selectCbCmtList(ClubBoardCmtVO clubBoardCmtVO){
-		return clubService.selectCbCmtList(clubBoardCmtVO);
-	}
+
+
 	
 }

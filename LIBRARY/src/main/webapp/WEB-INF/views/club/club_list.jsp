@@ -56,7 +56,7 @@ table tr, td{
 				<td>1</td>
 				<td><a href="/club/clubDetail?clubCode=${club.clubCode }">${club.clubName }</a><br>
 					${club.clubIntro }</td>
-				<td> 0 / ${club.clubHeadCnt }</td>
+				<td> 1 / ${club.clubHeadCnt }</td>
 				<td><input type="button" value="가입하기" onclick="clubJoin('${club.clubCode}')"> </td>
 			</tr>
 		</c:forEach>	
@@ -65,7 +65,7 @@ table tr, td{
 </div>
 <div class="clubCreate">
 <input type="hidden" id="memId" value="${sessionScope.loginInfo.memId }">
-<%-- <input type="hidden" id="clubAdmin" value="${sessionScope.loginInfo.memId }"> --%>
+<input type="hidden" id="clubAdmin" value="${sessionScope.loginInfo.clubAdmin }">
 <input type="button" style="margin-right: 100px;" value="북클럽 생성" onclick="createClub();" >
 </div>
 <script type="text/javascript" src="/resources/js/club/club_list.js?ver=1"></script>

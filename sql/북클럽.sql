@@ -8,6 +8,10 @@ where mem_id = 'admin';
 
 select * from book_club_apply;
 
+select COUNT(MEM_ID) 
+from book_member 
+where club_code = 'CLUB_001';
+
 delete book_club_apply;
 
 --북클럽조회

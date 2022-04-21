@@ -95,5 +95,10 @@ public class ClubServiceImpl implements ClubService {
 		sqlSession.update("memberMapper.clubMemberKick", memberVO);
 	}
 
+	@Override
+	public int selectClubMemCnt() {
+		return sqlSession.selectOne("memberMapper.selectClubMemCnt");
+	}
+
 
 }
