@@ -1,6 +1,7 @@
 INSERT INTO BOOK_MEMBER VALUES('admin', '1111', '모임장', '울산', '1111', '1111', null, '남', '2022/04/18' ,  'N', 'Y', 'Y', null );
 
 select * from book_member;
+select * from book_club;
 update book_member
 set
 is_admin = 'Y'
