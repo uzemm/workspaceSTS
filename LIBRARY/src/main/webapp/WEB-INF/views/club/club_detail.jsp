@@ -22,15 +22,39 @@
 .boardDiv table td{
 	border: 1px solid black;
 }
+.clubInfo{
+	text-align: left;
+}
+.memListTable{
+	text-align: center;
+}
+table{
+	width: 800px;
+}
 </style>
 </head>
 <body>
 <div class="container">
-	<div>
-	모임명 : ${club.clubName } <br>
-	모임 인원수 : ${club.clubHeadCnt }<br>
-	모임장 : ${club.memName }<br>
-	모임소개 : ${club.clubIntro }
+	<div class="clubInfo">
+		<table>
+			<tr>
+				<td>
+					모임명 : ${club.clubName } <br>
+					모임 인원수 : ${club.clubHeadCnt }<br>
+					모임장 : ${club.memName }<br>
+					모임소개 : ${club.clubIntro }
+				</td>
+				<td style="text-align: right;">
+					<c:forEach items="${memList }" var="mem">
+						1
+						ㅇ
+						${mem.memName }
+						완독수<br>
+					</c:forEach>
+				</td>
+			</tr>
+		</table>
+
 	</div>
 	
 	<div class="boardDiv">

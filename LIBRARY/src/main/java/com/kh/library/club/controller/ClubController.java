@@ -47,9 +47,11 @@ public class ClubController {
 	}
 	//북클럽 상세조회
 	@GetMapping("/clubDetail")
-	public String clubDetail(ClubVO clubVO, Model model, String clubCOde) {
+	public String clubDetail(ClubVO clubVO, Model model, String clubCOde, MemberVO memberVO) {
 		model.addAttribute("club", clubService.selectClubDetail(clubVO));
 		model.addAttribute("boardList", clubService.selectClubBoardList(clubVO));
+		model.addAttribute("memList", clubService.selectClubMemberList(memberVO));
+		
 		return "club/club_detail";
 	}
 	//북클럽 수정페이지 이동
@@ -113,6 +115,7 @@ public class ClubController {
 	@PostMapping("/clubBoardRegCmt")
 	public String clubBoardRegCmt(ClubBoardCmtVO clubBoardCmtVO) {
 		clubService.insertRegBoardCmt(clubBoardCmtVO);
+		
 		return "redirect:/club/clubBoardDetail";
 	}
 	

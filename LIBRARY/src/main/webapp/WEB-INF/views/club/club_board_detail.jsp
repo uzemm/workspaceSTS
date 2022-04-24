@@ -23,31 +23,32 @@ div{
 <input type="button" value="목록" onclick="location.href='/club/clubDetail?clubCode=${clubBoard.clubCode}';">
 <c:if test="${clubBoard.memId eq sessionScope.loginInfo.memId }">
 	<input type="button" value="수정" onclick="location.href='/club/clubBoardUpdate?cbBoardNum=${clubBoard.cbBoardNum}&&clubCode=${clubBoard.clubCode }';">
-	<input type="button" value="삭제" onclick="location.href='/club/clubBoardDelete?cbBoardNum=${clubBoard.cbBoardNum}&clubCode=${clubBoard.clubCode }';"> <br>
+	<input type="button" value="삭제" onclick="location.href='/club/clubBoardDelete?cbBoardNum=${clubBoard.cbBoardNum}&&clubCode=${clubBoard.clubCode }';"> <br>
 </c:if>
 
-<form action="/club/clubBoardRegCmt" method="post">
-<div>n개의 댓글</div>
-<input type="hidden" name="memId" value="${sessionScope.loginInfo.memId }">
-<input type="hidden" name="memName" value="${sessionScope.loginInfo.memName }">
-<input type="hidden" name="cbBoardNum" value="${clubBoard.cbBoardNum }">
-<textarea rows="2" cols="30" name="cbCmtContent" style="resize: none;"></textarea> <br>
-<div><input type="submit" value="댓글 등록" ></div>
+n개의 댓글<br>
+<form action="/club/clubBoardRegCmt" method="post" id="cbRegCmt">
+<div class="clubBoardComment">
+	<input type="hidden" name="memId" value="${sessionScope.loginInfo.memId }">
+	<input type="hidden" name="memName" value="${sessionScope.loginInfo.memName }">
+	<input type="hidden" name="cbBoardNum" value="${clubBoard.cbBoardNum }">
+	<textarea rows="2" cols="30" name="cbCmtContent" style="resize: none;"></textarea> <br>
+	<div>
+		<input type="button" value="댓글 등록" onclick="cbRegCmt();">
+	</div>
+</div>
 </form>
 
 <div id="cmtDiv">
-<c:forEach items="${cbCmtList }" var="cmt">
-<div>
-${cmt.memName }
-${cmt.cbCmtDate }<br>
-${cmt.cbCmtContent }
-<input type="submit" value="수정">
-</div>
-
-</c:forEach>
+	<c:forEach items="${cbCmtList }" var="cmt">
+	<div>${cmt.memName }
+	${cmt.cbCmtDate }</div>
+	<div id="updateCmt">${cmt.cbCmtContent }</div>
+	<input type="submit" value="수정" onclick="updateCmt();"><br>
+	</c:forEach>
 </div>
 
 </div>
-<!-- <script type="text/javascript" src="/resources/js/club/club_board_detail.js?ver=1"></script> -->
+<script type="text/javascript" src="/resources/js/club/club_board_detail.js?ver=6"></script>
 </body>
 </html>

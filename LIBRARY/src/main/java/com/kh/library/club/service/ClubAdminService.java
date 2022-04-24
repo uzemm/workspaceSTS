@@ -20,4 +20,6 @@ public interface ClubAdminService {
 	
 	//모임 강퇴
 	void clubMemberKick(MemberVO memberVO);
+	
+	
 }

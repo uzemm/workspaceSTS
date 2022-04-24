@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.emp.service.EmpService;
 import com.kh.emp.vo.DeptVO;
+import com.kh.emp.vo.EmpVO;
 
 @Controller
 @RequestMapping("/emp")
@@ -41,7 +42,15 @@ public class EmpController {
 	}
 	
 	@PostMapping("/empEnrollment")
-	public String empEnrollment() {
+	public String empEnrollment(EmpVO empVO) {
+		empVO.setTell(empVO.getTell().replace(",", "-"));
+		empService.insertRegEmp(empVO);
+		return "redirect:/emp/empList";
+	}
+	
+	@GetMapping("/empList")
+	public String empList(Model model) {
+		model.addAttribute("empList", empService.selectEmpList());
 		return "emp_list";
 	}
 }

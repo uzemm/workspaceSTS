@@ -50,7 +50,7 @@ table td{
 			<td>홈</td>
 			<td><a href="/emp/deptManage">부서관리</a></td>
 			<td><a href="/emp/empWrite">사원등록</a></td>
-			<td>사원목록</td>
+			<td><a href="/emp/empList">사원목록</a></td>
 		</tr>
 	</table>
 	
@@ -63,24 +63,24 @@ table td{
 			</tr>
 			<tr>
 				<td>직급</td>
-				<td><select style="width: 100px; text-align: center;">
+				<td><select style="width: 100px; text-align: center;" name="job">
 					<option>부장</option>
 					<option>과장</option>
 					<option>대리</option>
 					<option>사원</option>
 				</select></td>
 				<td>부서<td>
-				<td><select style="width: 100px; text-align: center;">
+				<td><select style="width: 100px; text-align: center;" name="deptNo">
 					<c:forEach items="${deptList }" var="dept">
-						<option>${dept.dName }</option>
+						<option value="${dept.deptNo }">${dept.dName }</option>
 					</c:forEach>
 				</select></td>
 			</tr>
 			<tr>
 				<td>성별</td>
-				<td><input type="radio" checked>남 <input type="radio">여</td>
+				<td><input type="radio" name="gender" value="남" checked>남 <input type="radio" name="gender" value="여">여</td>
 				<td>나이</td>
-				<td><input type="number" min="1" max="70" value="20" style="text-align: center;"></td>
+				<td><input type="number" name="eAge" min="1" max="70" value="20" style="text-align: center;"></td>
 			</tr>
 			<tr>
 				<td>
@@ -92,10 +92,10 @@ table td{
 			</tr>
 		</table>
 	</div>
-	</form>
 	<div>
 		<input type="submit" value="등록">
 	</div>
+	</form>
 </div>
 </body>
 </html>

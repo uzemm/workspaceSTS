@@ -44,6 +44,7 @@
 	<resultMap type="com.kh.library.member.vo.MemberVO" id="member">
 		<id column="MEM_ID" property="memId"/>
 		<result column="MEM_NAME" property="memName"/>
+		<result column="MEM_IMAGE" property="memImage"/>
 		<result column="CLUB_CODE" property="clubCode"/>
 		<result column="CLUB_ADMIN" property="clubAdmin"/>
 	</resultMap>
@@ -247,6 +248,7 @@
 	<select id="selectClubMemberList" resultMap="member">
 		SELECT MEM_ID
 			, MEM_NAME
+			, MEM_IMAGE
 			, CLUB_CODE
 			, CLUB_ADMIN
 		FROM BOOK_MEMBER
@@ -262,6 +264,12 @@
 		WHERE MEM_ID = #{memId}
 	</update>
 	
+	<select id="selectClubMemList" resultMap="member">
+		SELECT MEM_IMAGE
+			, MEM_NAME
+		FROM BOOK_MEMBER
+		WHERE CLUB_CODE = #{clubCode}
+	</select>
 </mapper>
 
 

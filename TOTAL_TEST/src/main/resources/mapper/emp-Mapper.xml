@@ -7,6 +7,17 @@
 		<result column="DNAME" 		property="dName"/>
 		<result column="REGION" 	property="region"/>
 	</resultMap>
+	<resultMap type="com.kh.emp.vo.EmpVO" id="emp">
+		<id column="EMPNO"			property="empNo"/>
+		<result column="ENAME" 		property="eName"/>
+		<result column="JOB" 		property="job"/>
+		<result column="EAGE" 		property="eAge"/>
+		<result column="GENDER" 	property="gender"/>
+		<result column="TELL" 		property="tell"/>
+		<result column="DEPTNO" 	property="deptno"/>
+		<result column="DNAME" 		property="dName"/>
+		<result column="REGION" 	property="region"/>
+	</resultMap>
 	
 	<insert id="insertDept">
 		INSERT INTO TEST_DEPARTMENT (
@@ -26,6 +37,37 @@
 			, REGION
 		FROM TEST_DEPARTMENT
 		ORDER BY DEPTNO
+	</select>
+	
+	<insert id="insertRegEmp">
+		INSERT INTO TEST_EMP (
+			EMPNO
+			, ENAME
+			, JOB
+			, EAGE
+			, GENDER
+			, TELL
+			, DEPTNO
+		) VALUES (
+			(SELECT 'EMP_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(EMPNO, 5))), 0) + 1, 3, 0) AS EMPNO FROM TEST_EMP)
+			, #{eName}
+			, #{job}
+			, #{eAge}
+			, #{gender}
+			, #{tell}
+			, #{deptNo}
+		)
+	</insert>
+	
+	<select id="selectEmpList" resultMap="emp">
+		SELECT EMP.ENAME
+			, EMP.TELL
+			, EMP.GENDER
+			, EMP.EAGE
+			, DP.DNAME
+			, DP.REGION
+		FROM TEST_DEPARTMENT DP, TEST_EMP EMP
+		WHERE DP.DEPTNO = EMP.DEPTNO
 	</select>
 </mapper>
 

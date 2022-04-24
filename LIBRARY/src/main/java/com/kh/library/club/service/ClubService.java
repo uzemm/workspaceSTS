@@ -55,10 +55,6 @@ public interface ClubService {
 	//모임퇴출
 	void clubMemberKick(MemberVO memberVO);
 	
-	//모임 인원수
-	int selectClubMemCnt();
-	
-	//
-	List<MemberVO> selectClubCode(MemberVO memberVO);
-	
+	//클럽멤버리스트 조회
+	List<MemberVO> selectClubMemberList(MemberVO memberVO);
 }

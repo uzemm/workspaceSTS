@@ -3,6 +3,7 @@ package com.kh.emp.service;
 import java.util.List;
 
 import com.kh.emp.vo.DeptVO;
+import com.kh.emp.vo.EmpVO;
 
 public interface EmpService {
 
@@ -10,4 +11,8 @@ public interface EmpService {
 	void insertDept(DeptVO deptVO);
 	//조회
 	List<DeptVO> selectDeptList();
+	
+	void insertRegEmp(EmpVO empVO);
+	
+	List<EmpVO> selectEmpList();
 }

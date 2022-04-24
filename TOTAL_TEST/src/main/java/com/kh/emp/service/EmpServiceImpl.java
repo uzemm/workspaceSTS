@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.emp.vo.DeptVO;
+import com.kh.emp.vo.EmpVO;
 
 @Service("empService")
 public class EmpServiceImpl implements EmpService{
@@ -21,6 +22,16 @@ public class EmpServiceImpl implements EmpService{
 	@Override
 	public List<DeptVO> selectDeptList() {
 		return sqlSession.selectList("empMapper.selectDeptList");
+	}
+
+	@Override
+	public void insertRegEmp(EmpVO empVO) {
+		sqlSession.insert("empMapper.insertRegEmp", empVO);
+	}
+
+	@Override
+	public List<EmpVO> selectEmpList() {
+		return sqlSession.selectList("empMapper.selectEmpList");
 	}
 
 }
