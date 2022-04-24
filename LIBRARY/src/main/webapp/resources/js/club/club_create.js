@@ -8,6 +8,5 @@ function clubCreate(tag){
 	else{
 		return;
 	}
-		location.reload();
 	
 }
