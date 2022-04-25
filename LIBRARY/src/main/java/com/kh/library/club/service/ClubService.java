@@ -17,7 +17,7 @@ public interface ClubService {
 	List<ClubVO> selectClubList(ClubVO clubVO);
 	
 	//모임상세조회
-	ClubVO selectClubDetail(ClubVO clubVO);
+	ClubVO selectClubDetail(String clubCode);
 	
 	//모임정보수정
 	void updateClubDetail(ClubVO clubVO);
@@ -26,7 +26,7 @@ public interface ClubService {
 	void insertClubBoard(ClubBoardVO clubBoardVO);
 	
 	//모임게시글 조회
-	List<ClubBoardVO> selectClubBoardList(ClubVO clubVO);
+	List<ClubBoardVO> selectClubBoardList(String clubCode);
 	
 	//모임게시글 상세조회
 	ClubBoardVO selectClubBoardDetail(ClubBoardVO clubBoardVO);
@@ -49,6 +49,9 @@ public interface ClubService {
 	//댓글수정
 	void updateCbCmt(ClubBoardCmtVO clubBoardCmtVO);
 	
+	//댓삭
+	void deleteCbCmt(ClubBoardCmtVO clubBoardCmtVO);
+	
 	//모입 가입
 	void insertClubJoin(ClubApplyVO clubApplyVO);
 	
@@ -57,4 +60,5 @@ public interface ClubService {
 	
 	//클럽멤버리스트 조회
 	List<MemberVO> selectClubMemberList(MemberVO memberVO);
+	
 }

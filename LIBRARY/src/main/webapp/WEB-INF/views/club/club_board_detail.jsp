@@ -29,12 +29,12 @@ div{
 n개의 댓글<br>
 <form action="/club/clubBoardRegCmt" method="post" id="cbRegCmt">
 <div class="clubBoardComment">
-	<input type="hidden" name="memId" value="${sessionScope.loginInfo.memId }">
+	
 	<input type="hidden" name="memName" value="${sessionScope.loginInfo.memName }">
 	<input type="hidden" name="cbBoardNum" value="${clubBoard.cbBoardNum }">
 	<textarea rows="2" cols="30" name="cbCmtContent" style="resize: none;"></textarea> <br>
 	<div>
-		<input type="button" value="댓글 등록" onclick="cbRegCmt();">
+		<input type="submit" value="댓글 등록" onclick="location.href='/club/clubBoardDetail?cbBoardNum=${clubBoard.cbBoardNum}&&clubCode=${clubBoard.clubCode }'">
 	</div>
 </div>
 </form>
@@ -43,12 +43,16 @@ n개의 댓글<br>
 	<c:forEach items="${cbCmtList }" var="cmt">
 	<div>${cmt.memName }
 	${cmt.cbCmtDate }</div>
-	<div id="updateCmt">${cmt.cbCmtContent }</div>
-	<input type="submit" value="수정" onclick="updateCmt();"><br>
+	<form action="/club/clubCmtUpdate" method="post">
+	<input type="hidden" name="memId" value="${sessionScope.loginInfo.memId }">
+	<div id="updateCmt"><div id="cmtContent">${cmt.cbCmtContent }</div>
+	<input type="submit" value="수정" onclick="updateCmt();"></div>
+	</form>
+	<input type="button" value="삭제" onclick="deleteCmt('${sessionScope.loginInfo.memId }', '${cmt.cbCmtNum }');"><br>
 	</c:forEach>
 </div>
 
 </div>
-<script type="text/javascript" src="/resources/js/club/club_board_detail.js?ver=6"></script>
+<script type="text/javascript" src="/resources/js/club/club_board_detail.js?ver=8"></script>
 </body>
 </html>

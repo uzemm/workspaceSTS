@@ -87,7 +87,7 @@ table td{
 			<tbody>
 			<c:forEach items="${clubMemList }" var="clubMem" varStatus="status">
 				<tr>
-					<td></td>
+					<td>${status.index + 1 }</td>
 					<td>${clubMem.memId }</td>
 					<td>${clubMem.memName }</td>
 					<td>
@@ -122,7 +122,7 @@ table td{
 			<tbody>
 			<c:forEach items="${applyList }" var="apply" varStatus="status">
 				<tr>
-					<td></td>
+					<td>${status.index + 1 }</td>
 					<td>${apply.memId }</td>
 					<td>${apply.memName }</td>
 					<td>

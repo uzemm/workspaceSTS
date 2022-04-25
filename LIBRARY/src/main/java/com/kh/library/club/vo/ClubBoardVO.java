@@ -8,7 +8,14 @@ public class ClubBoardVO {
 	private String memId;
 	private String clubCode;
 	private String memName;
+	private int cbCmtCount;
 	
+	public int getCbCmtCount() {
+		return cbCmtCount;
+	}
+	public void setCbCmtCount(int cbCmtCount) {
+		this.cbCmtCount = cbCmtCount;
+	}
 	public String getMemName() {
 		return memName;
 	}

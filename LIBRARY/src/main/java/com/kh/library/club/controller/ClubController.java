@@ -1,7 +1,5 @@
 package com.kh.library.club.controller;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
@@ -10,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.library.club.service.ClubService;
@@ -18,6 +17,8 @@ import com.kh.library.club.vo.ClubBoardCmtVO;
 import com.kh.library.club.vo.ClubBoardVO;
 import com.kh.library.club.vo.ClubVO;
 import com.kh.library.member.vo.MemberVO;
+
+import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 @RequestMapping("/club")
@@ -30,7 +31,7 @@ public class ClubController {
 	public String clubList(Model model, HttpSession session, ClubVO clubVO, MemberVO memberVO) {
 		model.addAttribute("clubList", clubService.selectClubList(clubVO));
 		
-		return "club/club_list";
+		return "club/club_list1";
 	}
 	
 	//북클럽 생성페이지 이동
@@ -47,17 +48,17 @@ public class ClubController {
 	}
 	//북클럽 상세조회
 	@GetMapping("/clubDetail")
-	public String clubDetail(ClubVO clubVO, Model model, String clubCOde, MemberVO memberVO) {
-		model.addAttribute("club", clubService.selectClubDetail(clubVO));
-		model.addAttribute("boardList", clubService.selectClubBoardList(clubVO));
+	public String clubDetail(Model model, String clubCode, MemberVO memberVO) {
+		model.addAttribute("club", clubService.selectClubDetail(clubCode));
+		model.addAttribute("boardList", clubService.selectClubBoardList(clubCode));
 		model.addAttribute("memList", clubService.selectClubMemberList(memberVO));
 		
 		return "club/club_detail";
 	}
 	//북클럽 수정페이지 이동
 	@GetMapping("/clubDetailUpdate")
-	public String clubDetailUpdateWrite(ClubVO clubVO, Model model) {
-		model.addAttribute("club", clubService.selectClubDetail(clubVO));
+	public String clubDetailUpdateWrite(String clubCode, Model model) {
+		model.addAttribute("club", clubService.selectClubDetail(clubCode));
 		return "club/club_detail_update";
 	}
 	//북클럽 수정
@@ -88,6 +89,7 @@ public class ClubController {
 		model.addAttribute("cbCmtList", clubService.selectCbCmtList(clubBoardCmtVO));
 		return "club/club_board_detail";
 	}
+	
 	//게시글 수정 페이지 이동
 	@GetMapping("/clubBoardUpdate")
 	public String clubBoardUpdate(Model model, ClubBoardVO clubBoardVO) {
@@ -115,14 +117,27 @@ public class ClubController {
 	@PostMapping("/clubBoardRegCmt")
 	public String clubBoardRegCmt(ClubBoardCmtVO clubBoardCmtVO) {
 		clubService.insertRegBoardCmt(clubBoardCmtVO);
-		
 		return "redirect:/club/clubBoardDetail";
+	}
+	
+	//댓글 수정
+	@PostMapping("/clubCmtUpdate")
+	public String clubCmtUpdate(ClubBoardCmtVO clubBoardCmtVO) {
+		clubService.updateCbCmt(clubBoardCmtVO);
+		return "";
+	}
+	
+	//댓글 삭제
+	@ResponseBody
+	@PostMapping("/deleteCbCmt")
+	public void deleteCbCmt(ClubBoardCmtVO clubBoardCmtVO) {
+		clubService.deleteCbCmt(clubBoardCmtVO);
 	}
 	
 	//모임가입페이지로 이동
 	@GetMapping("/clubJoinWrite")
-	public String clubJoinWrite(ClubVO clubVO, Model model) {
-		model.addAttribute("club", clubService.selectClubDetail(clubVO));
+	public String clubJoinWrite(String clubCode, Model model) {
+		model.addAttribute("club", clubService.selectClubDetail(clubCode));
 		return "club/club_join";
 	}
 	

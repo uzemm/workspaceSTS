@@ -20,10 +20,15 @@ function createClub(){
 
 function clubJoin(clubCode){
 	let memId = document.getElementById('memId').value;
+	let club_Code = document.getElementById('clubCode').value;
+	
 	
 	if(memId == ''){
 		alert('로그인이 필요합니다.');
 		location.href = '/member/login';
+	}
+	else if(club_Code != ''){
+		alert('이미 모임에 가입되어있습니다.')
 	}
 	else{
 		location.href = '/club/clubJoinWrite?clubCode=' + clubCode ;

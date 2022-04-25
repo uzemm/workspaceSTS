@@ -31,8 +31,8 @@ public class ClubServiceImpl implements ClubService {
 	}
 
 	@Override
-	public ClubVO selectClubDetail(ClubVO clubVO) {
-		return sqlSession.selectOne("clubMapper.selectClubDetail", clubVO);
+	public ClubVO selectClubDetail(String clubCode) {
+		return sqlSession.selectOne("clubMapper.selectClubDetail", clubCode);
 	}
 
 	@Override
@@ -41,8 +41,8 @@ public class ClubServiceImpl implements ClubService {
 	}
 
 	@Override
-	public List<ClubBoardVO> selectClubBoardList(ClubVO clubVO) {
-		return sqlSession.selectList("clubMapper.selectClubBoardList", clubVO);
+	public List<ClubBoardVO> selectClubBoardList(String clubCode) {
+		return sqlSession.selectList("clubMapper.selectClubBoardList", clubCode);
 	}
 
 	@Override
@@ -98,6 +98,11 @@ public class ClubServiceImpl implements ClubService {
 	@Override
 	public List<MemberVO> selectClubMemberList(MemberVO memberVO) {
 		return sqlSession.selectList("clubMapper.selectClubMemberList", memberVO);
+	}
+
+	@Override
+	public void deleteCbCmt(ClubBoardCmtVO clubBoardCmtVO) {
+		sqlSession.delete("clubMapper.deleteCbCmt", clubBoardCmtVO);
 	}
 
 

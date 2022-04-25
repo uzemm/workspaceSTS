@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.vaildation.vo.MemberVO;
 
+//해당 클래스가 컨트롤러임을 인지 + 해당 클래스의 객체 생성
 @Controller
 @RequestMapping("/test")
 public class TestController {

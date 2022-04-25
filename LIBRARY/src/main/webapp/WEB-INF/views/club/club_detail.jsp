@@ -71,7 +71,14 @@ table{
 			<c:forEach items="${boardList }" var="boardInfo" varStatus="status">
 				<tr>
 					<td>${boardList.size() - status.index }</td>
-					<td><a href="/club/clubBoardDetail?cbBoardNum=${boardInfo.cbBoardNum }&&clubCode=${boardInfo.clubCode}">${boardInfo.cbBoardTitle }</a></td>
+					<c:choose>
+						<c:when test="${sessionScope.loginInfo.clubCode eq boardInfo.clubCode }">
+							<td><a href="/club/clubBoardDetail?cbBoardNum=${boardInfo.cbBoardNum }&&clubCode=${boardInfo.clubCode}">${boardInfo.cbBoardTitle } (${boardInfo.cbCmtCount })</a></td>
+						</c:when>
+						<c:otherwise>
+							<td><a href="" onclick="cbDetail();">${boardInfo.cbBoardTitle } (${boardInfo.cbCmtCount })</a></td>
+						</c:otherwise>
+					</c:choose>
 					<td>${boardInfo.memName }</td>
 					<td>${boardInfo.cbBoardDate }</td>
 				</tr>
@@ -88,5 +95,6 @@ table{
 		</c:if>
 	</div>
 </div>
+<script type="text/javascript" src="/resources/js/club/club_detail.js"></script>
 </body>
 </html>

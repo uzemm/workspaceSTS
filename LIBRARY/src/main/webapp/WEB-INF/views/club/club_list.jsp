@@ -76,10 +76,10 @@ table tr, td{
 	</table>
 </div>
 <div class="clubCreate">
-<input type="hidden" id="memId" value="${sessionScope.loginInfo.memId }">
-<input type="button" style="margin-right: 100px;" value="북클럽 생성" onclick="createClub();" >
-<input type="hidden" id="clubAdmin" value="${sessionScope.loginInfo.clubAdmin }">
-<input type="hidden" id="clubCode" value="${sessionScope.loginInfo.clubCode }">
+	<input type="hidden" id="memId" value="${sessionScope.loginInfo.memId }">
+	<input type="button" style="margin-right: 100px;" value="북클럽 생성" onclick="createClub();" >
+	<input type="hidden" id="clubAdmin" value="${sessionScope.loginInfo.clubAdmin }">
+	<input type="hidden" id="clubCode" value="${sessionScope.loginInfo.clubCode }">
 </div>
 <script type="text/javascript" src="/resources/js/club/club_list.js?ver=1"></script>
 </body>
