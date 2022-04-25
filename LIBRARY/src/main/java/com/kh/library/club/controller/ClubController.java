@@ -114,10 +114,10 @@ public class ClubController {
 	}
 	
 	//댓등록
-	@ResponseBody
 	@PostMapping("/clubBoardRegCmt")
-	public void clubBoardRegCmt(ClubBoardCmtVO clubBoardCmtVO) {
+	public String clubBoardRegCmt(ClubBoardCmtVO clubBoardCmtVO, String cbBoardNum, String clubCode) {
 		clubService.insertRegBoardCmt(clubBoardCmtVO);
+		return "redirect:/club/clubBoardDetail?cbBoardNum=" + cbBoardNum + "&&clubCode=" + clubCode;
 	}
 	
 	//댓글 수정

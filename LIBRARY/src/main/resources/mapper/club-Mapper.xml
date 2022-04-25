@@ -180,18 +180,21 @@
 		CB_CMT_NUM
 		, CB_CMT_CONTENT
 		, MEM_NAME
+		, MEM_ID
 		, CB_BOARD_NUM
 	) VALUES (
 		(SELECT 'CBCMT_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(CB_CMT_NUM, 7))), 0) + 1, 3, 0) AS CB_CMT_NUM FROM BOOK_CLUB_BOARD_COMMENT)
 		, #{cbCmtContent}
 		, #{memName}
+		, #{memId}
 		, #{cbBoardNum}
 	)
 	</insert>
 	
 	<!-- 댓글조회 -->
 	<select id="selectCbCmtList" resultMap="cmt">
-		SELECT MEM_NAME
+		SELECT	MEM_ID 
+			, MEM_NAME
 			, TO_CHAR(CB_CMT_DATE, 'YYYY-MM-DD HH24:MI') AS CB_CMT_DATE
 			, CB_CMT_CONTENT
 			, CB_CMT_NUM

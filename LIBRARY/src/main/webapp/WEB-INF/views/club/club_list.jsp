@@ -64,10 +64,10 @@ table tr, td{
 				<td> ${club.clubNumberPeople} / ${club.clubHeadCnt }</td>
 				<c:choose>
 					<c:when test="${club.clubNumberPeople eq club.clubHeadCnt }">
-						<td><input type="button" value="신청마감" > </td>
+						<td><button type="button" class="btn btn-primary btn-sm" >신청마감</button></td>
 					</c:when>
 					<c:otherwise>
-						<td><input type="button" value="신청하기" onclick="clubJoin('${club.clubCode}')"> </td>
+						<td><button type="button" class="btn btn-primary btn-sm" onclick="clubJoin('${club.clubCode}')">신청하기</button></td>
 					</c:otherwise>	
 				</c:choose>
 			</tr>

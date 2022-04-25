@@ -2,6 +2,12 @@ INSERT INTO BOOK_MEMBER VALUES('admin', '1111', '모임장', '울산', '1111', '
 
 select * from book_member;
 select * from book_club;
+select * from book_club_board_comment;
+
+select count(cb_cmt_num)
+from book_club_board_comment
+where cb_board_num = 'CB_BOARD_004';
+
 update book_member
 set
 is_admin = 'Y'
