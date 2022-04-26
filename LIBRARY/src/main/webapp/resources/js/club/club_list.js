@@ -34,3 +34,8 @@ function clubJoin(clubCode){
 		location.href = '/club/clubJoinWrite?clubCode=' + clubCode ;
 	}
 }
+
+$(".msgSpan").click(function(){
+	var data = $(this).data('id');
+    $("#msgModal.modal").val(data);
+});

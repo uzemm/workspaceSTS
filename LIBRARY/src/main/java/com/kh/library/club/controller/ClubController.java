@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.library.club.service.ClubService;
+import com.kh.library.club.service.MessageService;
 import com.kh.library.club.vo.ClubApplyVO;
 import com.kh.library.club.vo.ClubBoardCmtVO;
 import com.kh.library.club.vo.ClubBoardVO;
@@ -27,6 +28,9 @@ import oracle.jdbc.proxy.annotation.Post;
 public class ClubController {
 	@Resource(name = "clubService")
 	private ClubService clubService;
+
+	@Resource(name = "messageService")
+	private MessageService messageService;
 	
 	//북클럽 목록 조회
 	@GetMapping("/clubList")
@@ -158,6 +162,9 @@ public class ClubController {
 	}
 	
 	//-------------------------알림함--------------------------
-
-	
+	@GetMapping("/getMsgList")
+	public String getMsgList(Model model, String getId) {
+		model.addAttribute("msgList", messageService.selectGetMsgList(getId));
+		return "redirect:/club/clubList";
+	}
 }

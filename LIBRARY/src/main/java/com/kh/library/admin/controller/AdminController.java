@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.kh.library.admin.service.BookAdminService;
 import com.kh.library.admin.service.ItemAdminService;
 import com.kh.library.admin.service.MemberAdminService;
+import com.kh.library.admin.vo.MessageVO;
 import com.kh.library.book.service.BookService;
 import com.kh.library.book.vo.ReserveVO;
 import com.kh.library.book.vo.BookImgVO;
@@ -60,13 +61,18 @@ public class AdminController {
 	}
 	
 	//회원관리 페이지
-	@GetMapping("memberManage")
+	@GetMapping("/memberManage")
 	public String memberManage(Model model, MemberVO memberVO) {
 		model.addAttribute("memList", memberAdminService.selectMemberList());
 		return "admin/member_list";
 	}
 	
-	
+	//알림 전송
+	@PostMapping("/sendMessage")
+	public String sendMessage(MessageVO messageVO) {
+		memberAdminService.insertSendMessage(messageVO);
+		return "redirect:/admin/memberManage";
+	}
 	
 	
 }

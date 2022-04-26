@@ -37,12 +37,26 @@ table tr, td{
 	<c:if test="${sessionScope.loginInfo.clubAdmin eq 'Y' }">
 		<a href="/clubAdmin/clubAdmin?clubCode=${sessionScope.loginInfo.clubCode }">북클럽관리</a><br>
 	</c:if> 
-	<span class="msgSpan" data-bs-target="#msgModal" data-bs-toggle="modal" >
-	<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
-  		<path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
-	</svg></span>
-	<a href="/admin/memberManage">회원관리</a>
+	<a href="/admin/memberManage">회원관리</a><br>
+	
+	<div class="dropdown">
+		<span class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+			<input type="hidden" name="getId" value="${sessionScope.loginInfo.memId }">
+			<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
+		  		<path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
+			</svg>
+		</span>
+		 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+		  	<li><a class="dropdown-item" href="#">Something else here</a></li>
+		  	<c:forEach items="${msgList }" var="msg">
+		    <li value="${msg.msgCode }"><a class="dropdown-item" href="#">${msg.msgContent }<br>${msg.sendDate }</a></li>
+		  	</c:forEach>
+		 </ul>
+	</div>
 </div>
+
+
+
 
 <div class="container">
 <div style="margin: 0 auto; margin-bottom: 20px;">북클럽 조회</div>
@@ -87,23 +101,6 @@ table tr, td{
 	<input type="hidden" id="clubCode" value="${sessionScope.loginInfo.clubCode }">
 </div>
 
-<!-- 알림함 모달 -->
-<div class="modal fade" id="msgModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">알림함</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">닫기</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <script type="text/javascript" src="/resources/js/club/club_list.js?ver=1"></script>
 </body>

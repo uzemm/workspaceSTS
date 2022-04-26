@@ -28,7 +28,7 @@
 	<div class="col-4"></div>
 	<div class="col-4">
 		<div class="mb-3">
-		  <label for="exampleFormControlTextarea1" class="form-label">n개의 댓글</label>
+		  <label for="exampleFormControlTextarea1" class="form-label">${clubBoard.cbCmtCount }개의 댓글</label>
 		  <form action="/club/clubBoardRegCmt" method="post" id="cbRegCmt">
 		  	<input type="hidden" name="memName" value="${sessionScope.loginInfo.memName }">
 		  	<input type="hidden" name="memId" value="${sessionScope.loginInfo.memId }">

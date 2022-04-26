@@ -26,7 +26,9 @@
 			      <th scope="row">${status.index + 1 }</th>
 			      <td>${mem.memId }</td>
 			      <td>${mem.memName }</td>
-			      <td><button type="button" class="open-msgModal btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#messageModal" data-id="${mem.memId }">알림전송</button></td>
+			      <td><button type="button" class="open-msgModal btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#messageModal" data-id="${mem.memId }"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
+  		<path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
+	</svg></button></td>
 			    </tr>
 			  </c:forEach>
 		  </tbody>
@@ -43,7 +45,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form>
+        <form action="/admin/sendMessage" method="post">
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">회원 ID :</label>
             <input type="text" class="form-control" id="get-name" name="getId" readonly>
@@ -52,12 +54,14 @@
             <label for="message-text" class="col-form-label">내용 :</label>
             <textarea class="form-control" id="message-content" rows="7" name="msgContent" style="resize: none;" onkeyup="byteCheck(this, '500');"></textarea>
             <div style="text-align: right;"><span id="byteInfo">0</span> /500bytes</div>
+          <div class="mb-3 justify-content-md-end">
+	        <button type="button" class="btn btn-secondary justify-content-md-end" data-bs-dismiss="modal">닫기</button>
+	        <button type="submit" class="btn btn-primary justify-content-md-end">메세지 전송</button>
+          </div>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-        <button type="button" class="btn btn-primary">메세지 전송</button>
       </div>
     </div>
   </div>
