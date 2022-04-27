@@ -41,3 +41,10 @@ $(".open-msgModal").click(function(){
 	var data = $(this).data('id');
     $("#get-name.form-control").val(data);
 });
+
+//페이징
+function search(nowPage){
+	document.getElementById('nowPage').value = nowPage;
+	var formTag = document.getElementById('searchForm');
+	formTag.submit();
+}

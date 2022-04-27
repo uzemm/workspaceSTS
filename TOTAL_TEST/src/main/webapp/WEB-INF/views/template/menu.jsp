@@ -13,10 +13,13 @@ table{
 	text-align: center;
 	border-collapse: collapse;
 	margin-top: 30px;
-	color: 
+	color: #5B9BD5;
 }
 table td{
 	border: 1px solid black;
+}
+table tr{
+	color: #5B9BD5;
 }
 </style>
 </head>

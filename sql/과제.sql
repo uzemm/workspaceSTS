@@ -64,7 +64,8 @@ CREATE TABLE TEST_DEPARTMENT(
 	, DNAME VARCHAR2(50) NOT NULL
 	, REGION VARCHAR2(50) NOT NULL
 );
-
+delete TEST_DEPARTMENT;
+delete TEST_EMP;
 select * from TEST_DEPARTMENT order by deptno;
 delete TEST_EMP where ename = '홍길동';
 DROP TABLE TEST_EMP;

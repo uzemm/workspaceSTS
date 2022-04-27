@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.kh.library.admin.service.BookAdminService;
 import com.kh.library.admin.service.ItemAdminService;
 import com.kh.library.admin.service.MemberAdminService;
 import com.kh.library.admin.vo.MessageVO;
@@ -67,12 +66,18 @@ public class AdminController {
 		return "admin/member_list";
 	}
 	
+	//회원 검색
+	@PostMapping("/searchMember")
+	public String searchMember(Model model, MemberVO memberVO) {
+		model.addAttribute("memList", memberVO);
+		return "admin/member_list";
+	}
+	
 	//알림 전송
 	@PostMapping("/sendMessage")
 	public String sendMessage(MessageVO messageVO) {
 		memberAdminService.insertSendMessage(messageVO);
 		return "redirect:/admin/memberManage";
 	}
-	
 	
 }

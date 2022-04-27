@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.library.admin.vo.MessageVO;
+import com.kh.library.member.vo.MemberVO;
 
 @Service("memberAdminService")
 public class MemberAdminServiceImpl implements MemberAdminService{
@@ -23,6 +24,11 @@ public class MemberAdminServiceImpl implements MemberAdminService{
 	@Override
 	public void insertSendMessage(MessageVO messageVO) {
 		sqlSession.insert("adminMapper.insertSendMessage", messageVO);
+	}
+
+	@Override
+	public List<MemberAdminService> selectSearchMember(MemberVO memberVO) {
+		return sqlSession.selectList("adminMapper.selectSearchMember", memberVO);
 	}
 
 }

@@ -20,6 +20,7 @@ import com.kh.library.club.vo.ClubBoardCmtVO;
 import com.kh.library.club.vo.ClubBoardVO;
 import com.kh.library.club.vo.ClubVO;
 import com.kh.library.member.vo.MemberVO;
+import com.kh.library.util.vo.PageVO;
 
 import oracle.jdbc.proxy.annotation.Post;
 
@@ -36,14 +37,12 @@ public class ClubController {
 	@GetMapping("/clubList")
 	public String clubList(Model model, HttpSession session, ClubVO clubVO, MemberVO memberVO) {
 		model.addAttribute("clubList", clubService.selectClubList(clubVO));
-		
 		return "club/club_list";
 	}
 	
 	//북클럽 생성페이지 이동
 	@GetMapping("/clubCreate")
-	public String clubCreate(HttpSession session) {
-		
+	public String clubCreate() {
 		return "club/club_create";
 	}
 	//북클럽 생성
@@ -54,10 +53,23 @@ public class ClubController {
 	}
 	//북클럽 상세조회
 	@GetMapping("/clubDetail")
-	public String clubDetail(Model model, String clubCode, MemberVO memberVO) {
+	public String clubDetail(Model model, String clubCode, MemberVO memberVO, PageVO pageVO, ClubBoardVO clubBoardVO) {
+		
+		//-----------------페이징 정보 세팅
+		//1.전체 데이터의 개수 조회
+		int listCnt = clubService.selectClubBoardListCnt(clubBoardVO);
+		pageVO.setTotalCnt(listCnt);
+		
+		//2.페이징 처리를 위한 세팅 메소드 호출
+		pageVO.setPageInfo();
+		
+		//클럽 상세조회
 		model.addAttribute("club", clubService.selectClubDetail(clubCode));
+		//클럽 게시판 조회
 		model.addAttribute("boardList", clubService.selectClubBoardList(clubCode));
+		//클럽 회원리스트
 		model.addAttribute("memList", clubService.selectClubMemberList(memberVO));
+		
 		
 		return "club/club_detail";
 	}

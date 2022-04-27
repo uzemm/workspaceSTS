@@ -17,9 +17,18 @@ table{
 	border: 1px solid black;
 	border-collapse: collapse;
 	margin-top: 30px;
+	color: white;
+	font-weight: bold;
+}
+a{
+	text-decoration: none;
+	color: white;
 }
 table td{
 	border: 1px solid black;
+}
+.tableDiv tr{
+	background-color: #82B3DF;
 }
 .deptDiv{
 	text-align: center;
@@ -29,6 +38,8 @@ table td{
 .empList table{
 	width: 600px;
 	margin-left: 40px;
+	color: black;
+	font-weight: normal;
 }
 .empList table td{
 	border: 1px solid black;
@@ -42,19 +53,21 @@ table td{
 </head>
 <body>
 <div class="container">
-	<table>
-		<colgroup>
-			<col width="25%">
-			<col width="25%">
-			<col width="25%">
-			<col width="25%">
-		<tr>
-			<td>홈</td>
-			<td><a href="/emp/deptManage">부서관리</a></td>
-			<td><a href="/emp/empWrite">사원등록</a></td>
-			<td>사원목록</td>
-		</tr>
-	</table>
+	<div class="tableDiv">
+		<table>
+			<colgroup>
+				<col width="25%">
+				<col width="25%">
+				<col width="25%">
+				<col width="25%">
+			<tr>
+				<td><a href="/emp/deptHome">홈</a></td>
+				<td><a href="/emp/deptManage">부서관리</a></td>
+				<td><a href="/emp/empWrite">사원등록</a></td>
+				<td><a href="/emp/empList">사원목록</a></td>
+			</tr>
+		</table>
+	</div>
 	
 	<div class="empList">
 		<table>
@@ -78,9 +91,9 @@ table td{
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${empList }" var="emp">
+				<c:forEach items="${empList }" var="emp" varStatus="status">
 					<tr>
-						<td>1</td>
+						<td>${status.index + 1 }</td>
 						<td>${emp.eName }</td>
 						<td>${emp.tell }</td>
 						<td>${emp.gender }</td>

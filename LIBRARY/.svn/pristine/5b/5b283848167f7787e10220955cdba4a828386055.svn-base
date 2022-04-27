@@ -1,4 +1,4 @@
-package com.kh.library.admin.service;
+package com.kh.library.book.service;
 
 import com.kh.library.book.vo.RecommendImgVO;
 import com.kh.library.book.vo.RecommendVO;
@@ -24,6 +24,13 @@ public interface BookAdminService {
 	
 	//다음 도서 코드 조회
 	String selectNextBookCode();
+	
+	//추천도서 랭킹 
+	List<BookVO> selectRcdBook();
+	
+	//신간도서 select
+	List<BookVO> selectNewBook();
+	
 	
 	//책 대여
 	void insertReserve(ReserveVO reserveVO);

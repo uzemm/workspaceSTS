@@ -5,6 +5,7 @@ import java.util.List;
 import javax.mail.Message;
 
 import com.kh.library.admin.vo.MessageVO;
+import com.kh.library.member.vo.MemberVO;
 
 public interface MemberAdminService {
 	
@@ -13,4 +14,7 @@ public interface MemberAdminService {
 	
 	//메세지 전송
 	void insertSendMessage(MessageVO messageVO);
+	
+	//회원 검색
+	List<MemberAdminService> selectSearchMember(MemberVO memberVO);
 }

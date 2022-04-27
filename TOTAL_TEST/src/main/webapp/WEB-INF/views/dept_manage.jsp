@@ -17,9 +17,18 @@ table{
 	border: 1px solid black;
 	border-collapse: collapse;
 	margin-top: 30px;
+	color: white;
+	font-weight: bold;
+}
+a{
+	text-decoration: none;
+	color: white;
 }
 table td{
 	border: 1px solid black;
+}
+.tableDiv tr{
+	background-color: #82B3DF;
 }
 .deptDiv{
 	text-align: left;
@@ -29,9 +38,15 @@ table td{
 .deptList table{
 	width: 600px;
 	margin-left: 40px;
+	background-color: white;
+	color: black;
+	font-weight: normal;
 }
 .deptList table td{
 	border: none;
+}
+.deptList table tr:nth-child(odd){
+	background-color: #E7E7E7;
 }
 .deptList table thead tr{
 	border-bottom: 2px solid black;
@@ -42,6 +57,7 @@ table td{
 </head>
 <body>
 <div class="container">
+	<div class="tableDiv">
 	<table>
 		<colgroup>
 			<col width="25%">
@@ -49,12 +65,13 @@ table td{
 			<col width="25%">
 			<col width="25%">
 		<tr>
-			<td>홈</td>
+			<td><a href="/emp/deptHome">홈</a></td>
 			<td><a href="/emp/deptManage">부서관리</a></td>
 			<td><a href="/emp/empWrite">사원등록</a></td>
-			<td>사원목록</td>
+			<td><a href="/emp/empList">사원목록</a></td>
 		</tr>
 	</table>
+	</div>
 	
 	<form action="/emp/deptEnrollment" method="post">
 		<div class="deptDiv">

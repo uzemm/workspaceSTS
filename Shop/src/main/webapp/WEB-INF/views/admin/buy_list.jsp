@@ -112,7 +112,6 @@
 						<li class="page-item <c:if test="${!buySearchVO.prev }">disabled</c:if>"><a class="page-link" href="/admin/buyListManage?nowPage=${buySearchVO.beginPage - 1 }"
 							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 						</a></li>
-						
 						<c:forEach begin="${buySearchVO.beginPage }" end="${buySearchVO.endPage }" var="pageIndex">
 							<li class="page-item <c:if test="${buySearchVO.nowPage eq pageIndex }">active</c:if>"><a class="page-link" href="javascript:search(${pageIndex });">${pageIndex }</a></li>
 						</c:forEach>
