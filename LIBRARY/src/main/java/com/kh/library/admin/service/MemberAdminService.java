@@ -16,5 +16,5 @@ public interface MemberAdminService {
 	void insertSendMessage(MessageVO messageVO);
 	
 	//회원 검색
-	List<MemberAdminService> selectSearchMember(MemberVO memberVO);
+	List<MemberVO> selectSearchMember(MemberVO memberVO);
 }

@@ -14,7 +14,6 @@ public class MemberVO {
 	private String isAdmin;
 	private String clubAdmin;
 	private String clubCode;
-	private String clubApplyCode;
 	private String keyword;
 	
 	
@@ -95,12 +94,6 @@ public class MemberVO {
 	}
 	public void setClubCode(String clubCode) {
 		this.clubCode = clubCode;
-	}
-	public String getClubApplyCode() {
-		return clubApplyCode;
-	}
-	public void setClubApplyCode(String clubApplyCode) {
-		this.clubApplyCode = clubApplyCode;
 	}
 	public String getKeyword() {
 		return keyword;

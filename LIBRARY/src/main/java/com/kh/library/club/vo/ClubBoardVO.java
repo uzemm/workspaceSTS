@@ -9,19 +9,9 @@ public class ClubBoardVO {
 	private String clubCode;
 	private String memName;
 	private int cbCmtCount;
+	private String sort;
+	private String keyword;
 	
-	public int getCbCmtCount() {
-		return cbCmtCount;
-	}
-	public void setCbCmtCount(int cbCmtCount) {
-		this.cbCmtCount = cbCmtCount;
-	}
-	public String getMemName() {
-		return memName;
-	}
-	public void setMemName(String memName) {
-		this.memName = memName;
-	}
 	public String getCbBoardNum() {
 		return cbBoardNum;
 	}
@@ -58,5 +48,28 @@ public class ClubBoardVO {
 	public void setClubCode(String clubCode) {
 		this.clubCode = clubCode;
 	}
-	
+	public String getMemName() {
+		return memName;
+	}
+	public void setMemName(String memName) {
+		this.memName = memName;
+	}
+	public int getCbCmtCount() {
+		return cbCmtCount;
+	}
+	public void setCbCmtCount(int cbCmtCount) {
+		this.cbCmtCount = cbCmtCount;
+	}
+	public String getSort() {
+		return sort;
+	}
+	public void setSort(String sort) {
+		this.sort = sort;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
 }

@@ -69,7 +69,7 @@ public class AdminController {
 	//회원 검색
 	@PostMapping("/searchMember")
 	public String searchMember(Model model, MemberVO memberVO) {
-		model.addAttribute("memList", memberVO);
+		model.addAttribute("memList", memberAdminService.selectSearchMember(memberVO));
 		return "admin/member_list";
 	}
 	

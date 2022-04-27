@@ -28,6 +28,9 @@ public interface ClubService {
 	//모임게시글 조회
 	List<ClubBoardVO> selectClubBoardList(String clubCode);
 	
+	//모임 게시글 검색
+	List<ClubBoardVO> selectSearhClubBoardList(ClubBoardVO clubBoardVO);
+	
 	//모임게시글 상세조회
 	ClubBoardVO selectClubBoardDetail(ClubBoardVO clubBoardVO);
 	
@@ -61,7 +64,7 @@ public interface ClubService {
 	//클럽멤버리스트 조회
 	List<MemberVO> selectClubMemberList(MemberVO memberVO);
 	
-	//클럽게시판글 개수조회
+	//클럽게시판 글 수 조회
 	int selectClubBoardListCnt(ClubBoardVO clubBoardVO);
 	
 }

@@ -27,7 +27,7 @@ public class MemberAdminServiceImpl implements MemberAdminService{
 	}
 
 	@Override
-	public List<MemberAdminService> selectSearchMember(MemberVO memberVO) {
+	public List<MemberVO> selectSearchMember(MemberVO memberVO) {
 		return sqlSession.selectList("adminMapper.selectSearchMember", memberVO);
 	}
 

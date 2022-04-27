@@ -46,9 +46,8 @@ table{
 					모임소개 : ${club.clubIntro }
 				</td>
 				<td style="text-align: right;">
-					<c:forEach items="${memList }" var="mem">
-						1
-						ㅇ
+					<c:forEach items="${memList }" var="mem" >
+					<img alt="" src="/resources/images/member/${mem.memImage }" style="width: 30px;">
 						${mem.memName }
 						완독수<br>
 					</c:forEach>
@@ -111,22 +110,17 @@ table{
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-2">	
-			<table>
-				<tr>
-					<td>
-						<select>
-							<option value="${clubBoardVO.cbBoardTitle }">제목</option>
-							<option value="${clubBoardVO.memName }">글쓴이</option>
-						</select>
-					</td>
-					<td>
-						<input type="text" name="">
-					</td>
-				</tr>
-			</table>
+		<div class="col-6">	
+			<form action="/club/searchClubBoard" method="post">
+			<input type="hidden" name="clubCode" value="${club.clubCode }">
+				<select id="sort" name="sort">
+					<option value="CB_BOARD_TITLE">제목</option>
+					<option value="MEM_NAME">작성자</option>
+				</select>
+				<input type="text" name="keyword" id="keyword">
+				<button type="submit" class="btn btn-secondary">검색</button>
+			</form>
 		</div>
-		
 	</div>	
 	</div>
 <script type="text/javascript" src="/resources/js/club/club_detail.js"></script>

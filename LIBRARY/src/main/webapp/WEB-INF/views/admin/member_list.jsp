@@ -31,9 +31,9 @@
 				</span>
 				 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 				  	<li><a class="dropdown-item" href="#">Something else here</a></li>
-				  	<c:forEach items="${msgList }" var="msg">
+	<%-- 			  	<c:forEach items="${msgList }" var="msg">
 				    <li value="${msg.msgCode }"><a class="dropdown-item" href="#">${msg.msgContent }<br>${msg.sendDate }</a></li>
-				  	</c:forEach>
+				  	</c:forEach> --%>
 				 </ul>
 			</div>
 		</div>

@@ -46,6 +46,11 @@ public class ClubServiceImpl implements ClubService {
 	}
 
 	@Override
+	public List<ClubBoardVO> selectSearhClubBoardList(ClubBoardVO clubBoardVO) {
+		return sqlSession.selectList("clubMapper.selectSearhClubBoardList", clubBoardVO);
+	}
+	
+	@Override
 	public ClubBoardVO selectClubBoardDetail(ClubBoardVO clubBoardVO) {
 		return sqlSession.selectOne("clubMapper.selectClubBoardDetail", clubBoardVO);
 	}
@@ -109,4 +114,5 @@ public class ClubServiceImpl implements ClubService {
 	public int selectClubBoardListCnt(ClubBoardVO clubBoardVO) {
 		return sqlSession.selectOne("clubMapper.selectClubBoardListCnt", clubBoardVO);
 	}
+
 }

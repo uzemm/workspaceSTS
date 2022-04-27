@@ -37,7 +37,7 @@ public class ClubController {
 	@GetMapping("/clubList")
 	public String clubList(Model model, HttpSession session, ClubVO clubVO, MemberVO memberVO) {
 		model.addAttribute("clubList", clubService.selectClubList(clubVO));
-		return "club/club_list";
+		return "club/club_list1";
 	}
 	
 	//북클럽 생성페이지 이동
@@ -70,9 +70,21 @@ public class ClubController {
 		//클럽 회원리스트
 		model.addAttribute("memList", clubService.selectClubMemberList(memberVO));
 		
-		
 		return "club/club_detail";
 	}
+	
+	//북클럽 게시글 검색
+	@PostMapping("/searchClubBoard")
+	public String selectSearhClubBoardList(ClubBoardVO clubBoardVO, Model model, String clubCode, MemberVO memberVO) {
+		//클럽 상세조회
+		model.addAttribute("club", clubService.selectClubDetail(clubCode));
+		//클럽 게시글 검색
+		model.addAttribute("boardList", clubService.selectSearhClubBoardList(clubBoardVO));
+		//클럽 회원리스트
+		model.addAttribute("memList", clubService.selectClubMemberList(memberVO));
+		return "club/club_detail";
+	}
+	
 	//북클럽 수정페이지 이동
 	@GetMapping("/clubDetailUpdate")
 	public String clubDetailUpdateWrite(String clubCode, Model model) {
