@@ -16,7 +16,7 @@
 		작성일 : ${clubBoard.cbBoardDate }<br>
 		내용 : ${clubBoard.cbBoardContent }<br>
 		<div class="col-4" style="margin-top: 10px;">
-			<button type="button" class="btn btn-primary btn-sm justify-content-md-end" onclick="location.href='/club/clubDetail?clubCode=${clubBoard.clubCode}';">목록</button>
+			<button type="button" class="btn btn-primary btn-sm justify-content-md-end" onclick="history.back();">목록</button>
 		<c:if test="${clubBoard.memId eq sessionScope.loginInfo.memId }">
 			<button type="button" class="btn btn-primary btn-sm justify-content-md-end" onclick="location.href='/club/clubBoardUpdate?cbBoardNum=${clubBoard.cbBoardNum}&&clubCode=${clubBoard.clubCode }';">수정</button>
 			<button type="button" class="btn btn-primary btn-sm justify-content-md-end" onclick="location.href='/club/clubBoardDelete?cbBoardNum=${clubBoard.cbBoardNum}&&clubCode=${clubBoard.clubCode }';">삭제</button>

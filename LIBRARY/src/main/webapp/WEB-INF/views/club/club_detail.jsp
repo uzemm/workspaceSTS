@@ -96,14 +96,15 @@ table{
 		<div class="col">
 			<nav aria-label="Page navigation example">
 				<ul class="pagination pagination-sm justify-content-center">
-					<li class="page-item <c:if test="${!clubBoardVO.prev }">disabled</c:if>"><a class="page-link" href="/club/clubDetail?nowPage=${clubBoardVO.beginPage - 1 }"
+					<li class="page-item <c:if test="${!clubBoardVO.prev }">disabled</c:if>">
+					<a class="page-link" href="/club/clubDetail?nowPage=${clubBoardVO.beginPage - 1 }&&clubCode=${clubBoardVO.clubCode }"
 						aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 					</a></li>
 					<c:forEach begin="${clubBoardVO.beginPage }" end="${clubBoardVO.endPage }" var="pageIndex">
 							<li class="page-item <c:if test="${clubBoardVO.nowPage eq pageIndex }">active</c:if>"><a class="page-link" 
-							href="javascript:search(${pageIndex });">${pageIndex }</a></li>
+							href="/club/clubDetail?nowPage=${pageIndex }&&clubCode=${clubBoardVO.clubCode }">${pageIndex }</a></li>
 						</c:forEach>
-					<li class="page-item <c:if test="${!PageVO.next }">disabled</c:if>"><a class="page-link" href="/club/clubDetail?nowPage=${clubBoardVO.endPage + 1 }"
+					<li class="page-item <c:if test="${!clubBoardVO.next }">disabled</c:if>"><a class="page-link" href="/club/clubDetail?nowPage=${clubBoardVO.endPage + 1 }&&clubCode=${clubBoardVO.clubCode }"
 						aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 					</a></li>
 				</ul>
@@ -114,12 +115,12 @@ table{
 		<div class="col-6">	
 			<form action="/club/clubDetail" method="post" id="searchForm">
 			<input type="hidden" value="1" id="nowPage" name="nowPage">
-			<input type="hidden" name="clubCode" value="${club.clubCode }">
-				<select id="sort" name="sort">
+			<input type="hidden" name="clubCode" value="${clubBoardVO.clubCode }">
+				<select id="sort" name="sort" <c:if test="${clubBoardVO.sort eq 'MEM_NAME'}">selected</c:if>>
 					<option value="CB_BOARD_TITLE">제목</option>
 					<option value="MEM_NAME">작성자</option>
 				</select>
-				<input type="text" name="keyword" id="keyword">
+				<input type="text" name="keyword" value="${clubBoardVO.keyword }">
 				<button type="submit" class="btn btn-secondary">검색</button>
 			</form>
 		</div>
