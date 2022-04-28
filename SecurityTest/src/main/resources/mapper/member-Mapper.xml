@@ -31,7 +31,7 @@
    <select id="selectUserRoleList" resultType="String">
       SELECT ROLE_NAME
       FROM MEMBER_ROLE
-      WHERE MEM_ID  = #{memId})
+      WHERE MEM_ID  = #{memId}
    </select>
 </mapper>
 
