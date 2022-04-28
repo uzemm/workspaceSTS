@@ -51,25 +51,37 @@ public class ClubController {
 		clubService.insertUpdateClubCreate(clubVO);
 		return "redirect:/club/clubList";
 	}
-	//북클럽 상세조회 + 검색
-	@RequestMapping("/clubDetail")
+	//북클럽 상세조회
+	@GetMapping("/clubDetail")
 	public String clubDetail(Model model, String clubCode, MemberVO memberVO, PageVO pageVO, ClubBoardVO clubBoardVO) {
 		
 		//-----------------페이징 정보 세팅
 		//1.전체 데이터의 개수 조회
 		int listCnt = clubService.selectClubBoardListCnt(clubBoardVO);
-		clubBoardVO.setTotalCnt(listCnt);
+		pageVO.setTotalCnt(listCnt);
 		
 		//2.페이징 처리를 위한 세팅 메소드 호출
-		clubBoardVO.setPageInfo();
+		pageVO.setPageInfo();
 		
 		//클럽 상세조회
 		model.addAttribute("club", clubService.selectClubDetail(clubCode));
 		//클럽 게시판 조회
-		model.addAttribute("boardList", clubService.selectClubBoardList(clubBoardVO));
+		model.addAttribute("boardList", clubService.selectClubBoardList(clubCode));
 		//클럽 회원리스트
 		model.addAttribute("memList", clubService.selectClubMemberList(memberVO));
 		
+		return "club/club_detail";
+	}
+	
+	//북클럽 게시글 검색
+	@PostMapping("/searchClubBoard")
+	public String selectSearhClubBoardList(ClubBoardVO clubBoardVO, Model model, String clubCode, MemberVO memberVO) {
+		//클럽 상세조회
+		model.addAttribute("club", clubService.selectClubDetail(clubCode));
+		//클럽 게시글 검색
+		model.addAttribute("boardList", clubService.selectSearhClubBoardList(clubBoardVO));
+		//클럽 회원리스트
+		model.addAttribute("memList", clubService.selectClubMemberList(memberVO));
 		return "club/club_detail";
 	}
 	
@@ -172,8 +184,6 @@ public class ClubController {
 		clubService.insertClubJoin(clubApplyVO);
 		return "redirect:/club/clubList";
 	}
-	
-	//
 	
 	//-------------------------알림함--------------------------
 	@GetMapping("/getMsgList")

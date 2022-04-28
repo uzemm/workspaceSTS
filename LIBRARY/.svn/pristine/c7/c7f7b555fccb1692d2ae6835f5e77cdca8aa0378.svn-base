@@ -26,7 +26,7 @@ public interface ClubService {
 	void insertClubBoard(ClubBoardVO clubBoardVO);
 	
 	//모임게시글 조회
-	List<ClubBoardVO> selectClubBoardList(ClubBoardVO clubBoardVO);
+	List<ClubBoardVO> selectClubBoardList(String clubCode);
 	
 	//모임 게시글 검색
 	List<ClubBoardVO> selectSearhClubBoardList(ClubBoardVO clubBoardVO);

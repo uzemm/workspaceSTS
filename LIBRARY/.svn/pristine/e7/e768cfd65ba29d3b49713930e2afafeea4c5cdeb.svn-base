@@ -43,7 +43,6 @@ table tr, td{
 </style>
 </head>
 <body>
-
 <div class="subDiv">
 	북클럽조회<br>
 	<c:if test="${sessionScope.loginInfo.clubAdmin eq 'Y' }">

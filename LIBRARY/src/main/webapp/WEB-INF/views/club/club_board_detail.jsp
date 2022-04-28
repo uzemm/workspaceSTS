@@ -47,6 +47,7 @@
 	<div class="col-4">
 		<c:forEach items="${cbCmtList }" var="cmt">
 		<div class="col-12">
+			<%-- <div class="col-2"><img alt="" src="/resources/images/member/${mem.memImage }" style="width: 30px; border-radius: 70%;"></div> --%>
 			<div class="col-12 fw-bold" style="font-size: 14px;">
 				${cmt.memName }
 			</div>

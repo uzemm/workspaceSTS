@@ -17,7 +17,4 @@ public interface MemberAdminService {
 	
 	//회원 검색
 	List<MemberVO> selectSearchMember(MemberVO memberVO);
-	
-	//회원수
-	int selectAllMemberCount(MemberVO memberVO);
 }

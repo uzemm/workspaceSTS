@@ -41,8 +41,8 @@ public class ClubServiceImpl implements ClubService {
 	}
 
 	@Override
-	public List<ClubBoardVO> selectClubBoardList(ClubBoardVO clubBoardVO) {
-		return sqlSession.selectList("clubMapper.selectClubBoardList", clubBoardVO);
+	public List<ClubBoardVO> selectClubBoardList(String clubCode) {
+		return sqlSession.selectList("clubMapper.selectClubBoardList", clubCode);
 	}
 
 	@Override

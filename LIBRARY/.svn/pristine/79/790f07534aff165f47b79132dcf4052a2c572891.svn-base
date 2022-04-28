@@ -1,8 +1,6 @@
 package com.kh.library.club.vo;
 
-import com.kh.library.util.vo.PageVO;
-
-public class ClubBoardVO extends PageVO{
+public class ClubBoardVO {
 	private String cbBoardNum;
 	private String cbBoardTitle;
 	private String cbBoardContent;
@@ -13,7 +11,6 @@ public class ClubBoardVO extends PageVO{
 	private int cbCmtCount;
 	private String sort;
 	private String keyword;
-	private int rowNum;
 	
 	public String getCbBoardNum() {
 		return cbBoardNum;
@@ -74,11 +71,5 @@ public class ClubBoardVO extends PageVO{
 	}
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
-	}
-	public int getRowNum() {
-		return rowNum;
-	}
-	public void setRowNum(int rowNum) {
-		this.rowNum = rowNum;
 	}
 }

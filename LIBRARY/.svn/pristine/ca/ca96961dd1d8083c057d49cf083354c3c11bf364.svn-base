@@ -25,7 +25,6 @@
 		<result column="CB_CMT_COUNT" 		property="cbCmtCount"/>
 		<result column="SORT" 				property="sort"/>
 		<result column="KEYWORD" 			property="keyword"/>
-		<result column="ROW_NUM" 			property="rowNum"/>
 	</resultMap>
 	
 	<resultMap type="com.kh.library.club.vo.ClubBoardCmtVO" id="cmt">
@@ -143,43 +142,17 @@
 	<!-- 북클럽 게시판 목록 조회  -->
 	<select id="selectClubBoardList" resultMap="boardInfo">
 		SELECT CB_BOARD_NUM
-	        , CB_BOARD_TITLE
-	        , CB_BOARD_DATE
-	        , MEM_ID
-	        , CLUB_CODE
-	        , MEM_NAME
-	        , CB_CMT_COUNT
-	        , ROW_NUM
-		FROM
-		(
-		    SELECT CB_BOARD_NUM
-		        , CB_BOARD_TITLE
-		        , CB_BOARD_DATE
-		        , MEM_ID
-		        , CLUB_CODE
-		        , MEM_NAME
-		        , CB_CMT_COUNT
-		        , ROWNUM AS ROW_NUM
-		    FROM
-		    (
-		        SELECT CB_BOARD_NUM
-		            , CB_BOARD_TITLE
-		            , TO_CHAR(CB_BOARD_DATE, 'YYYY-MM-DD') AS CB_BOARD_DATE
-		            , MEM_ID
-		            , CLUB_CODE
-		            , MEM_NAME
-		            , (SELECT COUNT(CB_CMT_NUM)
-		                FROM BOOK_CLUB_BOARD_COMMENT
-		                WHERE CB_BOARD_NUM = BOOK_CLUB_BOARD.CB_BOARD_NUM) AS CB_CMT_COUNT
-		        FROM BOOK_CLUB_BOARD
-		        WHERE CLUB_CODE = #{clubCode} 
-		        <if test="keyword != null and !keyword.equals('')">
-		        AND ${sort} LIKE '%'||#{keyword}||'%'
-		        </if>
-		        ORDER BY CB_BOARD_NUM DESC
-		    )
-		)
-		WHERE ROW_NUM &gt; = #{startNum} AND ROW_NUM &lt; =  #{endNum}
+		    , CB_BOARD_TITLE
+		    , TO_CHAR(CB_BOARD_DATE, 'YYYY-MM-DD') AS CB_BOARD_DATE
+		    , MEM_ID
+		    , CLUB_CODE
+		    , MEM_NAME
+		    , (SELECT COUNT(CB_CMT_NUM)
+				FROM BOOK_CLUB_BOARD_COMMENT
+				WHERE CB_BOARD_NUM = BOOK_CLUB_BOARD.CB_BOARD_NUM) AS CB_CMT_COUNT
+		FROM BOOK_CLUB_BOARD
+		WHERE CLUB_CODE = #{clubCode} 
+		ORDER BY CB_BOARD_NUM DESC
 	</select>
 	
 	<!-- 북클럽 게시글 검색 -->
@@ -357,10 +330,7 @@
 	<select id="selectClubBoardListCnt" resultType="int">
 	SELECT COUNT(CB_BOARD_NUM)
 	FROM BOOK_CLUB_BOARD
-	WHERE CLUB_CODE = #{clubCode} 
-		<if test="keyword != null and !keyword.equals('')">
-		AND ${sort} LIKE '%'||#{keyword}||'%'
-		</if>
+	WHERE CLUB_CODE = #{clubCode}
 	</select>
 </mapper>
 

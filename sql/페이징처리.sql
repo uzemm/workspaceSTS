@@ -93,7 +93,41 @@ FROM
     )
 )
 
-
+SELECT CB_BOARD_NUM
+        , CB_BOARD_TITLE
+        , CB_BOARD_DATE
+        , MEM_ID
+        , CLUB_CODE
+        , MEM_NAME
+        , CB_CMT_COUNT
+    , ROW_NUM
+FROM
+(
+        SELECT CB_BOARD_NUM
+        , CB_BOARD_TITLE
+        , CB_BOARD_DATE
+        , MEM_ID
+        , CLUB_CODE
+        , MEM_NAME
+        , CB_CMT_COUNT
+        , ROWNUM AS ROW_NUM
+    FROM
+    (
+        SELECT CB_BOARD_NUM
+		    , CB_BOARD_TITLE
+		    , TO_CHAR(CB_BOARD_DATE, 'YYYY-MM-DD') AS CB_BOARD_DATE
+		    , MEM_ID
+		    , CLUB_CODE
+		    , MEM_NAME
+		    , (SELECT COUNT(CB_CMT_NUM)
+				FROM BOOK_CLUB_BOARD_COMMENT
+				WHERE CB_BOARD_NUM = BOOK_CLUB_BOARD.CB_BOARD_NUM) AS CB_CMT_COUNT
+		FROM BOOK_CLUB_BOARD
+        WHERE CLUB_CODE = #{clubCode} 
+		AND ${sort} LIKE '%'||#{keyword}||'%'
+		ORDER BY CB_BOARD_NUM DESC
+    )
+)
 
 
 

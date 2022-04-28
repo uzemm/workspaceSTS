@@ -31,9 +31,4 @@ public class MemberAdminServiceImpl implements MemberAdminService{
 		return sqlSession.selectList("adminMapper.selectSearchMember", memberVO);
 	}
 
-	@Override
-	public int selectAllMemberCount(MemberVO memberVO) {
-		return sqlSession.selectOne("adminMapper.selectAllMemberCount", memberVO);
-	}
-
 }

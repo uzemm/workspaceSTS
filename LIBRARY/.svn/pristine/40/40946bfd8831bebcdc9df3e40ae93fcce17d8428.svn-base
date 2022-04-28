@@ -22,15 +22,6 @@
 		ORDER BY MEM_ID
 	</select>
 	
-	<!-- 전체회원의 수  -->
-	<select id="selectAllMemberCount" resultType="int">
-		SELECT MEM_ID
-			, MEM_NAME
-		FROM BOOK_MEMBER
-		WHERE UPPER(MEM_ID) LIKE UPPER('%'||#{keyword}||'%')
-		ORDER BY MEM_ID
-	</select>
-	
 	<!-- 알림전송 -->
 	<insert id="insertSendMessage">
 		INSERT INTO MESSAGE (
@@ -43,7 +34,6 @@
 			, #{msgContent}
 		)		
 	</insert>
-	
 </mapper>
 
 

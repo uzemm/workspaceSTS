@@ -47,7 +47,7 @@ table{
 				</td>
 				<td style="text-align: right;">
 					<c:forEach items="${memList }" var="mem" >
-					<img alt="" src="/resources/images/member/${mem.memImage }" style="width: 30px; border-radius: 70%;">
+					<img alt="" src="/resources/images/member/${mem.memImage }" style="width: 30px;">
 						${mem.memName }
 						완독수<br>
 					</c:forEach>
@@ -76,7 +76,7 @@ table{
 			<tbody>
 			<c:forEach items="${boardList }" var="boardInfo" varStatus="status">
 				<tr>
-					<td>${clubBoardVO.totalCnt - boardInfo.rowNum + 1 }</td>
+					<td>${boardList.size() - status.index }</td>
 					<c:choose>
 						<c:when test="${sessionScope.loginInfo.clubCode eq boardInfo.clubCode }">
 							<td><a href="/club/clubBoardDetail?cbBoardNum=${boardInfo.cbBoardNum }&&clubCode=${boardInfo.clubCode}">${boardInfo.cbBoardTitle } (${boardInfo.cbCmtCount })</a></td>
@@ -96,14 +96,13 @@ table{
 		<div class="col">
 			<nav aria-label="Page navigation example">
 				<ul class="pagination pagination-sm justify-content-center">
-					<li class="page-item <c:if test="${!clubBoardVO.prev }">disabled</c:if>"><a class="page-link" href="/club/clubDetail?nowPage=${clubBoardVO.beginPage - 1 }"
+					<li class="page-item <c:if test="${!clubBoardPageVO.prev }">disabled</c:if>"><a class="page-link" href="/club/clubDetail?nowPage=${clubBoardPageVO.beginPage - 1 }"
 						aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 					</a></li>
-					<c:forEach begin="${clubBoardVO.beginPage }" end="${clubBoardVO.endPage }" var="pageIndex">
-							<li class="page-item <c:if test="${clubBoardVO.nowPage eq pageIndex }">active</c:if>"><a class="page-link" 
-							href="javascript:search(${pageIndex });">${pageIndex }</a></li>
+					<c:forEach begin="${clubBoardPageVO.beginPage }" end="${clubBoardPageVO.endPage }" var="pageIndex">
+							<li class="page-item <c:if test="${clubBoardPageVO.nowPage eq pageIndex }">active</c:if>"><a class="page-link" href="">${pageIndex }</a></li>
 						</c:forEach>
-					<li class="page-item <c:if test="${!PageVO.next }">disabled</c:if>"><a class="page-link" href="/club/clubDetail?nowPage=${clubBoardVO.endPage + 1 }"
+					<li class="page-item <c:if test="${!buySearchVO.next }">disabled</c:if>"><a class="page-link" href="/club/clubDetail?nowPage=${clubBoardPageVO.endPage + 1 }"
 						aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 					</a></li>
 				</ul>
@@ -112,8 +111,7 @@ table{
 	</div>
 	<div class="row">
 		<div class="col-6">	
-			<form action="/club/clubDetail" method="post" id="searchForm">
-			<input type="hidden" value="1" id="nowPage" name="nowPage">
+			<form action="/club/searchClubBoard" method="post">
 			<input type="hidden" name="clubCode" value="${club.clubCode }">
 				<select id="sort" name="sort">
 					<option value="CB_BOARD_TITLE">제목</option>

@@ -57,5 +57,10 @@ public class MemberController {
 	public String board() {
 		return "board";
 	}
+	
+	@RequestMapping("/loginError")
+	public String loginError() {
+		return "login_error";
+	}
 
 }
