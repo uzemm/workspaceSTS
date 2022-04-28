@@ -1,5 +1,7 @@
 package com.kh.spring.service;
 
+import java.util.List;
+
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import com.kh.spring.vo.MemberVO;
@@ -11,4 +13,6 @@ public interface MemberService extends UserDetailsService {
 	void join(MemberVO memberVO);
 
 	MemberVO login(String memId);
+	
+	List<String> selectUserRoleList(String memId);
 }

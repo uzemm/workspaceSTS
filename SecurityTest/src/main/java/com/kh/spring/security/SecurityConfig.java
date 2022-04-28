@@ -1,11 +1,17 @@
 package com.kh.spring.security;
 
+import javax.annotation.Resource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+
+import com.kh.spring.service.MemberService;
 
 //스프링 시큐리티의 설정을 위해
 //WebSecurityConfigurerAdapter을 상속 받아서
@@ -13,9 +19,17 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration //객체 생성 어노테이션
 @EnableWebSecurity //스프링 시큐리티 기능 활성화
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
-
+	@Resource(name = "memberService")
+	private MemberService memberService;
+	
+	@Autowired
+	private AuthenticationFailureHandler failureHandler;
+	
+	
 	@Override
+	//시큐리티의 로그인 기능을 사용하는 객체를 전달
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(memberService);
 	}
 
 	@Override
@@ -41,7 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http.formLogin()
 			.loginPage("/member/loginForm")
 			.loginProcessingUrl("/member/login")
-			.failureForwardUrl("/member/loginError")
+			.failureHandler(failureHandler)
 			.defaultSuccessUrl("/member/main").permitAll();
 	}
 	

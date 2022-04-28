@@ -42,15 +42,15 @@ public class MemberController {
 		return "login";
 	}
 	//로그인
-	@PostMapping("/login")
-	public String login(MemberVO memberVO, HttpSession session) {
-		MemberVO loginInfo = memberService.login(memberVO);
-		
-		if(loginInfo != null) {
-			session.setAttribute("loginInfo", loginInfo);
-		}
-		return "redirect:/member/main";
-	}
+//	@PostMapping("/login")
+//	public String login(MemberVO memberVO, HttpSession session) {
+//		MemberVO loginInfo = memberService.login(memberVO);
+//		
+//		if(loginInfo != null) {
+//			session.setAttribute("loginInfo", loginInfo);
+//		}
+//		return "redirect:/member/main";
+//	}
 	
 	//게시판 페이지
 	@GetMapping("/board")

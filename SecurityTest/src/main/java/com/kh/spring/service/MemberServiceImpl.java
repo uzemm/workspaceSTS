@@ -1,7 +1,12 @@
 package com.kh.spring.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -36,10 +41,26 @@ public class MemberServiceImpl implements MemberService{
 		sVO.setPassword(vo.getMemPw());
 		
 		//SecurityVO에 해당 사용자의 권한 정보도 넣어줌
+		List<String> authList = selectUserRoleList(username);
 		
+		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+		if(authList != null) {
+			for(String authority : authList) {
+				authorities.add(new SimpleGrantedAuthority(authority));
+			}
+		}
+		
+		sVO.setAuthorities(authorities);
 		//그 SecurityVO를 리턴
 		
-		return null;
+		return sVO;
 	}
+
+	@Override
+	public List<String> selectUserRoleList(String memId) {
+		return sqlSession.selectList("memberMapper.selectUserRoleList", memId);
+	}
+	
+	
 
 }
