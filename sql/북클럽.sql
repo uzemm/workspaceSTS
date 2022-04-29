@@ -4,7 +4,7 @@ select * from book_member;
 select * from book_club;
 select * from book_club_board_comment;
 select * from message;
-
+select * from BORROW;
 
 insert into message (msg_code, get_id, msg_content) values ('msg_004', 'java1', '북클럽에 가입신청이 수락되었습니다. 많은 활동 부탁드립니다.');
 
