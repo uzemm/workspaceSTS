@@ -27,6 +27,32 @@ from book_member
 where club_code = 'CLUB_001';
 
 delete book_club_apply;
+SELECT MEM_ID
+        , MEM_NAME
+        , ROW_NUM
+    FROM
+    (
+        SELECT MEM_ID
+             , MEM_NAME
+             , ROW_NUM
+            , ROWNUM AS ROW_NUM
+        FROM
+		    (
+		        SELECT MEM_ID
+                    , MEM_NAME
+		        FROM BOOK_MEMBER
+		        WHERE 1=1
+		        <if test="keyword != null and !keyword.equals('')">
+		        AND UPPER(MEM_ID) LIKE UPPER('%'||#{keyword}||'%')
+		        </if>
+		        ORDER BY MEM_ID
+		    )
+		)
+		WHERE ROW_NUM &gt; = #{startNum} AND ROW_NUM &lt; =  #{endNum}
+
+
+
+
 
 --북클럽조회
 SELECT CLUB_CODE
