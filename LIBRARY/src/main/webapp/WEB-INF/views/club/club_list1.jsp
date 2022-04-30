@@ -112,7 +112,14 @@ table tr, td{
 			    <h6 class="card-subtitle mb-2 text-muted" style="font-size: 14px;">모집 : ${club.clubNumberPeople} / ${club.clubHeadCnt }</h6>
 			    <p class="card-text" style="font-size: 14px;">${club.clubIntro }</p>
 			    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-			  	  <a href="#" class="btn btn-primary " onclick="clubJoin('${club.clubCode}');">신청하기</a>
+			   <c:choose>
+					<c:when test="${club.clubNumberPeople eq club.clubHeadCnt }">
+						<a href="#" class="btn btn-primary ">신청마감</a>
+					</c:when>
+					<c:otherwise>
+			  	  		<a href="#" class="btn btn-primary " onclick="clubJoin('${club.clubCode}');">신청하기</a>
+					</c:otherwise>	
+				</c:choose> 
 			  	 </div>
 			  </div>
 			</div>

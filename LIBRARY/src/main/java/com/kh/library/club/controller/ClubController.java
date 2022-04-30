@@ -3,11 +3,9 @@ package com.kh.library.club.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +23,6 @@ import com.kh.library.club.vo.ClubVO;
 import com.kh.library.member.vo.MemberVO;
 import com.kh.library.util.vo.PageVO;
 
-import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 @RequestMapping("/club")

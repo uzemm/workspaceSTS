@@ -42,6 +42,11 @@ $(".open-msgModal").click(function(){
     $("#get-name.form-control").val(data);
 });
 
+$(".btn").click(function(){
+	var data = $(this).data('id');
+    $("#exampleModalToggle.modal").val(data);
+});
+
 //페이징
 function search(nowPage){
 	document.getElementById('nowPage').value = nowPage;

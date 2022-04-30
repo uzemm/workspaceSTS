@@ -5,6 +5,7 @@ import java.util.List;
 import javax.mail.Message;
 
 import com.kh.library.admin.vo.MessageVO;
+import com.kh.library.book.vo.BorrowVO;
 import com.kh.library.member.vo.MemberVO;
 
 public interface MemberAdminService {
@@ -23,5 +24,8 @@ public interface MemberAdminService {
 	
 	//클럽수락 메세지
 	void insertClubJoinMessage(MessageVO messageVO);
+	
+	//대여정보
+	List<BorrowVO> selectBorrowBookInfo(String memId);
 	
 }

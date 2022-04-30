@@ -38,44 +38,50 @@
 					</div>
 				</form>
 			</div>
+			<div class="col-4 text-right">
+				<button type="button" class="btn btn-secondary">알림 내역</button>
+			</div>
 		</div>
-		<table class="table">
-		  <thead>
-		    <tr>
-		      <th scope="col">No</th>
-		      <th scope="col">회원 ID</th>
-		      <th scope="col">성명</th>
-		      <th scope="col">대여</th>
-		      <th scope="col">알림</th>
-		    </tr>
-		  </thead>
-		  <tbody>
-			  <c:forEach items="${memList }" var="mem" varStatus="status">
+		<table class="table text-center">
+			<thead>
 			    <tr>
-			      <th scope="row">${mem.rowNum }</th>
-			      <td>${mem.memId }</td>
-			      <td>${mem.memName }</td>
-			      <td>
-				      <div class="dropdown">
-						  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-						    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
-					  		<path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
-							</svg>
-						  </button>
-						  <ul class="dropdown-menu" >
-						   <li><span class="dropdown-item-text">대여중인 책이 없습니다.</span></li>
-						    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">책이름</a></li>
-							 <li><a class="dropdown-item" href="#">Another action</a></li>
-							 <li><a class="dropdown-item" href="#">Something else here</a></li>
-						  </ul>
-					</div>
-				  </td>
-			      <td><button type="button" class="open-msgModal btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#messageModal" data-id="${mem.memId }"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
-				  		<path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
-						</svg></button>
-				</td>
+			      <th scope="col">No</th>
+			      <th scope="col">회원 ID</th>
+			      <th scope="col">성명</th>
+			      <th scope="col">대여</th>
+			      <th scope="col">알림</th>
 			    </tr>
-			  </c:forEach>
+			</thead>
+			<tbody>
+		  		<c:choose>
+		  			<c:when test="${not empty memList }">
+					  	<c:forEach items="${memList }" var="mem" varStatus="status">
+					    <tr>
+					      <th scope="row">${mem.rowNum }</th>
+					      <td>${mem.memId }</td>
+					      <td>${mem.memName }</td>
+					      <td>
+							  <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModalToggle" data-id="${mem.memId }" >
+							    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
+						  		<path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+								</svg>
+								</button>
+						  </td>
+					      <td><button type="button" class="open-msgModal btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#messageModal" data-id="${mem.memId }"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
+						  		<path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
+								</svg></button>
+						</td>
+					    </tr>
+					  </c:forEach>
+		  			</c:when>
+		  			<c:otherwise>
+		  				<tr>
+		  					<td colspan="5">
+		  						검색 ID에 해당하는 멤버가 없습니다.
+		  					</td>
+		  				</tr>
+		  			</c:otherwise>
+		  		</c:choose>
 		  </tbody>
 		</table>
 		<div class="row">
@@ -132,6 +138,51 @@
 </div>
 
 <!-- Modal -->
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalToggleLabel">Modal 1</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table>
+        	<c:forEach items="${bookList }" var="book">
+	        	<tr>
+	        		<td>
+	        			${book.title }
+	        		</td>
+	        	</tr>
+        	</c:forEach>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Open second modal</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalToggleLabel2">Modal 2</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Hide this modal and show the first with the button below.
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to first</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">

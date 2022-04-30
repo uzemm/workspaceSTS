@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.library.admin.vo.MessageVO;
+import com.kh.library.book.vo.BorrowVO;
 import com.kh.library.member.vo.MemberVO;
 
 @Service("memberAdminService")
@@ -39,6 +40,11 @@ public class MemberAdminServiceImpl implements MemberAdminService{
 	@Override
 	public void insertClubJoinMessage(MessageVO messageVO) {
 		sqlSession.insert("adminMapper.insertClubJoinMessage", messageVO);
+	}
+
+	@Override
+	public List<BorrowVO> selectBorrowBookInfo(String memId) {
+		return sqlSession.selectList("adminMapper.selectBorrowBookInfo", memId);
 	}
 
 }

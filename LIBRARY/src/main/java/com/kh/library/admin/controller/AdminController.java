@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +25,7 @@ import com.kh.library.book.service.BookService;
 import com.kh.library.book.vo.ReserveVO;
 import com.kh.library.book.vo.BookImgVO;
 import com.kh.library.book.vo.BookVO;
+import com.kh.library.book.vo.BorrowVO;
 import com.kh.library.item.service.ItemService;
 import com.kh.library.member.vo.MemberVO;
 
@@ -61,7 +63,9 @@ public class AdminController {
 	
 	//회원관리 페이지
 	@RequestMapping("/memberManage")
-	public String memberManage(Model model, MemberVO memberVO) {
+	public String memberManage(Model model, MemberVO memberVO, HttpServletRequest request) {
+		
+		String memId = request.getParameter("memId");
 		
 		//-----------------페이징 정보 세팅
 		//1.전체 데이터의 개수 조회
@@ -72,6 +76,8 @@ public class AdminController {
 		memberVO.setPageInfo();
 		
 		model.addAttribute("memList", memberAdminService.selectMemberList(memberVO));
+		model.addAttribute("bookList", memberAdminService.selectBorrowBookInfo(memId));
+	
 				
 		return "admin/member_list";
 	}
@@ -89,5 +95,6 @@ public class AdminController {
 		memberAdminService.insertSendMessage(messageVO);
 		return "redirect:/admin/memberManage";
 	}
+	
 	
 }

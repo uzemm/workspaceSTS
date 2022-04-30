@@ -66,6 +66,12 @@
 		)		
 	</insert>
 	
+	<!-- 대여정보 -->
+	<select id="selectBorrowBookInfo" resultMap="bookMapper.borrow">
+		SELECT TITLE
+		FROM BORROW
+		WHERE MEM_ID = #{memId}
+	</select>
 </mapper>
 
 

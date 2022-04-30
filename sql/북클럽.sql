@@ -5,6 +5,17 @@ select * from book_club;
 select * from book_club_board_comment;
 select * from message;
 select * from BORROW;
+select * from book;
+SELECT * FROM BOOK_CLUB_APPLY;
+select * from book_complit;
+ALTER TABLE BOOK_MEMBER DROP COLUMN CLUB_APPLY_CODE;
+SELECT CLUB_CODE
+FROM BOOK_CLUB_APPLY;
+
+--대여정보
+select title
+from borrow
+where mem_id = 'java1';
 
 insert into message (msg_code, get_id, msg_content) values ('msg_004', 'java1', '북클럽에 가입신청이 수락되었습니다. 많은 활동 부탁드립니다.');
 

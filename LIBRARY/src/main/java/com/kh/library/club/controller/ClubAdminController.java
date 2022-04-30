@@ -32,7 +32,7 @@ public class ClubAdminController {
 	public String clubAdmin(ClubApplyVO clubApplyVO, Model model, MemberVO memberVO) {
 		model.addAttribute("clubMemList", clubAdminService.selectClubMemberList(memberVO));
 		model.addAttribute("applyList", clubAdminService.selectClubApplyList(clubApplyVO));
-		return "club/club_manage";
+		return "club/club_manage1";
 	}
 	
 	//클럽수락

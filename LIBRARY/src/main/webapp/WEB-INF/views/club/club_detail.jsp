@@ -65,6 +65,11 @@ table{
 	</div>
 	<div class="boardDiv">
 		<table>
+		<colgroup>
+			<col width="10%">
+			<col width="*">
+			<col width="10%">
+			<col width="20%">
 			<thead>
 			<tr>
 				<td>No</td>
@@ -74,21 +79,32 @@ table{
 			</tr>
 			</thead>
 			<tbody>
-			<c:forEach items="${boardList }" var="boardInfo" varStatus="status">
-				<tr>
-					<td>${clubBoardVO.totalCnt - boardInfo.rowNum + 1 }</td>
-					<c:choose>
-						<c:when test="${sessionScope.loginInfo.clubCode eq boardInfo.clubCode }">
-							<td><a href="/club/clubBoardDetail?cbBoardNum=${boardInfo.cbBoardNum }&&clubCode=${boardInfo.clubCode}">${boardInfo.cbBoardTitle } (${boardInfo.cbCmtCount })</a></td>
-						</c:when>
-						<c:otherwise>
-							<td><a href="" onclick="cbDetail();">${boardInfo.cbBoardTitle } (${boardInfo.cbCmtCount })</a></td>
-						</c:otherwise>
-					</c:choose>
-					<td>${boardInfo.memName }</td>
-					<td>${boardInfo.cbBoardDate }</td>
-				</tr>
-			</c:forEach>
+			<c:choose>
+				<c:when test="${not empty boardList}">
+					<c:forEach items="${boardList }" var="boardInfo" varStatus="status">
+						<tr>
+							<td>${clubBoardVO.totalCnt - boardInfo.rowNum + 1 }</td>
+							<c:choose>
+								<c:when test="${sessionScope.loginInfo.clubCode eq boardInfo.clubCode }">
+									<td><a href="/club/clubBoardDetail?cbBoardNum=${boardInfo.cbBoardNum }&&clubCode=${boardInfo.clubCode}">${boardInfo.cbBoardTitle } (${boardInfo.cbCmtCount })</a></td>
+								</c:when>
+								<c:otherwise>
+									<td><a href="" onclick="cbDetail();">${boardInfo.cbBoardTitle } (${boardInfo.cbCmtCount })</a></td>
+								</c:otherwise>
+							</c:choose>
+							<td>${boardInfo.memName }</td>
+							<td>${boardInfo.cbBoardDate }</td>
+						</tr>
+					</c:forEach>
+				</c:when>
+				<c:otherwise>
+					<tr>
+						<td colspan="4">
+							등록된 게시글이 없습니다.
+						</td>
+					</tr>
+				</c:otherwise>
+			</c:choose>
 			</tbody>
 		</table>
 	</div>
