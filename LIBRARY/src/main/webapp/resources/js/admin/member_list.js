@@ -42,10 +42,11 @@ $(".open-msgModal").click(function(){
     $("#get-name.form-control").val(data);
 });
 
-$(".btn").click(function(){
-	var data = $(this).data('id');
-    $("#exampleModalToggle.modal").val(data);
-});
+//대여정보 id값
+function borrowInfo(memId){
+	location.href = '/admin/borrowInfo?memId=' + memId;
+}
+
 
 //페이징
 function search(nowPage){

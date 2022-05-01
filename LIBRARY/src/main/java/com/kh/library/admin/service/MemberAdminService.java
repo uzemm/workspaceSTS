@@ -6,6 +6,7 @@ import javax.mail.Message;
 
 import com.kh.library.admin.vo.MessageVO;
 import com.kh.library.book.vo.BorrowVO;
+import com.kh.library.book.vo.ReserveVO;
 import com.kh.library.member.vo.MemberVO;
 
 public interface MemberAdminService {
@@ -27,5 +28,8 @@ public interface MemberAdminService {
 	
 	//대여정보
 	List<BorrowVO> selectBorrowBookInfo(String memId);
+	
+	//예약정보
+	List<ReserveVO> selectReserveBookInfo(String memId);
 	
 }

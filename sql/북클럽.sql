@@ -8,12 +8,21 @@ select * from BORROW;
 select * from book;
 SELECT * FROM BOOK_CLUB_APPLY;
 select * from book_complit;
+select * from reserve;
 ALTER TABLE BOOK_MEMBER DROP COLUMN CLUB_APPLY_CODE;
 SELECT CLUB_CODE
 FROM BOOK_CLUB_APPLY;
 
 --대여정보
-select title
+SELECT BR_CODE
+    , MEM_ID
+    , BR_DATE
+    , RT_DATE
+    , STATUS
+    , BOOK_CODE
+FROM BORROW
+WHERE MEM_ID = 'java1';
+
 from borrow
 where mem_id = 'java1';
 

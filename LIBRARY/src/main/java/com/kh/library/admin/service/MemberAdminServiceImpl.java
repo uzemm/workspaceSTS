@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.library.admin.vo.MessageVO;
 import com.kh.library.book.vo.BorrowVO;
+import com.kh.library.book.vo.ReserveVO;
 import com.kh.library.member.vo.MemberVO;
 
 @Service("memberAdminService")
@@ -46,5 +47,11 @@ public class MemberAdminServiceImpl implements MemberAdminService{
 	public List<BorrowVO> selectBorrowBookInfo(String memId) {
 		return sqlSession.selectList("adminMapper.selectBorrowBookInfo", memId);
 	}
+
+	@Override
+	public List<ReserveVO> selectReserveBookInfo(String memId) {
+		return sqlSession.selectList("adminMapper.selectReserveBookInfo", memId);
+	}
+
 
 }

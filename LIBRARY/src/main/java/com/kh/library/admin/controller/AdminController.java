@@ -61,11 +61,10 @@ public class AdminController {
 		return "redirect:/admin/reserveList";
 	}
 	
+	//------------------------------회원관리------------------------------//
 	//회원관리 페이지
 	@RequestMapping("/memberManage")
-	public String memberManage(Model model, MemberVO memberVO, HttpServletRequest request) {
-		
-		String memId = request.getParameter("memId");
+	public String memberManage(Model model, MemberVO memberVO, HttpServletRequest request, String memId) {
 		
 		//-----------------페이징 정보 세팅
 		//1.전체 데이터의 개수 조회
@@ -76,8 +75,6 @@ public class AdminController {
 		memberVO.setPageInfo();
 		
 		model.addAttribute("memList", memberAdminService.selectMemberList(memberVO));
-		model.addAttribute("bookList", memberAdminService.selectBorrowBookInfo(memId));
-	
 				
 		return "admin/member_list";
 	}
@@ -96,5 +93,12 @@ public class AdminController {
 		return "redirect:/admin/memberManage";
 	}
 	
-	
+	//대여정보 
+	@GetMapping("/borrowInfo")
+	public String borrowInfo(HttpServletRequest request, Model model, BorrowVO borrowVO) {
+		String memId = request.getParameter("memId");
+		model.addAttribute("borrowList", memberAdminService.selectBorrowBookInfo(memId));
+		model.addAttribute("reserveList", memberAdminService.selectReserveBookInfo(memId));
+		return "admin/member_borrow_info";
+	}
 }

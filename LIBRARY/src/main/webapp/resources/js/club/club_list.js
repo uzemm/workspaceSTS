@@ -40,6 +40,7 @@ $(".open-msgModal").click(function(){
     $("#messageModal.messageModal").val(data);
 });
 
+//메세지jsp에 id값 넘겨주기
 function message(getId){
 	location.href = '/club/getMsgList?getId=' + getId;
 	
