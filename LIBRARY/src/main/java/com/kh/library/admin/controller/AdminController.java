@@ -1,9 +1,5 @@
 package com.kh.library.admin.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -14,17 +10,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.library.admin.service.ItemAdminService;
 import com.kh.library.admin.service.MemberAdminService;
 import com.kh.library.admin.vo.MessageVO;
 import com.kh.library.book.service.BookService;
 import com.kh.library.book.vo.ReserveVO;
-import com.kh.library.book.vo.BookImgVO;
-import com.kh.library.book.vo.BookVO;
 import com.kh.library.book.vo.BorrowVO;
 import com.kh.library.item.service.ItemService;
 import com.kh.library.member.vo.MemberVO;
@@ -100,5 +92,11 @@ public class AdminController {
 		model.addAttribute("borrowList", memberAdminService.selectBorrowBookInfo(memId));
 		model.addAttribute("reserveList", memberAdminService.selectReserveBookInfo(memId));
 		return "admin/member_borrow_info";
+	}
+	
+	@ResponseBody
+	@PostMapping("/sendMsgDetail")
+	public List<MessageVO> sendMsgDetail(Model model) {
+		return memberAdminService.selectSendMessageList();
 	}
 }

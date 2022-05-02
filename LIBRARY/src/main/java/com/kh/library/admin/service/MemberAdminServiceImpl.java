@@ -53,5 +53,10 @@ public class MemberAdminServiceImpl implements MemberAdminService{
 		return sqlSession.selectList("adminMapper.selectReserveBookInfo", memId);
 	}
 
+	@Override
+	public List<MessageVO> selectSendMessageList() {
+		return sqlSession.selectList("adminMapper.selectSendMessageList");
+	}
+
 
 }

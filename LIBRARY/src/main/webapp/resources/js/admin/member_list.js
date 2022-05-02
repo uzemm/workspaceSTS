@@ -42,11 +42,59 @@ $(".open-msgModal").click(function(){
     $("#get-name.form-control").val(data);
 });
 
+
+function sendMsgList(){
+	$.ajax({
+		url: '/admin/sendMsgDetail', //요청경로
+		type: 'post',
+		data: {}, //필요한 데이터 '데이터이름':값
+		success: function(result) {
+			//ajax 실행 성공 후 실행할 코드 작성
+			alert('성공');
+			var modalBody =  document.querySelector('#msgModalToggle.modal-body');
+			modalBody.innerHTML = '';
+			
+			var str = '';
+			str += '<table class="table">';
+			str += '<thead>';
+			str += '<tr>';
+			str += '<th scope="col">No</th>';
+			str += '<th scope="col">내용</th>';
+			str += '<th scope="col">회원Id</th>';
+			str += '<th scope="col">전송날짜</th>';
+			str += '</tr>';
+			str += '</thead>';
+			str += '<tbody>';
+			
+			for(var i = 0; i < result[i].length; i++){
+				str += '<tr>';
+				str += '<th scope="row">'+ (i+1) +'</th>';
+				str += '<td>'+ result[i].messageVO.msgContent +'</td>';
+				str += '<td>'+ result[i].messageVO.getId +'</td>';
+				str += '<td>'+ result[i].messageVO.sendDate +'</td>';
+			}
+			str += '</tr>';
+			str += '</tbody>';
+			str += '</table>';
+			
+			modalBody.innerHTML = str;
+			
+			var modalTag = document.getElementById('datailModal');
+		 	var myModal = new bootstrap.Modal(modalTag);
+			myModal.show();
+		},
+		error: function() {
+			//ajax 실행 실패 시 실행되는 구간
+			alert('실패');
+		}
+	});
+}
+
+
 //대여정보 id값
 function borrowInfo(memId){
 	location.href = '/admin/borrowInfo?memId=' + memId;
 }
-
 
 //페이징
 function search(nowPage){

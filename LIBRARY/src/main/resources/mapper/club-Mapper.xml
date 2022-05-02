@@ -46,7 +46,7 @@
 		<result column="MEM_NAME" 			property="memName"/>
 	</resultMap>
 	
-	<resultMap type="com.kh.library.admin.vo.MessageVO" id="msg">
+	<resultMap type="com.kh.library.admin.vo.MessageVO" id="adminMapper.msg">
 		<id column="MSG_CODE" 		property="msgCode"/>
 		<result column="SEND_ID" 	property="sendId"/>
 		<result column="GET_ID" 	property="getId"/>

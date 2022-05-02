@@ -32,4 +32,7 @@ public interface MemberAdminService {
 	//예약정보
 	List<ReserveVO> selectReserveBookInfo(String memId);
 	
+	//알림전송내역
+	List<MessageVO> selectSendMessageList();
+	
 }

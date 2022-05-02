@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div class="row">
+<div class="row justify-content-center">
 	<div class="col-2"></div>
 	<div class="col-8">
 		<div class="row">
@@ -17,8 +17,8 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-10">
-				<table class="table table-hover text-center">
+			<div class="col-8">
+				<table class="table table-striped table-hover text-center">
 				  <thead>
 				    <tr>
 				      <th scope="col">No</th>
@@ -54,14 +54,14 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-10"><hr></div>
+			<div class="col-8"><hr></div>
 		</div>
 		<div class="row">
 			<div class="col-5" style="margin-top: 20px;">
 				${borrowVO.memId }님의 예약정보
 			</div>
-			<div class="col-10">
-				<table class="table table-hover text-center">
+			<div class="col-8">
+				<table class="table table-striped table-hover text-center">
 				  <thead>
 				    <tr>
 				      <th scope="col">No</th>
@@ -76,7 +76,7 @@
 						  	<c:forEach items="${reserveList }" var="reserve" varStatus="status">
 							    <tr>
 							      <th scope="row">${status.index + 1 }</th>
-							      <td>${reserve.title }</td>
+							      <td><a href="/book/bookDetail?bookCode=${reserve.bookCode }">${reserve.title }</a></td>
 							      <td>예약중</td>
 							      <td>${reserve.rsvDate }</td>
 							    </tr>
@@ -93,6 +93,9 @@
 				  </tbody>
 				</table>
 			</div>
+		</div>
+		<div class="col-8 d-grid gap-2 d-md-flex justify-content-md-end">
+			<button type="button" class="btn btn-primary" onclick="history.back();">목록</button>
 		</div>
 	</div>
 </div>

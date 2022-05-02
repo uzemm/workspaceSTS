@@ -18,7 +18,7 @@ function createClub(){
 	}
 }
 
-function clubJoin(clubCode){
+function clubJoin(clubCode, clubApplyCode){
 	let memId = document.getElementById('memId').value;
 	let club_Code = document.getElementById('clubCode').value;
 	
@@ -30,6 +30,9 @@ function clubJoin(clubCode){
 	else if(club_Code != ''){
 		alert('이미 모임에 가입되어있습니다.')
 	}
+	//else if(clubApplyCode != ''){
+	//	alert('가입 신청한 모임이 존재합니다. ')
+	//}
 	else{
 		location.href = '/club/clubJoinWrite?clubCode=' + clubCode ;
 	}
