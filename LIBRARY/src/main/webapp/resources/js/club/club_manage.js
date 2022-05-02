@@ -1,20 +1,9 @@
 
-function sendClubJoinMsg(){
-	let result = confirm('수락하시겠습니까?');
-		
-	if(result){
-		var modalTag = document.getElementById('messageModal');
-		var myModal = new bootstrap.Modal(modalTag);
-			myModal.show();
-	}	
-}
-
-
 
 function acceptance(clubCode, memId){
+	let result = confirm('수락하시겠습니까?');
 	
 	if(result){
-		
 		
 		$.ajax({
 			url: '/clubAdmin/clubJoinAcceptance', //요청경로
@@ -22,7 +11,8 @@ function acceptance(clubCode, memId){
 			data: {'clubCode':clubCode, 'memId':memId}, //필요한 데이터 '데이터이름':값
 			success: function(result) {
 				//ajax 실행 성공 후 실행할 코드 작성
-				alert('성공');
+				
+				location.reload();
 				
 			},
 			error: function() {

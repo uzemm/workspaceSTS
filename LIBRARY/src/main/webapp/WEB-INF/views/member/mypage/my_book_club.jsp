@@ -12,7 +12,7 @@
 	나의 북클럽
 </div>
 클럽명 : <a href="/club/clubDetail?clubCode='${sessionScope.loginInfo.clubCode }'">${myBookClub.clubName }</a>
-<c:if test="${not empty sessionScope.loginInfo.clubApplyCode }">
+<c:if test="${not empty sessionScope.loginInfo }">
 <div class="row">
 	<div class="col-6">
 		<table class="table" style="text-align: center;">
