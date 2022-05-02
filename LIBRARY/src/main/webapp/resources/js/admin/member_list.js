@@ -68,7 +68,7 @@ function sendMsgList(){
 			
 			for(var i = 0; i < result[i].length; i++){
 				str += '<tr>';
-				str += '<th scope="row">'+ (i+1) +'</th>';
+				str += '<th scope="row">1</th>';
 				str += '<td>'+ result[i].messageVO.msgContent +'</td>';
 				str += '<td>'+ result[i].messageVO.getId +'</td>';
 				str += '<td>'+ result[i].messageVO.sendDate +'</td>';
