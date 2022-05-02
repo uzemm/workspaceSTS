@@ -126,7 +126,7 @@ table td{
 					<td>${apply.memId }</td>
 					<td>${apply.memName }</td>
 					<td>
-						<input type="button" value="수락" onclick="acceptance('${apply.clubCode}', '${apply.memId }');" class="open-msgModal" data-bs-toggle="modal" data-bs-target="#messageModal" data-id="${mem.memId }">
+						<input type="button" value="수락" onclick="sendClubJoinMsg();">
 					</td>
 					<td>
 						<input type="button" value="거절" onclick="rejection('${apply.memId}');">
@@ -159,7 +159,7 @@ table td{
             <div style="text-align: right;"><span id="byteInfo">0</span> /500bytes</div>
           <div class="mb-3 justify-content-md-end">
 	        <button type="button" class="btn btn-secondary justify-content-md-end" data-bs-dismiss="modal">닫기</button>
-	        <button type="submit" class="btn btn-primary justify-content-md-end" >메세지 전송</button>
+	        <button type="button" class="btn btn-primary justify-content-md-end" onclick="acceptance('${apply.clubCode}', '${apply.memId }');">메세지 전송</button>
           </div>
           </div>
         </form>

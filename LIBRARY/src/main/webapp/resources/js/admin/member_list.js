@@ -42,6 +42,16 @@ $(".open-msgModal").click(function(){
     $("#get-name.form-control").val(data);
 });
 
+function sendMsg(){
+	var result = confirm('알림을 전송하시겠습니까?');
+	var formTag = document.getElementById('sendMsg');
+	
+	if(result){
+		formTag.submit();
+	}
+	
+}
+
 
 function sendMsgList(){
 	$.ajax({
@@ -72,7 +82,7 @@ function sendMsgList(){
 			for(var i = 0; i < result.length; i++){
 				str += '<tr>';
 				str += '<th scope="row">'+ 0 +'</th>';
-				str += '<td style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;"><span data-bs-target="#msgModalToggle2" data-bs-toggle="modal">'+ result[i].msgContent +'</sapn></td>';
+				str += '<td style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;"><span id="open-msgDetail" data-bs-target="#msgModalToggle2" data-bs-toggle="modal">'+ result[i].msgContent +'</sapn></td>';
 				str += '<td>'+ result[i].getId +'</td>';
 				str += '<td style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">'+ result[i].sendDate +'</td>';
 				str += '</tr>';
@@ -101,9 +111,11 @@ function sendMsgList(){
 
 function sendMsgDetail(msgCode){
 	
-	var modalTag = document.getElementById('msgModalToggle2');
-	var myModal = new bootstrap.Modal(modalTag);
-	myModal.show();
+	var spanTag = document.getElementById('open-msgDetail');
+	spanTag.innerHTML = '';
+	
+	var str1 = '';
+	str1 += '<span id="open-msgDetail" data-bs-target="#msgModalToggle2" data-bs-toggle="modal">';
 	
 	
 	/*$.ajax({

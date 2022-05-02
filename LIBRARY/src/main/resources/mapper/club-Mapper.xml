@@ -345,7 +345,7 @@
 	<select id="selectGetMsgList" resultMap="adminMapper.msg">
 		SELECT MSG_CODE
 			, MSG_CONTENT
-			, SEND_DATE
+			, TO_CHAR(SEND_DATE, 'YYYY-MM-DD HH24:MI') AS SEND_DATE
 		FROM MESSAGE
 		WHERE GET_ID = #{getId}
 		ORDER BY SEND_DATE DESC
