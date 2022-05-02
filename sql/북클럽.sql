@@ -13,6 +13,26 @@ ALTER TABLE BOOK_MEMBER DROP COLUMN CLUB_APPLY_CODE;
 SELECT CLUB_CODE
 FROM BOOK_CLUB_APPLY;
 
+--북클럽 신청 취소
+delete BOOK_CLUB_APPLY
+where mem_ID = 'java7';
+
+--마이페이지 북클럽 신청 조회
+select bca.club_code
+    , club_apply_code
+    , bc.club_name
+    , bca.mem_id
+    , to_char(club_apply_date, 'yyyy/mm/dd') as club_apply_date
+from BOOK_CLUB_APPLY BCA , book_club bc
+where bca.club_code = bc.club_code
+AND bca.MEM_ID = 'java5';
+
+--북클럽 신청했으면 가입신청 x
+select club_code
+    , mem_id
+from BOOK_CLUB_APPLY
+where mem_id = 'java5';
+
 --대여정보
 SELECT BR_CODE
     , MEM_ID

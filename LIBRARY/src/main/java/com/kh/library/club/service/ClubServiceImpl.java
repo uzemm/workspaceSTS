@@ -115,4 +115,14 @@ public class ClubServiceImpl implements ClubService {
 		return sqlSession.selectOne("clubMapper.selectClubBoardListCnt", clubBoardVO);
 	}
 
+	@Override
+	public ClubApplyVO selectMyBookClubApply(String memId) {
+		return sqlSession.selectOne("clubMapper.selectMyBookClubApply", memId);
+	}
+
+	@Override
+	public void deleteMyBookClubApply(String memId) {
+		sqlSession.delete("clubMapper.deleteMyBookClubApply", memId);
+	}
+
 }

@@ -44,6 +44,8 @@
 		<result column="CLUB_CODE" 			property="clubCode"/>
 		<result column="MEM_ID" 			property="memId"/>
 		<result column="MEM_NAME" 			property="memName"/>
+		<result column="CLUB_APPLY_DATE" 	property="clubApplyDate"/>
+		<result column="CLUB_NAME" 			property="cluName"/>
 	</resultMap>
 	
 	
@@ -373,6 +375,25 @@
 			, '북클럽에 가입되셨습니다. 북클럽 게시판에 환영인사를 써보아요~'
 		)		
 	</insert>
+	
+	<!--마이페이지 북클럽 조회 -->
+	<select id="selectMyBookClubApply" resultMap="apply">
+		SELECT BCA.CLUB_CODE
+			, CLUB_APPLY_CODE
+			, BCA.MEM_ID
+			, TO_CHAR(CLUB_APPLY_DATE, 'YYYY/MM/DD') AS CLUB_APPLY_DATE
+			, BC.CLUB_NAME
+		FROM BOOK_CLUB_APPLY BCA , BOOK_CLUB BC
+		WHERE BCA.CLUB_CODE = BC.CLUB_CODE
+		AND BCA.MEM_ID = #{memId}
+	</select>
+	
+	<!-- 북클럽 신청 취소 -->
+	<delete id="deleteMyBookClubApply">
+		DELETE BOOK_CLUB_APPLY
+		WHERE MEM_ID = #{memId}
+	</delete>
+	
 </mapper>
 
 

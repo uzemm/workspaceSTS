@@ -59,7 +59,7 @@ public class MemberAdminServiceImpl implements MemberAdminService{
 	}
 
 	@Override
-	public List<MessageVO> selectSendMessageDetail(String msgCode) {
+	public MessageVO selectSendMessageDetail(String msgCode) {
 		return sqlSession.selectOne("adminMapper.selectSendMessageDetail", msgCode);
 	}
 

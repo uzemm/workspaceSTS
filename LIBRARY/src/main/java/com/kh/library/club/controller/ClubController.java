@@ -183,4 +183,7 @@ public class ClubController {
 		model.addAttribute("msgList", messageService.selectGetMsgList(getId));
 		return "club/message";
 	}
+	
+	//머냐..북클럽 조회
+	
 }

@@ -41,7 +41,7 @@
 							    </tr>
 						  	</c:forEach>
 				  		</c:when>
-				  		<c:otherwise>
+				  		<c:otherwise> 
 				  			<tr>
 			  					<td colspan="5">
 				  					대여중인 책이 없습니다.
