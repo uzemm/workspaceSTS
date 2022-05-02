@@ -46,14 +46,6 @@
 		<result column="MEM_NAME" 			property="memName"/>
 	</resultMap>
 	
-	<resultMap type="com.kh.library.admin.vo.MessageVO" id="adminMapper.msg">
-		<id column="MSG_CODE" 		property="msgCode"/>
-		<result column="SEND_ID" 	property="sendId"/>
-		<result column="GET_ID" 	property="getId"/>
-		<result column="SEND_DATE" 	property="sendDate"/>
-		<result column="MSG_CONTENT" 	property="msgContent"/>
-		<result column="IS_READ" 	property="isRead"/>
-	</resultMap>
 	
 	<!-- 클럽생성 -->
 	<insert id="insertClubCreate">
@@ -350,7 +342,7 @@
 	
 	
 	<!-- 알림함 조회 -->
-	<select id="selectGetMsgList" resultMap="msg">
+	<select id="selectGetMsgList" resultMap="adminMapper.msg">
 		SELECT MSG_CODE
 			, MSG_CONTENT
 			, SEND_DATE

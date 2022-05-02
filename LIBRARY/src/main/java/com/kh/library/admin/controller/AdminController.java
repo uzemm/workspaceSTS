@@ -95,8 +95,15 @@ public class AdminController {
 	}
 	
 	@ResponseBody
-	@PostMapping("/sendMsgDetail")
-	public List<MessageVO> sendMsgDetail(Model model) {
+	@PostMapping("/sendMsgList")
+	public List<MessageVO> sendMsgList(Model model) {
 		return memberAdminService.selectSendMessageList();
 	}
+	
+	@GetMapping("/sendMsgDetail")
+	public String sendMsgList(Model model, String msgCode) {
+		model.addAttribute("msg", memberAdminService.selectSendMessageDetail(msgCode));
+		return "admin/member_list";
+	}
+	
 }

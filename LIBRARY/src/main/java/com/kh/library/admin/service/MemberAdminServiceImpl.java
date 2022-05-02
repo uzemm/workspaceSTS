@@ -58,5 +58,10 @@ public class MemberAdminServiceImpl implements MemberAdminService{
 		return sqlSession.selectList("adminMapper.selectSendMessageList");
 	}
 
+	@Override
+	public List<MessageVO> selectSendMessageDetail(String msgCode) {
+		return sqlSession.selectOne("adminMapper.selectSendMessageDetail", msgCode);
+	}
+
 
 }

@@ -35,4 +35,6 @@ public interface MemberAdminService {
 	//알림전송내역
 	List<MessageVO> selectSendMessageList();
 	
+	List<MessageVO> selectSendMessageDetail(String msgCode);
+	
 }

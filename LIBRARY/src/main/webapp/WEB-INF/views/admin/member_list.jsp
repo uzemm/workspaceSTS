@@ -39,10 +39,10 @@
 				</form>
 			</div>
 			<div class="col-4 justify-content-end">
-				<button type="button" class="send-modal btn btn-secondary" data-bs-toggle="modal" data-bs-target="#msgModalToggle">알림전송내역</button>
+				<button type="button" class="send-modal btn btn-secondary" onclick="sendMsgList();">알림전송내역</button>
 			</div>
 		</div>
-		<table class="table table-hover text-center">
+		<table class="table table-hover text-center" >
 			<thead>
 			    <tr>
 			      <th scope="col">No</th>
@@ -142,50 +142,50 @@
 
 <!-- 알림 전송 내역Modal -->
 <div class="modal fade" id="msgModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalToggleLabel">알림전송내역</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 	     <div class="modal-body">
-			<table class="table">
-				<thead>
-					<tr>
-						<th scope="col">No</th>
-						<th scope="col">내용</th>
-						<th scope="col">회원Id</th>
-						<th scope="col">전송날짜</th>
-					</tr>
-				</thead>
-				<tbody>
-						<tr>
-							<th scope="row">1</th>
-							<td>Mark</td>
-							<td>Otto</td>
-							<td>@mdo</td>
-						</tr>
-				</tbody>
-			</table>
+	     
 		</div>
       <div class="modal-footer">
-        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Open second modal</button>
+        <button class="btn btn-primary" data-bs-target="#msgModalToggle2" data-bs-toggle="modal">Open second modal</button>
       </div>
     </div>
   </div>
 </div>
-<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
+<div class="modal fade" id="msgModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalToggleLabel2">Modal 2</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        Hide this modal and show the first with the button below.
-      </div>
+      		<input type="hidden" id="get-msgCode" class="msgCode">
+        	<table class="table">
+        	<colgroup>
+        		<col width="25%">
+        		<col width="25%">
+        		<col width="25%">
+        		<col width="25%">
+			    <tr>
+			      <th scope="col">회원ID</th>
+			      <td>${msg.getId }</td>
+			      <th scope="col">전송날짜</th>
+			      <td>2022/4/5</td>
+			    </tr>
+			    <tr>
+			      <th scope="row">내용</th>
+			      <td colspan="4" style="word-break: break-all">OttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoMarkMarkMarkMarkMarkMark</td>
+			    </tr>
+			</table>
+      	</div>
       <div class="modal-footer">
-        <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to first</button>
+        <button class="btn btn-primary" data-bs-target="#msgModalToggle" data-bs-toggle="modal">목록</button>
       </div>
     </div>
   </div>
