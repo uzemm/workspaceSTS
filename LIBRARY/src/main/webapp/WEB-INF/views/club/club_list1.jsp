@@ -114,10 +114,10 @@ table tr, td{
 			    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
 			   <c:choose>
 					<c:when test="${club.clubNumberPeople eq club.clubHeadCnt }">
-						<a href="#" class="btn btn-primary ">신청마감</a>
+						<a href="#" class="btn btn-success ">신청마감</a>
 					</c:when>
 					<c:otherwise>
-			  	  		<a href="#" class="btn btn-primary " onclick="clubJoin('${club.clubCode}');">신청하기</a>
+			  	  		<a href="#" class="btn btn-success " onclick="clubJoin('${club.clubCode}');">신청하기</a>
 					</c:otherwise>	
 				</c:choose> 
 			  	 </div>

@@ -82,7 +82,7 @@ function sendMsgList(){
 			for(var i = 0; i < result.length; i++){
 				str += '<tr>';
 				str += '<th scope="row">'+ 0 +'</th>';
-				str += '<td style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;"><span id="open-msgDetail" onclick="sendMsgDetail();" data-bs-toggle="modal" data-bs-target="#msgModalToggle2" data-id="${'+ result[i].msgCode +'}">'+ result[i].msgContent +'</span></td>';
+				str += '<td style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;"><span id="open-msgDetail" onclick="sendMsgDetail(${'+ result[i].msgCode +'});" data-bs-toggle="modal" data-bs-target="#msgModalToggle2" data-id="${'+ result[i].msgCode +'}">'+ result[i].msgContent +'</span></td>';
 				str += '<td>'+ result[i].getId +'</td>';
 				str += '<td style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">'+ result[i].sendDate +'</td>';
 				str += '</tr>';
@@ -102,9 +102,7 @@ function sendMsgList(){
 }
 
 
-function sendMsgDetail(){
-		var msgCode = $(this).data('id');
-		$("#msgCode1.msgCode2").val(msgCode);
+function sendMsgDetail(msgCode){
 	$.ajax({
 		url: '/admin/sendMsgDetail', 
 		type: 'post',
@@ -115,7 +113,6 @@ function sendMsgDetail(){
 			
 			var str = '';
 			str += '<table class="table text-center table-hover" style="table-layout: fixed; ">';
-			str += '<input type="hidden" id="msgCode" class="hidden">';
 			str += '  <colgroup>                                                 ';
             str += '     <col width="25%">                                       ';
             str += '     <col width="25%">                                       ';
@@ -123,7 +120,7 @@ function sendMsgDetail(){
             str += '     <col width="25%">                                       ';
 			str += '<tr>';
 			str += '<th scope="col">회원ID</th>';
-			str += '<td id="msgCode1" class="msgCode2">' + result.msgCode + '</td>';
+			str += '<td>' + result.getId + '</td>';
 			str += '<th scope="col">전송날짜</th>';
 			str += '<td>'+ result.sendDate +'</td>';
 			str += '</tr>';

@@ -74,7 +74,7 @@ table tr, td{
 						<a href="#" class="btn btn-secondary disabled">신청마감</a>
 					</c:when>
 					<c:otherwise>
-			  	  		<a href="#" class="btn btn-primary " onclick="clubJoin('${club.clubCode}');">신청하기</a>
+			  	  		<a href="#" class="btn btn-success " onclick="clubJoin('${club.clubCode}');">신청하기</a>
 					</c:otherwise>	
 				</c:choose> 
 			  	 </div>

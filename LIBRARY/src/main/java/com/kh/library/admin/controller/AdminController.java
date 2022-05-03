@@ -68,7 +68,7 @@ public class AdminController {
 		
 		model.addAttribute("memList", memberAdminService.selectMemberList(memberVO));
 				
-		return "admin/member_list1";
+		return "admin/member_list";
 	}
 	
 	//회원 검색
@@ -102,8 +102,8 @@ public class AdminController {
 	
 	@ResponseBody
 	@PostMapping("/sendMsgDetail")
-	public MessageVO sendMsgList(MessageVO messageVO) {
-		String msgCode = messageVO.getMsgCode();
+	public MessageVO sendMsgList(MessageVO messageVO, String msgCode) {
+		//String msgCode = messageVO.getMsgCode();
 		return memberAdminService.selectSendMessageDetail(msgCode);
 	}
 	
