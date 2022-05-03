@@ -3,7 +3,7 @@ INSERT INTO BOOK_MEMBER VALUES('admin', '1111', '모임장', '울산', '1111', '
 select * from book_member;
 select * from book_club;
 select * from book_club_board_comment;
-select * from message
+select * from message;
 order by send_date desc;
 select * from BORROW;
 select * from book;
@@ -11,6 +11,15 @@ SELECT * FROM BOOK_CLUB_APPLY;
 select * from book_complit;
 select * from reserve;
 SELECT * FROM BOOK_COMPLIT;
+
+SELECT MSG_CODE
+    , SEND_ID
+    , GET_ID
+    , SEND_DATE
+    , MSG_CONTENT
+    , IS_READ
+FROM MESSAGE
+WHERE MSG_CODE = #{msgCode}
 
 ALTER TABLE BOOK_MEMBER DROP COLUMN CLUB_APPLY_CODE;
 ALTER TABLE BOOK_CLUB_BOARD ALTER COLUMN CB_BOARD_DATE DATE DEFAULT LOCALTIMESTAMP;
@@ -20,6 +29,9 @@ FROM BOOK_CLUB_APPLY;
 SELECT CLUB_APPLY_CODE
 FROM BOOK_CLUB_APPLY
 WHERE MEM_ID = 'java5';
+
+delete message
+where get_id is null;
 
 --실시간랭킹<완독수>
 SELECT COUNT(COMPLIT_CODE)

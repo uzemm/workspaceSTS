@@ -108,7 +108,6 @@
 	</div>
 </div>
 
-
 <!--알림 전송 Modal -->
 <div class="messageModal modal fade" id="messageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -142,30 +141,29 @@
 
 <!-- 알림 전송 내역Modal -->
 <div class="modal fade" id="msgModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
+  <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalToggleLabel">알림전송내역</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 	     <div class="modal-body">
-	     
 		</div>
       <div class="modal-footer">
-        <button class="btn btn-primary" data-bs-target="#msgModalToggle2" data-bs-toggle="modal">Open second modal</button>
       </div>
     </div>
   </div>
 </div>
-<div class="modal fade" id="msgModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
+
+<div class="modal fade" id="msgModalToggle2" aria-hidden="true" aria-labelledby="msgModalToggleLabel2" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg ">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalToggleLabel2">Modal 2</h5>
+        <h5 class="modal-title" id="msgModalToggleLabel2">알림상세내역</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-<%--         	<table class="table">
+      <div class="modal-body" id="msgDetail">
+        	<table class="table">
         	<colgroup>
         		<col width="25%">
         		<col width="25%">
@@ -173,7 +171,7 @@
         		<col width="25%">
 			    <tr>
 			      <th scope="col">회원ID</th>
-			      <td>${msg.getId }</td>
+			      <td><span>${msg.getId }</span></td>
 			      <th scope="col">전송날짜</th>
 			      <td>2022/4/5</td>
 			    </tr>
@@ -181,7 +179,7 @@
 			      <th scope="row">내용</th>
 			      <td colspan="4" style="word-break: break-all">OttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoMarkMarkMarkMarkMarkMark</td>
 			    </tr>
-			</table> --%>
+			</table>
       	</div>
       <div class="modal-footer">
         <button class="btn btn-primary" data-bs-target="#msgModalToggle" data-bs-toggle="modal">목록</button>

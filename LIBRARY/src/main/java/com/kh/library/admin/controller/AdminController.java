@@ -102,8 +102,8 @@ public class AdminController {
 	
 	@ResponseBody
 	@PostMapping("/sendMsgDetail")
-	public MessageVO sendMsgList(MessageVO messageVO, String msgCode) {
-		//String msgCode = messageVO.getMsgCode();
+	public MessageVO sendMsgList(MessageVO messageVO) {
+		String msgCode = messageVO.getMsgCode();
 		return memberAdminService.selectSendMessageDetail(msgCode);
 	}
 	

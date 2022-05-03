@@ -87,7 +87,6 @@
 			, IS_READ
 		FROM MESSAGE
 		WHERE MSG_CODE = #{msgCode}
-		ORDER BY SEND_DATE DESC
 	</select>
 	
 	
