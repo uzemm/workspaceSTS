@@ -37,6 +37,7 @@ public class ClubController {
 	@GetMapping("/clubList")
 	public String clubList(Model model, HttpSession session, ClubVO clubVO, MemberVO memberVO) {
 		model.addAttribute("clubList", clubService.selectClubList(clubVO));
+		
 		return "club/club_list";
 	}
 	
@@ -184,6 +185,5 @@ public class ClubController {
 		return "club/message";
 	}
 	
-	//머냐..북클럽 조회
 	
 }

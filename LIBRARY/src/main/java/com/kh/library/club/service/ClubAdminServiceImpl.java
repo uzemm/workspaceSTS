@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.kh.library.admin.vo.MessageVO;
 import com.kh.library.club.vo.ClubApplyVO;
 import com.kh.library.club.vo.ClubVO;
 import com.kh.library.member.vo.MemberVO;
@@ -24,9 +25,10 @@ public class ClubAdminServiceImpl implements ClubAdminService{
 	
 	@Override
 	@Transactional(rollbackFor = Exception.class)
-	public void updateAndDeleteClubAcceptance(ClubApplyVO clubApplyVO) {
+	public void updateAndDeleteClubAcceptance(ClubApplyVO clubApplyVO, String getId) {
 		sqlSession.update("clubMapper.updateClubAcceptance", clubApplyVO);
 		sqlSession.delete("clubMapper.deleteApplyList", clubApplyVO);
+		sqlSession.insert("clubMapper.insertClubJoinMessage", getId);
 	}
 
 
@@ -52,5 +54,9 @@ public class ClubAdminServiceImpl implements ClubAdminService{
 		sqlSession.update("clubMapper.clubMemberKick", memberVO);
 	}
 
+	@Override
+	public void insertClubJoinMessage(MessageVO messageVO) {
+		sqlSession.insert("clubMapper.insertClubJoinMessage", messageVO);
+	}
 
 }

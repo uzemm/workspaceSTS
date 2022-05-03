@@ -13,6 +13,10 @@ ALTER TABLE BOOK_MEMBER DROP COLUMN CLUB_APPLY_CODE;
 SELECT CLUB_CODE
 FROM BOOK_CLUB_APPLY;
 
+SELECT CLUB_APPLY_CODE
+FROM BOOK_CLUB_APPLY
+WHERE MEM_ID = 'java5';
+
 --북클럽 신청 취소
 delete BOOK_CLUB_APPLY
 where mem_ID = 'java7';
@@ -28,7 +32,7 @@ where bca.club_code = bc.club_code
 AND bca.MEM_ID = 'java5';
 
 --북클럽 신청했으면 가입신청 x
-select club_code
+select CLUB_APPLY_CODE
     , mem_id
 from BOOK_CLUB_APPLY
 where mem_id = 'java5';

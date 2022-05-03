@@ -126,7 +126,7 @@ table td{
 					<td>${apply.memId }</td>
 					<td>${apply.memName }</td>
 					<td>
-						<input type="button" value="수락" onclick="acceptance('${apply.clubCode}', '${apply.memId }');" class="open-msgModal" data-bs-toggle="modal" data-bs-target="#messageModal" data-id="${mem.memId }">
+						<input type="button" value="수락" onclick="acceptance('${apply.clubCode}', '${apply.memId }','${apply.memId }');">
 					</td>
 					<td>
 						<input type="button" value="거절" onclick="rejection('${apply.memId}');">

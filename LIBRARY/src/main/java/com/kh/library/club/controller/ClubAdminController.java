@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kh.library.admin.vo.MessageVO;
 import com.kh.library.club.service.ClubAdminService;
 import com.kh.library.club.service.MessageService;
 import com.kh.library.club.vo.ClubApplyVO;
@@ -39,7 +40,8 @@ public class ClubAdminController {
 	@ResponseBody
 	@PostMapping("/clubJoinAcceptance")
 	public void clubJoinAcceptance(ClubApplyVO clubApplyVO, HttpSession session) {
-		clubAdminService.updateAndDeleteClubAcceptance(clubApplyVO);
+		String getId = clubApplyVO.getMemId();
+		clubAdminService.updateAndDeleteClubAcceptance(clubApplyVO, getId);
 		
 	}
 	

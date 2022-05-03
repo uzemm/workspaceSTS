@@ -39,7 +39,7 @@
 				</table>
 			</c:when>
 			<c:otherwise>
-								<table class="table" style="text-align: center;">
+				<table class="table" style="text-align: center;">
 				  <thead>
 				    <tr>
 				      <th scope="col">클럽명</th>

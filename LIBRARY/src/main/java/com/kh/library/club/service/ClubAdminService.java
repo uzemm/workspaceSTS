@@ -14,7 +14,7 @@ public interface ClubAdminService {
 	//모임 수락
 	void updateClubAcceptance(ClubApplyVO clubApplyVO);
 	void deleteApplyList(ClubApplyVO clubApplyVO);
-	void updateAndDeleteClubAcceptance(ClubApplyVO clubApplyVO);
+	//void updateAndDeleteClubAcceptance(ClubApplyVO clubApplyVO);
 	
 	//클럽멤버리스트 조회
 	List<MemberVO> selectClubMemberList(MemberVO memberVO);
@@ -22,5 +22,9 @@ public interface ClubAdminService {
 	//모임 강퇴
 	void clubMemberKick(MemberVO memberVO);
 	
+	//북클럽 알림 전송
+	void insertClubJoinMessage(MessageVO messageVO);
+
+	void updateAndDeleteClubAcceptance(ClubApplyVO clubApplyVO, String getId);
 	
 }
