@@ -395,6 +395,14 @@
 		WHERE MEM_ID = #{memId}
 	</delete>
 	
+	<!-- 실시간회원완독수랭킹 -->
+	<select id="selectBookClubMemComplitBook" resultType="int">
+		SELECT COUNT(COMPLIT_CODE)
+		FROM BOOK_COMPLIT
+		WHERE MEM_ID = #{memId}
+		AND to_char(LOCALTIMESTAMP,'yyyy/mm') || '/01' &lt;= COMPLIT_DATE
+		AND to_char(LAST_DAY(LOCALTIMESTAMP),'yyyy/mm/dd') &gt;= COMPLIT_DATE
+	</select>
 </mapper>
 
 

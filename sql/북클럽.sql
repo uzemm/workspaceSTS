@@ -3,19 +3,33 @@ INSERT INTO BOOK_MEMBER VALUES('admin', '1111', '모임장', '울산', '1111', '
 select * from book_member;
 select * from book_club;
 select * from book_club_board_comment;
-select * from message;
+select * from message
+order by send_date desc;
 select * from BORROW;
 select * from book;
 SELECT * FROM BOOK_CLUB_APPLY;
 select * from book_complit;
 select * from reserve;
+SELECT * FROM BOOK_COMPLIT;
+
 ALTER TABLE BOOK_MEMBER DROP COLUMN CLUB_APPLY_CODE;
+ALTER TABLE BOOK_CLUB_BOARD ALTER COLUMN CB_BOARD_DATE DATE DEFAULT LOCALTIMESTAMP;
 SELECT CLUB_CODE
 FROM BOOK_CLUB_APPLY;
 
 SELECT CLUB_APPLY_CODE
 FROM BOOK_CLUB_APPLY
 WHERE MEM_ID = 'java5';
+
+--실시간랭킹<완독수>
+SELECT COUNT(COMPLIT_CODE)
+FROM BOOK_COMPLIT
+WHERE MEM_ID = 'test02'
+AND to_char(LOCALTIMESTAMP,'yyyy/mm') || '/01' &lt;= COMPLIT_DATE
+AND to_char(LAST_DAY(LOCALTIMESTAMP),'yyyy/mm/dd') &gt;= COMPLIT_DATE;
+
+select to_char(LOCALTIMESTAMP,'yyyy-mm') || '-01' as 이번달시작일 from dual; 
+select to_char(LAST_DAY(LOCALTIMESTAMP),'yyyy-mm-dd') as 이번달마지막일 from dual; 
 
 --북클럽 신청 취소
 delete BOOK_CLUB_APPLY
@@ -47,8 +61,17 @@ SELECT BR_CODE
 FROM BORROW
 WHERE MEM_ID = 'java1';
 
-from borrow
-where mem_id = 'java1';
+--희망도서 수락
+INSERT INTO MESSAGE (
+    MSG_CODE
+    , GET_ID
+    , MSG_CONTENT
+) VALUES (
+    (SELECT 'MSG_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(MSG_CODE, 5))), 0) + 1, 3, 0) AS MSG_CODE FROM MESSAGE)
+    , #{getId}
+    , 'ㅇㅇㅇ님이 신청하신 #{title}이 수락되었습니다.'
+)		
+
 
 insert into message (msg_code, get_id, msg_content) values ('msg_004', 'java1', '북클럽에 가입신청이 수락되었습니다. 많은 활동 부탁드립니다.');
 

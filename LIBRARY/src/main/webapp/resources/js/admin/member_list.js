@@ -42,6 +42,7 @@ $(".open-msgModal").click(function(){
     $("#get-name.form-control").val(data);
 });
 
+//
 function sendMsg(){
 	var result = confirm('알림을 전송하시겠습니까?');
 	var formTag = document.getElementById('sendMsg');

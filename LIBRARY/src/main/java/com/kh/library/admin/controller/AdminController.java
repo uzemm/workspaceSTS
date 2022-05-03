@@ -68,7 +68,7 @@ public class AdminController {
 		
 		model.addAttribute("memList", memberAdminService.selectMemberList(memberVO));
 				
-		return "admin/member_list";
+		return "admin/member_list1";
 	}
 	
 	//회원 검색
@@ -100,10 +100,11 @@ public class AdminController {
 		return memberAdminService.selectSendMessageList();
 	}
 	
-	@GetMapping("/sendMsgDetail")
-	public String sendMsgList(Model model, String msgCode) {
-		model.addAttribute("msg", memberAdminService.selectSendMessageDetail(msgCode));
-		return "admin/member_list";
+	@ResponseBody
+	@PostMapping("/sendMsgDetail")
+	public MessageVO sendMsgList(MessageVO messageVO, String msgCode) {
+		//String msgCode = messageVO.getMsgCode();
+		return memberAdminService.selectSendMessageDetail(msgCode);
 	}
 	
 }
