@@ -1,3 +1,40 @@
+
+//검색
+$(document).on('click', '#button-addon2' , function() {
+	
+		var keyword = $('#keyword').val();
+		
+		location.href = '/admin/memberManage?keyword=' + keyword;	
+		
+	});
+	
+	// 알림발신내역 버튼 클릭 시 modal show
+	$(document).on('click', '#sendMsg' , function() {
+		
+		$('#msgModalToggle').modal('show');
+		
+	});
+	
+	// 알림 클릭 시 상세조회 modal show
+	$(document).on('click', '.adminMessageDetail' , function() {
+		
+			var content = $(this).children().eq(0).text();
+			var sendDate = $(this).children().eq(2).text();
+			var isRead = $(this).children().eq(3).text();
+
+			$('#adminToIdText').text(toId);
+			$('#adminSendDateText').text(sendDate);
+			$('#adminContentText').text(content);
+			$('#adminIsReadText').text(isRead);
+		
+		$('#adminMessageModal').modal('hide');
+		$('#adminDetailModal').modal('show');
+		
+	});
+
+
+
+
 function byteCheck(obj, maxByte){
 	
 	var str = obj.value;

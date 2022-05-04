@@ -33,8 +33,8 @@
 				<form action="/admin/memberManage" method="post" id="searchForm">
 					<input type="hidden" value="1" id="nowPage" name="nowPage">
 					<div class="input-group mb-3">
-					  <input type="text" class="form-control" name="keyword" placeholder="회원 ID" aria-label="Recipient's username" aria-describedby="button-addon2">
-					  <button class="btn btn-secondary" type="submit" id="button-addon2">검색</button>
+					  <input type="text" class="form-control" name="keyword" id="keyword" placeholder="회원 ID" aria-label="Recipient's username" aria-describedby="button-addon2">
+					  <button class="btn btn-secondary" type="button" id="button-addon2">검색</button>
 					</div>
 				</form>
 			</div>

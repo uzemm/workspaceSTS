@@ -193,5 +193,9 @@ public class ClubController {
 		return messageService.selectGetMsgList(getId);
 	}
 	
+	@GetMapping("/clubEx")
+	public String clubEx() {
+		return "/club/club_ex";
+	}
 	
 }
