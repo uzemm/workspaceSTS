@@ -3,7 +3,7 @@ INSERT INTO BOOK_MEMBER VALUES('admin', '1111', '모임장', '울산', '1111', '
 select * from book_member;
 select * from book_club;
 select * from book_club_board_comment;
-select * from message;
+select * from message
 order by send_date desc;
 select * from BORROW;
 select * from book;
@@ -11,6 +11,22 @@ SELECT * FROM BOOK_CLUB_APPLY;
 select * from book_complit;
 select * from reserve;
 SELECT * FROM BOOK_COMPLIT;
+
+SELECT MEM_ID
+    , MEM_NAME
+    , MEM_IMAGE
+    , CLUB_CODE
+    , CLUB_ADMIN
+    , COUNT(COMPLIT_CODE)
+FROM BOOK_MEMBER, BOOK_COMPLIT
+WHERE CLUB_CODE = 'CLUB_001'
+ORDER BY MEM_ID;
+
+		SELECT COUNT(COMPLIT_CODE)
+		FROM BOOK_COMPLIT
+		WHERE MEM_ID = #{memId}
+		AND to_char(LOCALTIMESTAMP,'yyyy/mm') || '/01' &lt;= COMPLIT_DATE
+		AND to_char(LAST_DAY(LOCALTIMESTAMP),'yyyy/mm/dd') &gt;= COMPLIT_DATE
 
 SELECT MSG_CODE
     , SEND_ID
@@ -81,8 +97,18 @@ INSERT INTO MESSAGE (
 ) VALUES (
     (SELECT 'MSG_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(MSG_CODE, 5))), 0) + 1, 3, 0) AS MSG_CODE FROM MESSAGE)
     , #{getId}
-    , 'ㅇㅇㅇ님이 신청하신 #{title}이 수락되었습니다.'
+    , 'ㅇㅇㅇ님이 신청하신 책이 도서관에 도착했습니다. 오늘부터 대출 가능합니다.'
 )		
+
+		INSERT INTO MESSAGE (
+			MSG_CODE
+			, GET_ID
+			, MSG_CONTENT
+		) VALUES (
+			(SELECT 'MSG_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(MSG_CODE, 5))), 0) + 1, 3, 0) AS MSG_CODE FROM MESSAGE)
+			, #{getId}
+			, '신청한 북클럽에 가입되셨습니다. 북클럽 게시판에 첫 글을 올려보세요!'
+		)	
 
 
 insert into message (msg_code, get_id, msg_content) values ('msg_004', 'java1', '북클럽에 가입신청이 수락되었습니다. 많은 활동 부탁드립니다.');
