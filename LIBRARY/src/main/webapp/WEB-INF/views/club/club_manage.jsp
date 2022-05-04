@@ -138,8 +138,26 @@ table td{
     </div>
 </div>
 
+<!-- 확인Modal -->
+<div class="modal" tabindex="-1" id="confirmModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Modal body text goes here.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="confrimYes">확인</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-<!-- Modal -->
+<!--알림Modal -->
 <div class="messageModal modal fade" id="messageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -148,7 +166,7 @@ table td{
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="/admin/sendMessage" method="post">
+        <form action="/admin/sendMessage" method="post" id="sendMessage">
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">회원 ID :</label>
             <input type="text" class="form-control" id="get-name" name="getId" readonly>
@@ -159,7 +177,7 @@ table td{
             <div style="text-align: right;"><span id="byteInfo">0</span> /500bytes</div>
           <div class="mb-3 justify-content-md-end">
 	        <button type="button" class="btn btn-secondary justify-content-md-end" data-bs-dismiss="modal">닫기</button>
-	        <button type="submit" class="btn btn-primary justify-content-md-end" >메세지 전송</button>
+	        <button type="button" class="btn btn-primary justify-content-md-end" id="sendMsg" >메세지 전송</button>
           </div>
           </div>
         </form>

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.kh.library.admin.vo.MessageVO;
 import com.kh.library.club.service.ClubService;
 import com.kh.library.club.service.MessageService;
 import com.kh.library.club.vo.ClubApplyVO;
@@ -38,7 +39,7 @@ public class ClubController {
 	public String clubList(Model model, HttpSession session, ClubVO clubVO, MemberVO memberVO) {
 		model.addAttribute("clubList", clubService.selectClubList(clubVO));
 		
-		return "club/club_list";
+		return "club/club_list1";
 	}
 	
 	//북클럽 생성페이지 이동
@@ -183,6 +184,12 @@ public class ClubController {
 
 		model.addAttribute("msgList", messageService.selectGetMsgList(getId));
 		return "club/message";
+	}
+	@ResponseBody
+	@PostMapping("/getMsgList1")
+	public List<MessageVO> getMsgList1(Model model, HttpServletRequest request, HttpSession session) {
+		String getId = ((MemberVO)(session.getAttribute("loginInfo"))).getMemId();
+		return messageService.selectGetMsgList(getId);
 	}
 	
 	

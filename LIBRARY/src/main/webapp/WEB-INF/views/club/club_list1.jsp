@@ -52,48 +52,24 @@ table tr, td{
 		<br>
 	</c:if>
 	<a href="/admin/memberManage">회원관리</a><br>
-
-	<div class="modal fade" id="exampleModalToggle" aria-hidden="true"
-		aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalToggleLabel">Modal 1</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"
-						aria-label="Close"></button>
-				</div>
-				<div class="modal-body">Show a second modal and hide this one
-					with the button below.</div>
-				<div class="modal-footer">
-					<button class="btn btn-primary"
-						data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Open
-						second modal</button>
-				</div>
-			</div>
-		</div>
+	<div class="dropdown">
+	<span type="button" class="dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" onclick="msgList('${sessionScope.loginInfo.memId }');" data-id="${sessionScope.loginInfo.memId }">
+			<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
+		  		<path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
+			</svg>
+		</span>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="width: 400px;" id="get-id">
+		    <li>
+				<table class="table table-hover">
+				    <tr>
+				      <td style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">Mark</td>
+				      <td style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">2022/04/01</td>
+				    </tr>
+				</table>
+			</li>
+			<li><a class="dropdown-item" href="#">Something else here</a></li>
+		  </ul>
 	</div>
-	<div class="modal fade" id="exampleModalToggle2" aria-hidden="true"
-		aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalToggleLabel2">Modal 2</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"
-						aria-label="Close"></button>
-				</div>
-				<div class="modal-body">Hide this modal and show the first
-					with the button below.</div>
-				<div class="modal-footer">
-					<button class="btn btn-primary"
-						data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back
-						to first</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<a class="btn btn-primary" data-bs-toggle="modal"
-		href="#exampleModalToggle" role="button">Open first modal</a>
-
 </div>
 
 
@@ -114,7 +90,7 @@ table tr, td{
 			    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
 			   <c:choose>
 					<c:when test="${club.clubNumberPeople eq club.clubHeadCnt }">
-						<a href="#" class="btn btn-success ">신청마감</a>
+						<a href="#" class="btn btn-secondary disabled">신청마감</a>
 					</c:when>
 					<c:otherwise>
 			  	  		<a href="#" class="btn btn-success " onclick="clubJoin('${club.clubCode}');">신청하기</a>
@@ -135,6 +111,6 @@ table tr, td{
 	<input type="hidden" id="clubCode" value="${sessionScope.loginInfo.clubCode }">
 </div>
 
-<script type="text/javascript" src="/resources/js/club/club_list.js"></script>
+<script type="text/javascript" src="/resources/js/club/club_list1.js"></script>
 </body>
 </html>

@@ -20,7 +20,7 @@ function acceptance(clubCode, memId, getId){
 			}
 		});
 	}
-}
+}ㅋ
 
 function byteCheck(obj, maxByte){
 	
