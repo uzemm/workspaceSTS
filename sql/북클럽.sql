@@ -12,13 +12,18 @@ select * from book_complit;
 select * from reserve;
 SELECT * FROM BOOK_COMPLIT;
 
-SELECT MEM_ID
+SELECT BM.MEM_ID
     , MEM_NAME
     , MEM_IMAGE
     , CLUB_CODE
     , CLUB_ADMIN
-    , COUNT(COMPLIT_CODE)
-FROM BOOK_MEMBER, BOOK_COMPLIT
+    , (SELECT COUNT(COMPLIT_CODE)
+		FROM BOOK_COMPLIT
+        WHERE MEM_ID = 'java1'
+		AND to_char(LOCALTIMESTAMP,'yyyy/mm') || '/01' >= COMPLIT_DATE
+		AND to_char(LAST_DAY(LOCALTIMESTAMP),'yyyy/mm/dd') <= COMPLIT_DATE
+        ) AS BOOK_COMPLIT_CNT
+FROM BOOK_MEMBER BM
 WHERE CLUB_CODE = 'CLUB_001'
 ORDER BY MEM_ID;
 
@@ -78,6 +83,17 @@ select CLUB_APPLY_CODE
     , mem_id
 from BOOK_CLUB_APPLY
 where mem_id = 'java5';
+
+	<select id="selectMyBookClub" resultMap="clubMapper.apply">
+		SELECT BCA.CLUB_CODE
+			, CLUB_APPLY_CODE
+			, BCA.MEM_ID
+			, TO_CHAR(CLUB_APPLY_DATE, 'YYYY/MM/DD') AS CLUB_APPLY_DATE
+			, BC.CLUB_NAME
+		FROM BOOK_CLUB_APPLY BCA , BOOK_CLUB BC
+		WHERE BCA.CLUB_CODE = BC.CLUB_CODE
+		AND BCA.MEM_ID = #{memId}
+	</select>
 
 --대여정보
 SELECT BR_CODE
