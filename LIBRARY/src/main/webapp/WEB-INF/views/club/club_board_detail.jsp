@@ -34,8 +34,9 @@
 		  	<input type="hidden" name="memId" value="${sessionScope.loginInfo.memId }">
 			<input type="hidden" name="cbBoardNum" value="${clubBoard.cbBoardNum }">
 			<input type="hidden" name="clubCode" value="${clubBoard.clubCode }">
-			  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="cbCmtContent" style="resize: none;"></textarea>
+			  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="cbCmtContent" style="resize: none;" onkeyup="byteCheck(this, '500');"></textarea>
 			  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+			  	<span style="margin-top: 10px; font-size: 14px;"><span id="byteInfo">0</span> /500bytes</span>
 			  	<button type="submit" class="btn btn-outline-primary" style="margin-top: 5px;">댓글등록</button>
 			  </div>
 		  </form>
@@ -45,32 +46,30 @@
 <div class="row" id="">
 	<div class="col-4"></div>
 	<div class="col-4">
-		<c:forEach items="${cbCmtList }" var="cmt">
-		<div class="col-12">
-			<div class="col-2"><img alt="" src="/resources/images/member/${cmt.memImage }" style="width: 30px; border-radius: 70%;"></div>
-			<div class="col-12 fw-bold" style="font-size: 14px;">
-				${cmt.memName }
+			<div class="row">
+			<c:forEach items="${cbCmtList }" var="cmt">
+				<div class="col-1"><img alt="" src="/resources/images/member/${cmt.memImage }" style="width: 30px; height: 30px; border-radius: 70%;"></div>
+					<div class="col-4 fw-bold" style="font-size: 14px;">
+						<span style="font-size: 14px; ">${cmt.memName }</span><br>
+						<span style="font-size: 12px; font-weight: normal;">${cmt.cbCmtDate }</span>
+					</div>
+			<div class="col-12" style="margin-top: 10px;">
+				<form action="/club/clubCmtUpdate" method="post">
+				<input type="hidden" name="memId" value="${sessionScope.loginInfo.memId }">
+				${cmt.cbCmtContent }
+				</form>
 			</div>
-			<div class="col-12" style="font-size: 12px;">
-				${cmt.cbCmtDate }
+			<c:if test="${sessionScope.loginInfo.memId eq cmt.memId}">
+				<div class="col-12 d-grid gap-2 d-md-flex justify-content-md-end">
+					<button type="button" class="btn btn-primary btn-sm justify-content-md-end" onclick="updateCmt(this, '${sessionScope.loginInfo.memId }', '${cmt.cbCmtNum }', '${cmt.clubCode }', '${cmt.cbBoardNum }', '${cmt.cbCmtContent}');" style="margin-top: 5px;">수정</button>
+					<button type="button" class="btn btn-primary btn-sm justify-content-md-end" onclick="deleteCmt('${sessionScope.loginInfo.memId }', '${cmt.cbCmtNum }');" style="margin-top: 5px;">삭제</button>
+				</div>
+			</c:if>
+			<div class="col-12">
+				<hr>
 			</div>
+			</c:forEach>
 		</div>
-		<div class="col-12">
-			<form action="/club/clubCmtUpdate" method="post">
-			<input type="hidden" name="memId" value="${sessionScope.loginInfo.memId }">
-			${cmt.cbCmtContent }
-			</form>
-		</div>
-		<c:if test="${sessionScope.loginInfo.memId eq cmt.memId}">
-			<div class="col-12 d-grid gap-2 d-md-flex justify-content-md-end">
-				<button type="button" class="btn btn-primary btn-sm justify-content-md-end" onclick="updateCmt(this, '${sessionScope.loginInfo.memId }', '${cmt.cbCmtNum }', '${cmt.clubCode }', '${cmt.cbBoardNum }', '${cmt.cbCmtContent}');" style="margin-top: 5px;">수정</button>
-				<button type="button" class="btn btn-primary btn-sm justify-content-md-end" onclick="deleteCmt('${sessionScope.loginInfo.memId }', '${cmt.cbCmtNum }');" style="margin-top: 5px;">삭제</button>
-			</div>
-		</c:if>
-		<div class="col-12">
-			<hr>
-		</div>
-		</c:forEach>
 	</div>
 </div>
 <script type="text/javascript" src="/resources/js/club/club_board_detail.js?ver=9"></script>

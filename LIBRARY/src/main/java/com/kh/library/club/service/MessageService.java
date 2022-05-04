@@ -8,4 +8,5 @@ public interface MessageService {
 	
 	//알림 조회
 	List<MessageVO> selectGetMsgList(String getId);
+	
 }

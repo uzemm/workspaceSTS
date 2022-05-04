@@ -249,16 +249,17 @@
 	
 	<!-- 댓글조회 -->
 	<select id="selectCbCmtList" resultMap="cmt">
-		SELECT	MEM_ID 
-			, MEM_NAME
+		SELECT	CMT.MEM_ID 
+			, CMT.MEM_NAME
 			, TO_CHAR(CB_CMT_DATE, 'YYYY-MM-DD HH24:MI:SS') AS CB_CMT_DATE
 			, CB_CMT_CONTENT
 			, CB_CMT_NUM
 			, CB_BOARD_NUM
-			, CLUB_CODE
-			, MEM_IMAGE
-		FROM BOOK_CLUB_BOARD_COMMENT
+			, CMT.CLUB_CODE
+			, MEM.MEM_IMAGE
+		FROM BOOK_CLUB_BOARD_COMMENT CMT, BOOK_MEMBER MEM
 		WHERE CB_BOARD_NUM = #{cbBoardNum}
+		AND CMT.MEM_ID = MEM.MEM_ID
 		ORDER BY CB_CMT_DATE
 	</select>
 	
@@ -351,6 +352,17 @@
 			, TO_CHAR(SEND_DATE, 'YYYY-MM-DD HH24:MI') AS SEND_DATE
 		FROM MESSAGE
 		WHERE GET_ID = #{getId}
+		ORDER BY SEND_DATE DESC
+	</select>
+	
+	<!-- 알림함상세 조회 -->
+	<select id="selectGetMsgDetail" resultMap="adminMapper.msg">
+		SELECT MSG_CODE
+			, MSG_CONTENT
+			, TO_CHAR(SEND_DATE, 'YYYY-MM-DD HH24:MI') AS SEND_DATE
+		FROM MESSAGE
+		WHERE MSG_CODE = #{msgCode}
+		AND GET_ID = #{getId}
 		ORDER BY SEND_DATE DESC
 	</select>
 	

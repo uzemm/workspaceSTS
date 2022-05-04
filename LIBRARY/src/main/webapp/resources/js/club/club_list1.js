@@ -57,7 +57,7 @@ function msgList(getId){
 			
 			var str = '';
 			for(var i = 0; i < result.length; i++){
-				str += '<li><a class="dropdown-item" href="#">'+ result[i].msgContent +'</a></li>';
+				str += '<li><a class="dropdown-item" href="#" id="msgDetail" data-id="${'+ result[i].getId +'}">'+ result[i].msgContent +'</a></li>';
 			}
 			
 			msgList.innerHTML = str;
@@ -70,4 +70,40 @@ function msgList(getId){
 	});
 }
 
+	$(document).on('click', '#msgDetail' , function() {
+		$('#msgModal').modal('show');
+		var getId = $(this).data('id');
+		$.ajax({
+		url: '/club/msgDetail?getId=' + getId, 
+		type: 'post',
+		data: {'getId':getId, 'msgCode':msgCode}, 
+		success: function(result) {
+			var msgDetail =  document.querySelector('#modal-body');
+			msgDetail.innerHTML = '';
+			
+			var str = '';
+			str += '<table class="table">';
+			str += '<colgroup>';
+			str += '<col width="15%">';
+			str += '<col width="15%">';
+			str += '<col width="35%">';
+			str += '<col width="*">';
+			str += '<tr>';
+			str += '<th scope="col">전송날짜</th>';
+			str += '<td>'+ result.sendDate +'</td>';
+			str += '</tr>';
+			str += '<tr>';
+			str += '<th scope="row">내용</th>';
+			str += '<td colspan="4" style="word-break: break-all">'+ result.msgContent +'</td>';
+			str += '</tr>';
+			str += '</table>';
 
+			msgDetail.innerHTML = str;
+			
+		},
+		error: function() {
+			//ajax 실행 실패 시 실행되는 구간
+			alert('실패');
+		}
+	});
+	});

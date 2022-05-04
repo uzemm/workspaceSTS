@@ -39,7 +39,7 @@ public class ClubController {
 	public String clubList(Model model, HttpSession session, ClubVO clubVO, MemberVO memberVO) {
 		model.addAttribute("clubList", clubService.selectClubList(clubVO));
 		
-		return "club/club_list1";
+		return "club/club_list";
 	}
 	
 	//북클럽 생성페이지 이동

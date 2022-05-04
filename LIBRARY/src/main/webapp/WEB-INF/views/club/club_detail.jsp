@@ -64,18 +64,22 @@ overflow : hidden;
 	<div class="col-10 mb-3">
 		<div class="row">
 			<div class="col-8">
+				<div class="col-8">
+					<table class="table table-hover">
+						<tr>
+							<c:forEach items="${memList }" var="mem" >
+									<td>
+										<img alt="" src="/resources/images/member/${mem.memImage }" >
+										${mem.memName }
+							</c:forEach>
+						</tr>
+					</table>
+				</div>
 							모임명 : ${club.clubName } <br>
 							모임 인원수 : ${club.clubHeadCnt }<br>
 							모임장 : ${club.memName }<br>
 							모임소개 : ${club.clubIntro }
-			<div class="col-8 d-grid gap-2 d-md-flex justify-content-md-end">
-				<c:if test="${not empty sessionScope.loginInfo }">
-					<input type="button" value="글쓰기" onclick="location.href='/club/clubBoardWrite?clubCode=${club.clubCode}';">
-				</c:if>
-				<c:if test="${sessionScope.loginInfo.clubAdmin eq 'Y' }">
-					<input type="button" value="수정" onclick="location.href='/club/clubDetailUpdate?clubCode=${club.clubCode}';">
-				</c:if>
-			</div>
+				
 			</div>
 			<div class="col-2">
 				<table class="table table-hover">
@@ -83,29 +87,38 @@ overflow : hidden;
 						<tr>
 							<td>
 								<img alt="" src="/resources/images/member/${mem.memImage }" >
-							${mem.memName }
-							1</td>
+								${mem.memName }
+							</td>
 						</tr>
 					</c:forEach>
 				</table>
 			</div>
 		</div>
-		
 		<div class="row">
 			<div class="col-8">
+				<div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin-bottom: 20px;">
+						<c:if test="${not empty sessionScope.loginInfo }">
+							<button type="button" class="btn btn-success btn-sm" onclick="location.href='/club/clubBoardWrite?clubCode=${club.clubCode}';">글쓰기</button>
+						</c:if>
+						<c:if test="${sessionScope.loginInfo.clubAdmin eq 'Y' }">
+							<button type="button" class="btn btn-success btn-sm" onclick="location.href='/club/clubDetailUpdate?clubCode=${club.clubCode}';">수정</button>
+						</c:if>
+					</div>
 				<div class="mb-3">
-				<table class="table table-striped table-hover table-border">
+				<table class="table table-striped table-hover table-border text-center">
 				<colgroup>
-					<col width="15%">
+					<col width="5%">
 					<col width="*">
 					<col width="10%">
 					<col width="20%">
+					<col width="10%">
 					<thead>
 					<tr>
 						<th scope="col">No</th>
 						<th scope="col">제목</th>
 						<th scope="col">작성자</th>
 						<th scope="col">날짜</th>
+						<th scope="col">조회수</th>
 					</tr>
 					</thead>
 					<tbody>
@@ -124,6 +137,7 @@ overflow : hidden;
 									</c:choose>
 									<td>${boardInfo.memName }</td>
 									<td>${boardInfo.cbBoardDate }</td>
+									<td>0</td>
 								</tr>
 							</c:forEach>
 						</c:when>
@@ -172,14 +186,10 @@ overflow : hidden;
 					<button type="submit" class="btn btn-secondary">검색</button>
 				</form>
 			</div>
-	</div>	
-		
+		</div>	
 	</div>
 </div>
 
-		
-		
-	
 <script type="text/javascript" src="/resources/js/club/club_detail.js"></script>
 </body>
 </html>
