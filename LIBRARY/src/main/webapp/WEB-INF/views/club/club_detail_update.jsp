@@ -15,10 +15,12 @@
 			모임명 : <input type="text" name="clubName" value="${club.clubName }"> <br>
 			모임 인원수 : <input type="text" name="clubHeadCnt" value="${club.clubHeadCnt }"><br>
 			모임장 : ${club.memName }<br>
-			모임소개:<br> <textarea rows="9" cols="60" name="clubIntro">${club.clubIntro }</textarea> <br>
+			모임소개:<br> <textarea rows="9" cols="60" name="clubIntro" onkeyup="byteCheck(this, '500');">${club.clubIntro }</textarea> <br>
+			<div style="text-align: right;"><span id="byteInfo">0</span> /500bytes</div>
 			<input type="submit" value="수정완료">
 		</form>
 	</div>
 </div>
+<script type="text/javascript" src="/resources/js/club/club_detail_update.js"></script>
 </body>
 </html>

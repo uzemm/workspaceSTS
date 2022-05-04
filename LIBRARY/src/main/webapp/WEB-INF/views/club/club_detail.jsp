@@ -137,13 +137,13 @@ overflow : hidden;
 									</c:choose>
 									<td>${boardInfo.memName }</td>
 									<td>${boardInfo.cbBoardDate }</td>
-									<td>0</td>
+									<td>${boardInfo.cbReadCnt }</td>
 								</tr>
 							</c:forEach>
 						</c:when>
 						<c:otherwise>
 							<tr>
-								<td colspan="4">
+								<td colspan="5">
 									등록된 게시글이 없습니다.
 								</td>
 							</tr>

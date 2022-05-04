@@ -74,4 +74,6 @@ public interface ClubService {
 	//신청취소
 	void deleteMyBookClubApply(String memId);
 	
+	//조회수
+	void updateCbReadCnt(ClubBoardVO clubBoardVO);
 }

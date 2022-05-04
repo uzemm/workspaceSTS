@@ -1,16 +1,3 @@
-function clubCreate(tag){
-	let result = confirm('모임을 생성하시겠습니까?');
-	
-	if(result){
-		
-		tag.parentNode.parentNode.submit();
-	}
-	else{
-		return;
-	}
-	
-}
-
 function byteCheck(obj, maxByte){
 	
 	var str = obj.value;

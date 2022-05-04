@@ -52,6 +52,7 @@ public class ClubServiceImpl implements ClubService {
 	
 	@Override
 	public ClubBoardVO selectClubBoardDetail(ClubBoardVO clubBoardVO) {
+			sqlSession.update("clubMapper.updateCbReadCnt", clubBoardVO);
 		return sqlSession.selectOne("clubMapper.selectClubBoardDetail", clubBoardVO);
 	}
 
@@ -123,6 +124,11 @@ public class ClubServiceImpl implements ClubService {
 	@Override
 	public void deleteMyBookClubApply(String memId) {
 		sqlSession.delete("clubMapper.deleteMyBookClubApply", memId);
+	}
+
+	@Override
+	public void updateCbReadCnt(ClubBoardVO clubBoardVO) {
+		sqlSession.update("clubMapper.updateCbReadCnt", clubBoardVO);
 	}
 
 }

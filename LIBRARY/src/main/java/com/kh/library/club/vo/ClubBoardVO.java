@@ -14,6 +14,7 @@ public class ClubBoardVO extends PageVO{
 	private String sort;
 	private String keyword;
 	private int rowNum;
+	private int cbReadCnt;
 	
 	public String getCbBoardNum() {
 		return cbBoardNum;
@@ -81,4 +82,11 @@ public class ClubBoardVO extends PageVO{
 	public void setRowNum(int rowNum) {
 		this.rowNum = rowNum;
 	}
+	public int getCbReadCnt() {
+		return cbReadCnt;
+	}
+	public void setCbReadCnt(int cbReadCnt) {
+		this.cbReadCnt = cbReadCnt;
+	}
+	
 }

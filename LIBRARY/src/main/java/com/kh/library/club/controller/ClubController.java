@@ -107,6 +107,7 @@ public class ClubController {
 		model.addAttribute("clubBoard", clubService.selectClubBoardDetail(clubBoardVO));
 		
 		model.addAttribute("cbCmtList", clubService.selectCbCmtList(clubBoardCmtVO));
+		
 		return "club/club_board_detail";
 	}
 	
