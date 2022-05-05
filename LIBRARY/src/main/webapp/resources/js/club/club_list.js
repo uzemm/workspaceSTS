@@ -46,7 +46,24 @@ $(".open-msgModal").click(function(){
 //메세지jsp에 id값 넘겨주기
 function message(getId){
 	location.href = '/club/getMsgList?getId=' + getId;
-	
 }
 
+(function(d){ 
+	var i = 1; 
+	var badge = document.getElementById('badge'); 
+	var int = window.setInterval(updateBadge, 2000); 
 
+	var int = window.setInterval(updateBadge, 2000);
+	var badgeNum;
+	function updateBadge(){
+		var badgeChild = badge.children[0]; 
+		if(badgeChild.className==='badge-num') {}
+			badge.removeChild(badge.children[0]);
+		}
+	badgeNum = document.createElement('div');
+	badgeNum.setAttribute('class','badge-num');
+	badgeNum.innerHTML = i++;
+	var insertedElement = badge.insertBefore(badgeNum,badge.firstChild);
+	console.log(badge.children[0]);
+
+})(document);

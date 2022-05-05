@@ -8,30 +8,29 @@ $(document).on('click', '#button-addon2' , function() {
 		
 	});
 	
-	// 알림발신내역 버튼 클릭 시 modal show
+	// 알림전송내역 modal
 	$(document).on('click', '#sendMsg' , function() {
 		
-		$('#msgModalToggle').modal('show');
+		$('#adminMsgModal').modal('show');
 		
 	});
 	
-	// 알림 클릭 시 상세조회 modal show
-	$(document).on('click', '.adminMessageDetail' , function() {
+	// 알림전송내역 상세조회
+	$(document).on('click', '.adminMsgDetail' , function() {
 		
-			var content = $(this).children().eq(0).text();
+			var getId= $(this).children().eq(0).text();
 			var sendDate = $(this).children().eq(2).text();
-			var isRead = $(this).children().eq(3).text();
+			var msgContent= $(this).children().eq(1).text();
 
-			$('#adminToIdText').text(toId);
-			$('#adminSendDateText').text(sendDate);
-			$('#adminContentText').text(content);
-			$('#adminIsReadText').text(isRead);
+
+			$('#getId').text(getId);
+			$('#sendDate').text(sendDate);
+			$('#msgContent').text(msgContent);
 		
-		$('#adminMessageModal').modal('hide');
-		$('#adminDetailModal').modal('show');
+		$('#adminMsgModal').modal('hide');
+		$('#adminMsgDetailModal').modal('show');
 		
 	});
-
 
 
 
@@ -72,13 +71,14 @@ function byteCheck(obj, maxByte){
         document.getElementById('byteInfo').innerText = rbyte;
      }	
 }
+
 //모달에 id값 넘겨주기
 $(".open-msgModal").click(function(){
 	var data = $(this).data('id');
     $("#get-name.form-control").val(data);
 });
 
-function sendMsg(){
+/*function sendMsg(){
 	var result = confirm('알림을 전송하시겠습니까?');
 	var formTag = document.getElementById('sendMsg');
 	
@@ -86,9 +86,9 @@ function sendMsg(){
 		formTag.submit();
 	}
 	
-}
+}*/
 
-// 알림전송내역 모달 띄우기
+// 알림전송내역 모달
 
 function sendMsgList(){
 	$.ajax({
@@ -96,40 +96,22 @@ function sendMsgList(){
 		type: 'post',
 		data: {}, 
 		success: function(result) {
-			var modalBody =  document.querySelector('#msgModalToggle .modal-body');
-			modalBody.innerHTML = '';
+			var tbody =  document.querySelector('#adminMsgModalTable tbody');
+			tbody.innerHTML = '';
 			
 			var str = '';
-			str += '<table class="table text-center table-hover" style="table-layout: fixed; ">';
-			 str += '  <colgroup>                                                 ';
-            str += '     <col width="10%">                                       ';
-            str += '     <col width="*">                                       ';
-            str += '     <col width="15%">                                         ';
-            str += '     <col width="20%">                                       ';
-			str += '<thead>';
-			str += '<tr>';
-			str += '<th scope="col">No</th>';
-			str += '<th scope="col">내용</th>';
-			str += '<th scope="col">회원ID</th>';
-			str += '<th scope="col">전송날짜</th>';
-			str += '</tr>';
-			str += '</thead>';
-			str += '<tbody>';
+			$(result).each(function(index, item){
+				
+					str += '<tr class="adminMsgDetail">';
+					str += '<td>'+ item.getId +'</td>';
+					str += '<td class="msgDetail" style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;"><span id="open-msgDetail" data-msgCode="'+ item.msgCode +'">'+ item.msgContent +'</span></td>';
+					str += '<td style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">'+ item.sendDate +'</td>';
+					str += '</tr>';
+				
+				
+			});	
+				$('#adminMsgModalTable tbody').prepend(str);
 			
-			for(var i = 0; i < result.length; i++){
-				str += '<tr>';
-				str += '<th scope="row">'+ 0 +'</th>';
-				str += '<td style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;"><span id="open-msgDetail" onclick="sendMsgDetail(${'+ result[i].msgCode +'});" data-bs-toggle="modal" data-bs-target="#msgModalToggle2" data-id="${'+ result[i].msgCode +'}">'+ result[i].msgContent +'</span></td>';
-				str += '<td>'+ result[i].getId +'</td>';
-				str += '<td style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">'+ result[i].sendDate +'</td>';
-				str += '</tr>';
-			}
-			str += '</tbody>';
-			str += '</table>';
-			
-			modalBody.innerHTML = str;
-			
-			$('#msgModalToggle').modal('show');
 		},
 		error: function() {
 			//ajax 실행 실패 시 실행되는 구간
@@ -139,48 +121,6 @@ function sendMsgList(){
 }
 
 
-function sendMsgDetail(msgCode){
-	$.ajax({
-		url: '/admin/sendMsgDetail', 
-		type: 'post',
-		data: {'msgCode':msgCode}, 
-		success: function(result) {
-			var modalBody =  document.querySelector('#msgModalToggle2 .modal-body');
-			modalBody.innerHTML = '';
-			
-			var str = '';
-			str += '<table class="table text-center table-hover" style="table-layout: fixed; ">';
-			str += '  <colgroup>                                                 ';
-            str += '     <col width="25%">                                       ';
-            str += '     <col width="25%">                                       ';
-            str += '     <col width="25%">                                       ';
-            str += '     <col width="25%">                                       ';
-			str += '<tr>';
-			str += '<th scope="col">회원ID</th>';
-			str += '<td>' + result.getId + '</td>';
-			str += '<th scope="col">전송날짜</th>';
-			str += '<td>'+ result.sendDate +'</td>';
-			str += '</tr>';
-			str += '<tr>';
-			str += '<th scope="col">내용</th>';
-			str += '<td colspan="4" style="word-break: break-all">'+ result.msgContent +'</td>';
-			str += '</tr>';
-			str += '</table>';
-			
-			modalBody.innerHTML = str;
-			var msgCode = $(this).data('id');
-		$("#msgCode1.msgCode2").val(msgCode);
-				$('#msgModalToggle').modal('hide');
-				$('#msgModalToggle2').modal('show');
-		},
-		error: function() {
-			//ajax 실행 실패 시 실행되는 구간
-			alert('실패');
-		}
-	});
-}	
-	
-	
 //대여정보 id값
 function borrowInfo(memId){
 	location.href = '/admin/borrowInfo?memId=' + memId;

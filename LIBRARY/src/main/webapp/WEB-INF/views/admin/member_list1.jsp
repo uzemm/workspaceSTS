@@ -38,9 +38,6 @@
 					</div>
 				</form>
 			</div>
-			<div class="col-4 justify-content-end">
-				<button type="button" class="send-modal btn btn-secondary" id="sendMsg" onclick="sendMsgList();">알림전송내역</button>
-			</div>
 		</div>
 		<table class="table table-hover text-center" >
 			<thead>
@@ -86,6 +83,9 @@
 		  		</c:choose>
 		  </tbody>
 		</table>
+		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+				<button type="button" class="send-modal btn btn-success" id="sendMsg" onclick="sendMsgList();">알림전송내역</button>
+		</div>
 		<div class="row">
 			<div class="col">
 				<nav aria-label="Page navigation example">
@@ -109,11 +109,11 @@
 </div>
 
 <!--알림 전송 Modal -->
-<div class="messageModal modal fade" id="messageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="messageModal modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <h5 class="modal-title" id="messageModalLabel">New message</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="msgmodal-body">
@@ -126,9 +126,9 @@
             <label for="message-text" class="col-form-label">내용 :</label>
             <textarea class="form-control" id="message-content" rows="7" name="msgContent" style="resize: none;" onkeyup="byteCheck(this, '500');"></textarea>
             <div style="text-align: right;"><span id="byteInfo">0</span> /500bytes</div>
-         	 <div class="mb-3 justify-content-md-end">
-	        <button type="button" class="btn btn-secondary justify-content-md-end" data-bs-dismiss="modal">닫기</button>
-	        <button type="button" class="btn btn-primary justify-content-md-end" onclick="sendMsg();">메세지 전송</button>
+         	 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+		        <button type="button" class="btn btn-success" onclick="sendMsg();">메세지 전송</button>
          	 </div>
           </div>
         </form>
@@ -140,7 +140,7 @@
 </div>
 
 <!-- 알림 전송 내역Modal -->
-<div class="modal fade" id="msgModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+<div class="modal fade" id="adminMsgModal" aria-hidden="true" aria-labelledby="adminMsgModalLabel" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
@@ -148,6 +148,21 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 	     <div class="modal-body">
+	     	<table id="adminMsgModalTable" class="table text-center table-hover" style="table-layout: fixed; ">
+	     		<colgroup>
+	     			<col width="15%">
+	     			<col width="*">
+	     			<col width="20%">
+	     			<thead>
+	     				<tr>
+	     					<th scope="col">회원ID</th>
+	     					<th scope="col">내용</th>
+	     					<th scope="col">전송날짜</th>
+	     				</tr>
+	     			</thead>
+	     			<tbody>
+	     			</tbody>
+	     	</table>
 		</div>
       <div class="modal-footer">
       </div>
@@ -155,7 +170,8 @@
   </div>
 </div>
 
-<div class="modal fade" id="msgModalToggle2" aria-hidden="true" aria-labelledby="msgModalToggleLabel2" tabindex="-1">
+<!-- 알림 전송 내역 상세 조회 Modal -->
+<div class="modal" id="adminMsgDetailModal" aria-hidden="true" aria-labelledby="adminMsgDetailModalLabel2" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered modal-lg ">
     <div class="modal-content">
       <div class="modal-header">
@@ -171,23 +187,23 @@
         		<col width="25%">
 			    <tr>
 			      <th scope="col">회원ID</th>
-			      <td><span>${msg.getId }</span></td>
+			      <td id="getId">${msg.getId }</td>
 			      <th scope="col">전송날짜</th>
-			      <td>2022/4/5</td>
+			      <td id="sendDate">2022/4/5</td>
 			    </tr>
 			    <tr>
 			      <th scope="row">내용</th>
-			      <td colspan="4" style="word-break: break-all">OttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoMarkMarkMarkMarkMarkMark</td>
+			      <td id="msgContent" colspan="4" style="word-break: break-all">OttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoMarkMarkMarkMarkMarkMark</td>
 			    </tr>
 			</table>
       	</div>
       <div class="modal-footer">
-        <button class="btn btn-primary" data-bs-target="#msgModalToggle" data-bs-toggle="modal">목록</button>
+        <button class="btn btn-success" data-bs-target="#adminMsgModal" data-bs-toggle="modal">목록</button>
       </div>
     </div>
   </div>
 </div>
 
-<script type="text/javascript" src="/resources/js/admin/member_list1.js"></script>
+<script type="text/javascript" src="/resources/js/admin/member_list1.js?ver=2"></script>
 </body>
 </html>

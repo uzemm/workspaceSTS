@@ -95,7 +95,7 @@
 			</div>
 		</div>
 		<div class="col-8 d-grid gap-2 d-md-flex justify-content-md-end">
-			<button type="button" class="btn btn-primary" onclick="history.back();">목록</button>
+			<button type="button" class="btn btn-success" onclick="history.back();">목록</button>
 		</div>
 	</div>
 </div>
