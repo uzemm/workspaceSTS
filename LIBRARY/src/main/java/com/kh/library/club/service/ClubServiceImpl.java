@@ -136,4 +136,9 @@ public class ClubServiceImpl implements ClubService {
 		return sqlSession.selectOne("clubMapper.selectBookClubMemComplitBook", memberVO);
 	}
 
+	@Override
+	public int selectMsgCount(String getId) {
+		return sqlSession.selectOne("clubMapper.selectMsgCount", getId);
+	}
+
 }

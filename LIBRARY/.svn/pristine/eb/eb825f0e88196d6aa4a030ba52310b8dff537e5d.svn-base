@@ -37,12 +37,9 @@ public class ClubController {
 	//북클럽 목록 조회
 	@GetMapping("/clubList")
 	public String clubList(Model model, HttpSession session, ClubVO clubVO, MemberVO memberVO) {
-		
-		String getId = ((MemberVO)(session.getAttribute("loginInfo"))).getMemId();
 		model.addAttribute("clubList", clubService.selectClubList(clubVO));
-		model.addAttribute("msgCnt", clubService.selectMsgCount(getId));
 		
-		return "club/club_list1";
+		return "club/club_list";
 	}
 	
 	//북클럽 생성페이지 이동
@@ -190,13 +187,10 @@ public class ClubController {
 		return "club/message";
 	}
 	@ResponseBody
-	@PostMapping("/getMsgList")
-	public List<MessageVO> getMsgList1(Model model, HttpSession session) {
+	@PostMapping("/getMsgList1")
+	public List<MessageVO> getMsgList1(Model model, HttpServletRequest request, HttpSession session) {
 		String getId = ((MemberVO)(session.getAttribute("loginInfo"))).getMemId();
 		return messageService.selectGetMsgList(getId);
 	}
-	
-	//알림갯수
-	
 	
 }

@@ -7,11 +7,17 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+.subDiv{
+	margin-left: 100px;
+}
+.dropdown-menu{
+	width: 20rem;
+}
 </style>
 </head>
 <body>
 <div class="row">
-	<div class="col-1">
+	<div class="col-2">
 		<div class="subDiv">
 			<a href="/club/clubList">북클럽조회</a><br>
 			<c:if test="${sessionScope.loginInfo.clubAdmin eq 'Y' }">
@@ -60,11 +66,9 @@
 								</svg>
 								</button>
 						  </td>
-					      <td><button type="button" class="open-msgModal btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#sendMessageModal" data-id="${mem.memId }">
-					      		<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
+					      <td><button type="button" class="open-msgModal btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#messageModal" data-id="${mem.memId }"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
 						  		<path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
-								</svg>
-							</button>
+								</svg></button>
 						</td>
 					    </tr>
 					  </c:forEach>
@@ -105,11 +109,11 @@
 </div>
 
 <!--알림 전송 Modal -->
-<div class="sendMessageModal modal fade" id="sendMessageModal" tabindex="-1" aria-labelledby="sendMessageModalLabel" aria-hidden="true">
+<div class="messageModal modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="sendMessageModalLabel">New message</h5>
+        <h5 class="modal-title" id="messageModalLabel">New message</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="msgmodal-body">
@@ -140,7 +144,7 @@
   <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="adminMsgModalLabel">알림전송내역</h5>
+        <h5 class="modal-title" id="exampleModalToggleLabel">알림전송내역</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 	     <div class="modal-body">
@@ -194,7 +198,7 @@
 			</table>
       	</div>
       <div class="modal-footer">
-        <button class="btn btn-success" id="adminMsgList" >목록</button>
+        <button class="btn btn-success" data-bs-target="#adminMsgModal" data-bs-toggle="modal">목록</button>
       </div>
     </div>
   </div>

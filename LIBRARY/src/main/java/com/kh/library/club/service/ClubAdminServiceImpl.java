@@ -36,16 +36,23 @@ public class ClubAdminServiceImpl implements ClubAdminService{
 	public void updateClubAcceptance(ClubApplyVO clubApplyVO) {
 		sqlSession.update("clubMapper.updateClubAcceptance", clubApplyVO);
 	}
-
+	
+	
 	@Override
 	public void deleteApplyList(ClubApplyVO clubApplyVO) {
 		sqlSession.delete("clubMapper.deleteApplyList", clubApplyVO);
 	}
-
-
+	
+	//회원리스트 조회
 	@Override
 	public List<MemberVO> selectClubMemberList(MemberVO memberVO) {
 		return sqlSession.selectList("clubMapper.selectClubMemberList", memberVO);
+	}
+	
+	//클럽어드민 회원리스트 조회
+	@Override
+	public List<MemberVO> selectClubAdminMemberList(MemberVO memberVO) {
+		return sqlSession.selectList("clubMapper.selectClubAdminMemberList", memberVO);
 	}
 
 
@@ -58,5 +65,8 @@ public class ClubAdminServiceImpl implements ClubAdminService{
 	public void insertClubJoinMessage(MessageVO messageVO) {
 		sqlSession.insert("clubMapper.insertClubJoinMessage", messageVO);
 	}
+
+
+
 
 }

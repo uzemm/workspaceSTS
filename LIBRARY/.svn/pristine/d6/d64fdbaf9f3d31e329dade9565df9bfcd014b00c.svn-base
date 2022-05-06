@@ -1,36 +1,36 @@
 
 //검색
 $(document).on('click', '#button-addon2' , function() {
-	var keyword = $('#keyword').val();
-	location.href = '/admin/memberManage?keyword=' + keyword;	
-});
 	
-// 알림전송내역 modal
-$(document).on('click', '#sendMsg' , function() {
-	$('#adminMsgModal').modal('show');
-});
+		var keyword = $('#keyword').val();
+		
+		location.href = '/admin/memberManage?keyword=' + keyword;	
+		
+	});
 	
-// 알림전송내역 상세조회
-$(document).on('click', '.adminMsgDetail' , function() {
-	var getId= $(this).children().eq(0).text();
-	var msgContent= $(this).children().eq(1).text();
-	var sendDate = $(this).children().eq(2).text();
-
-
-	$('#getId').text(getId);
-	$('#msgContent').text(msgContent);
-	$('#sendDate').text(sendDate);
-
-	$('#adminMsgModal').modal('hide');
-	$('#adminMsgDetailModal').modal('show');
+	// 알림전송내역 modal
+	$(document).on('click', '#sendMsg' , function() {
+		
+		$('#adminMsgModal').modal('show');
+		
+	});
 	
-});
+	// 알림전송내역 상세조회
+	$(document).on('click', '.adminMsgDetail' , function() {
+		
+			var getId= $(this).children().eq(0).text();
+			var sendDate = $(this).children().eq(2).text();
+			var msgContent= $(this).children().eq(1).text();
 
-//목록
-$(document).on('click', '#adminMsgList' , function() {
-	$('#adminMsgDetailModal').modal('hide');
-	$('#adminMsgModal').modal('show');
-});
+
+			$('#getId').text(getId);
+			$('#sendDate').text(sendDate);
+			$('#msgContent').text(msgContent);
+		
+		$('#adminMsgModal').modal('hide');
+		$('#adminMsgDetailModal').modal('show');
+		
+	});
 
 
 
@@ -78,7 +78,7 @@ $(".open-msgModal").click(function(){
     $("#get-name.form-control").val(data);
 });
 
-function sendMsg(){
+/*function sendMsg(){
 	var result = confirm('알림을 전송하시겠습니까?');
 	var formTag = document.getElementById('sendMsg');
 	
@@ -86,7 +86,7 @@ function sendMsg(){
 		formTag.submit();
 	}
 	
-}
+}*/
 
 // 알림전송내역 모달
 

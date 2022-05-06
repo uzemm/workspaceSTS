@@ -79,4 +79,7 @@ public interface ClubService {
 	
 	//완독수 조회
 	int selectBookClubMemComplitBook(MemberVO memberVO);
+	
+	//알림 갯수
+	int selectMsgCount(String getId);
 }

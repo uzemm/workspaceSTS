@@ -31,7 +31,7 @@ public class ClubAdminController {
 	//클럽관리
 	@GetMapping("/clubAdmin")
 	public String clubAdmin(ClubApplyVO clubApplyVO, Model model, MemberVO memberVO) {
-		model.addAttribute("clubMemList", clubAdminService.selectClubMemberList(memberVO));
+		model.addAttribute("clubMemList", clubAdminService.selectClubAdminMemberList(memberVO));
 		model.addAttribute("applyList", clubAdminService.selectClubApplyList(clubApplyVO));
 		return "club/club_manage1";
 	}

@@ -332,6 +332,16 @@
 	</delete>
 	
 	<!-- 회원리스트 조회 -->
+	<select id="selectClubAdminMemberList" resultMap="memberMapper.member">
+		SELECT MEM_ID
+		    , MEM_NAME
+		    , MEM_IMAGE
+		    , CLUB_CODE
+		    , CLUB_ADMIN
+		FROM BOOK_MEMBER
+		WHERE CLUB_CODE = #{clubCode}
+		ORDER BY MEM_ID 
+	</select>  
 	<select id="selectClubMemberList" resultMap="memberMapper.member">
 		SELECT MEM_ID
 		    , MEM_NAME
@@ -345,7 +355,7 @@
 				AND to_char(LAST_DAY(LOCALTIMESTAMP),'yyyy/mm/dd') &gt;= COMPLIT_DATE
 		        ) AS BOOK_COMPLIT_CNT
 		FROM BOOK_MEMBER BM
-		WHERE CLUB_CODE = 'CLUB_001'
+		WHERE CLUB_CODE = #{clubCode}
 		ORDER BY BOOK_COMPLIT_CNT DESC
 	</select>  
 	
@@ -434,6 +444,13 @@
 		WHERE MEM_ID = #{memId}
 		AND to_char(LOCALTIMESTAMP,'yyyy/mm') || '/01' &lt;= COMPLIT_DATE
 		AND to_char(LAST_DAY(LOCALTIMESTAMP),'yyyy/mm/dd') &gt;= COMPLIT_DATE
+	</select>
+	
+	<!-- 알림갯수 -->
+	<select id="selectMsgCount" resultType="int">
+		SELECT COUNT(MSG_CODE)
+		FROM MESSAGE
+		WHERE GET_ID = #{getId}
 	</select>
 </mapper>
 

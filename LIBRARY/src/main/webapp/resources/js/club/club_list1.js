@@ -2,6 +2,7 @@ function createClub(){
 	let memId = document.getElementById('memId').value;
 	let clubAdmin = document.getElementById('clubAdmin').value;
 	let clubCode = document.getElementById('clubCode').value;
+	let clubApplyCode = document.getElementById('clubApplyCode').value;
 	
 	if(memId == ''){
 		alert('로그인이 필요합니다.');
@@ -10,8 +11,8 @@ function createClub(){
 	else if(clubAdmin == 'Y'){
 		alert('이미 모임을 생성 하였습니다.')
 	}
-	else if(clubCode != ''){
-		alert('이미 모임에 가입되어있습니다.')
+	else if(clubApplyCode != ''){
+		alert('이미 신청한 모임이 존재합니다.')
 	}
 	else{
 		location.href = '/club/clubCreate';
@@ -22,7 +23,6 @@ function clubJoin(clubCode, clubApplyCode){
 	let memId = document.getElementById('memId').value;
 	let club_Code = document.getElementById('clubCode').value;
 	
-	
 	if(memId == ''){
 		alert('로그인이 필요합니다.');
 		location.href = '/member/login';
@@ -30,9 +30,9 @@ function clubJoin(clubCode, clubApplyCode){
 	else if(club_Code != ''){
 		alert('이미 모임에 가입되어있습니다.')
 	}
-	//else if(clubApplyCode != ''){
-	//	alert('가입 신청한 모임이 존재합니다. ')
-	//}
+	else if(clubApplyCode != ''){
+		alert('이미 신청한 모임이 존재합니다. ')
+	}
 	else{
 		location.href = '/club/clubJoinWrite?clubCode=' + clubCode ;
 	}
@@ -43,24 +43,34 @@ $(".open-msgModal").click(function(){
     $("#messageModal.messageModal").val(data);
 });
 
-//드랍메뉴
+
+// 알림modal
+$(document).on('click', '#msgList' , function() {
+	
+	$('#msgModal').modal('show');
+	
+});
 
 function msgList(getId){
 	
 	$.ajax({
-		url: '/club/getMsgList1', 
+		url: '/club/getMsgList', 
 		type: 'post',
 		data: {'getId':getId}, 
 		success: function(result) {
-			var msgList =  document.querySelector('#get-id');
-			msgList.innerHTML = '';
+			var tbody =  document.querySelector('#msgModalTable tbody');
+			tbody.innerHTML = '';
 			
 			var str = '';
-			for(var i = 0; i < result.length; i++){
-				str += '<li><a class="dropdown-item" href="#" id="msgDetail" data-id="${'+ result[i].getId +'}">'+ result[i].msgContent +'</a></li>';
-			}
-			
-			msgList.innerHTML = str;
+			$(result).each(function(index, item){
+				
+					str += '<tr class="msgDetail">';
+					str += '<td style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;"><span id="open-msgDetail" data-msgCode="'+ item.msgCode +'">'+ item.msgContent +'</span></td>';
+					str += '<td style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">'+ item.sendDate +'</td>';
+					str += '</tr>';
+				
+			});	
+				$('#msgModalTable tbody').prepend(str);
 			
 		},
 		error: function() {
@@ -70,40 +80,37 @@ function msgList(getId){
 	});
 }
 
-	$(document).on('click', '#msgDetail' , function() {
-		$('#msgModal').modal('show');
-		var getId = $(this).data('id');
-		$.ajax({
-		url: '/club/msgDetail?getId=' + getId, 
-		type: 'post',
-		data: {'getId':getId, 'msgCode':msgCode}, 
-		success: function(result) {
-			var msgDetail =  document.querySelector('#modal-body');
-			msgDetail.innerHTML = '';
-			
-			var str = '';
-			str += '<table class="table">';
-			str += '<colgroup>';
-			str += '<col width="15%">';
-			str += '<col width="15%">';
-			str += '<col width="35%">';
-			str += '<col width="*">';
-			str += '<tr>';
-			str += '<th scope="col">전송날짜</th>';
-			str += '<td>'+ result.sendDate +'</td>';
-			str += '</tr>';
-			str += '<tr>';
-			str += '<th scope="row">내용</th>';
-			str += '<td colspan="4" style="word-break: break-all">'+ result.msgContent +'</td>';
-			str += '</tr>';
-			str += '</table>';
 
-			msgDetail.innerHTML = str;
-			
-		},
-		error: function() {
-			//ajax 실행 실패 시 실행되는 구간
-			alert('실패');
-		}
-	});
-	});
+// 알림창 상세조회
+$(document).on('click', '.msgDetail' , function() {
+	
+		var msgContent= $(this).children().eq(0).text();
+		var sendDate = $(this).children().eq(1).text();
+
+
+		$('#msgContent').text(msgContent);
+		$('#sendDate').text(sendDate);
+	
+	$('#msgModal').modal('hide');
+	$('#msgDetailModal').modal('show');
+	
+});
+
+(function(d){
+  var i = 1;
+  var data = $(this).data('badge');
+  
+  var int = window.setInterval(updateBadge, 2000); //Update the badge ever 5 seconds
+  var badgeNum;    
+  function updateBadge(){//To rerun the animation the element must be re-added back to the DOM
+      var badgeChild = data.children[0];
+      if(badgeChild.className==='badge-num')
+            badge.removeChild(data.children[0]);
+      
+      badgeNum = document.createElement('div'); 
+      badgeNum.setAttribute('class','badge-num');
+      badgeNum.innerHTML = i++;
+      var insertedElement = data.insertBefore(badgeNum,data.firstChild); 
+      console.log(badge.children[0]);
+  }
+})(document);
