@@ -374,28 +374,6 @@
 		WHERE CB_BOARD_NUM = #{cbBoardNum}
 	</select>
 	
-	
-	<!-- 알림함 조회 -->
-	<select id="selectGetMsgList" resultMap="adminMapper.msg">
-		SELECT MSG_CODE
-			, MSG_CONTENT
-			, TO_CHAR(SEND_DATE, 'YYYY-MM-DD HH24:MI') AS SEND_DATE
-		FROM MESSAGE
-		WHERE GET_ID = #{getId}
-		ORDER BY SEND_DATE DESC
-	</select>
-	
-	<!-- 알림함상세 조회 -->
-	<select id="selectGetMsgDetail" resultMap="adminMapper.msg">
-		SELECT MSG_CODE
-			, MSG_CONTENT
-			, TO_CHAR(SEND_DATE, 'YYYY-MM-DD HH24:MI') AS SEND_DATE
-		FROM MESSAGE
-		WHERE MSG_CODE = #{msgCode}
-		AND GET_ID = #{getId}
-		ORDER BY SEND_DATE DESC
-	</select>
-	
 	<!-- 게시글 전체 개수 -->
 	<select id="selectClubBoardListCnt" resultType="int">
 	SELECT COUNT(CB_BOARD_NUM)
@@ -415,7 +393,7 @@
 		) VALUES (
 			(SELECT 'MSG_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(MSG_CODE, 5))), 0) + 1, 3, 0) AS MSG_CODE FROM MESSAGE)
 			, #{getId}
-			, '신청한 북클럽에 가입되셨습니다. 북클럽 게시판에 첫 글을 올려보세요!'
+			, '신청한 북클럽에 가입되셨습니다. 북클럽 게시판에 첫 인사를 올려보세요!'
 		)		
 	</insert>
 	
@@ -446,12 +424,45 @@
 		AND to_char(LAST_DAY(LOCALTIMESTAMP),'yyyy/mm/dd') &gt;= COMPLIT_DATE
 	</select>
 	
+	<!-- ////////////////////////알림함///////////////////////////// -->	
+	<!-- 알림함 조회 -->
+	<select id="selectGetMsgList" resultMap="adminMapper.msg">
+		SELECT MSG_CODE
+			, MSG_CONTENT
+			, TO_CHAR(SEND_DATE, 'YYYY-MM-DD HH24:MI') AS SEND_DATE
+			, IS_READ
+		FROM MESSAGE
+		WHERE GET_ID = #{getId}
+		ORDER BY SEND_DATE DESC
+	</select>
+	
+	<!-- 알림함상세 조회 -->
+	<select id="selectGetMsgDetail" resultMap="adminMapper.msg">
+		SELECT MSG_CODE
+			, MSG_CONTENT
+			, TO_CHAR(SEND_DATE, 'YYYY-MM-DD HH24:MI') AS SEND_DATE
+			, IS_READ
+		FROM MESSAGE
+		WHERE MSG_CODE = #{msgCode}
+		AND GET_ID = #{getId}
+		ORDER BY SEND_DATE DESC
+	</select>
+	
 	<!-- 알림갯수 -->
 	<select id="selectMsgCount" resultType="int">
 		SELECT COUNT(MSG_CODE)
 		FROM MESSAGE
 		WHERE GET_ID = #{getId}
+		AND IS_READ = 'N'
 	</select>
+	
+	<!-- 알림 읽음 표시 -->
+	<update id="updateMsgIsRead">
+		UPDATE MESSAGE
+		SET
+		IS_READ = 'Y'
+		WHERE MSG_CODE = #{msgCode}
+	</update>
 </mapper>
 
 

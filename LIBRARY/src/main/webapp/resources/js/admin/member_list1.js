@@ -5,11 +5,6 @@ $(document).on('click', '#button-addon2' , function() {
 	location.href = '/admin/memberManage?keyword=' + keyword;	
 });
 	
-// 알림전송내역 modal
-$(document).on('click', '#sendMsg' , function() {
-	$('#adminMsgModal').modal('show');
-});
-	
 // 알림전송내역 상세조회
 $(document).on('click', '.adminMsgDetail' , function() {
 	var getId= $(this).children().eq(0).text();
@@ -32,8 +27,7 @@ $(document).on('click', '#adminMsgList' , function() {
 	$('#adminMsgModal').modal('show');
 });
 
-
-
+//메세지 전송 유효성 검사
 function byteCheck(obj, maxByte){
 	
 	var str = obj.value;
@@ -78,12 +72,14 @@ $(".open-msgModal").click(function(){
     $("#get-name.form-control").val(data);
 });
 
+//알림 전송 확인창
 function sendMsg(){
 	var result = confirm('알림을 전송하시겠습니까?');
 	var formTag = document.getElementById('sendMsg');
 	
 	if(result){
 		formTag.submit();
+		$('#sendMessageModal').modal('hide');
 	}
 	
 }
@@ -111,7 +107,7 @@ function sendMsgList(){
 				
 			});	
 				$('#adminMsgModalTable tbody').prepend(str);
-			
+				$('#adminMsgModal').modal('show');
 		},
 		error: function() {
 			//ajax 실행 실패 시 실행되는 구간
@@ -132,7 +128,6 @@ function search(nowPage){
 	var formTag = document.getElementById('searchForm');
 	formTag.submit();	
 }
-	
 	
 	
 	

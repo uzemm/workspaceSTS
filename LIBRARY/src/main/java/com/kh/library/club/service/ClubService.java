@@ -2,7 +2,7 @@ package com.kh.library.club.service;
 
 import java.util.List;
 
-import com.kh.library.book.vo.HopeBookApplyVO;
+import com.kh.library.admin.vo.MessageVO;
 import com.kh.library.club.vo.ClubApplyVO;
 import com.kh.library.club.vo.ClubBoardCmtVO;
 import com.kh.library.club.vo.ClubBoardVO;
@@ -80,6 +80,11 @@ public interface ClubService {
 	//완독수 조회
 	int selectBookClubMemComplitBook(MemberVO memberVO);
 	
+	/////////////////////////알림함/////////////////////////////
+	
 	//알림 갯수
 	int selectMsgCount(String getId);
+	
+	//알림 읽음 업데이트
+	void updateMsgIsRead(String msgCode);
 }

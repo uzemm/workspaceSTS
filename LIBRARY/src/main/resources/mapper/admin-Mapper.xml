@@ -127,8 +127,6 @@
 		FROM RESERVE
 		WHERE MEM_ID = #{memId}
 	</select>
-	
-	
 </mapper>
 
 

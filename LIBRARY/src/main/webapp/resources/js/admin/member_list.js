@@ -104,60 +104,6 @@ function sendMsgList(){
 	});
 }
 
-//모달에 id값 넘겨주기
-/*$(".open-msgDetail").click(function(){
-	var data = $(this).data('id');
-    $("#get-get-msgCode.msgCode").val(data);
-});*/
-
-function sendMsgDetail(msgCode){
-	
-	var spanTag = document.getElementById('open-msgDetail');
-	spanTag.innerHTML = '';
-	
-	var str1 = '';
-	str1 += '<span id="open-msgDetail" data-bs-target="#msgModalToggle2" data-bs-toggle="modal">';
-	
-	
-	/*$.ajax({
-		url: '/admin/sendMsgDetail', 
-		type: 'post',
-		data: {'msgCode':msgCode}, 
-		success: function(result) {
-			var modalBody =  document.querySelector('#msgModalToggle2 .modal-body');
-			modalBody.innerHTML = '';
-			
-		var str = '';
-			str += '<table class="table">';
-			str += '  <colgroup>                                                 ';
-            str += '     <col width="25%">                                       ';
-            str += '     <col width="25%">                                       ';
-            str += '     <col width="25%">                                       ';
-            str += '     <col width="25%">                                       ';
-			str += '<tr>';
-			str += '<th scope="col">회원ID</th>';
-			str += '<td>'+ result.getId +'</td>';
-			str += '<th scope="col">전송날짜</th>';
-			str += '<td>'+ result.sendDate +'</td>';
-			str += '</tr>';
-			str += '<tr>';
-			str += '<th scope="row">내용</th>';
-			str += '<td colspan="4" style="word-break: break-all">'+ result.msgContent +'</td>';
-			str += '</tr>';
-			str += '</table>';
-			
-			modalBody.innerHTML = str;
-			
-			var modalTag = document.getElementById('msgModalToggle2');
-		 	var myModal = new bootstrap.Modal(modalTag);
-			myModal.show();
-		},
-		error: function() {
-			//ajax 실행 실패 시 실행되는 구간
-			alert('실패');
-		}
-	});*/
-}
 
 //대여정보 id값
 function borrowInfo(memId){

@@ -64,11 +64,19 @@ function msgList(getId){
 			var str = '';
 			$(result).each(function(index, item){
 				
-					str += '<tr class="msgDetail">';
-					str += '<td style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;"><span id="open-msgDetail" data-msgCode="'+ item.msgCode +'">'+ item.msgContent +'</span></td>';
-					str += '<td style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">'+ item.sendDate +'</td>';
-					str += '</tr>';
-				
+					if(item.isRead == 'Y'){
+						str += '<tr class="msgDetail">';
+						str += '<td style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden; color:gray;" id="open-msgDetail" data-msgCode="'+ item.msgCode +'" data-isRead="'+ item.isRead +'">'+ item.msgContent +'</span></td>';
+						str += '<td style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;color:gray;">'+ item.sendDate +'</td>';
+						str += '</tr>';
+					}
+					else{
+						str += '<tr class="msgDetail">';
+						str += '<td style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;" id="open-msgDetail" data-msgCode="'+ item.msgCode +'" data-isRead="'+ item.isRead +'">'+ item.msgContent +'</span></td>';
+						str += '<td style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">'+ item.sendDate +'</td>';
+						str += '</tr>';
+					}
+					
 			});	
 				$('#msgModalTable tbody').prepend(str);
 			
@@ -82,17 +90,33 @@ function msgList(getId){
 
 
 // 알림창 상세조회
-$(document).on('click', '.msgDetail' , function() {
+$(document).on('click', '#open-msgDetail' , function() {
+	var msgContent= $(this).text();
+	var sendDate = $(this).next().text();
+	var msgCode = $(this).attr('data-msgCode');
+	var isRead = $(this).attr('data-isRead');
 	
-		var msgContent= $(this).children().eq(0).text();
-		var sendDate = $(this).children().eq(1).text();
-
+	if(isRead == 'N'){
+		$.ajax({
+			url: '/club/updateMsgIsRead', //요청경로
+			type: 'post',
+			data: {'msgCode':msgCode}, //필요한 데이터 '데이터이름':값
+			success: function(result) {
+				//ajax 실행 성공 후 실행할 코드 작성
+			
+			},
+			error: function() {
+				//ajax 실행 실패 시 실행되는 구간
+				alert('읽지못함');
+			}
+		});
+	}		
 
 		$('#msgContent').text(msgContent);
 		$('#sendDate').text(sendDate);
-	
-	$('#msgModal').modal('hide');
-	$('#msgDetailModal').modal('show');
+		
+		$('#msgModal').modal('hide');
+		$('#msgDetailModal').modal('show');
 	
 });
 

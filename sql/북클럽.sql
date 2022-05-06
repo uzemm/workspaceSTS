@@ -12,6 +12,11 @@ select * from book_complit;
 select * from reserve;
 SELECT * FROM BOOK_COMPLIT;
 
+select count(msg_code)
+from message
+where get_id = 'java1'
+AND IS_READ = 'Y';
+
 SELECT BM.MEM_ID
     , MEM_NAME
     , MEM_IMAGE

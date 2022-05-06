@@ -35,7 +35,14 @@
 							    <tr>
 							      <th scope="row">${status.index + 1 }</th>
 							      <td><a href="/book/bookDetail?bookCode=${borrow.bookCode }">${borrow.title }</a></td>
-							      <td>대여중</td>
+							      <c:choose>
+							      	<c:when test="${borrow.status eq 1 }">
+								      <td style="color:red;">연체중</td>
+							      	</c:when>
+							      	<c:otherwise>
+								      <td>대여중</td>
+								     </c:otherwise>
+							      </c:choose>
 							      <td>${borrow.brDate }</td>
 							      <td>${borrow.rtDate }</td>
 							    </tr>

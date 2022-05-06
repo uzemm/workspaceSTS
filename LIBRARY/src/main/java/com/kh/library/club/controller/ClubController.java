@@ -196,7 +196,11 @@ public class ClubController {
 		return messageService.selectGetMsgList(getId);
 	}
 	
-	//알림갯수
-	
+	//알림읽음 표시
+	@ResponseBody
+	@PostMapping("/updateMsgIsRead")
+	public void updateMsgIsRead(String msgCode) {
+		clubService.updateMsgIsRead(msgCode);
+	}
 	
 }

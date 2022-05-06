@@ -45,7 +45,12 @@
 		margin-left: 1.5rem
 	}
 	
-	
+	.adminIcon{
+		position: relative;
+		left: 7.4rem;
+		bottom: 2.8rem;
+		font-size: 2rem;
+	}
 	.nav-main-menu ul li{
 		list-style: none;
 	}
@@ -87,4 +92,21 @@
 	.nav-main-menu > ul > li > ul > li:hover {
 		background: orange;
 		transition: ease 1s;
+	}
+	.badge1 {
+  		position:relative;
+	}
+	.badge1[data-badge]:after {
+	   content:attr(data-badge);
+	   position:absolute;
+		top: -5px;
+	    left: 10px;
+	   font-size:.8em;
+	   background:red;
+	   color:white;
+	   width:18px;height:18px;
+	   text-align:center;
+	   line-height:18px;
+	   border-radius:70%;
+	   box-shadow:0 0 1px #333;
 	}
