@@ -7,6 +7,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+.modal-dialog{
+	overflow-y: initial !important 
+}
+.modal-body{
+	max-height: calc(100vh - 200px);
+	overflow-y: auto;
+}
 </style>
 </head>
 <body>

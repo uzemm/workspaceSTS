@@ -22,6 +22,7 @@ function createClub(){
 function clubJoin(clubCode, clubApplyCode){
 	let memId = document.getElementById('memId').value;
 	let club_Code = document.getElementById('clubCode').value;
+	//let clubApplyCode = document.getElementById('clubApplyCode').value;
 	
 	if(memId == ''){
 		alert('로그인이 필요합니다.');
@@ -120,7 +121,7 @@ $(document).on('click', '#open-msgDetail' , function() {
 	
 });
 
-(function(d){
+/*(function(d){
   var i = 1;
   var data = $(this).data('badge');
   
@@ -129,7 +130,7 @@ $(document).on('click', '#open-msgDetail' , function() {
   function updateBadge(){//To rerun the animation the element must be re-added back to the DOM
       var badgeChild = data.children[0];
       if(badgeChild.className==='badge-num')
-            badge.removeChild(data.children[0]);
+            data.removeChild(data.children[0]);
       
       badgeNum = document.createElement('div'); 
       badgeNum.setAttribute('class','badge-num');
@@ -137,4 +138,4 @@ $(document).on('click', '#open-msgDetail' , function() {
       var insertedElement = data.insertBefore(badgeNum,data.firstChild); 
       console.log(badge.children[0]);
   }
-})(document);
+})(document);*/

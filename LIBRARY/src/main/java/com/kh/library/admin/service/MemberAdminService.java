@@ -26,6 +26,9 @@ public interface MemberAdminService {
 	//클럽수락 메세지
 	void insertClubJoinMessage(MessageVO messageVO);
 	
+	//희망도서 메세지
+	void insertHopeBookMessage(MessageVO messageVO);
+	
 	//대여정보
 	List<BorrowVO> selectBorrowBookInfo(String memId);
 	

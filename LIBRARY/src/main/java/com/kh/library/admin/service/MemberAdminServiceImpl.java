@@ -63,5 +63,10 @@ public class MemberAdminServiceImpl implements MemberAdminService{
 		return sqlSession.selectOne("adminMapper.selectSendMessageDetail", msgCode);
 	}
 
+	@Override
+	public void insertHopeBookMessage(MessageVO messageVO) {
+		sqlSession.insert("adminMapper.insertHopeBookMessage", messageVO);
+	}
+	
 
 }
