@@ -20,17 +20,26 @@
 	        , MEM_NAME
 	        , MEM_BIRTH
 	        , ROW_NUM
+	        , BR_CNT
+	        , RSV_CNT
+	        , LIMIT_DATE
 	    FROM
 	    (
 	        SELECT MEM_ID
 	             , MEM_NAME
 	             , MEM_BIRTH
+	             , BR_CNT
+	     		 , RSV_CNT
+	     		 , LIMIT_DATE
 	            , ROWNUM AS ROW_NUM
 	        FROM
 			    (
 			        SELECT MEM_ID
 	                    , MEM_NAME
 	                    , TO_CHAR(MEM_BIRTH, 'YYYY/MM/DD') AS MEM_BIRTH
+	                    , BR_CNT
+	                    , RSV_CNT
+	                    , LIMIT_DATE
 			        FROM BOOK_MEMBER
 			        WHERE 1=1
 			        <if test="keyword != null and !keyword.equals('')">
@@ -135,10 +144,11 @@
 			, BOOK_CODE
 			, TITLE
 			, MEM_ID
-			, RSV_DATE
+			, TO_CHAR(RSV_DATE, 'YYYY-MM-DD HH24:MI') AS RSV_DATE
 		FROM RESERVE
 		WHERE MEM_ID = #{memId}
 	</select>
+	
 </mapper>
 
 

@@ -1,4 +1,33 @@
 
+//검색
+$(document).on('click', '#button-addon2' , function() {
+	var keyword = $('#keyword').val();
+	location.href = '/admin/memberManage?keyword=' + keyword;	
+});
+	
+// 알림전송내역 상세조회
+$(document).on('click', '.adminMsgDetail' , function() {
+	var getId= $(this).children().eq(0).text();
+	var msgContent= $(this).children().eq(1).text();
+	var sendDate = $(this).children().eq(2).text();
+
+
+	$('#getId').text(getId);
+	$('#msgContent').text(msgContent);
+	$('#sendDate').text(sendDate);
+
+	$('#adminMsgModal').modal('hide');
+	$('#adminMsgDetailModal').modal('show');
+	
+});
+
+//목록
+$(document).on('click', '#adminMsgList' , function() {
+	$('#adminMsgDetailModal').modal('hide');
+	$('#adminMsgModal').modal('show');
+});
+
+//메세지 전송 유효성 검사
 function byteCheck(obj, maxByte){
 	
 	var str = obj.value;
@@ -36,23 +65,26 @@ function byteCheck(obj, maxByte){
         document.getElementById('byteInfo').innerText = rbyte;
      }	
 }
+
 //모달에 id값 넘겨주기
 $(".open-msgModal").click(function(){
 	var data = $(this).data('id');
     $("#get-name.form-control").val(data);
 });
 
-//
+//알림 전송 확인창
 function sendMsg(){
 	var result = confirm('알림을 전송하시겠습니까?');
 	var formTag = document.getElementById('sendMsg');
 	
 	if(result){
 		formTag.submit();
+		$('#sendMessageModal').modal('hide');
 	}
 	
 }
 
+// 알림전송내역 모달
 
 function sendMsgList(){
 	$.ajax({
@@ -60,42 +92,22 @@ function sendMsgList(){
 		type: 'post',
 		data: {}, 
 		success: function(result) {
-			var modalBody =  document.querySelector('#msgModalToggle .modal-body');
-			modalBody.innerHTML = '';
+			var tbody =  document.querySelector('#adminMsgModalTable tbody');
+			tbody.innerHTML = '';
 			
 			var str = '';
-			str += '<table class="table text-center table-hover" style="table-layout: fixed; ">';
-			 str += '  <colgroup>                                                 ';
-            str += '     <col width="10%">                                       ';
-            str += '     <col width="*">                                       ';
-            str += '     <col width="15%">                                         ';
-            str += '     <col width="20%">                                       ';
-			str += '<thead>';
-			str += '<tr>';
-			str += '<th scope="col">No</th>';
-			str += '<th scope="col">내용</th>';
-			str += '<th scope="col">회원ID</th>';
-			str += '<th scope="col">전송날짜</th>';
-			str += '</tr>';
-			str += '</thead>';
-			str += '<tbody>';
-			
-			for(var i = 0; i < result.length; i++){
-				str += '<tr>';
-				str += '<th scope="row">'+ 0 +'</th>';
-				str += '<td style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;"><span id="open-msgDetail" data-bs-target="#msgModalToggle2" data-bs-toggle="modal">'+ result[i].msgContent +'</sapn></td>';
-				str += '<td>'+ result[i].getId +'</td>';
-				str += '<td style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">'+ result[i].sendDate +'</td>';
-				str += '</tr>';
-			}
-			str += '</tbody>';
-			str += '</table>';
-			
-			modalBody.innerHTML = str;
-			
-			var modalTag = document.getElementById('msgModalToggle');
-		 	var myModal = new bootstrap.Modal(modalTag);
-			myModal.show();
+			$(result).each(function(index, item){
+				
+					str += '<tr class="adminMsgDetail">';
+					str += '<td>'+ item.getId +'</td>';
+					str += '<td class="msgDetail" style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;"><span id="open-msgDetail" data-msgCode="'+ item.msgCode +'">'+ item.msgContent +'</span></td>';
+					str += '<td style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">'+ item.sendDate +'</td>';
+					str += '</tr>';
+				
+				
+			});	
+				$('#adminMsgModalTable tbody').prepend(str);
+				$('#adminMsgModal').modal('show');
 		},
 		error: function() {
 			//ajax 실행 실패 시 실행되는 구간
@@ -114,5 +126,6 @@ function borrowInfo(memId){
 function search(nowPage){
 	document.getElementById('nowPage').value = nowPage;
 	var formTag = document.getElementById('searchForm');
-	formTag.submit();
+	formTag.submit();	
 }
+	

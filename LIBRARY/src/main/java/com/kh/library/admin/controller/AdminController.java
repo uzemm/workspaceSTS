@@ -82,7 +82,7 @@ public class AdminController {
 		
 		model.addAttribute("memList", memberAdminService.selectMemberList(memberVO));
 				
-		return "admin/member_list1";
+		return "admin/member_list";
 	}
 	
 	//회원 검색

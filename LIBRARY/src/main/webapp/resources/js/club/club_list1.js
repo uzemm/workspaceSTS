@@ -121,21 +121,27 @@ $(document).on('click', '#open-msgDetail' , function() {
 	
 });
 
-/*(function(d){
-  var i = 1;
-  var data = $(this).data('badge');
-  
-  var int = window.setInterval(updateBadge, 2000); //Update the badge ever 5 seconds
-  var badgeNum;    
-  function updateBadge(){//To rerun the animation the element must be re-added back to the DOM
-      var badgeChild = data.children[0];
-      if(badgeChild.className==='badge-num')
-            data.removeChild(data.children[0]);
-      
-      badgeNum = document.createElement('div'); 
-      badgeNum.setAttribute('class','badge-num');
-      badgeNum.innerHTML = i++;
-      var insertedElement = data.insertBefore(badgeNum,data.firstChild); 
-      console.log(badge.children[0]);
-  }
-})(document);*/
+//목록
+$(document).on('click', '#openMsgList' , function() {
+		$('#msgDetailModal').modal('hide');
+		$('#msgModal').modal('show');
+	
+});
+
+/*setInterval(function(){
+	var data = $('#msgList').data('badge');
+	$(data).load(location.href+ data);
+	
+}, 2000);
+*/
+
+
+
+
+
+
+
+
+
+
+
