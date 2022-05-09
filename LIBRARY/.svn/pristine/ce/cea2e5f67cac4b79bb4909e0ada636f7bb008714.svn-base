@@ -81,9 +81,11 @@ function sendMsg(){
 		formTag.submit();
 		$('#sendMessageModal').modal('hide');
 	}
+	
 }
 
 // 알림전송내역 모달
+
 function sendMsgList(){
 	$.ajax({
 		url: '/admin/sendMsgList', 
@@ -126,4 +128,10 @@ function search(nowPage){
 	var formTag = document.getElementById('searchForm');
 	formTag.submit();	
 }
+	
+	
+	
+	
+	
+	
 	

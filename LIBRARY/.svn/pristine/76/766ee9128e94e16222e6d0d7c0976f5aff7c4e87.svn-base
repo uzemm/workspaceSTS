@@ -306,14 +306,6 @@
 			, #{memName}
 		)
 	</insert>
-	
-	<!-- 승인코드 업데이트 -->
-	<update id="updateClubApplyCode">
-		UPDATE BOOK_MEMBER
-		SET
-		CLUB_APPLY_CODE = #{clubApplyCode}
-		WHERE MEM_ID = #{memId}
-	</update>
 
 	<!-- ///////////////////// 북클럽 관리 ///////////////////////////// -->
 	<!-- 신청회원 리스트 -->

@@ -14,6 +14,7 @@ public interface ClubAdminService {
 	//모임 수락
 	void updateClubAcceptance(ClubApplyVO clubApplyVO);
 	void deleteApplyList(ClubApplyVO clubApplyVO);
+	//void updateAndDeleteClubAcceptance(ClubApplyVO clubApplyVO);
 	
 	//클럽멤버리스트 조회
 	List<MemberVO> selectClubMemberList(MemberVO memberVO);

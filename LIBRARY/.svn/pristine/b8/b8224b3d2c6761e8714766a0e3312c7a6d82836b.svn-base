@@ -115,8 +115,6 @@
          , CLUB_CODE
          , CLUB_ADMIN
          , IS_ADMIN
-         , CLUB_APPLY_CODE
-         , LIMIT_DATE
       FROM BOOK_MEMBER
       WHERE MEM_ID = #{memId}
    </select>
@@ -314,12 +312,7 @@
    <!--/////////////////////////////북클럽//////////////////////////////////////  -->
    <!-- 북클럽 조회 -->
    <select id="selectMyBookClub" resultMap="clubMapper.club">
-      SELECT CLUB_CODE
-      		, CLUB_NAME
-      		, (SELECT COUNT(MEM_ID)
-		    	FROM BOOK_MEMBER 
-		    	WHERE CLUB_CODE = BOOK_CLUB.CLUB_CODE) AS CLUB_NUMBER_PEOPLE
-		    , CLUB_HEAD_CNT
+      SELECT CLUB_CODE, CLUB_NAME, CLUB_NUMBER_PEOPLE, CLUB_HEAD_CNT
       FROM BOOK_CLUB
       WHERE CLUB_CODE = 
          (SELECT CLUB_CODE 
