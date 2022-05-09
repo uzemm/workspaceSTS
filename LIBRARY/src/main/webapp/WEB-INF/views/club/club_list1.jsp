@@ -114,7 +114,7 @@ table tr, td{
 
 
 <!-- 알림창 Modal -->
-<div class="modal" id="msgModal" aria-hidden="true" aria-labelledby="msgModalLabel" tabindex="-1" style="height: 600px;">
+<div class="modal" id="msgModal" aria-hidden="true" aria-labelledby="msgModalLabel" tabindex="-1" style="height: 500px;">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
@@ -122,7 +122,7 @@ table tr, td{
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" id="msgDetail">
-        	<table id="msgModalTable" class="table text-center table-hover" style="table-layout: fixed; ">
+        	<table id="msgModalTable" class="table text-center table-hover table-bordered" style="table-layout: fixed; ">
 	     		<colgroup>
 	     			<col width="*">
 	     			<col width="30%">

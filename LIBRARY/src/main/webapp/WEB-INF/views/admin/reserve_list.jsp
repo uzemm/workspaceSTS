@@ -83,6 +83,36 @@
   </form>
  </div>
 	
+<!--알림 전송 Modal -->
+<div class="messageModal modal fade" id="messageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="/admin/sendMessage" method="post" id="sendMsg">
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">회원 ID :</label>
+            <input type="text" class="form-control" id="get-name" name="getId" readonly>
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">내용 :</label>
+            <textarea class="form-control" id="message-content" rows="7" name="msgContent" style="resize: none;" onkeyup="byteCheck(this, '500');"></textarea>
+            <div style="text-align: right;"><span id="byteInfo">0</span> /500bytes</div>
+          <div class="mb-3 justify-content-md-end">
+	        <button type="button" class="btn btn-secondary justify-content-md-end" data-bs-dismiss="modal">닫기</button>
+	        <button type="button" class="btn btn-success justify-content-md-end" onclick="sendMsg();">메세지 전송</button>
+          </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
 
 <script type="text/javascript" src="/resources/js/book/admin_rsvList.js?ver=34"></script>
 </body>

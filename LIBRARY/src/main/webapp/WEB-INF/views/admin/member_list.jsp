@@ -147,7 +147,7 @@
 </div>
 
 <!-- 알림 전송 내역Modal -->
-<div class="modal fade" id="adminMsgModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1" style="height: 500px;">
+<div class="modal fade" id="adminMsgModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1" style="height: 500px; overflow: hidden;">
   <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">

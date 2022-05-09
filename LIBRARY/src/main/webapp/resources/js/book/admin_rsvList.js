@@ -44,11 +44,17 @@ function insertBorrow(){
 	var returnDate = year+'-'+month+'-'+date;
 	
 	if((inputMemId==originMemId) && (inputIsbn==originIsbn)){
-		alert(inputMemId+'님 대출되었습니다.\n반납일은 '+returnDate+'입니다.');
+   		$("#get-name.form-control").val(inputMemId);
+		$('#messageModal').modal('show');
+   		$("#message-content.form-control").val(inputMemId+'님 예약하신 책이 대출되었습니다.\n반납일은 '+returnDate+'입니다.');
+		
+		
+		
+		//alert(inputMemId+'님 대출되었습니다.\n반납일은 '+returnDate+'입니다.');
 		//'location.href = '/book/borrowBook?memId=' + originMemId + '&isbn=' + originIsbn;
 		
-		var formTag = document.getElementById('borrow');
-		formTag.submit();
+		//var formTag = document.getElementById('borrow');
+		//formTag.submit();
 		
 	}else if(inputMemId==originMemId){
 		alert('예약한 도서와 ISBN이 일치하지 않습니다.');
@@ -57,6 +63,15 @@ function insertBorrow(){
 	}
 
 	
+}
+
+function sendMsg(){
+	var result = confirm('알림을 전송하시겠습니까?');
+	var formTag = document.getElementById('borrow');
+	if(result){
+		formTag.submit();
+		//북컨트롤러에 추가
+	}
 }
 
 
