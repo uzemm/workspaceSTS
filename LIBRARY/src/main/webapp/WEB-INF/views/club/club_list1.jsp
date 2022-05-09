@@ -82,7 +82,7 @@ table tr, td{
 	<div class="row mb-3">
 		<div style="margin: 0 auto; margin-bottom: 20px;">북클럽 조회</div>
 			<c:forEach items="${clubList }" var="club">
-			<div class="col-6">
+			<div class="col-6" style="margin-bottom: 20px;">
 				<div class="card h-100" style="width: 23rem;">
 				  <div class="card-body">
 				    <h5 class="card-title"><a href="/club/clubDetail?clubCode=${club.clubCode }">${club.clubName }</a></h5>
@@ -106,7 +106,7 @@ table tr, td{
 
 <div class="clubCreate">
 	<input type="hidden" id="memId" value="${sessionScope.loginInfo.memId }">
-	<input type="button" style="margin-right: 100px;" value="북클럽 생성" onclick="createClub();" >
+	<input type="button" class="btn btn-success" style="margin-right: 100px;" value="북클럽 생성" onclick="createClub();" >
 	<input type="hidden" id="clubAdmin" value="${sessionScope.loginInfo.clubAdmin }">
 	<input type="hidden" id="clubCode" value="${sessionScope.loginInfo.clubCode }">
 	<input type="hidden" id="clubApplyCode" value="${sessionScope.loginInfo.clubApplyCode }">

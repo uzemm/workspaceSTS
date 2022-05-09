@@ -86,4 +86,7 @@ public interface ClubService {
 	
 	//알림 읽음 업데이트
 	void updateMsgIsRead(String msgCode);
+	
+	//클럽승인코드
+	void updateClubApplyCode(ClubApplyVO clubApplyVO);
 }

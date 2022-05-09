@@ -23,7 +23,7 @@ div{
 	<input type="hidden" name="memId" value="${sessionScope.loginInfo.memId }">
 	<input type="hidden" name="memName" value="${sessionScope.loginInfo.memName }">
 	
-	<input type="submit" value="가입하기" onclick="clubJoin();">
+	<input type="button" value="가입하기" onclick="clubJoin();">
 	<input type="button" value="뒤로가기" onclick="history.back();">
 </form>
 <script type="text/javascript" src="/resources/js/club/club_join.js"></script>

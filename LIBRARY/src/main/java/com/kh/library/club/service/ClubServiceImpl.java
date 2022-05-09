@@ -147,4 +147,9 @@ public class ClubServiceImpl implements ClubService {
 		sqlSession.update("clubMapper.updateMsgIsRead", msgCode);
 	}
 
+	@Override
+	public void updateClubApplyCode(ClubApplyVO clubApplyVO) {
+		sqlSession.update("clubMapper.updateClubApplyCode", clubApplyVO);
+	}
+
 }

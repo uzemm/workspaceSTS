@@ -179,7 +179,12 @@ public class ClubController {
 		return "redirect:/club/clubList";
 	}
 	
-	//
+	//승인코드 업데이트
+	@GetMapping("/updateApplyCode")
+	public String updateClubApplyCode(ClubApplyVO clubApplyVO) {
+		clubService.updateClubApplyCode(clubApplyVO);
+		return "redirect:/club/clubList";
+	}
 	
 	//-------------------------알림함--------------------------
 	@GetMapping("/getMsgList")
