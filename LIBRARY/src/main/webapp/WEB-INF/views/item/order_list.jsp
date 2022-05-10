@@ -72,7 +72,7 @@
 									<div><fmt:formatNumber value="${buy.itemPrice }" pattern="#,###"/>원 | ${buy.itemCnt }개</div>
 								</td>
 								<td>
-									${buy.itemState }
+									${order.itemState }
 								</td>
 							</tr>
 						</c:if>
