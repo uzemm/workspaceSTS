@@ -39,8 +39,10 @@ public class ClubController {
 	public String clubList(Model model, HttpSession session, ClubVO clubVO, MemberVO memberVO) {
 		
 		String getId = ((MemberVO)(session.getAttribute("loginInfo"))).getMemId();
+		String memId = ((MemberVO)(session.getAttribute("loginInfo"))).getMemId();
 		model.addAttribute("clubList", clubService.selectClubList(clubVO));
 		model.addAttribute("msgCnt", clubService.selectMsgCount(getId));
+		model.addAttribute("clubApplyCode", clubService.selectClubApplyCode(memId));
 		
 		return "club/club_list1";
 	}
@@ -176,13 +178,6 @@ public class ClubController {
 	@PostMapping("/clubJoin")
 	public String clubJoin(ClubApplyVO clubApplyVO) {
 		clubService.insertClubJoin(clubApplyVO);
-		return "redirect:/club/clubList";
-	}
-	
-	//승인코드 업데이트
-	@GetMapping("/updateApplyCode")
-	public String updateClubApplyCode(ClubApplyVO clubApplyVO) {
-		clubService.updateClubApplyCode(clubApplyVO);
 		return "redirect:/club/clubList";
 	}
 	

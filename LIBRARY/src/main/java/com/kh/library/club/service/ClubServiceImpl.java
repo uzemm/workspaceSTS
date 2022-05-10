@@ -152,4 +152,9 @@ public class ClubServiceImpl implements ClubService {
 		sqlSession.update("clubMapper.updateClubApplyCode", clubApplyVO);
 	}
 
+	@Override
+	public String selectClubApplyCode(String memId) {
+		return sqlSession.selectOne("clubMapper.selectClubApplyCode", memId);
+	}
+
 }

@@ -89,3 +89,11 @@ function byteCheck(obj, maxByte){
         document.getElementById('byteInfo').innerText = rbyte;
      }	
 }
+
+
+
+
+
+
+
+

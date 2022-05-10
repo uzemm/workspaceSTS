@@ -94,7 +94,7 @@ table tr, td{
 							<a href="#" class="btn btn-secondary disabled">신청마감</a>
 						</c:when>
 						<c:otherwise>
-				  	  		<a href="#" class="btn btn-success " onclick="clubJoin('${club.clubCode}','${sessionScope.loginInfo.clubApplyCode }');">신청하기</a>
+				  	  		<a href="#" class="btn btn-success " onclick="clubJoin('${club.clubCode}','${clubApplyCode }');">신청하기</a>
 						</c:otherwise>	
 					</c:choose> 
 				  	 </div>
@@ -109,7 +109,7 @@ table tr, td{
 	<input type="button" class="btn btn-success" style="margin-right: 100px;" value="북클럽 생성" onclick="createClub();" >
 	<input type="hidden" id="clubAdmin" value="${sessionScope.loginInfo.clubAdmin }">
 	<input type="hidden" id="clubCode" value="${sessionScope.loginInfo.clubCode }">
-	<input type="hidden" id="clubApplyCode" value="${sessionScope.loginInfo.clubApplyCode }">
+	<input type="hidden" id="clubApplyCode" value="${clubApplyCode }">
 </div>
 
 

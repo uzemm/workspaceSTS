@@ -1,7 +1,6 @@
 function createClub(){
 	let memId = document.getElementById('memId').value;
 	let clubAdmin = document.getElementById('clubAdmin').value;
-	let clubCode = document.getElementById('clubCode').value;
 	let clubApplyCode = document.getElementById('clubApplyCode').value;
 	
 	if(memId == ''){

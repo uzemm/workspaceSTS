@@ -80,7 +80,7 @@ public interface ClubService {
 	int selectBookClubMemComplitBook(MemberVO memberVO);
 	
 	//클럽승인코드
-	List<ClubApplyVO> selectClubApplyCode
+	String selectClubApplyCode(String memId);
 	
 	/////////////////////////알림함/////////////////////////////
 	
