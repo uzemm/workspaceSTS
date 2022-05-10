@@ -42,6 +42,17 @@ border-radius: 70%;
 overflow : hidden;
 
 }
+.page-item.active .page-link {
+	background-color: #198754;
+	border-color: #198754;
+}
+.page-link {
+	color: #198754;
+}
+.table{
+ --bs-table-striped-bg: #edf5f0; 
+ --bs-table-hover-bg: #c7e2d1; 
+}
 </style>
 </head>
 <body>
