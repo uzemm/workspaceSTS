@@ -98,10 +98,10 @@ overflow : hidden;
 		<div class="row">
 			<div class="col-8">
 				<div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin-bottom: 20px;">
-						<c:if test="${not empty sessionScope.loginInfo }">
+						<c:if test="${sessionScope.loginInfo.clubCode eq club.clubCode  }">
 							<button type="button" class="btn btn-success btn-sm" onclick="location.href='/club/clubBoardWrite?clubCode=${club.clubCode}';">글쓰기</button>
 						</c:if>
-						<c:if test="${sessionScope.loginInfo.clubAdmin eq 'Y' }">
+						<c:if test="${sessionScope.loginInfo.clubAdmin eq 'Y' and sessionScope.loginInfo.clubCode eq club.clubCode}">
 							<button type="button" class="btn btn-success btn-sm" onclick="location.href='/club/clubDetailUpdate?clubCode=${club.clubCode}';">수정</button>
 						</c:if>
 					</div>

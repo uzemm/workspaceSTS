@@ -79,6 +79,9 @@ public interface ClubService {
 	//완독수 조회
 	int selectBookClubMemComplitBook(MemberVO memberVO);
 	
+	//클럽승인코드
+	List<ClubApplyVO> selectClubApplyCode
+	
 	/////////////////////////알림함/////////////////////////////
 	
 	//알림 갯수

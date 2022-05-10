@@ -314,6 +314,13 @@
 		CLUB_APPLY_CODE = #{clubApplyCode}
 		WHERE MEM_ID = #{memId}
 	</update>
+	
+	<!-- 클럽승인코드 조회 -->
+	<select id="selectClubApplyCode" resultMap="apply">
+		SELECT CLUB_APPLY_CODE, CLUB_CODE
+		FROM BOOK_CLUB_APPLY
+		WHERE MEM_ID = #{memId}
+	</select>
 
 	<!-- ///////////////////// 북클럽 관리 ///////////////////////////// -->
 	<!-- 신청회원 리스트 -->
