@@ -3,6 +3,7 @@ INSERT INTO BOOK_MEMBER VALUES('admin', '1111', '모임장', '울산', '1111', '
 select * from book_member;
 select * from book_club;
 select * from book_club_board_comment;
+select * from book_club_board;
 select * from message
 order by send_date desc;
 select * from BORROW;
