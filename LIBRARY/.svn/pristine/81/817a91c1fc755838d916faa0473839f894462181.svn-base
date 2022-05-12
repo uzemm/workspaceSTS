@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-/* hs-write-form 작성폼 */
+	/* hs-write-form 작성폼 */
    .hs-write-form{
       display: flex;
       text-align: center;
@@ -64,25 +64,20 @@
 <div class="row">
 	<div class="col-4"></div>
 	<div class="hs-write-form col-4">
-		 <div class="hs-write-form-top">
-			<form action="/club/regClubBoard" method="post">
-				<input type="hidden" name="clubCode" value="${clubCode }">
-				<input type="hidden" name="memId" value="${sessionScope.loginInfo.memId }">
-				<input type="hidden" name="memName" value="${sessionScope.loginInfo.memName }">
-				<input type="hidden" name="memImage" value="${sessionScope.loginInfo.memImage}">
-				 <div>
-				 	<input type="text" name="cbBoardTitle" placeholder="제목">
-				 </div>
-				 <div class="hs-write-form-bottom">
-					<textarea rows="8" cols="50" name="cbBoardContent" id="textarea" placeholder="내용"></textarea>
+		<div class="hs-write-form-top">
+			<form action="/club/clubBoardUpdate" method="post">
+				<input type="hidden" name="cbBoardNum" value="${clubBoard.cbBoardNum }">
+				<input type="hidden" name="clubCode" value="${clubBoard.clubCode }">
+				<div><input type="text" name="cbBoardTitle" value="${clubBoard.cbBoardTitle }"></div>
+				<div>작성자 : ${clubBoard.memName }</div>
+				<div>작성일 : ${clubBoard.cbBoardDate }</div>
+				<div class="hs-write-form-bottom">
+					<textarea rows="5" cols="50" name="cbBoardContent">${clubBoard.cbBoardContent}</textarea><br>
 				</div>
-				<div class="d-grid gap-2 d-md-flex justify-content-end">
-					<button type="submit" class="btn btn-success btn-sm" onclick="regClubBoard();">등록</button>
-				</div>
+				<button type="submit" class="btn btn-success btn-sm">등록</button>
 			</form>
 		</div>
 	</div>
 </div>
-
 </body>
 </html>

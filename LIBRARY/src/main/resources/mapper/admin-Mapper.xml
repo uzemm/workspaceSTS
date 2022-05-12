@@ -45,6 +45,7 @@
 			        <if test="keyword != null and !keyword.equals('')">
 			        AND UPPER(MEM_ID) LIKE UPPER('%'||#{keyword}||'%')
 			        </if>
+			        AND IS_ADMIN = 'N'
 			        ORDER BY MEM_ID
 			    )
 			)
