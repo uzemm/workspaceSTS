@@ -7,9 +7,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-table{
-	margin-top: 20px;
-}
 .table {
 	border-spacing: 0 15px;
 	border-collapse: separate;
@@ -37,7 +34,6 @@ table{
 .table tbody tr td:nth-last-child(1) {
 	border-radius: 0 5px 5px 0;
 }
-
 .user-info {
 	display: flex;
 	align-items: center;
@@ -106,7 +102,7 @@ table{
 			<div class="col-8"><hr></div>
 		</div>
 		<div class="row">
-			<div class="col-5" style="margin-top: 20px;">
+			<div class="col-5" style="margin-top: 10px;">
 				${borrowVO.memId }님의 예약정보
 			</div>
 			<div class="col-8">

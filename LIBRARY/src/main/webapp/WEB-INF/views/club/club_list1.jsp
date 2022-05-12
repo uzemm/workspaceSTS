@@ -20,16 +20,34 @@
 	margin: 0 auto;
 
 }
-table{
-	width: 800px;
-	margin: 0 auto;
-	border: 1px solid black;
-	border-collapse: collapse;
-	text-align: center;
-	margin-bottom: 100px;
+.table {
+	border-spacing: 0 15px;
+	border-collapse: separate;
+	text-align: left;
+	 --bs-table-hover-bg:#ecf7f1; 
 }
-table tr, td{
-	border: 1px solid black;
+.table thead tr th,
+.table thead tr td{
+	border-bottom-width: 1px;
+}
+.table tbody tr th,
+.table tbody tr td {
+	vertical-align: middle;
+}
+.table tbody tr {
+	border-radius: 5px;
+}
+.table tbody tr td {
+	background: #fff;
+}
+.table tbody tr td:nth-child(1) {
+	border-radius: 5px 0 0 5px;
+}
+.table tbody tr td:nth-last-child(1) {
+	border-radius: 0 5px 5px 0;
+}
+.table-bordered>:not(caption)>*>* {
+	border-width: 0px;
 }
 .subDiv{
 	margin-left: 100px;
@@ -120,8 +138,8 @@ table tr, td{
 	</div>
 
 	<div class="clubCreate">
-		<input type="hidden" id="memId" value="${sessionScope.loginInfo.memId }">
 		<input type="button" class="btn btn-success" style="margin-right: 100px;" value="북클럽 생성" onclick="createClub();" >
+		<input type="hidden" id="memId" value="${sessionScope.loginInfo.memId }">
 		<input type="hidden" id="clubAdmin" value="${sessionScope.loginInfo.clubAdmin }">
 		<input type="hidden" id="clubCode" value="${sessionScope.loginInfo.clubCode }">
 		<input type="hidden" id="clubApplyCode" value="${clubApplyCode }">
@@ -130,7 +148,7 @@ table tr, td{
 
 <!-- 알림창 Modal -->
 <div class="modal" id="msgModal" aria-hidden="true" aria-labelledby="msgModalLabel" tabindex="-1" style="height: 500px;">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="msgModalLabel">알림함</h5>
@@ -140,7 +158,7 @@ table tr, td{
         	<table id="msgModalTable" class="table text-center table-hover table-bordered" style="table-layout: fixed; ">
 	     		<colgroup>
 	     			<col width="*">
-	     			<col width="30%">
+	     			<col width="35%">
 	     			<thead>
 	     				<tr>
 	     					<th scope="col">내용</th>
@@ -161,7 +179,7 @@ table tr, td{
 
 <!-- 알림상세조회모달 -->
 <div class="modal fade" tabindex="-1" id="msgDetailModal">
-  <div class="modal-dialog modal-dialog-centered">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

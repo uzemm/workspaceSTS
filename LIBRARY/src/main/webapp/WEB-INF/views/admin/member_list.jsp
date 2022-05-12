@@ -27,7 +27,6 @@
 .table{
  --bs-table-hover-bg:#ecf7f1; 
 }
-@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap");
 .table {
 	border-spacing: 0 15px;
 	border-collapse: separate;
