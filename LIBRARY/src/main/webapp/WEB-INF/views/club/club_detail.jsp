@@ -85,10 +85,10 @@ select{
 </style>
 </head>
 <body>
-<div class="row">
-	<div class="col-10">
+<div class="row mb-3">
+	<div class="col-10 justify-content-md-end">
 		<div class="row">
-			<div class="col-8">
+			<div class="col-10 ">
 					<table class="table table-hover">
 						<tr>
 							<c:forEach items="${memList }" var="mem" >
@@ -105,7 +105,7 @@ select{
 				</div>
 		</div>
 		<div class="row">
-			<div class="col-8">
+			<div class="col-10">
 				<div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin-bottom: 20px;">
 						<c:if test="${sessionScope.loginInfo.clubCode eq club.clubCode  }">
 							<button type="button" class="btn btn-success btn-sm" onclick="location.href='/club/clubBoardWrite?clubCode=${club.clubCode}';">글쓰기</button>
@@ -184,7 +184,7 @@ select{
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-6">	
+			<div class="col-10">	
 				<form action="/club/clubDetail" method="post" id="searchForm">
 				<input type="hidden" value="1" id="nowPage" name="nowPage">
 				<input type="hidden" name="clubCode" value="${clubBoardVO.clubCode }">

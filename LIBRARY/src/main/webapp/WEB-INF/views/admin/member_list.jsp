@@ -38,10 +38,9 @@
 .table tbody tr th,
 .table tbody tr td {
 	vertical-align: middle;
-	border: none;
+	 border-color: #dee2e6;
 }
 .table tbody tr {
-	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 	border-radius: 5px;
 }
 .table tbody tr td {
@@ -64,6 +63,22 @@
 .container{
    width: 100%;
 }
+#adminMsgModal #adminMsgModalTable tr td{
+	border-style: none;
+}
+.col-6{
+	margin-top: 20px;
+}
+.book-btn{
+	color: white;
+    background-color: #72a37c;
+    border-color: #72a37c;
+}
+.book-btn:hover{
+	color: white;
+    background-color: #72a37c;
+    border-color: #72a37c;
+}
 </style>
 </head>
 <body>
@@ -71,14 +86,19 @@
 <div class="row">
 	<div class="col-12">
 		<div class="row">
-			<div class="col-7">
+			<div class="col-6">
 				<form action="/admin/memberManage" method="post" id="search-form">
 					<input type="hidden" value="1" id="nowPage" name="nowPage">
 					<div class="input-group mb-3">
 					  <input type="text" class="form-control" name="keyword" id="keyword" placeholder="회원 ID" aria-label="Recipient's username" aria-describedby="button-addon2" >
-					  <button class="btn btn-secondary" type="button" id="button-addon2">검색</button>
+					  <button class="btn btn-success" type="button" id="button-addon2">검색</button>
 					</div>
 				</form>
+			</div>
+			<div class="col-6">
+				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+					<button type="button" class="send-modal btn btn-outline-success" onclick="sendMsgList();">알림전송내역</button>
+				</div>
 			</div>
 		</div>
 		<table class="table table-hover text-center" >
@@ -106,7 +126,7 @@
 					      <td>${mem.brCnt }</td>
 					      <td>${mem.rsvCnt }</td>
 					      <td>
-							  <button type="button" class="btn btn-secondary" onclick="borrowInfo('${mem.memId}');">
+							  <button type="button" class="book-btn btn btn-outline-secondary" onclick="borrowInfo('${mem.memId}');">
 							    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
 						  		<path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
 								</svg>
@@ -131,26 +151,25 @@
 		  		</c:choose>
 		  </tbody>
 		</table>
-		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-				<button type="button" class="send-modal btn btn-success" onclick="sendMsgList();">알림전송내역</button>
-		</div>
 		<div class="row">
 			<div class="col">
-				<nav aria-label="Page navigation example">
-					<ul class="pagination pagination-sm justify-content-center">
-						<li class="page-item <c:if test="${!memberVO.prev }">disabled</c:if>">
-						<a class="page-link" href="/admin/memberManage?nowPage=${clubBoardVO.beginPage - 1 }"
-							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-						</a></li>
-						<c:forEach begin="${memberVO.beginPage }" end="${memberVO.endPage }" var="pageIndex">
-								<li class="page-item <c:if test="${memberVO.nowPage eq pageIndex }">active</c:if>"><a class="page-link" 
-								href="javascript:search(${pageIndex });">${pageIndex }</a></li>
-							</c:forEach>
-						<li class="page-item <c:if test="${!memberVO.next }">disabled</c:if>"><a class="page-link" href="/club/clubDetail?nowPage=${memberVO.endPage + 1 }"
-							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-						</a></li>
-					</ul>
-				</nav>
+				<div class="d-grid gap-2 d-md-flex justify-content-center">
+					<nav aria-label="Page navigation example">
+						<ul class="pagination pagination-sm justify-content-center">
+							<li class="page-item <c:if test="${!memberVO.prev }">disabled</c:if>">
+							<a class="page-link" href="/admin/memberManage?nowPage=${clubBoardVO.beginPage - 1 }"
+								aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+							</a></li>
+							<c:forEach begin="${memberVO.beginPage }" end="${memberVO.endPage }" var="pageIndex">
+									<li class="page-item <c:if test="${memberVO.nowPage eq pageIndex }">active</c:if>"><a class="page-link" 
+									href="javascript:search(${pageIndex });">${pageIndex }</a></li>
+								</c:forEach>
+							<li class="page-item <c:if test="${!memberVO.next }">disabled</c:if>"><a class="page-link" href="/club/clubDetail?nowPage=${memberVO.endPage + 1 }"
+								aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+							</a></li>
+						</ul>
+					</nav>
+				</div>
 			</div>
 		</div>
 	</div>
