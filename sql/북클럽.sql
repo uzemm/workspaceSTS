@@ -13,6 +13,9 @@ select * from book_complit;
 select * from reserve;
 SELECT * FROM BOOK_COMPLIT;
 
+delete book_club
+where mem_id = 'java2';
+
 select count(msg_code)
 from message
 where get_id = 'java1'
