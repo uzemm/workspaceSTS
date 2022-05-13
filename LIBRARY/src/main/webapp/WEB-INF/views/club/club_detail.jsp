@@ -132,10 +132,14 @@ select{
 .club-name{
 	font-weight: bold;
 	font-size: 25px;
+	margin-bottom: 20px;
 }
 .member-count{
 	font-size: 15px;
 	font-weight: normal;
+}
+.club-intro{
+	margin-bottom: 20px;
 }
 </style>
 </head>
@@ -143,26 +147,46 @@ select{
 <div class="container">
 	<div class="row">
 		<div class="col-10 justify-content-md-end">
-			<div class="board-info">
-				<div class="club-name">${club.clubName } <span class="member-count"> / ${club.clubHeadCnt }</span></div>
-				
-				<div>모임장 : ${club.memName }</div>
-				<div>모임소개 : ${club.clubIntro }</div>
-				<div class="dropdown">
-					멤버목록<a href="#" class="px-2" id="triggerId3" data-bs-toggle="dropdown" aria-expanded="false">
-						<i class="fa fa-ellipsis-v"></i>
-					</a>
-					<div class="dropdown-menu" aria-labelledby="triggerId3">
-						<table class="memListT table table-hover">
-							<tr>
-								<c:forEach items="${memList }" var="mem" >
-										<td>
-											<div class="user-info__img"><img src="/resources/images/member/${mem.memImage }"></div>
-											<div class="mem-name">${mem.memName }</div>
-										</td>
-								</c:forEach>
-							</tr>
-						</table>
+			<div class="row">
+				<div class="col-6">
+					<div class="board-info">
+						<div class="club-name">${club.clubName } <span class="member-count"> ${club.clubNumberPeople} / ${club.clubHeadCnt }</span></div>
+						<div class="club-intro">${club.clubIntro }</div>
+						<div class="dropdown">
+							멤버목록<a href="#" class="px-2" id="triggerId3" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="fa fa-ellipsis-v"></i>
+							</a>
+							<div class="dropdown-menu" aria-labelledby="triggerId3">
+								<table class="memListT table table-hover">
+									<tr>
+										<c:forEach items="${memList }" var="mem" >
+												<td>
+													<div class="user-info__img"><img src="/resources/images/member/${mem.memImage }"></div>
+													<div class="mem-name">${mem.memName }</div>
+												</td>
+										</c:forEach>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-4">
+					5월의 책 흠...왜 옆으로 안가니
+					<div id="slideShow"> 
+						<ul class="slides"> 
+							<li><img src="image/flower.jpg" alt="">
+							</li> <li><img src="image/fox.jpg" alt=""></li> 
+							<li><img src="image/lightning.jpg" alt=""></li> 
+							<li><img src="image/moon.jpg" alt=""></li> 
+							<li><img src="image/nature.jpg" alt=""></li> 
+							<li><img src="image/space.jpg" alt=""></li> 
+						</ul> 
+						<p class="controller"> 
+							<!-- &lang: 왼쪽 방향 화살표 &rang: 오른쪽 방향 화살표 --> 
+							<span class="prev">&lang;</span> 
+							<span class="next">&rang;</span> 
+						</p> 
 					</div>
 				</div>
 			</div>
@@ -266,8 +290,8 @@ select{
 					</c:forEach>
 				</table>
 				</div>
+			</div>
 	</div>
-</div>
 
 <script type="text/javascript" src="/resources/js/club/club_detail.js"></script>
 </body>

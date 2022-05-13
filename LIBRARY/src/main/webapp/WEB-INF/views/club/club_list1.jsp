@@ -129,7 +129,7 @@
 				<div class="card h-100" style="width: 23rem;">
 				  <div class="card-body">
 					<input type="hidden" value="${clubVO.totalCnt - club.rowNum + 1 }">
-				    <h5 class="card-title"><a href="/club/clubDetail?clubCode=${club.clubCode }">${club.clubName }</a></h5>
+				    <h5 class="card-title"  style="margin-bottom: 10px;"><a href="/club/clubDetail?clubCode=${club.clubCode }">${club.clubName }</a></h5>
 				    <h6 class="card-subtitle mb-2 text-muted" style="font-size: 14px;">모집 : ${club.clubNumberPeople} / ${club.clubHeadCnt }</h6>
 				    <p class="card-text" style="font-size: 14px;">${club.clubIntro }</p>
 				    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
