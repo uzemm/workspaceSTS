@@ -1,9 +1,8 @@
 function clubCreate(tag){
-	let result = confirm('모임을 생성하시겠습니까?');
-	
+	var result = confirm('모임을 생성하시겠습니까?');
+	var formTag = document.getElementById('regClub');
 	if(result){
-		
-		tag.parentNode.parentNode.submit();
+		formTag.submit();
 	}
 	else{
 		return;

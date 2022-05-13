@@ -67,6 +67,9 @@ public interface ClubService {
 	//클럽게시판 글 수 조회
 	int selectClubBoardListCnt(ClubBoardVO clubBoardVO);
 	
+	//북클럽 개수 조회
+	int selectClubListCnt(ClubVO clubVO);
+	
 	//마이페이지 북클럽신청 조회
 	ClubApplyVO selectMyBookClubApply(String memId);
 	

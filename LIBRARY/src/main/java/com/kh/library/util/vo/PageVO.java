@@ -14,7 +14,7 @@ public class PageVO {
 	
 	public PageVO() {
 		nowPage = 1;
-		displayCnt = 7;
+		displayCnt = 8;
 		displayPageCnt = 5;
 	}
 

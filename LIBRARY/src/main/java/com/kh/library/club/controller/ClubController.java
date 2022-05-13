@@ -38,6 +38,14 @@ public class ClubController {
 	@GetMapping("/clubList")
 	public String clubList(Model model, HttpSession session, ClubVO clubVO, MemberVO memberVO) {
 		
+		//-----------------페이징 정보 세팅
+		//1.전체 데이터의 개수 조회
+		int listCnt = clubService.selectClubListCnt(clubVO);
+		clubVO.setTotalCnt(listCnt);
+		
+		//2.페이징 처리를 위한 세팅 메소드 호출
+		clubVO.setPageInfo();
+		
 		if(session.getAttribute("loginInfo") != null) {
 			String getId = ((MemberVO)(session.getAttribute("loginInfo"))).getMemId();
 			String memId = ((MemberVO)(session.getAttribute("loginInfo"))).getMemId();
@@ -45,6 +53,7 @@ public class ClubController {
 			model.addAttribute("msgCnt", clubService.selectMsgCount(getId));
 			model.addAttribute("clubApplyCode", clubService.selectClubApplyCode(memId));
 		}
+		
 		
 		model.addAttribute("clubList", clubService.selectClubList(clubVO));
 		

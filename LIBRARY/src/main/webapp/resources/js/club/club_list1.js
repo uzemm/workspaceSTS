@@ -21,7 +21,6 @@ function createClub(){
 function clubJoin(clubCode, clubApplyCode){
 	let memId = document.getElementById('memId').value;
 	let club_Code = document.getElementById('clubCode').value;
-	//let clubApplyCode = document.getElementById('clubApplyCode').value;
 	
 	if(memId == ''){
 		alert('로그인이 필요합니다.');

@@ -89,6 +89,9 @@
     font-size: 12px;
     text-align: right;
 }
+.club-btn{
+	margin-bottom: 20px;
+}
 </style>
 </head>
 <body>
@@ -114,10 +117,18 @@
 			<div class="line_map">홈 > 북클럽 > 북클럽 조회</div>
 			  <h2>북클럽 조회</h2>
 		</div>
-			<c:forEach items="${clubList }" var="club">
+		<div class="club-btn d-grid gap-2 d-md-flex justify-content-md-end">
+			<button type="button" class="btn btn-sm btn-outline-success"  onclick="createClub();" >북클럽 생성</button>
+			<input type="hidden" id="memId" value="${sessionScope.loginInfo.memId }">
+			<input type="hidden" id="clubAdmin" value="${sessionScope.loginInfo.clubAdmin }">
+			<input type="hidden" id="clubCode" value="${sessionScope.loginInfo.clubCode }">
+			<input type="hidden" id="clubApplyCode" value="${clubApplyCode }">
+		</div>
+		<c:forEach items="${clubList }" var="club">
 			<div class="col-6" style="margin-bottom: 20px;">
 				<div class="card h-100" style="width: 23rem;">
 				  <div class="card-body">
+					<input type="hidden" value="${clubVO.totalCnt - club.rowNum + 1 }">
 				    <h5 class="card-title"><a href="/club/clubDetail?clubCode=${club.clubCode }">${club.clubName }</a></h5>
 				    <h6 class="card-subtitle mb-2 text-muted" style="font-size: 14px;">모집 : ${club.clubNumberPeople} / ${club.clubHeadCnt }</h6>
 				    <p class="card-text" style="font-size: 14px;">${club.clubIntro }</p>
@@ -134,15 +145,22 @@
 				  </div>
 				</div>
 			</div>
-			</c:forEach>
-	</div>
-
-	<div class="clubCreate">
-		<input type="button" class="btn btn-success" style="margin-right: 100px;" value="북클럽 생성" onclick="createClub();" >
-		<input type="hidden" id="memId" value="${sessionScope.loginInfo.memId }">
-		<input type="hidden" id="clubAdmin" value="${sessionScope.loginInfo.clubAdmin }">
-		<input type="hidden" id="clubCode" value="${sessionScope.loginInfo.clubCode }">
-		<input type="hidden" id="clubApplyCode" value="${clubApplyCode }">
+		</c:forEach>
+		<nav aria-label="Page navigation example">
+			<ul class="pagination pagination-sm justify-content-center">
+				<li class="page-item <c:if test="${!clubVO.prev }">disabled</c:if>">
+				<a class="page-link" href="/admin/memberManage?nowPage=${clubVO.beginPage - 1 }"
+					aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+				</a></li>
+				<c:forEach begin="${clubVO.beginPage }" end="${clubVO.endPage }" var="pageIndex">
+						<li class="page-item <c:if test="${clubVO.nowPage eq pageIndex }">active</c:if>"><a class="page-link" 
+						href="javascript:search(${pageIndex });">${pageIndex }</a></li>
+					</c:forEach>
+				<li class="page-item <c:if test="${!clubVO.next }">disabled</c:if>"><a class="page-link" href="/club/clubDetail?nowPage=${clubVO.endPage + 1 }"
+					aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+				</a></li>
+			</ul>
+		</nav>
 	</div>
 </div>
 

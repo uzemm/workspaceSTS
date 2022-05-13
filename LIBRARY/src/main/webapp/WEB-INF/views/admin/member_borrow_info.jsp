@@ -12,7 +12,6 @@
 	border-collapse: separate;
 	text-align: left;
 	border: none;
-	 --bs-table-hover-bg:#ecf7f1; 
 }
 .table thead tr th,
 .table thead tr td,
@@ -38,6 +37,9 @@
 	display: flex;
 	align-items: center;
 }
+.mem_id{
+	font-weight: bold;
+}
 </style>
 </head>
 <body>
@@ -46,12 +48,12 @@
 	<div class="col-10">
 		<div class="row">
 			<div class="col-8">
-				${borrowVO.memId }님의 대여정보
+				<span class="mem-id">${borrowVO.memId }</span>님의 대여정보
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-8">
-				<table class="table table-striped table-hover text-center">
+				<table class="table table-striped text-center">
 				  <thead>
 				    <tr>
 				      <th scope="col">No</th>
@@ -103,10 +105,10 @@
 		</div>
 		<div class="row">
 			<div class="col-5" style="margin-top: 10px;">
-				${borrowVO.memId }님의 예약정보
+				<span class="mem-id">${borrowVO.memId }</span>님의 예약정보
 			</div>
 			<div class="col-8">
-				<table class="table table-striped table-hover text-center">
+				<table class="table table-striped text-center">
 				  <thead>
 				    <tr>
 				      <th scope="col">No</th>

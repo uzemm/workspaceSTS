@@ -12,6 +12,8 @@
 		<result column="CLUB_INTRO" 		property="clubIntro"/>
 		<result column="CLUB_DATE" 			property="clubDate"/>
 		<result column="CLUB_NUMBER_PEOPLE"	property="clubNumberPeople"/>
+		<result column="KEYWORD" 			property="keyword"/>
+		<result column="ROW_NUM" 			property="rowNum"/>
 	</resultMap>
 	
 	<resultMap type="com.kh.library.club.vo.ClubBoardVO" id="boardInfo">
@@ -88,11 +90,40 @@
 		    , CLUB_DATE 
 		    , MEM_ID
 		    , MEM_NAME
-		    , (SELECT COUNT(MEM_ID)
-		    	FROM BOOK_MEMBER 
-		    	WHERE CLUB_CODE = BOOK_CLUB.CLUB_CODE) AS CLUB_NUMBER_PEOPLE
-		FROM BOOK_CLUB
-		ORDER BY CLUB_DATE
+		    , CLUB_NUMBER_PEOPLE
+	        , ROW_NUM
+		FROM
+		(
+			SELECT CLUB_CODE
+			    , CLUB_NAME
+			    , CLUB_HEAD_CNT
+			    , CLUB_INTRO
+			    , CLUB_DATE 
+			    , MEM_ID
+			    , MEM_NAME
+			    , CLUB_NUMBER_PEOPLE
+			    , ROWNUM AS ROW_NUM
+		    FROM
+		    (
+	       		SELECT CLUB_CODE
+				    , CLUB_NAME
+				    , CLUB_HEAD_CNT
+				    , CLUB_INTRO
+				    , CLUB_DATE 
+				    , MEM_ID
+				    , MEM_NAME
+				    , (SELECT COUNT(MEM_ID)
+				    	FROM BOOK_MEMBER 
+				    	WHERE CLUB_CODE = BOOK_CLUB.CLUB_CODE) AS CLUB_NUMBER_PEOPLE
+				FROM BOOK_CLUB
+				WHERE 1=1
+		        <if test="keyword != null and !keyword.equals('')">
+		        AND KEYWORD LIKE '%'||#{keyword}||'%'
+		        </if>
+				ORDER BY CLUB_DATE
+		    )
+		)
+		WHERE ROW_NUM &gt; = #{startNum} AND ROW_NUM &lt; =  #{endNum}
 	</select>
 	
 	<!-- 북클럽 상세보기 -->
@@ -104,6 +135,9 @@
 		    , CLUB_DATE 
 		    , MEM_ID
 		    , MEM_NAME
+		    , (SELECT COUNT(MEM_ID)
+	    	  FROM BOOK_MEMBER 
+	    	  WHERE CLUB_CODE = BOOK_CLUB.CLUB_CODE) AS CLUB_NUMBER_PEOPLE
 		FROM BOOK_CLUB
 		WHERE CLUB_CODE = #{clubCode}
 	</select>
@@ -316,6 +350,60 @@
 		FROM BOOK_CLUB_APPLY
 		WHERE MEM_ID = #{memId}
 	</select>
+	
+	<!-- 북클럽멤버 조회 -->
+	<select id="selectClubMemberList" resultMap="memberMapper.member">
+		SELECT MEM_ID
+		    , MEM_NAME
+		    , MEM_IMAGE
+		    , CLUB_CODE
+		    , CLUB_ADMIN
+		    , (SELECT COUNT(COMPLIT_CODE)
+				FROM BOOK_COMPLIT
+		        WHERE MEM_ID = BM.MEM_ID
+				AND to_char(LOCALTIMESTAMP,'yyyy/mm') || '/01' &lt;= COMPLIT_DATE
+				AND to_char(LAST_DAY(LOCALTIMESTAMP),'yyyy/mm/dd') &gt;= COMPLIT_DATE
+		        ) AS BOOK_COMPLIT_CNT
+		FROM BOOK_MEMBER BM
+		WHERE CLUB_CODE = #{clubCode}
+		ORDER BY BOOK_COMPLIT_CNT DESC
+	</select>  
+	
+	<!-- 댓글수 -->
+	<select id="selectCbCmtCount" resultType="int">
+		select count(CB_CMT_NUM)
+		FROM BOOK_CLUB_BOARD_COMMENT
+		WHERE CB_BOARD_NUM = #{cbBoardNum}
+	</select>
+	
+	<!-- 게시글 전체 개수 -->
+	<select id="selectClubBoardListCnt" resultType="int">
+		SELECT COUNT(CB_BOARD_NUM)
+		FROM BOOK_CLUB_BOARD
+		WHERE CLUB_CODE = #{clubCode} 
+		<if test="keyword != null and !keyword.equals('')">
+		AND ${sort} LIKE '%'||#{keyword}||'%'
+		</if>
+	</select>
+	
+	<!-- 북클럽 전체 개수 -->
+	<select id="selectClubListCnt" resultType="int">
+		SELECT COUNT(CLUB_CODE)
+		FROM BOOK_CLUB
+		WHERE 1=1
+		<if test="keyword != null and !keyword.equals('')">
+		AND ${sort} LIKE '%'||#{keyword}||'%'
+		</if>
+	</select>
+	
+	<!-- 실시간회원완독수랭킹 -->
+	<select id="selectBookClubMemComplitBook" resultType="int">
+		SELECT COUNT(COMPLIT_CODE)
+		FROM BOOK_COMPLIT
+		WHERE MEM_ID = #{memId}
+		AND to_char(LOCALTIMESTAMP,'yyyy/mm') || '/01' &lt;= COMPLIT_DATE
+		AND to_char(LAST_DAY(LOCALTIMESTAMP),'yyyy/mm/dd') &gt;= COMPLIT_DATE
+	</select>
 
 	<!-- ///////////////////// 북클럽 관리 ///////////////////////////// -->
 	<!-- 신청회원 리스트 -->
@@ -354,22 +442,6 @@
 		WHERE CLUB_CODE = #{clubCode}
 		ORDER BY MEM_ID 
 	</select>  
-	<select id="selectClubMemberList" resultMap="memberMapper.member">
-		SELECT MEM_ID
-		    , MEM_NAME
-		    , MEM_IMAGE
-		    , CLUB_CODE
-		    , CLUB_ADMIN
-		    , (SELECT COUNT(COMPLIT_CODE)
-				FROM BOOK_COMPLIT
-		        WHERE MEM_ID = BM.MEM_ID
-				AND to_char(LOCALTIMESTAMP,'yyyy/mm') || '/01' &lt;= COMPLIT_DATE
-				AND to_char(LAST_DAY(LOCALTIMESTAMP),'yyyy/mm/dd') &gt;= COMPLIT_DATE
-		        ) AS BOOK_COMPLIT_CNT
-		FROM BOOK_MEMBER BM
-		WHERE CLUB_CODE = #{clubCode}
-		ORDER BY BOOK_COMPLIT_CNT DESC
-	</select>  
 	
 	<!-- 모임강퇴 -->
 	<update id="clubMemberKick">
@@ -378,23 +450,6 @@
 		CLUB_CODE = NULL
 		WHERE MEM_ID = #{memId}
 	</update>
-	
-	<!-- 댓글수 -->
-	<select id="selectCbCmtCount" resultType="int">
-		select count(CB_CMT_NUM)
-		FROM BOOK_CLUB_BOARD_COMMENT
-		WHERE CB_BOARD_NUM = #{cbBoardNum}
-	</select>
-	
-	<!-- 게시글 전체 개수 -->
-	<select id="selectClubBoardListCnt" resultType="int">
-	SELECT COUNT(CB_BOARD_NUM)
-	FROM BOOK_CLUB_BOARD
-	WHERE CLUB_CODE = #{clubCode} 
-		<if test="keyword != null and !keyword.equals('')">
-		AND ${sort} LIKE '%'||#{keyword}||'%'
-		</if>
-	</select>
 	
 	<!-- 클럽 수락시 알림보내기 -->
 	<insert id="insertClubJoinMessage">
@@ -408,33 +463,6 @@
 			, '신청한 북클럽에 가입되셨습니다. 북클럽 게시판에 첫 인사를 올려보세요!'
 		)		
 	</insert>
-	
-	<!--마이페이지 북클럽 조회 -->
-	<select id="selectMyBookClubApply" resultMap="apply">
-		SELECT BCA.CLUB_CODE
-			, CLUB_APPLY_CODE
-			, BCA.MEM_ID
-			, TO_CHAR(CLUB_APPLY_DATE, 'YYYY/MM/DD') AS CLUB_APPLY_DATE
-			, BC.CLUB_NAME
-		FROM BOOK_CLUB_APPLY BCA , BOOK_CLUB BC
-		WHERE BCA.CLUB_CODE = BC.CLUB_CODE
-		AND BCA.MEM_ID = #{memId}
-	</select>
-	
-	<!-- 북클럽 신청 취소 -->
-	<delete id="deleteMyBookClubApply">
-		DELETE BOOK_CLUB_APPLY
-		WHERE MEM_ID = #{memId}
-	</delete>
-	
-	<!-- 실시간회원완독수랭킹 -->
-	<select id="selectBookClubMemComplitBook" resultType="int">
-		SELECT COUNT(COMPLIT_CODE)
-		FROM BOOK_COMPLIT
-		WHERE MEM_ID = #{memId}
-		AND to_char(LOCALTIMESTAMP,'yyyy/mm') || '/01' &lt;= COMPLIT_DATE
-		AND to_char(LAST_DAY(LOCALTIMESTAMP),'yyyy/mm/dd') &gt;= COMPLIT_DATE
-	</select>
 	
 	<!-- ////////////////////////알림함///////////////////////////// -->	
 	<!-- 알림함 조회 -->

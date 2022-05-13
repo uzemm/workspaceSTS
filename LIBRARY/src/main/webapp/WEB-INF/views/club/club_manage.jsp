@@ -7,9 +7,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-.subDiv{
-	margin-left: 100px;
-}
 .nav-link{
 	color: #198754;
 	width: 200px;
@@ -80,17 +77,15 @@ ul{
 </style>
 </head>
 <body>
-
-<div class="row">
-	<div class="col-2">
+<div class="container">
 		<div class="subDiv">
-			<a href="/club/clubList">북클럽조회</a><br>
+			<a href="/club/clubList">북클럽조회</a>
 			<c:if test="${sessionScope.loginInfo.clubAdmin eq 'Y' }">
 				<a href="/clubAdmin/clubAdmin?clubCode=${sessionScope.loginInfo.clubCode }">북클럽관리</a>
 			</c:if> 
 		</div>
-	</div>
-	<div class="col-5">
+<div class="row">
+	<div class="col-6">
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
 		  <li class="nav-item" role="presentation">
 		    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">북클럽 멤버조회</button>
@@ -132,7 +127,7 @@ ul{
 												<button type="button" class="btn btn-outline-danger btn-sm" onclick="kick('${clubMem.memId }');">강퇴</button>
 											</c:when>
 											<c:otherwise>
-												모임장
+												클럽장
 											</c:otherwise>
 										</c:choose>
 									</td>
@@ -179,6 +174,7 @@ ul{
 			</div>
 			</div>
 		</div>
+	</div>
 </div>
 <script type="text/javascript" src="/resources/js/club/club_manage.js?ver=7"></script>
 </body>
