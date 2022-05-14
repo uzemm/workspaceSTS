@@ -58,7 +58,7 @@ table tr td:nth-child(odd){
 <body>
 <div class="container">
 	<div class="text-right">
-		<form action="/club/clubCreate" method="post" id="regClub">
+		<form class="row g-3" action="/club/clubCreate" method="post" id="regClub" enctype="multipart/form-data">
 			<input type="hidden" name="memId" value="${sessionScope.loginInfo.memId}">
 			<input type="hidden" name="memName" value="${sessionScope.loginInfo.memName}">
 				<div class="hs-write-form">
@@ -76,6 +76,9 @@ table tr td:nth-child(odd){
 							첫모임 시작일 : <input type="date" name="clubDate">
 						</div>
 						<div>
+							<input type="file" class="form-control" id="clubImage" name="clubImage">
+						</div>
+						<div>
 							<input type="text" name="clubIntro" placeholder="한줄소개">
 						</div>
 					</div>
@@ -88,6 +91,7 @@ table tr td:nth-child(odd){
 		</form>
 	</div>
 </div>
+
 <script type="text/javascript" src="/resources/js/club/club_create.js?ver=9"></script>
 </body>
 </html>

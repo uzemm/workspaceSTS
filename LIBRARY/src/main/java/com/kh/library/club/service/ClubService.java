@@ -5,13 +5,14 @@ import java.util.List;
 import com.kh.library.club.vo.ClubApplyVO;
 import com.kh.library.club.vo.ClubBoardCmtVO;
 import com.kh.library.club.vo.ClubBoardVO;
+import com.kh.library.club.vo.ClubImageVO;
 import com.kh.library.club.vo.ClubVO;
 import com.kh.library.member.vo.MemberVO;
 
 public interface ClubService {
 	
 	//모임생성 + 클럽어드민 부여
-	void insertUpdateClubCreate(ClubVO clubVO);
+	void insertUpdateClubCreate(ClubVO clubVO, ClubImageVO clubImageVO);
 	
 	//모임조회
 	List<ClubVO> selectClubList(ClubVO clubVO);
@@ -84,6 +85,9 @@ public interface ClubService {
 	
 	//클럽승인코드
 	String selectClubApplyCode(String memId);
+	
+	//클럽 이미지코드
+	int selectNextClubImgCode();
 	
 	/////////////////////////알림함/////////////////////////////
 	

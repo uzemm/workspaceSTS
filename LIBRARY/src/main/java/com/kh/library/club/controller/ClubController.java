@@ -1,5 +1,7 @@
 package com.kh.library.club.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -12,14 +14,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.library.admin.vo.MessageVO;
+import com.kh.library.book.vo.BookImgVO;
 import com.kh.library.club.service.ClubService;
 import com.kh.library.club.service.MessageService;
 import com.kh.library.club.vo.ClubApplyVO;
 import com.kh.library.club.vo.ClubBoardCmtVO;
 import com.kh.library.club.vo.ClubBoardVO;
+import com.kh.library.club.vo.ClubImageVO;
 import com.kh.library.club.vo.ClubVO;
 import com.kh.library.member.vo.MemberVO;
 import com.kh.library.util.vo.PageVO;
@@ -67,8 +73,47 @@ public class ClubController {
 	}
 	//북클럽 생성
 	@PostMapping("/clubCreate")
-	public String clubCreate(ClubVO clubVO) {
-		clubService.insertUpdateClubCreate(clubVO);
+	public String clubCreate(ClubVO clubVO, MultipartHttpServletRequest multi) {
+		
+		//이미지 저장 공간
+	      int nextcbImgCode = clubService.selectNextClubImgCode();
+	      
+	      MultipartFile file = multi.getFile("file");
+	      if(!file.getOriginalFilename().equals("")) {
+	    	  String uploadPath = "D:\\Git\\workspaceSTS\\LIBRARY\\src\\main\\webapp\\resources\\images\\club\\";
+	    	  
+	    	  try {
+	    		  String cbOriginName = file.getOriginalFilename();
+	    		  String cbAtName = System.currentTimeMillis()+"_"+file.getOriginalFilename();
+	    		  file.transferTo(new File(uploadPath+cbAtName));
+	    		  ClubImageVO vo = new ClubImageVO();
+	    		  vo.setCbImgCode(nextcbImgCode++);
+	    		  vo.setCbOriginName(cbOriginName);
+	    		  vo.setCbAtName(cbAtName);
+	    		  vo.setClubCode(clubVO.getClubCode());
+	    		  
+	    		  //클럽 insert
+	    		  clubVO.setCbAtName(cbAtName);
+	    		  clubService.insertUpdateClubCreate(clubVO, vo);
+			      
+	    			  } catch(IllegalStateException e) {
+	    				  e.printStackTrace();
+	    			  } catch(IOException e) {
+	    				  e.printStackTrace();
+	    			  }
+	    		  }
+	      //이미지 첨부 안하면 기본 이미지 세팅 필요
+	      else {
+	    	  ClubImageVO vo = new ClubImageVO();
+	    	  vo.setCbImgCode(nextcbImgCode++);
+    		  vo.setCbOriginName("club_sample.jpg");
+    		  vo.setCbAtName("club_sample.jpg");
+    		  vo.setClubCode(clubVO.getClubCode());
+		  		clubVO.setCbAtName("club_sample.jpg");
+		  		clubService.insertUpdateClubCreate(clubVO, vo);
+	      }
+	      
+		
 		return "redirect:/club/clubList";
 	}
 	//북클럽 상세조회 + 검색

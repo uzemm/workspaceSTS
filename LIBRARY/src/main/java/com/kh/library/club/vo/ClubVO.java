@@ -16,6 +16,7 @@ public class ClubVO extends PageVO{
 	private int rowNum;
 	private String clubPlace;
 	private String clubInfo;
+	private String cbAtName;
 	
 	public int getClubNumberPeople() {
 		return clubNumberPeople;
@@ -95,4 +96,11 @@ public class ClubVO extends PageVO{
 	public void setClubInfo(String clubInfo) {
 		this.clubInfo = clubInfo;
 	}
+	public String getCbAtName() {
+		return cbAtName;
+	}
+	public void setCbAtName(String cbAtName) {
+		this.cbAtName = cbAtName;
+	}
+	
 }

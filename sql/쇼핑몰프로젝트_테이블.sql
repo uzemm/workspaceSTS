@@ -1,5 +1,6 @@
 --쇼핑몰 프로젝트 관련 테이블 --
 --테이블 : 회원정보, 상품 카테고리, 상품정보, 상품이미지 정보, 장바구니, 구매정보
+select * from item_image;
 
 DROP TABLE SHOP_MEMBER;
 CREATE TABLE SHOP_MEMBER (

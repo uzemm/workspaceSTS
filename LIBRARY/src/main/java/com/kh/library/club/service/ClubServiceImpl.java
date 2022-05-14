@@ -11,6 +11,7 @@ import com.kh.library.admin.vo.MessageVO;
 import com.kh.library.club.vo.ClubApplyVO;
 import com.kh.library.club.vo.ClubBoardCmtVO;
 import com.kh.library.club.vo.ClubBoardVO;
+import com.kh.library.club.vo.ClubImageVO;
 import com.kh.library.club.vo.ClubVO;
 import com.kh.library.member.vo.MemberVO;
 
@@ -21,8 +22,9 @@ public class ClubServiceImpl implements ClubService {
 	
 	@Override
 	@Transactional(rollbackFor = Exception.class)
-	public void insertUpdateClubCreate(ClubVO clubVO) {
+	public void insertUpdateClubCreate(ClubVO clubVO, ClubImageVO clubImageVO) {
 		sqlSession.insert("clubMapper.insertClubCreate", clubVO);
+		sqlSession.insert("clubMappper.inserClubImg", clubImageVO);
 		sqlSession.update("clubMapper.updateClubAdmin", clubVO);
 	}	
 	
@@ -160,6 +162,11 @@ public class ClubServiceImpl implements ClubService {
 	@Override
 	public String selectClubApplyCode(String memId) {
 		return sqlSession.selectOne("clubMapper.selectClubApplyCode", memId);
+	}
+
+	@Override
+	public int selectNextClubImgCode() {
+		return sqlSession.selectOne("clubMapper.selectNextClubImgCode");
 	}
 
 }

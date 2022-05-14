@@ -122,7 +122,7 @@
 		<c:forEach items="${clubList }" var="club">
 			<div class="col" style="margin-bottom: 20px;">
 				<div class="card h-100" style="width: 23rem;">
-				<img src="..." class="card-img-top" alt="...">
+				<img class="card-img-top" src="/resources/images/club/${club.cbImg }">
 				  <div class="card-body">
 					<input type="hidden" value="${clubVO.totalCnt - club.rowNum + 1 }">
 				    <h5 class="card-title"  style="margin-bottom: 10px;"><a href="/club/clubDetail?clubCode=${club.clubCode }">${club.clubName }</a></h5>

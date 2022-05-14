@@ -12,14 +12,20 @@ SELECT * FROM BOOK_CLUB_APPLY;
 select * from book_complit;
 select * from reserve;
 SELECT * FROM BOOK_COMPLIT;
+SELECT * FROM BOOK_IMAGE;
 
-delete book_club
-where mem_id = 'java2';
+DELETE BOOK_CLUB
+WHERE CLUB_CODE = 'CLUB_001';
+update book_member
+set
+club_code = 'CLUB_001'
+where mem_id = 'java1';
 
 select count(msg_code)
 from message
 where get_id = 'java1'
 AND IS_READ = 'Y';
+
 
 SELECT BM.MEM_ID
     , MEM_NAME
