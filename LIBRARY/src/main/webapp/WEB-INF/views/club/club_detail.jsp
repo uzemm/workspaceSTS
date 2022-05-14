@@ -141,6 +141,15 @@ select{
 .club-intro{
 	margin-bottom: 20px;
 }
+.club-name, .club-1{
+	display: inline-block;
+}
+.club-name{
+	margin-right: 30px;
+}
+.dropdown{
+	margin-top: 20px;
+}
 </style>
 </head>
 <body>
@@ -148,13 +157,24 @@ select{
 	<div class="row">
 		<div class="col-10 justify-content-md-end">
 			<div class="row">
-				<div class="col-6">
+				<div class="col-7">
 					<div class="board-info">
 						<div class="club-name">${club.clubName } <span class="member-count"> ${club.clubNumberPeople} / ${club.clubHeadCnt }</span></div>
-						<div class="club-intro">${club.clubIntro }</div>
+						<div>
+							<div class="club-intro">${club.clubIntro}</div>
+						</div>
+						<div>
+							<div class="club-name">모임 장소</div><div class="club-1">${club.clubPlace }</div>
+						</div>
+						<div>
+							<div class="club-name">모임 일정</div><div class="club-1">${club.clubDate }</div>
+						</div>
+						<div>
+							<div class="club-info"><div>${club.clubInfo }</div></div>
+						</div>
 						<div class="dropdown">
 							멤버목록<a href="#" class="px-2" id="triggerId3" data-bs-toggle="dropdown" aria-expanded="false">
-								<i class="fa fa-ellipsis-v"></i>
+								click
 							</a>
 							<div class="dropdown-menu" aria-labelledby="triggerId3">
 								<table class="memListT table table-hover">
@@ -171,16 +191,11 @@ select{
 						</div>
 					</div>
 				</div>
-				<div class="col-4">
+				<div class="col-3">
 					5월의 책 흠...왜 옆으로 안가니
 					<div id="slideShow"> 
 						<ul class="slides"> 
 							<li><img src="image/flower.jpg" alt="">
-							</li> <li><img src="image/fox.jpg" alt=""></li> 
-							<li><img src="image/lightning.jpg" alt=""></li> 
-							<li><img src="image/moon.jpg" alt=""></li> 
-							<li><img src="image/nature.jpg" alt=""></li> 
-							<li><img src="image/space.jpg" alt=""></li> 
 						</ul> 
 						<p class="controller"> 
 							<!-- &lang: 왼쪽 방향 화살표 &rang: 오른쪽 방향 화살표 --> 
