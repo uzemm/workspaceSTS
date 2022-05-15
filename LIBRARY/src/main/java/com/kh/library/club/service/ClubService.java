@@ -89,6 +89,18 @@ public interface ClubService {
 	//클럽 이미지코드
 	int selectNextClubImgCode();
 	
+	//클럽코드
+	String selectNextClubCode();
+	
+	//책 표지 수정
+	void updateClubImage(ClubImageVO vo);
+	
+	//수정 시 기존 표지 유지할 때 사용 
+	String selectCbAtName(String clubCode);	
+	
+	//공지사항 조회
+	List<ClubBoardVO> selectNoticBoardList(ClubBoardVO clubBoardVO);
+	
 	/////////////////////////알림함/////////////////////////////
 	
 	//알림 갯수

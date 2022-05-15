@@ -18,8 +18,8 @@ DELETE BOOK_CLUB
 WHERE CLUB_CODE = 'CLUB_001';
 update book_member
 set
-club_code = 'CLUB_001'
-where mem_id = 'java1';
+club_admin = 'N'
+where mem_id = 'java2';
 
 select count(msg_code)
 from message

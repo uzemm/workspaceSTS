@@ -9,7 +9,6 @@
 	/* hs-write-form 작성폼 */
    .hs-write-form{
       display: flex;
-      text-align: center;
        flex-direction: column;
        justify-content: center;
    
@@ -58,24 +57,35 @@
    .hs-write-form-bottom button{
       margin-right: 2px;
    }
+    .clubDate{
+	   	margin-bottom: 5px;
+	   	margin-top: 5px;
+   }
+   .club-info{
+	   	margin-top: 5px;
+   }
 </style>
 </head>
 <body>
-<div class="row">
-	<div class="col-4"></div>
-	<div class="col-4">
-		<div class="hs-write-form">
-			<form action="/club/clubDetailUpdate" method="post">
-				<input type="hidden" name="clubCode" value="${club.clubCode }">
-				<div><input type="text" name="clubName" value="${club.clubName }" placeholder="북클럽명"></div>
-				<div><input type="text" name="clubHeadCnt" value="${club.clubHeadCnt }" placeholder="인원"></div>
-				<div class="hs-write-form-bottom">
-					<textarea rows="10" cols="50" name="clubIntro" onkeyup="byteCheck(this, '500');" placeholder="북클럽 소개말">${club.clubIntro }</textarea>
-				</div>
-					<div style="text-align: right;"><span id="byteInfo">0</span> /500bytes</div>
-					<button type="submit" class="btn btn-success">수정 완료</button>
-			</form>
-		</div>
+<div class="container">
+	<div class="hs-write-form">
+		<form action="/club/clubDetailUpdate" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="clubCode" value="${club.clubCode }">
+			<div><input type="text" name="clubName" value="${club.clubName }" placeholder="북클럽명"></div>
+			<div><input type="text" name="clubHeadCnt" value="${club.clubHeadCnt }" placeholder="인원"></div>
+			<div><input type="text" name="clubPlace" value="${club.clubPlace }" placeholder="모임 장소"></div>
+			<div><input type="text" name="clubIntro" value="${club.clubIntro }" placeholder="한줄소개"></div>
+			<div class="club-info">
+				첫모임 시작일 :
+				<input type="date" class="clubDate form-control" name="clubDate" value="${club.clubDate }">
+			</div>
+			<input type="file" class="form-control" id="cbAtName" name="file">
+			<div class="hs-write-form-bottom">
+				<textarea rows="10" cols="50" name="clubInfo" onkeyup="byteCheck(this, '500');" placeholder="북클럽 소개말">${club.clubInfo }</textarea>
+			</div>
+				<div style="text-align: right;"><span id="byteInfo">0</span> /500bytes</div>
+				<button type="submit" class="btn btn-success">수정 완료</button>
+		</form>
 	</div>
 </div>
 <script type="text/javascript" src="/resources/js/club/club_detail_update.js"></script>

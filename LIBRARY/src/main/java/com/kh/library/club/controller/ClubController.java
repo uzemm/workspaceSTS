@@ -76,8 +76,11 @@ public class ClubController {
 	public String clubCreate(ClubVO clubVO, MultipartHttpServletRequest multi) {
 		
 		//이미지 저장 공간
-	      int nextcbImgCode = clubService.selectNextClubImgCode();
-	      
+		String nextClubCode = clubService.selectNextClubCode();
+	    int nextcbImgCode = clubService.selectNextClubImgCode();
+	    
+	    clubVO.setClubCode(nextClubCode);
+	    
 	      MultipartFile file = multi.getFile("file");
 	      if(!file.getOriginalFilename().equals("")) {
 	    	  String uploadPath = "D:\\Git\\workspaceSTS\\LIBRARY\\src\\main\\webapp\\resources\\images\\club\\";
@@ -134,6 +137,8 @@ public class ClubController {
 		model.addAttribute("boardList", clubService.selectClubBoardList(clubBoardVO));
 		//클럽 회원리스트
 		model.addAttribute("memList", clubService.selectClubMemberList(memberVO));
+		//공지사항 조회
+		model.addAttribute("noticeList", clubService.selectNoticBoardList(clubBoardVO));
 		
 		return "club/club_detail";
 	}
@@ -146,9 +151,37 @@ public class ClubController {
 	}
 	//북클럽 수정
 	@PostMapping("/clubDetailUpdate")
-	public String clubDetailUpdate(ClubVO clubVO, Model model, String clubCode, RedirectAttributes redirectAttributes) {
+	public String clubDetailUpdate(ClubVO clubVO, Model model, RedirectAttributes redirectAttributes, MultipartHttpServletRequest multi) {
+		MultipartFile file = multi.getFile("file");
+		
+	    if(!file.getOriginalFilename().equals("")) {
+    	  String uploadPath = "D:\\Git\\workspaceSTS\\LIBRARY\\src\\main\\webapp\\resources\\images\\club\\";
+    	  
+    	  try {
+    		  
+    		  String cbOriginName = file.getOriginalFilename();
+    		  String cbAtName = System.currentTimeMillis()+"_"+file.getOriginalFilename();
+    		  file.transferTo(new File(uploadPath+cbAtName));
+    		  ClubImageVO vo = new ClubImageVO();
+    		  vo.setCbOriginName(cbOriginName);
+    		  vo.setCbAtName(cbAtName);
+    		  vo.setClubCode(clubVO.getClubCode());
+    		  clubService.updateClubImage(vo);
+    		  
+    		  clubVO.setCbAtName(cbAtName);
+		      
+    			  } catch(IllegalStateException e) {
+    				  e.printStackTrace();
+    			  } catch(IOException e) {
+    				  e.printStackTrace();
+    			  }
+    		  }
+	    else if(file.getOriginalFilename().equals("")) {
+	    	clubVO.setCbAtName(clubService.selectCbAtName(clubVO.getClubCode()));
+	    }
+		
 		clubService.updateClubDetail(clubVO);
-		redirectAttributes.addAttribute("clubCode", clubCode);
+		redirectAttributes.addAttribute("clubCode", clubVO.getClubCode());
 		return "redirect:/club/clubDetail";
 	}
 	//북클럽게시판 글쓰기 페이지 이동

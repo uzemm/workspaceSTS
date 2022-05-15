@@ -12,7 +12,6 @@ table tr td:nth-child(odd){
 }
 /* hs-write-form 작성폼 */
    .hs-write-form{
-      text-align: center;
       flex-direction: column; 
       justify-content: center;
    
@@ -32,7 +31,7 @@ table tr td:nth-child(odd){
       border-bottom: 1px solid #16784B;
    }
    .hs-write-form-bottom textarea{
-   	  width: 100%
+   	  width: 100%;
       margin: 1rem auto;
       padding: 5px;
       border: 1px solid #d4d4d4;
@@ -52,6 +51,13 @@ table tr td:nth-child(odd){
    .byteSpan{
 	  margin-left: 350px;
 	  font-size: 14px;
+   }
+   .clubDate{
+	   	margin-bottom: 5px;
+	   	margin-top: 5px;
+   }
+   .club-info{
+	   	margin-top: 5px;
    }
 </style>
 </head>
@@ -73,13 +79,13 @@ table tr td:nth-child(odd){
 							<input type="text" name="clubPlace" placeholder="모임 장소">
 						</div>
 						<div>
-							첫모임 시작일 : <input type="date" name="clubDate">
-						</div>
-						<div>
-							<input type="file" class="form-control" id="clubImage" name="clubImage">
-						</div>
-						<div>
 							<input type="text" name="clubIntro" placeholder="한줄소개">
+						</div>
+						<div class="club-info">
+							첫모임 시작일 : <input type="date" class="clubDate form-control" name="clubDate">
+						</div>
+						<div>
+							<input type="file" class="form-control" id="cbAtName" name="file">
 						</div>
 					</div>
 					<div class="hs-write-form-bottom">

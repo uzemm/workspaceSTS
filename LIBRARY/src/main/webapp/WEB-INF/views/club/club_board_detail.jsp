@@ -38,6 +38,7 @@
 .board-content{
 	margin-top: 100px; 
 	margin-bottom: 100px;
+	white-space:pre-line;
 }
 .delete-btn{
 	color:#dc3545;
@@ -85,6 +86,7 @@
 </style>
 </head>
 <body>
+<div class="container">
 <div class="row">
 	<div class="col-4"></div>
 	<div class="boardDiv col-4 text-left" >
@@ -99,7 +101,7 @@
 			</div>
 		</div>
 		<hr>
-		<div class="board-content"><pre>${clubBoard.cbBoardContent }</pre></div>
+		<div class="board-content">${clubBoard.cbBoardContent }</div>
 		<hr>
 		<div class="col-12 d-grid gap-2 d-md-flex justify-content-md-end">
 			<button type="button" class="board-btn btn justify-content-md-end" onclick="location.href='/club/clubDetail?clubCode=${clubBoard.clubCode}'">목록</button>
@@ -163,6 +165,7 @@
 			</c:forEach>
 		</div>
 	</div>
+</div>
 </div>
 <script type="text/javascript" src="/resources/js/club/club_board_detail.js?ver=9"></script>
 </body>

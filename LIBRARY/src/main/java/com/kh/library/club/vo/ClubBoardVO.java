@@ -16,6 +16,7 @@ public class ClubBoardVO extends PageVO{
 	private int rowNum;
 	private int cbReadCnt;
 	private String memImage;
+	private int cbPin;
 	
 	public String getCbBoardNum() {
 		return cbBoardNum;
@@ -94,6 +95,12 @@ public class ClubBoardVO extends PageVO{
 	}
 	public void setMemImage(String memImage) {
 		this.memImage = memImage;
+	}
+	public int getCbPin() {
+		return cbPin;
+	}
+	public void setCbPin(int cbPin) {
+		this.cbPin = cbPin;
 	}
 	
 }

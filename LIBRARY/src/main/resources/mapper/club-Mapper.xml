@@ -33,6 +33,7 @@
 		<result column="ROW_NUM" 			property="rowNum"/>
 		<result column="CB_READ_CNT" 		property="cbReadCnt"/>
 		<result column="MEM_IMAGE" 			property="memImage"/>
+		<result column="CB_PIN" 			property="cbPin"/>
 	</resultMap>
 	
 	<resultMap type="com.kh.library.club.vo.ClubBoardCmtVO" id="cmt">
@@ -62,6 +63,32 @@
 		<result column="CLUB_CODE" 			property="clubCode"/>
 	</resultMap>
 	
+	<!-- 이미지 코드 숫자 -->
+	<select id="selectNextClubImgCode" resultType="int">
+		SELECT NVL(MAX(TO_NUMBER(CB_IMG_CODE)),0)+1
+		FROM BOOK_CLUB_IMAGE
+	</select>
+	
+	<!-- 클럽이미지 첨부 -->
+	<insert id="inserClubImg">
+		INSERT INTO BOOK_CLUB_IMAGE (
+			CB_IMG_CODE
+			, CB_ORIGIN_NAME
+			, CB_AT_NAME
+			, CLUB_CODE
+		) VALUES (
+			 #{cbImgCode}
+			,#{cbOriginName}
+			,#{cbAtName}
+			,#{clubCode}
+		)		
+	</insert>
+	
+	<!--클럽코드 -->
+	<select id="selectNextClubCode" resultType="String">
+		SELECT 'CLUB_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(CLUB_CODE, 6))), 0) + 1, 3, 0)
+		FROM BOOK_CLUB
+	</select>
 	
 	<!-- 클럽생성 -->
 	<insert id="insertClubCreate">
@@ -77,7 +104,7 @@
 		    , CLUB_INFO
 		    , CB_AT_NAME
 		) VALUES (
-		    (SELECT 'CLUB_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(CLUB_CODE, 6))), 0) + 1, 3, 0) AS CLUB_CODE FROM BOOK_CLUB)
+		    #{clubCode}
 		    , #{clubName}
 		    , #{clubHeadCnt}
 		    , #{clubIntro}
@@ -136,9 +163,9 @@
 				    , MEM_NAME
 				    , (SELECT COUNT(MEM_ID)
 				    	FROM BOOK_MEMBER 
-				    	WHERE CLUB_CODE = BOOK_CLUB.CLUB_CODE) AS CLUB_NUMBER_PEOPLE
+				    	WHERE CLUB_CODE = B.CLUB_CODE) AS CLUB_NUMBER_PEOPLE
 				    , CLUB_PLACE
-				    , CB_AT_NAME
+				    , I.CB_AT_NAME
 				FROM BOOK_CLUB B, BOOK_CLUB_IMAGE I
 				WHERE B.CLUB_CODE = I.CLUB_CODE
 		        <if test="keyword != null and !keyword.equals('')">
@@ -156,16 +183,31 @@
 		    , CLUB_NAME
 		    , CLUB_HEAD_CNT
 		    , CLUB_INTRO
-		    , CLUB_DATE 
+		    , TO_CHAR(CLUB_DATE, 'MM/DD(DY)') AS CLUB_DATE
 		    , MEM_ID
 		    , MEM_NAME
-		    , (SELECT COUNT(MEM_ID)
-	    	  FROM BOOK_MEMBER 
-	    	  WHERE CLUB_CODE = BOOK_CLUB.CLUB_CODE) AS CLUB_NUMBER_PEOPLE
+		    , CLUB_NUMBER_PEOPLE
 	    	, CLUB_INFO
 	    	, CLUB_PLACE
-		FROM BOOK_CLUB
-		WHERE CLUB_CODE = #{clubCode}
+	    	, CB_AT_NAME
+		FROM
+		(
+			SELECT CLUB_CODE
+			    , CLUB_NAME
+			    , CLUB_HEAD_CNT
+			    , CLUB_INTRO
+			    , TO_DATE(CLUB_DATE, 'YYYY-MM-DD') AS CLUB_DATE
+			    , MEM_ID
+			    , MEM_NAME
+			    , (SELECT COUNT(MEM_ID)
+		    	  FROM BOOK_MEMBER 
+		    	  WHERE CLUB_CODE = BOOK_CLUB.CLUB_CODE) AS CLUB_NUMBER_PEOPLE
+		    	, CLUB_INFO
+		    	, CLUB_PLACE
+		    	, CB_AT_NAME
+			FROM BOOK_CLUB
+			WHERE CLUB_CODE = #{clubCode}
+		)
 	</select>
 	
 	<!-- 북클럽 내용 수정 -->
@@ -175,8 +217,26 @@
 		CLUB_NAME = #{clubName}
 		, CLUB_HEAD_CNT = #{clubHeadCnt}
 		, CLUB_INTRO = #{clubIntro}
+		, CLUB_INFO = #{clubInfo}
+		, CLUB_DATE = #{clubDate}
+		, CB_AT_NAME = #{cbAtName}
 		WHERE CLUB_CODE = #{clubCode}
 	</update>
+	
+	<!-- 이미지 업데이트 -->
+   <update id="updateClubImage">
+      UPDATE BOOK_CLUB_IMAGE
+      SET CB_ORIGIN_NAME = #{cbOriginName}
+         , CB_AT_NAME = #{cbAtName}
+      WHERE CLUB_CODE = #{clubCode}
+   </update>
+   
+   <!-- 수정 안 하면 원래 이미지 셀렉 -->
+   <select id="selectCbAtName" resultType="String">
+      SELECT CB_AT_NAME
+      FROM BOOK_CLUB_IMAGE
+      WHERE CLUB_CODE = #{clubCode}
+   </select>
 	
 	<!-- 북클럽 게시판 글쓰기 -->
 	<insert id="insertClubBoard">
@@ -188,6 +248,7 @@
 			, MEM_ID
 			, MEM_NAME
 			, MEM_IMAGE
+			, CB_PIN
 		) VALUES (
 			(SELECT 'CB_BOARD_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(CB_BOARD_NUM, 10))), 0) + 1, 3, 0) AS CB_BOARD_NUM FROM BOOK_CLUB_BOARD)
 			, #{cbBoardTitle}
@@ -196,6 +257,7 @@
 			, #{memId}
 			, #{memName}
 			, #{memImage}
+			, #{cbPin}
 		)
 	</insert>
 	
@@ -225,7 +287,7 @@
 		    (
 		        SELECT CB_BOARD_NUM
 		            , CB_BOARD_TITLE
-		            , TO_CHAR(CB_BOARD_DATE, 'YYYY-MM-DD') AS CB_BOARD_DATE
+		            , TO_CHAR(CB_BOARD_DATE, 'YYYY.MM.DD') AS CB_BOARD_DATE
 		            , MEM_ID
 		            , CLUB_CODE
 		            , MEM_NAME
@@ -242,6 +304,23 @@
 		    )
 		)
 		WHERE ROW_NUM &gt; = #{startNum} AND ROW_NUM &lt; =  #{endNum}
+	</select>
+	
+	<!-- 공지사항 조회 -->
+	<select id="selectNoticBoardList" resultMap="boardInfo">
+		SELECT CB_BOARD_NUM
+	        , CB_BOARD_TITLE
+	        , TO_CHAR(CB_BOARD_DATE, 'YYYY.MM.DD') AS CB_BOARD_DATE
+	        , MEM_ID
+	        , CLUB_CODE
+	        , MEM_NAME
+	        , (SELECT COUNT(CB_CMT_NUM)
+				FROM BOOK_CLUB_BOARD_COMMENT
+				WHERE CB_BOARD_NUM = BOOK_CLUB_BOARD.CB_BOARD_NUM) AS CB_CMT_COUNT
+	        , CB_READ_CNT
+		FROM BOOK_CLUB_BOARD
+		WHERE CLUB_CODE = #{clubCode}
+		AND CB_PIN = 1
 	</select>
 	
 	<!-- 북클럽 게시글 검색 -->
@@ -431,26 +510,7 @@
 		AND to_char(LAST_DAY(LOCALTIMESTAMP),'yyyy/mm/dd') &gt;= COMPLIT_DATE
 	</select>
 	
-	<!-- 이미지 코드 숫자 -->
-	<select id="selectNextClubImgCode" resultType="int">
-		SELECT NVL(MAX(TO_NUMBER(CB_IMG_CODE)),0)+1
-		FROM BOOK_CLUB_IMAGE
-	</select>
-	
-	<!-- 클럽이미지 첨부 -->
-	<insert id="inserClubImg">
-		INSERT INTO BOOK_CLUB_IMAGE (
-			, CB_IMG_CODE
-			, CB_ORIGIN_NAME
-			, CB_AT_NAME
-			, CLUB_CODE
-		) VALUES (
-			 #{cbImgCode}
-			,#{cbOriginName}
-			,#{cbAtName}
-			,#{clubCode}
-		)		
-	</insert>
+
 
 	<!-- ///////////////////// 북클럽 관리 ///////////////////////////// -->
 	<!-- 신청회원 리스트 -->

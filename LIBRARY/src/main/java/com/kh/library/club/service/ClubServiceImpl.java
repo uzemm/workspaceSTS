@@ -24,7 +24,7 @@ public class ClubServiceImpl implements ClubService {
 	@Transactional(rollbackFor = Exception.class)
 	public void insertUpdateClubCreate(ClubVO clubVO, ClubImageVO clubImageVO) {
 		sqlSession.insert("clubMapper.insertClubCreate", clubVO);
-		sqlSession.insert("clubMappper.inserClubImg", clubImageVO);
+		sqlSession.insert("clubMapper.inserClubImg", clubImageVO);
 		sqlSession.update("clubMapper.updateClubAdmin", clubVO);
 	}	
 	
@@ -167,6 +167,27 @@ public class ClubServiceImpl implements ClubService {
 	@Override
 	public int selectNextClubImgCode() {
 		return sqlSession.selectOne("clubMapper.selectNextClubImgCode");
+	}
+
+	@Override
+	public String selectNextClubCode() {
+		return sqlSession.selectOne("clubMapper.selectNextClubCode");
+	}
+
+	@Override
+	public void updateClubImage(ClubImageVO vo) {
+		sqlSession.update("clubMapper.updateClubImage", vo);
+	}
+
+	@Override
+	public String selectCbAtName(String clubCode) {
+		return sqlSession.selectOne("clubMapper.selectCbAtName", clubCode);
+	}
+
+	//공지사항 조회
+	@Override
+	public List<ClubBoardVO> selectNoticBoardList(ClubBoardVO clubBoardVO) {
+		return sqlSession.selectList("clubMapper.selectNoticBoardList", clubBoardVO);
 	}
 
 }
