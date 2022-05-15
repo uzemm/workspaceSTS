@@ -256,6 +256,9 @@ details{
 				</div>
 				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 					<a href="#" class="join-btn btn" onclick="clubJoin('${club.clubCode}','${clubApplyCode }');">신청하기</a>
+					<input type="hidden" id="memId" value="${sessionScope.loginInfo.memId }">
+					<input type="hidden" id="clubAdmin" value="${sessionScope.loginInfo.clubAdmin }">
+					<input type="hidden" id="clubCode" value="${sessionScope.loginInfo.clubCode }">
 				</div>
 				<table class="board-table table table-hover table-border text-center">
 				<colgroup>
@@ -274,26 +277,26 @@ details{
 					</tr>
 					</thead>
 					<tbody>
-					<c:forEach items="${noticeList }" var="notic">
+					<c:forEach items="${noticeList }" var="notice">
 						<tr class="notic-tr">
 							<th><button type="button" class="btn btn-danger btn-sm">공지</button></th>
 							<c:choose>
-								<c:when test="${sessionScope.loginInfo.clubCode eq notic.clubCode }">
+								<c:when test="${(sessionScope.loginInfo.clubCode eq notice.clubCode) || (sessionScope.loginInfo.clubAdmin eq 'Y')}">
 									<th>
-										<a href="/club/clubBoardDetail?cbBoardNum=${notic.cbBoardNum }&&clubCode=${notic.clubCode}">
-											${notic.cbBoardTitle } (${notic.cbCmtCount })
+										<a href="/club/clubBoardDetail?cbBoardNum=${notice.cbBoardNum }&&clubCode=${notice.clubCode}">
+											${notice.cbBoardTitle } (${notice.cbCmtCount })
 											</a>
 									</th>
 								</c:when>
 								<c:otherwise>
 									<th>
-										<a href="" onclick="cbDetail();">${notic.cbBoardTitle } (${notic.cbCmtCount })</a>
+										<a href="" onclick="cbDetail();">${notice.cbBoardTitle } (${notice.cbCmtCount })</a>
 									</th>
 								</c:otherwise>
 							</c:choose>
-							<th>${notic.memName }</th>
-							<th>${notic.cbBoardDate }</th>
-							<th>${notic.cbReadCnt }</th>
+							<th>${notice.memName }</th>
+							<th>${notice.cbBoardDate }</th>
+							<th>${notice.cbReadCnt }</th>
 						</tr>
 					</c:forEach>
 					<c:choose>
@@ -302,7 +305,7 @@ details{
 								<tr>
 									<td>${clubBoardVO.totalCnt - boardInfo.rowNum + 1 }</td>
 									<c:choose>
-										<c:when test="${sessionScope.loginInfo.clubCode eq boardInfo.clubCode }">
+										<c:when test="${sessionScope.loginInfo.clubCode eq boardInfo.clubCode || (sessionScope.loginInfo.clubAdmin eq 'Y')}">
 											<td><a href="/club/clubBoardDetail?cbBoardNum=${boardInfo.cbBoardNum }&&clubCode=${boardInfo.clubCode}">${boardInfo.cbBoardTitle } (${boardInfo.cbCmtCount })</a></td>
 										</c:when>
 										<c:otherwise>

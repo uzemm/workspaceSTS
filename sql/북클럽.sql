@@ -14,12 +14,15 @@ select * from reserve;
 SELECT * FROM BOOK_COMPLIT;
 SELECT * FROM BOOK_IMAGE;
 
+select * from book_club_board
+where cb_pin = 1;
+
 DELETE BOOK_CLUB
 WHERE CLUB_CODE = 'CLUB_001';
 update book_member
 set
 club_admin = 'N'
-where mem_id = 'java2';
+where mem_id = 'java3';
 
 select count(msg_code)
 from message

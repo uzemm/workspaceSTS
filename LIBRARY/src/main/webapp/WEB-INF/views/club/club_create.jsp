@@ -73,7 +73,7 @@ table tr td:nth-child(odd){
 							<input type="text" name="clubName" placeholder="북클럽 이름">
 						</div>
 						<div>
-							<input type="text" name="clubHeadCnt" placeholder="인원">
+							<input type="number" name="clubHeadCnt" placeholder="인원" min="3" max="10">
 						</div>
 						<div>
 							<input type="text" name="clubPlace" placeholder="모임 장소">

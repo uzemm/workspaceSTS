@@ -127,7 +127,7 @@ public class ClubController {
 	}
 	//북클럽 상세조회 + 검색
 	@RequestMapping("/clubDetail")
-	public String clubDetail(Model model, String clubCode, MemberVO memberVO, PageVO pageVO, ClubBoardVO clubBoardVO) {
+	public String clubDetail(Model model, String clubCode, MemberVO memberVO, ClubBoardVO clubBoardVO, HttpSession session) {
 		
 		//-----------------페이징 정보 세팅
 		//1.전체 데이터의 개수 조회
@@ -145,6 +145,12 @@ public class ClubController {
 		model.addAttribute("memList", clubService.selectClubMemberList(memberVO));
 		//공지사항 조회
 		model.addAttribute("noticeList", clubService.selectNoticBoardList(clubBoardVO));
+	
+		
+		if(session.getAttribute("loginInfo") != null) {
+			String memId = ((MemberVO)(session.getAttribute("loginInfo"))).getMemId();
+			model.addAttribute("clubApplyCode", clubService.selectClubApplyCode(memId));
+		}
 		
 		return "club/club_detail";
 	}

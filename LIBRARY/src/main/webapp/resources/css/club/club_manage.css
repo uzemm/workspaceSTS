@@ -64,3 +64,16 @@ h6{
 ul{
 	margin-top: 20px;
 }
+.subTit {
+    border-bottom: 1px solid #dddddd;
+    padding: 15px 0px 15px 0px;
+    margin: 0 auto; 
+    margin-bottom: 50px;
+}
+
+.subTit .line_map {
+    float: right;
+    width: 45%;
+    font-size: 12px;
+    text-align: right;
+}

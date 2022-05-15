@@ -53,11 +53,18 @@
 .reg-cmt{
 	margin-top: 5px; 
 	margin-bottom: 10px;
+	color: white;
+    background-color: #72a37c;
+    border-color: #72a37c;
+}
+.reg-cmt:hover{
+	background-color: #427a4e;
 }
 .cmt-img{
 	width: 37px; 
 	height: 37px; 
 	border-radius: 70%;
+	
 }
 .cmt-content{
 	margin-top: 20px; 
@@ -88,14 +95,13 @@
 <body>
 <div class="container">
 <div class="row">
-	<div class="col-4"></div>
-	<div class="boardDiv col-4 text-left" >
+	<div class="boardDiv col-8 text-left" >
 		<div class="board-title">${clubBoard.cbBoardTitle } </div>
 		<div class="row">
 			<div class="col-1">
 				<img class="board-img" src="/resources/images/member/${clubBoard.memImage }">
 			</div>
-			<div class="board-info col-4 fw-bold">
+			<div class="board-info col-8 fw-bold">
 				<span class="board-name">${clubBoard.memName } </span><br>
 				<span class="board-date">${clubBoard.cbBoardDate } 조회 ${clubBoard.cbReadCnt }</span>
 			</div>
@@ -116,8 +122,7 @@
 </div>
 
 <div class="row">
-	<div class="col-4"></div>
-	<div class="col-4">
+	<div class="col-8">
 		<div class="mb-3">
 			<label for="exampleFormControlTextarea1" class="form-label"><span class="cmt-cnt">${clubBoard.cbCmtCount }</span>개의 댓글</label>
 			<form action="/club/clubBoardRegCmt" method="post" id="cbRegCmt">
@@ -136,16 +141,15 @@
 </div>
 
 <div class="row" >
-	<div class="col-4"></div>
-	<div class="col-4">
+	<div class="col-8">
 			<div class="row">
 			<c:forEach items="${cbCmtList }" var="cmt">
 				<div class="col-1"><img class="cmt-img" src="/resources/images/member/${cmt.memImage }" ></div>
-					<div class="col-4 fw-bold">
+					<div class="col-8 fw-bold">
 						<span class="board-name">${cmt.memName }</span><br>
 						<span class="board-date">${cmt.cbCmtDate }</span>
 					</div>
-			<div class="cmt-content col-12" >
+			<div class="cmt-content col-8" >
 				<form action="/club/clubCmtUpdate" method="post">
 				<input type="hidden" name="memId" value="${sessionScope.loginInfo.memId }">
 					${cmt.cbCmtContent }

@@ -10,6 +10,10 @@
 </head>
 <body>
 <div class="container">
+	<div class="subTit" >
+		<div class="line_map">홈 > 북클럽 > 북클럽 관리</div>
+		<h2>북클럽 관리</h2>
+	</div>
 <div class="row">
 	<div class="col-8">
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
