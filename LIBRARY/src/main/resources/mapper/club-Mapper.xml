@@ -54,6 +54,7 @@
 		<result column="MEM_NAME" 			property="memName"/>
 		<result column="CLUB_APPLY_DATE" 	property="clubApplyDate"/>
 		<result column="CLUB_NAME" 			property="clubName"/>
+		<result column="MEM_IMAGE" 			property="memImage"/>
 	</resultMap>
 	
 	<resultMap type="com.kh.library.club.vo.ClubImageVO" id="cbImg">
@@ -440,12 +441,14 @@
 			, CLUB_NAME
 			, MEM_ID
 			, MEM_NAME
+			, MEM_IMAGE
 		) VALUES (
 			(SELECT 'APPLY_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(CLUB_APPLY_CODE, 7))), 0) + 1, 3, 0) AS CLUB_APPLY_CODE FROM BOOK_CLUB_APPLY)
 			, #{clubCode}
 			, #{clubName}
 			, #{memId}
 			, #{memName}
+			, #{memImage}
 		)
 	</insert>
 	
@@ -519,6 +522,7 @@
 			, CLUB_CODE
 			, MEM_ID
 			, MEM_NAME
+			, MEM_IMAGE
 		FROM BOOK_CLUB_APPLY
 		WHERE CLUB_CODE = #{clubCode}
 		ORDER BY CLUB_APPLY_CODE

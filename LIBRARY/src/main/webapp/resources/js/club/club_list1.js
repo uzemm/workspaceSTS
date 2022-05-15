@@ -7,12 +7,12 @@ function createClub(){
 		alert('로그인이 필요합니다.');
 		location.href = '/member/login';
 	}
-/*	else if(clubAdmin == 'Y'){
+	else if(clubAdmin == 'Y'){
 		alert('이미 모임을 생성 하였습니다.')
 	}
 	else if(clubApplyCode != ''){
 		alert('이미 신청한 모임이 존재합니다.')
-	}*/
+	}
 	else{
 		location.href = '/club/clubCreate';
 	}

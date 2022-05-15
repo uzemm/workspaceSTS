@@ -41,6 +41,7 @@
 		<input type="hidden" name="clubName" value="${club.clubName }">
 		<input type="hidden" name="memId" value="${sessionScope.loginInfo.memId }">
 		<input type="hidden" name="memName" value="${sessionScope.loginInfo.memName }">
+		<input type="hidden" name="memImage" value="${sessionScope.loginInfo.memImage }">
 		
 		<input type="button" class="btn btn-success" value="가입하기" onclick="clubJoin();">
 		<input type="button" class="btn btn-success" value="뒤로가기" onclick="history.back();">

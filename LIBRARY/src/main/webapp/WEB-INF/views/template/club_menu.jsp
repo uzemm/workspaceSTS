@@ -17,7 +17,7 @@
 				<td><a href="#">북클럽</a></td>
 			</tr>
 			<tr>
-				<td><a href='#'>북클럽 이용안내</a></td>
+				<td><a href='/club/clubInfo'>북클럽 이용안내</a></td>
 			</tr>
 			
 			<tr>

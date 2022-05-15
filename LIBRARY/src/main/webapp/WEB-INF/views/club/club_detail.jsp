@@ -181,6 +181,16 @@ details{
 	background-color: #ffa900;
 	color: white;
 }
+.book-btn{
+	border-color: #ffa900;
+	color: #ffa900;
+	background-color: white;
+}
+.book-btn:hover{
+	color: white;
+	background-color: #ffa900;
+	border-color: #ffa900;
+}
 </style>
 </head>
 <body>
@@ -194,7 +204,7 @@ details{
 				<div class="month-book col-3">
 					5월의 책
 					<c:if test="${sessionScope.loginInfo.clubAdmin eq 'Y' }">
-						<button type="button" class="btn btn-success btn-sm">Success</button>
+						<button type="button" class="book-btn btn btn-success btn-sm">Success</button>
 					</c:if>
 					<div class="book-bg">
 						<div>
@@ -210,7 +220,7 @@ details{
 						<div>
 							<div class="club-name">모임 인원</div><div class="club-1">${club.clubNumberPeople} / ${club.clubHeadCnt }&nbsp;&nbsp;&nbsp;&nbsp;</div>
 							<div class="dropdown">
-							멤버목록<a href="#" class="px-2" id="triggerId3" data-bs-toggle="dropdown" aria-expanded="false">click
+								<a href="#" class="px-2" id="triggerId3" data-bs-toggle="dropdown" aria-expanded="false">click
 							</a>
 								<div class="dropdown-menu" aria-labelledby="triggerId3">
 									<table class="memListT table table-hover">
@@ -230,10 +240,10 @@ details{
 							<div class="club-name">모임 장소</div><div class="club-1">${club.clubPlace }</div>
 						</div>
 						<div>
-							<div class="club-name">모임 일정</div><div class="club-1">${club.clubDate }</div>
+							<div class="club-name">모임 일정</div><div class="club-1">첫모임 ${club.clubDate }</div>
 						</div>
 						<div>
-							<div class="club-name">독후감&nbsp;&nbsp;&nbsp;&nbsp;</div><div class="club-1">매 모임 2일 전까지 클럽 모임 페이지에 제출 | 최소 글자수 400자</div>
+							<div class="club-name">독후감&nbsp;&nbsp;&nbsp;&nbsp;</div><div class="club-1">매 모임 2일 전까지 클럽 게시판에 제출 | 최소 글자수 400자</div>
 						</div>
 					</div>
 			</div>
@@ -360,13 +370,15 @@ details{
 				</div>
 			</div>
 			<div class="col-3">
+				5월 독서 랭킹
 				<table class="table table-hover">
-					<c:forEach items="${memList }" var="mem" >
+					<c:forEach items="${memList }" var="mem" varStatus="status">
 						<tr>
 							<td>
+								${status.index + 1 }
 								<div class="user-info__img"><img alt="" src="/resources/images/member/${mem.memImage }" >
 									${mem.memName }
-									${mem.bookComplitCnt }
+									${mem.bookComplitCnt }권
 								</div>
 							</td>
 						</tr>

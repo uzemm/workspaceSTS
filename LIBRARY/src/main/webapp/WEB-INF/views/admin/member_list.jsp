@@ -85,9 +85,9 @@
 <body>
 <div class="container">
 	<div class="row">
-		<div class="col-12">
+		<div class="col-10">
 			<div class="row">
-				<div class="col-6">
+				<div class="col-4">
 					<form action="/admin/memberManage" method="post" id="search-form">
 						<input type="hidden" value="1" id="nowPage" name="nowPage">
 						<div class="input-group mb-3">
@@ -152,26 +152,22 @@
 			  		</c:choose>
 			  </tbody>
 			</table>
-			<div class="row">
-				<div class="col">
-					<div class="d-grid gap-2 d-md-flex justify-content-center">
-						<nav aria-label="Page navigation example">
-							<ul class="pagination pagination-sm justify-content-center">
-								<li class="page-item <c:if test="${!memberVO.prev }">disabled</c:if>">
-								<a class="page-link" href="/admin/memberManage?nowPage=${clubBoardVO.beginPage - 1 }"
-									aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-								</a></li>
-								<c:forEach begin="${memberVO.beginPage }" end="${memberVO.endPage }" var="pageIndex">
-										<li class="page-item <c:if test="${memberVO.nowPage eq pageIndex }">active</c:if>"><a class="page-link" 
-										href="javascript:search(${pageIndex });">${pageIndex }</a></li>
-									</c:forEach>
-								<li class="page-item <c:if test="${!memberVO.next }">disabled</c:if>"><a class="page-link" href="/club/clubDetail?nowPage=${memberVO.endPage + 1 }"
-									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-								</a></li>
-							</ul>
-						</nav>
-					</div>
-				</div>
+			<div class="d-grid gap-2 d-md-flex justify-content-center">
+				<nav aria-label="Page navigation example">
+					<ul class="pagination pagination-sm">
+						<li class="page-item <c:if test="${!memberVO.prev }">disabled</c:if>">
+						<a class="page-link" href="/admin/memberManage?nowPage=${clubBoardVO.beginPage - 1 }"
+							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+						</a></li>
+						<c:forEach begin="${memberVO.beginPage }" end="${memberVO.endPage }" var="pageIndex">
+								<li class="page-item <c:if test="${memberVO.nowPage eq pageIndex }">active</c:if>"><a class="page-link" 
+								href="javascript:search(${pageIndex });">${pageIndex }</a></li>
+							</c:forEach>
+						<li class="page-item <c:if test="${!memberVO.next }">disabled</c:if>"><a class="page-link" href="/club/clubDetail?nowPage=${memberVO.endPage + 1 }"
+							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+						</a></li>
+					</ul>
+				</nav>
 			</div>
 		</div>
 	</div>

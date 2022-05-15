@@ -40,6 +40,12 @@ public class ClubController {
 	@Resource(name = "messageService")
 	private MessageService messageService;
 	
+	//북클럽 이용안내
+	@GetMapping("/clubInfo")
+	public String clubInfo() {
+		return "club/club_info";
+	}
+	
 	//북클럽 목록 조회
 	@GetMapping("/clubList")
 	public String clubList(Model model, HttpSession session, ClubVO clubVO, MemberVO memberVO) {
@@ -271,6 +277,7 @@ public class ClubController {
 		clubService.insertClubJoin(clubApplyVO);
 		return "redirect:/club/clubList";
 	}
+	
 	
 	//-------------------------알림함--------------------------
 	@GetMapping("/getMsgList")

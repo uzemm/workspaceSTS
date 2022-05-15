@@ -7,6 +7,7 @@ public class ClubApplyVO {
 	private String memName;
 	private String clubApplyDate;
 	private String clubName;
+	private String memImage;
 	
 	public String getClubApplyCode() {
 		return clubApplyCode;
@@ -44,4 +45,11 @@ public class ClubApplyVO {
 	public void setClubName(String clubName) {
 		this.clubName = clubName;
 	}
+	public String getMemImage() {
+		return memImage;
+	}
+	public void setMemImage(String memImage) {
+		this.memImage = memImage;
+	}
+	
 }
