@@ -6,6 +6,7 @@ public class MonthlyBookVO {
 	private String mbWriter;
 	private String mbPublisher;
 	private String clubCode;
+	private String mbThumbnail;
 	
 	public String getMbCode() {
 		return mbCode;
@@ -36,5 +37,11 @@ public class MonthlyBookVO {
 	}
 	public void setClubCode(String clubCode) {
 		this.clubCode = clubCode;
+	}
+	public String getMbThumbnail() {
+		return mbThumbnail;
+	}
+	public void setMbThumbnail(String mbThumbnail) {
+		this.mbThumbnail = mbThumbnail;
 	}
 }

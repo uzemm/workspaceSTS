@@ -149,7 +149,7 @@
 						<span class="board-name">${cmt.memName }</span><br>
 						<span class="board-date">${cmt.cbCmtDate }</span>
 					</div>
-			<div class="cmt-content col-8" >
+			<div class="cmt-content col-12" >
 				<form action="/club/clubCmtUpdate" method="post">
 				<input type="hidden" name="memId" value="${sessionScope.loginInfo.memId }">
 					${cmt.cbCmtContent }

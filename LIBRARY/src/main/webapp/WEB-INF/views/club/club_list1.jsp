@@ -101,7 +101,6 @@
 	margin-bottom: 15px;
 	font-size: 18px;
 	font-weight: bold;
-	margin-top: 20px;
 }
 .card-subtitle{
 	color: #6c757d;

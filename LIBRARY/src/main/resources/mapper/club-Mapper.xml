@@ -64,6 +64,15 @@
 		<result column="CLUB_CODE" 			property="clubCode"/>
 	</resultMap>
 	
+	<resultMap type="com.kh.library.club.vo.MonthlyBookVO" id="monthly">
+		<id column="MB_CODE" property="mbCode"/>
+		<result column="MB_WRITER" property="mbTitle"/>
+		<result column="MB_PUBLISHER" property="mbWriter"/>
+		<result column="MB_THUMBNAIL" property="mbPublisher"/>
+		<result column="CLUB_CODE" property="mbThumbnail"/>
+	
+	</resultMap>
+	
 	<!-- 이미지 코드 숫자 -->
 	<select id="selectNextClubImgCode" resultType="int">
 		SELECT NVL(MAX(TO_NUMBER(CB_IMG_CODE)),0)+1
@@ -582,12 +591,14 @@
 			, MB_TITLE
 			, MB_WRITER
 			, MB_PUBLISHER
+			, MB_THUMBNAIL
 			, CLUB_CODE
 		) VALUES (
 			(SELECT 'MB_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(MB_CODE, 4))), 0) + 1, 3, 0) AS MB_CODE FROM MONTHLY_BOOK)
 			, #{mbTitle}
 			, #{mbWriter}
 			, #{mbPublisher}
+			, #{mbThumbnail}
 			, #{clubCode}
 		)
 	</insert>
@@ -599,8 +610,19 @@
 		MB_TITLE
 		, MB_WRITER
 		, MB_PUBLISHER
+		, MB_THUMBNAIL
 		WHERE CLUB_CODE = #{clubCode}
 	</update>
+	
+	<select id="selectMonthlyBook" resultMap="monthly">
+		SELECT MB_CODE
+			, MB_TITLE
+			, MB_WRITER
+			, MB_PUBLISHER
+			, MB_THUMBNAIL
+		FROM MONTHLY_BOOK		
+		WHERE CLUB_CODE = #{clubCode}
+	</select>
 	
 	<!-- ////////////////////////알림함///////////////////////////// -->	
 	<!-- 알림함 조회 -->

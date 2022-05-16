@@ -26,7 +26,7 @@ h4{
 	margin-top: 10px;
 	margin-bottom: 10px;
 	font-weight: 600;
-	color: rgb(255 121 0);
+	color: #16784B;
 }
 .info-answer{
 	font-weight: 400;

@@ -123,7 +123,7 @@ public class ClubController {
 	      }
 	      
 		
-		return "redirect:/club/clubList";
+		return "redirect:/clubAdmin/monthlyBook?clubCode=" + clubVO.getClubCode();
 	}
 	//북클럽 상세조회 + 검색
 	@RequestMapping("/clubDetail")

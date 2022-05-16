@@ -125,14 +125,28 @@ select{
 	max-height: 800px;
 	width: 800px;
 }
+.subTit {
+    border-bottom: 1px solid #dddddd;
+    padding: 15px 0px 15px 0px;
+    margin: 0 auto; 
+    margin-bottom: 20px;
+}
 </style>
 </head>
 <body>
 <div class="container">
+	<div class="subTit" >
+			  <h2>이달의 독서 관리</h2>
+		</div>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 	   <form action="/clubAdmin/regMonthlyBook" id ="hpBookForm" method="post">
 			<div class="monthlyBookForm">
 				<table class="form">
+				<tr>
+					<td>표지</td>
+					<td><img src="" name="mbThumbnail"></td>
+				</tr>
+				
 				<tr>
 					<td>제목</td>
 					<td><input type="text" name="mbTitle" >

@@ -86,6 +86,7 @@ $(document).ready(function (){
 
 function pickSearch(selected){
 	
+	var thumbnail = selected.childNodes[0].innerText;
 	var title = selected.childNodes[1].innerText;
 	var writer = selected.childNodes[2].innerText;
 	var publisher = selected.childNodes[3].innerText;
@@ -96,6 +97,7 @@ function pickSearch(selected){
 	
 	$('#searchForm').click(function (){
 		
+		$('img[name=mbThumbnail]').attr('src',thumbnail);
 		$('input[name=mbTitle]').attr('value',title);
 		$('input[name=mbWriter]').attr('value',writer);
 		$('input[name=mbPublisher]').attr('value',publisher);

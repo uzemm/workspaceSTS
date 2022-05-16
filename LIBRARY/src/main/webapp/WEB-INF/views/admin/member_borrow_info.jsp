@@ -38,9 +38,9 @@
 	align-items: center;
 }
 .borrow-info{
-	font-size: 18px;
+	font-size: 16px;
 	font-style: italic;
-	font-weight: normal;
+	font-weight: bold;
 	text-decoration:underline;
 }
 .member-info{
