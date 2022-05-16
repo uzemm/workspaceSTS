@@ -13,9 +13,26 @@ select * from book_complit;
 select * from reserve;
 SELECT * FROM BOOK_COMPLIT;
 SELECT * FROM BOOK_IMAGE;
+select * from MONTHLY_BOOK;
+
+update CLUB_MONTHLY_BOOK
+set 
+club_code = 'cl'
+, cm_title = '1'
+, cm_writer = '1'
+, CM_PUBLISHER = '1';
+
+update book_member
+set
+club_admin = 'N'
+where mem_id = 'java8';
 
 select * from book_club_board
 where cb_pin = 1;
+
+SELECT COUNT(COMPLIT_CODE)
+		FROM BOOK_COMPLIT
+		WHERE MEM_ID = #{memId}
 
 DELETE BOOK_CLUB
 WHERE CLUB_CODE = 'CLUB_001';
