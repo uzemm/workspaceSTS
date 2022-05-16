@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.library.admin.vo.MessageVO;
 import com.kh.library.book.vo.BookImgVO;
+import com.kh.library.club.service.ClubAdminService;
 import com.kh.library.club.service.ClubService;
 import com.kh.library.club.service.MessageService;
 import com.kh.library.club.vo.ClubApplyVO;
@@ -36,6 +37,9 @@ import com.kh.library.util.vo.PageVO;
 public class ClubController {
 	@Resource(name = "clubService")
 	private ClubService clubService;
+	
+	@Resource(name = "clubAdminService")
+	private ClubAdminService clubAdminService;
 
 	@Resource(name = "messageService")
 	private MessageService messageService;
@@ -145,6 +149,8 @@ public class ClubController {
 		model.addAttribute("memList", clubService.selectClubMemberList(memberVO));
 		//공지사항 조회
 		model.addAttribute("noticeList", clubService.selectNoticBoardList(clubBoardVO));
+		//이달의책 조회
+		model.addAttribute("monthlyBk", clubAdminService.selectMonthlyBook(clubCode));
 	
 		
 		if(session.getAttribute("loginInfo") != null) {

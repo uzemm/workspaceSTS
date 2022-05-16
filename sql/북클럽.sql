@@ -14,13 +14,14 @@ select * from reserve;
 SELECT * FROM BOOK_COMPLIT;
 SELECT * FROM BOOK_IMAGE;
 select * from MONTHLY_BOOK;
+select * from hope_book;
 
-update CLUB_MONTHLY_BOOK
+delete MONTHLY_BOOK;
+
+update MONTHLY_BOOK
 set 
-club_code = 'cl'
-, cm_title = '1'
-, cm_writer = '1'
-, CM_PUBLISHER = '1';
+club_code = 'CLUB_001'
+WHERE MB_CODE = 'MB_001';
 
 update book_member
 set

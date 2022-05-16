@@ -33,4 +33,7 @@ public interface ClubAdminService {
 	
 	//이달의책 수정
 	void updateMonthlyBook(String clubCode);
+	
+	//이달의책 조회
+	MonthlyBookVO selectMonthlyBook(String clubCode);
 }

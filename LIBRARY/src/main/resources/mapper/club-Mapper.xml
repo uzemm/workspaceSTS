@@ -613,7 +613,7 @@
 		, MB_THUMBNAIL
 		WHERE CLUB_CODE = #{clubCode}
 	</update>
-	
+	<!-- 이달의책 조회 -->
 	<select id="selectMonthlyBook" resultMap="monthly">
 		SELECT MB_CODE
 			, MB_TITLE

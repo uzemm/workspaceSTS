@@ -42,7 +42,7 @@ $(document).ready(function (){
 						for(let i = 0 ; i < 10 ; i++){
 							
 							var authors = bk.documents[i].authors.join();
-							str += '<div class="result-row-tbody1" onclick="pickSearch(this)"><div class="img"><img src="'+bk.documents[i].thumbnail+'"onload="resize(this)" ></div>';
+							str += '<div class="result-row-tbody1" onclick="pickSearch(this)"><div class="img"><img src="'+bk.documents[i].thumbnail+'"onload="resize(this) id="mbThumbnail" ></div>';
 							str += '<div>' + bk.documents[i].title+'</div>';
 							str += '<div>' +authors +'</div>';
 							str += '<div>' + bk.documents[i].publisher+'</div></div>';
@@ -68,7 +68,7 @@ $(document).ready(function (){
 						for(let i = 0 ; i < 10 ; i++){
 							
 							var authors = bk.documents[i].authors.join();
-							str += '<div calss="result-row-tbody2"  onclick="pickSearch(this)" style="border-bottom: 1px solid #dddddd;padding-bottom: 10px;"><div class="img" style="height: 90px;width:25%; display: inline-block;text-align: center;padding-top: 0px;paddin-bottom:20px; "><img src="'+bk.documents[i].thumbnail+'"onload="resize(this)"></div>';
+							str += '<div calss="result-row-tbody2"  onclick="pickSearch(this)" style="border-bottom: 1px solid #dddddd;padding-bottom: 10px;"><div class="img" style="height: 90px;width:25%; display: inline-block;text-align: center;padding-top: 0px;paddin-bottom:20px; "><img src="'+bk.documents[i].thumbnail+'"onload="resize(this)" id="mbThumbnail"></div>';
 							str += '<div style="height: 90px;width:25%; display: inline-block;text-align: center;padding-top: 40px;">' + bk.documents[i].title+'</div>';
 							str += '<div style="height: 90px;width:25%; display: inline-block;text-align: center;padding-top: 40px;">' +authors +'</div>';
 							str += '<div style="height: 90px;width:25%; display: inline-block;text-align: center;padding-top: 40px;">' + bk.documents[i].publisher+'</div></div>';
@@ -86,7 +86,7 @@ $(document).ready(function (){
 
 function pickSearch(selected){
 	
-	var thumbnail = selected.childNodes[0].innerText;
+	var thumbnail = $('#mbThumbnail').attr("src");
 	var title = selected.childNodes[1].innerText;
 	var writer = selected.childNodes[2].innerText;
 	var publisher = selected.childNodes[3].innerText;
@@ -97,7 +97,7 @@ function pickSearch(selected){
 	
 	$('#searchForm').click(function (){
 		
-		$('img[name=mbThumbnail]').attr('src',thumbnail);
+		$('input[name=mbThumbnail]').attr('value',thumbnail);
 		$('input[name=mbTitle]').attr('value',title);
 		$('input[name=mbWriter]').attr('value',writer);
 		$('input[name=mbPublisher]').attr('value',publisher);

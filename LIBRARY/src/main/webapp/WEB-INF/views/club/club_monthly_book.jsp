@@ -143,11 +143,6 @@ select{
 			<div class="monthlyBookForm">
 				<table class="form">
 				<tr>
-					<td>표지</td>
-					<td><img src="" name="mbThumbnail"></td>
-				</tr>
-				
-				<tr>
 					<td>제목</td>
 					<td><input type="text" name="mbTitle" >
 						<button type="button" data-toggle="modal" data-target="#searchBook" class="btn btn-success btn-sm justify-content-md-end" onclick="showModal();">책 검색하기</button>
@@ -161,6 +156,11 @@ select{
 					<td>출판사</td>
 					<td><input type="text"  name="mbPublisher" ></td>
 				</tr>
+				<tr>
+					<td>표지</td>
+					<td><input type="text"  name="mbThumbnail" ></td>
+				</tr>
+				
 			</table>
 		</div>
 		<div class="btnDiv">

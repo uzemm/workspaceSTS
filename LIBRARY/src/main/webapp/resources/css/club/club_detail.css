@@ -106,6 +106,9 @@ select{
 .rankingT user-info {
 	display: inline-block;
 }
+.rankingT user-info img{
+	display: inline-block;
+}
 .user-info {
 	display: flex;
 	align-items: center;
@@ -193,7 +196,12 @@ details{
 .join-btn{
 	background-color: #ffa900;
 	color: white;
-	margin-bottom: 10px;
+	margin-bottom: 30px;
+	margin-left: 800px;
+}
+.end-btn{
+	margin-bottom: 30px;
+	margin-left: 800px;
 }
 .write-btn {
 	background-color: #ffa900;

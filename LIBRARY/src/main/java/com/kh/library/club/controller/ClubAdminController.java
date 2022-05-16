@@ -83,7 +83,7 @@ public class ClubAdminController {
 	@PostMapping("/UpdateMonthlyBook")
 	public String UpdateMonthlyBook(String clubCode) {
 		clubAdminService.updateMonthlyBook(clubCode);
-		return "redirect:/club/clubDetail";
+		return "redirect:/club/clubDetail?clubCode=" + clubCode;
 	}
 	
 	

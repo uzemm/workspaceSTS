@@ -64,6 +64,9 @@
    .club-info{
 	   	margin-top: 5px;
    }
+   .form-control{
+   		width: 50%;
+   }
 </style>
 </head>
 <body>
@@ -72,7 +75,7 @@
 		<form action="/club/clubDetailUpdate" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="clubCode" value="${club.clubCode }">
 			<div><input type="text" name="clubName" value="${club.clubName }" placeholder="북클럽명"></div>
-			<div><input type="text" name="clubHeadCnt" value="${club.clubHeadCnt }" placeholder="인원"></div>
+			<div><input type="number" class="form-control" name="clubHeadCnt" value="${club.clubHeadCnt }" placeholder="인원"></div>
 			<div><input type="text" name="clubPlace" value="${club.clubPlace }" placeholder="모임 장소"></div>
 			<div><input type="text" name="clubIntro" value="${club.clubIntro }" placeholder="한줄소개"></div>
 			<div class="club-info">

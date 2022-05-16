@@ -8,10 +8,19 @@
 <title>Insert title here</title>
 <link href="/resources/css/club/club_detail.css" rel="stylesheet">
 <style type="text/css">
+.book-bg{
+}
+.thumbnail{
+	width: 100px;
+}
+.ranking-title{
+	font-size: 20px;
+}
 </style>
 </head>
 <body>
 <div class="container">
+	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 	<div class="row">
 		<div class="col-9 justify-content-md-end">
 			<div class="row">
@@ -21,11 +30,11 @@
 				<div class="month-book col-3">
 					5월의 책
 					<c:if test="${sessionScope.loginInfo.clubAdmin eq 'Y' }">
-						<button type="button" class="book-btn btn btn-sm" onclick="location.href='/clubAdmin/monthlyBook';">수정하기</button>
+						<button type="button" class="book-btn btn btn-sm" onclick="location.href='/clubAdmin/monthlyBook?clubCode=${club.clubCode}';">수정하기</button>
 					</c:if>
 					<div class="book-bg">
 						<div>
-							
+							<img class="thumbnail" alt="" src="${monthlyBk.mbThumbnail }">
 						</div>
 					</div>
 				</div>
@@ -71,10 +80,9 @@
 						<div class="club-info"><div>${club.clubInfo }</div></div>
 					</details>
 				</div>
-				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 					 <c:choose>
 						<c:when test="${club.clubNumberPeople eq club.clubHeadCnt }">
-							<a href="#" class="btn btn-secondary disabled">신청마감</a>
+							<a href="#" class="end-btn btn btn-secondary disabled">신청마감</a>
 						</c:when>
 						<c:otherwise>
 				  	  		<a href="#" class="join-btn btn" onclick="clubJoin('${club.clubCode}','${clubApplyCode }');">신청하기</a>
@@ -83,7 +91,6 @@
 					<input type="hidden" id="memId" value="${sessionScope.loginInfo.memId }">
 					<input type="hidden" id="clubAdmin" value="${sessionScope.loginInfo.clubAdmin }">
 					<input type="hidden" id="clubCode" value="${sessionScope.loginInfo.clubCode }">
-				</div>
 				<table class="board-table table table-hover table-border text-center">
 				<colgroup>
 					<col width="10%">
@@ -197,7 +204,7 @@
 				</div>
 			</div>
 			<div class="col-3">
-				5월 독서 랭킹
+				<span class="ranking-title">5월 독서 랭킹📖</span>
 				<table class="rankingT table table-hover">
 					<c:forEach items="${memList }" var="mem" varStatus="status">
 						<tr>

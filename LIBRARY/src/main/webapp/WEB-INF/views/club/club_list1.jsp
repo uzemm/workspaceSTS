@@ -158,16 +158,6 @@ img{
 						    <div class="card-title"><a href="/club/clubDetail?clubCode=${club.clubCode }">${club.clubName }</a>
 						    <div class="card-subtitle" ></div></div>
 						    <p class="card-text">${club.clubIntro }</p>
-<%-- 						    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-						   <c:choose>
-								<c:when test="${club.clubNumberPeople eq club.clubHeadCnt }">
-									<a href="#" class="btn btn-secondary disabled">신청마감</a>
-								</c:when>
-								<c:otherwise>
-						  	  		<a href="#" class="join-btn btn" onclick="clubJoin('${club.clubCode}','${clubApplyCode }');">신청하기</a>
-								</c:otherwise>	
-							</c:choose> 
-						  	 </div> --%>
 						  </div>
 					     <div class="card-footer">
 					      <small class="text-muted">첫 모임일 ${club.clubDate }</small>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,12 +70,14 @@
 		 <div class="hs-write-form-top">
 			<form action="/club/regClubBoard" method="post">
 				<input type="hidden" name="clubCode" value="${clubCode }">
-				<div class="form-check">
-				  <input class="form-check-input" type="checkbox" value="1" name="cbPin" id="flexCheckDefault">
-				  <label class="form-check-label" for="flexCheckDefault">
-				   공지
-				  </label>
-				</div>
+				<c:if test="${sessionScope.loginInfo.clubAdmin eq 'Y' or sessionScope.loginInfo.isAdmin eq 'Y'}">
+					<div class="form-check">
+					  <input class="form-check-input" type="checkbox" value="1" name="cbPin" id="flexCheckDefault">
+					  <label class="form-check-label" for="flexCheckDefault">
+					   공지
+					  </label>
+					</div>
+				</c:if>
 				<input type="hidden" name="memId" value="${sessionScope.loginInfo.memId }">
 				<input type="hidden" name="memName" value="${sessionScope.loginInfo.memName }">
 				<input type="hidden" name="memImage" value="${sessionScope.loginInfo.memImage}">

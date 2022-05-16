@@ -79,6 +79,12 @@ public class ClubAdminServiceImpl implements ClubAdminService{
 		sqlSession.update("clubMapper.updateMonthlyBook", clubCode);
 	}
 
+	//이달의책 조회
+	@Override
+	public MonthlyBookVO selectMonthlyBook(String clubCode) {
+		return sqlSession.selectOne("clubMapper.selectMonthlyBook", clubCode);
+	}
+
 
 
 
