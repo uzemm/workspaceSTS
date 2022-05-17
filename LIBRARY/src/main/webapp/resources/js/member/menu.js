@@ -190,7 +190,6 @@ $(document).on('click', '#open-msgDetail' , function() {
 	var sendDate = $(this).next().text();
 	var msgCode = $(this).attr('data-msgCode');
 	var isRead = $(this).attr('data-isRead');
-	var msgCnt = $('#msgList').data('badge');
 	
 	if(isRead == 'N'){
 		$.ajax({
@@ -225,12 +224,14 @@ $(document).on('click', '#openMsgList' , function() {
 	
 });
 
-$(document).on('mouseover', '.nav-main-menu a', function() {
+$(document).on('mouseover', '.nav-main-menu li', function() {
     $('.dept01').slideDown(500);
 });
 
-/*$(document).on('mouseout', '.nav-main-menu', function() {
-    $('.dept01').slideUp(400);
-});*/
+$(document).on('mouseover', 'nav-main-menu', function () {
+    if (!$(this).hasClass('topMenu')) {
+        $('.dept01').slideUp(500);
+    }
+});
 
 

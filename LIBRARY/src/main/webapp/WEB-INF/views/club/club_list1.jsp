@@ -8,9 +8,6 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="/resources/js/club/club_list1.js"></script>
 <style type="text/css">
-.card {
-	text-align: cen
-}
 .row{
 	width: 800px;
 	margin: 0 auto;
@@ -54,23 +51,6 @@
 	position: fixed;
 	bottom: 0;
 }
-/* .badge1 {
-   position:relative;
-}
-.badge1[data-badge]:after {
-   content:attr(data-badge);
-   position:absolute;
-	 top: -5px;
-    left: 10px;
-   font-size:.8em;
-   background:red;
-   color:white;
-   width:18px;height:18px;
-   text-align:center;
-   line-height:18px;
-   border-radius:70%;
-   box-shadow:0 0 1px #333;
-} */
 .subTit {
     border-bottom: 1px solid #dddddd;
     padding: 15px 0px 15px 0px;
