@@ -18,6 +18,12 @@ select * from hope_book;
 
 delete MONTHLY_BOOK;
 
+select * from MONTHLY_BOOK
+where club_code = 'CLUB_007';
+
+delete book_club
+where club_code = 'CLUB_007';
+
 update MONTHLY_BOOK
 set 
 club_code = 'CLUB_001'
@@ -26,7 +32,7 @@ WHERE MB_CODE = 'MB_001';
 update book_member
 set
 club_admin = 'N'
-where mem_id = 'java8';
+where mem_id = 'java4';
 
 select * from book_club_board
 where cb_pin = 1;

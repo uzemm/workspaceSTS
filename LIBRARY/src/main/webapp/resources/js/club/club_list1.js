@@ -94,6 +94,7 @@ $(document).on('click', '#open-msgDetail' , function() {
 	var sendDate = $(this).next().text();
 	var msgCode = $(this).attr('data-msgCode');
 	var isRead = $(this).attr('data-isRead');
+	var msgCnt = $('#msgList').data('badge');
 	
 	if(isRead == 'N'){
 		$.ajax({
@@ -101,7 +102,6 @@ $(document).on('click', '#open-msgDetail' , function() {
 			type: 'post',
 			data: {'msgCode':msgCode}, //필요한 데이터 '데이터이름':값
 			success: function(result) {
-				//ajax 실행 성공 후 실행할 코드 작성
 			
 			},
 			error: function() {
@@ -109,8 +109,11 @@ $(document).on('click', '#open-msgDetail' , function() {
 				alert('읽지못함');
 			}
 		});
+		
 	}		
 
+
+		$('#msgList').data('badge')
 		$('#msgContent').text(msgContent);
 		$('#sendDate').text(sendDate);
 		
@@ -125,6 +128,20 @@ $(document).on('click', '#openMsgList' , function() {
 		$('#msgModal').modal('show');
 	
 });
+
+/*//하아..알림 지워주기
+$(document).on('click', '.dropdown-toggle', function(){
+$('.count').html('');
+load_unseen_notification('yes');
+});
+setInterval(function(){
+load_unseen_notification();;
+}, 5000);
+
+
+});*/
+
+
 
 /*setInterval(function(){
 	var data = $('#msgList').data('badge');

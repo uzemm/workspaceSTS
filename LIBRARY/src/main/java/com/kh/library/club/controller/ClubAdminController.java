@@ -70,7 +70,7 @@ public class ClubAdminController {
 	@PostMapping("/regMonthlyBook")
 	public String regMonthlyBook(MonthlyBookVO monthlyBookVO) {
 		clubAdminService.insertMonthlyBook(monthlyBookVO);
-		return "redirect:/club/clubDetail";
+		return "redirect:/club/clubDetail?clubCode=" + monthlyBookVO.getClubCode() ;
 	}
 	
 	//이달의 책 수정페이지

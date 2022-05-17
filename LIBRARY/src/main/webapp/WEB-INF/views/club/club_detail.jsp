@@ -9,12 +9,26 @@
 <link href="/resources/css/club/club_detail.css" rel="stylesheet">
 <style type="text/css">
 .book-bg{
+ 	background-color: #F7F7F5;
+ 	text-align: center;
 }
-.thumbnail{
-	width: 100px;
+.book-bg img{
+	width: 120px;
+	height: 174px;
+	image-rendering: -webkit-optimize-contrast;
+	border-radius: 0;
+	margin-top: 20px;
+	margin-bottom: 10px;
 }
 .ranking-title{
 	font-size: 20px;
+}
+.mb-title{
+	font-size: 15px;
+	color: blue;
+}
+.mb-writer{
+	font-size: 14px;
 }
 </style>
 </head>
@@ -27,15 +41,18 @@
 				<div class="col-6">
 						<div class="club-img"><img src="/resources/images/club/${club.cbAtName }"></div>
 				</div>
-				<div class="month-book col-3">
-					5월의 책
-					<c:if test="${sessionScope.loginInfo.clubAdmin eq 'Y' }">
-						<button type="button" class="book-btn btn btn-sm" onclick="location.href='/clubAdmin/monthlyBook?clubCode=${club.clubCode}';">수정하기</button>
-					</c:if>
+				<div class="month-book col-6">
+					
 					<div class="book-bg">
 						<div>
-							<img class="thumbnail" alt="" src="${monthlyBk.mbThumbnail }">
+							5월의 책
+							<c:if test="${sessionScope.loginInfo.clubAdmin eq 'Y' and sessionScope.loginInfo.clubCode eq club.clubCode}">
+								<button type="button" class="book-btn btn btn-sm" onclick="location.href='/clubAdmin/monthlyBook?clubCode=${club.clubCode}';">수정하기</button>
+							</c:if>
+							<div><img class="thumbnail" alt="" src="${monthlyBk.mbThumbnail }"></div>
 						</div>
+						<div class="mb-title">${monthlyBk.mbTitle }</div>
+						<div class="mb-writer">${monthlyBk.mbWriter }</div>
 					</div>
 				</div>
 					<div class="board-info">

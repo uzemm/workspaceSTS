@@ -66,10 +66,11 @@
 	
 	<resultMap type="com.kh.library.club.vo.MonthlyBookVO" id="monthly">
 		<id column="MB_CODE" property="mbCode"/>
-		<result column="MB_WRITER" property="mbTitle"/>
-		<result column="MB_PUBLISHER" property="mbWriter"/>
-		<result column="MB_THUMBNAIL" property="mbPublisher"/>
-		<result column="CLUB_CODE" property="mbThumbnail"/>
+		<result column="MB_TITLE" property="mbTitle"/>
+		<result column="MB_WRITER" property="mbWriter"/>
+		<result column="MB_PUBLISHER" property="mbPublisher"/>
+		<result column="MB_THUMBNAIL" property="mbThumbnail"/>
+		<result column="CLUB_CODE" property="clubCode"/>
 	
 	</resultMap>
 	

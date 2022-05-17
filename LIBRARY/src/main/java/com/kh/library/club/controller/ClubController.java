@@ -76,6 +76,13 @@ public class ClubController {
 		return "club/club_list1";
 	}
 	
+	@ResponseBody
+	@PostMapping("/msgCnt")
+	public int msgCnt(HttpSession session) {
+		String getId = ((MemberVO)(session.getAttribute("loginInfo"))).getMemId();
+		return clubService.selectMsgCount(getId);
+	}
+	
 	//북클럽 생성페이지 이동
 	@GetMapping("/clubCreate")
 	public String clubCreate() {
