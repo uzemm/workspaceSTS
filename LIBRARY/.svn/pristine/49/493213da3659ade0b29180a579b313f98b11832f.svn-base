@@ -220,6 +220,7 @@ public class MemberController {
    // 내 정보 상세조회 이동
    @GetMapping("/myPageDetail")
    public String myPageDetail(Model model, HttpSession session) {
+	  
 	  model.addAttribute("memberInfo", memberService.selectMyPageDetail(((MemberVO)(session.getAttribute("loginInfo"))).getMemId()));
       return "mypage/my_page_detail";
    }
@@ -298,13 +299,12 @@ public class MemberController {
 	   }
    }
    @PostMapping("/updateSecretInfo")
-   public String updateSecretInfo(MemberVO memberVO, HttpSession session) {
+   public String updateSecretInfo(MemberVO memberVO) {
 	   //-------------------비밀번호 암호화-----------------------//
 	      String encodePw = pwEncoder.encode(memberVO.getMemPwd());
 	      memberVO.setMemPwd(encodePw);
 	      memberService.updateSecretInfo(memberVO);
-	      
-	   session.setAttribute("loginInfo", memberService.login(memberVO.getMemId()));
+	   //   session.setAttribute("loginInfo", memberService.login(memberVO.getMemId()));
 	      
 	   return "redirect:/member/myPageDetail?memId=" + memberVO.getMemId();
    }

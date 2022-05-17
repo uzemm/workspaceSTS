@@ -19,7 +19,7 @@ public class MemberVO extends PageVO{
 	private String clubCode;
 	private String keyword;
 	private String rowNum;
-	private int msgCnt;
+	private String clubApplyCode;
 	private String bookComplitCnt;
 	
 	
@@ -153,11 +153,11 @@ public class MemberVO extends PageVO{
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}
-	public int getMsgCnt() {
-		return msgCnt;
+	public String getClubApplyCode() {
+		return clubApplyCode;
 	}
-	public void setMsgCnt(int msgCnt) {
-		this.msgCnt = msgCnt;
+	public void setClubApplyCode(String clubApplyCode) {
+		this.clubApplyCode = clubApplyCode;
 	}
 	public String getBookComplitCnt() {
 		return bookComplitCnt;

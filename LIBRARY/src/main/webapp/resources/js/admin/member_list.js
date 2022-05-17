@@ -26,6 +26,13 @@ $(document).on('click', '#adminMsgList' , function() {
 	$('#adminMsgModal').modal('show');
 });
 
+//닫기
+$(document).on('click', '.msg-close' , function() {
+	$('#sendMsg')[0].reset();
+	$('#messageModal').modal('hide');
+});
+
+
 //메세지 전송 유효성 검사
 function byteCheck(obj, maxByte){
 

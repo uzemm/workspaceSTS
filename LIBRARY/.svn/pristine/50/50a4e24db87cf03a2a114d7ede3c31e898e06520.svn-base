@@ -24,7 +24,6 @@
        <result column="RSV_CNT"            property="rsvCnt"/>
       <result column="LIMIT_DATE"          property="limitDate"/>
       <result column="MSG_CNT"    		   property="msgCnt"/>
-       <result column="BOOK_COMPLIT_CNT"    property="bookComplitCnt"/>
    </resultMap>
    <resultMap type="com.kh.library.member.vo.MemberImageVO" id="memberImage">
       <id column="MEM_IMG_CODE"            property="memImgCode"/>

@@ -110,8 +110,8 @@
 			<li >
 				<a href="/club/clubList">북클럽</a>
 				<ul class="dept01">
-					<li id="nop"><a href="/club/clubInfo">북클럽 이용안내</a></li>
-					<li id="nop" ><a href="/club/clubList">북클럽 조회</a></li>
+					<li id="nop"> <a href="/board/ntBoardList">북클럽 이용안내</a></li>
+					<li id="nop" ><a href="/otherB/freeBoard">북클럽 조회</a></li>
 				</ul>
 			</li>
 			<c:if test="${sessionScope.loginInfo.isAdmin eq 'Y' }" > 

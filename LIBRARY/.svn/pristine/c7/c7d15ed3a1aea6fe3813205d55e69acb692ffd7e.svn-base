@@ -413,7 +413,6 @@ li {
 }
 .nav-main-menu > ul > li{
 	border-bottom: none;
-	text-align: left;
 }
 .nav-main-menu > ul > li > a:hover {
 	border-bottom: 2px solid #198754;
@@ -428,7 +427,5 @@ li {
 }
 .nav-main-menu > ul > li > ul{
 	text-align: left;
-}
-.nav-main-menu > ul > li > ul > li > a{
-	text-align: left;
+	margin-right: 5px;
 }

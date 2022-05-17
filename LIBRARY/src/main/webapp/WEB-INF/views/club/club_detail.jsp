@@ -92,7 +92,7 @@ svg {
 					<div class="club-name">모임 장소</div><div class="club-1">${club.clubPlace }</div>
 				</div>
 				<div>
-					<div class="club-name">모임 일정</div><div class="club-1">첫모임 ${club.clubDate }</div>
+					<div class="club-name">모임 일정</div><div class="club-1">${club.clubDate }</div>
 				</div>
 				<div>
 					<div class="club-name">독후감&nbsp;&nbsp;&nbsp;&nbsp;</div><div class="club-1">매 모임 2일 전까지 클럽 게시판에 제출 | 최소 글자수 400자</div>

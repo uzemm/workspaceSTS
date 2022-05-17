@@ -193,7 +193,7 @@
             <textarea class="form-control" id="message-content" rows="7" name="msgContent" style="resize: none;" onkeyup="byteCheck(this, '500');"></textarea>
             <div style="text-align: right;"><span id="byteInfo">0</span> /500bytes</div>
           <div class="mb-3 justify-content-md-end">
-	        <button type="button" class="btn btn-secondary justify-content-md-end" data-bs-dismiss="modal">닫기</button>
+	        <button type="button" class="msg-close btn btn-secondary justify-content-md-end">닫기</button>
 	        <button type="button" class="btn btn-success justify-content-md-end" onclick="sendMsg();">메세지 전송</button>
           </div>
           </div>

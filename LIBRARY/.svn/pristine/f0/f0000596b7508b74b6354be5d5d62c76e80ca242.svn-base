@@ -23,8 +23,8 @@
       <result column="BR_CNT"              property="brCnt"/>
        <result column="RSV_CNT"            property="rsvCnt"/>
       <result column="LIMIT_DATE"          property="limitDate"/>
-      <result column="MSG_CNT"    		   property="msgCnt"/>
-       <result column="BOOK_COMPLIT_CNT"    property="bookComplitCnt"/>
+      <result column="CLUB_APPLY_CODE"     property="clubApplyCode"/>
+      <result column="BOOK_COMPLIT_CNT"    property="bookComplitCnt"/>
    </resultMap>
    <resultMap type="com.kh.library.member.vo.MemberImageVO" id="memberImage">
       <id column="MEM_IMG_CODE"            property="memImgCode"/>
@@ -120,11 +120,8 @@
          , IS_OD
          , IS_DELETE
          , IS_PWD_TEMP
+         , CLUB_APPLY_CODE
          , LIMIT_DATE
-         , (SELECT COUNT(MSG_CODE)
-			FROM MESSAGE
-			WHERE GET_ID = #{getId}
-			AND IS_READ = 'N') AS MSG_CNT
       FROM BOOK_MEMBER
       WHERE MEM_ID = #{memId}
    </select>

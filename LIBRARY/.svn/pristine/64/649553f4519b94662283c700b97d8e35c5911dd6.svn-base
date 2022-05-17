@@ -20,7 +20,6 @@ public class MemberVO extends PageVO{
 	private String keyword;
 	private String rowNum;
 	private int msgCnt;
-	private String bookComplitCnt;
 	
 	
 	private String isOd; //연체여부
@@ -159,11 +158,4 @@ public class MemberVO extends PageVO{
 	public void setMsgCnt(int msgCnt) {
 		this.msgCnt = msgCnt;
 	}
-	public String getBookComplitCnt() {
-		return bookComplitCnt;
-	}
-	public void setBookComplitCnt(String bookComplitCnt) {
-		this.bookComplitCnt = bookComplitCnt;
-	}
-	
 }
