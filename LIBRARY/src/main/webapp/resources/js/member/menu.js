@@ -138,3 +138,98 @@ if(savedToDos !== null){
 	toDos = parsedToDos;
 	parsedToDos.forEach(paintToRead)
 }
+
+// 알림modal
+$(document).on('click', '#msgList' , function() {
+	
+	$('#msgModal').modal('show');
+	
+});
+
+function msgList(getId){
+	
+	$.ajax({
+		url: '/club/getMsgList', 
+		type: 'post',
+		data: {'getId':getId}, 
+		success: function(result) {
+			var tbody =  document.querySelector('#msgModalTable tbody');
+			tbody.innerHTML = '';
+			
+			var str = '';
+			$(result).each(function(index, item){
+				
+					if(item.isRead == 'Y'){
+						str += '<tr class="msgDetail">';
+						str += '<td style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden; color:gray;" id="open-msgDetail" data-msgCode="'+ item.msgCode +'" data-isRead="'+ item.isRead +'">'+ item.msgContent +'</span></td>';
+						str += '<td style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;color:gray;">'+ item.sendDate +'</td>';
+						str += '</tr>';
+					}
+					else{
+						str += '<tr class="msgDetail">';
+						str += '<td style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;" id="open-msgDetail" data-msgCode="'+ item.msgCode +'" data-isRead="'+ item.isRead +'">'+ item.msgContent +'</span></td>';
+						str += '<td style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">'+ item.sendDate +'</td>';
+						str += '</tr>';
+					}
+					
+			});	
+				$('#msgModalTable tbody').prepend(str);
+			
+		},
+		error: function() {
+			//ajax 실행 실패 시 실행되는 구간
+			alert('실패');
+		}
+	});
+}
+
+
+// 알림창 상세조회
+$(document).on('click', '#open-msgDetail' , function() {
+	var msgContent= $(this).text();
+	var sendDate = $(this).next().text();
+	var msgCode = $(this).attr('data-msgCode');
+	var isRead = $(this).attr('data-isRead');
+	var msgCnt = $('#msgList').data('badge');
+	
+	if(isRead == 'N'){
+		$.ajax({
+			url: '/club/updateMsgIsRead', //요청경로
+			type: 'post',
+			data: {'msgCode':msgCode}, //필요한 데이터 '데이터이름':값
+			success: function(result) {
+			
+			},
+			error: function() {
+				//ajax 실행 실패 시 실행되는 구간
+				alert('읽지못함');
+			}
+		});
+		
+	}		
+
+
+		$('#msgList').data('badge')
+		$('#msgContent').text(msgContent);
+		$('#sendDate').text(sendDate);
+		
+		$('#msgModal').modal('hide');
+		$('#msgDetailModal').modal('show');
+	
+});
+
+//목록
+$(document).on('click', '#openMsgList' , function() {
+		$('#msgDetailModal').modal('hide');
+		$('#msgModal').modal('show');
+	
+});
+
+$(document).on('mouseover', '.nav-main-menu a', function() {
+    $('.dept01').slideDown(500);
+});
+/*$(document).on('mouseout', '.nav-main-menu', function() {
+    $('.dept01').slideUp(400);
+});
+*/
+
