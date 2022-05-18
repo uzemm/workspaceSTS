@@ -194,31 +194,17 @@
 		    , CLUB_NAME
 		    , CLUB_HEAD_CNT
 		    , CLUB_INTRO
-		    , TO_CHAR(CLUB_DATE, 'MM/DD(DY)') AS CLUB_DATE
+		    , TO_DATE(CLUB_DATE, 'YYYY-MM-DD') AS CLUB_DATE
 		    , MEM_ID
 		    , MEM_NAME
-		    , CLUB_NUMBER_PEOPLE
+		    , (SELECT COUNT(MEM_ID)
+	    	  FROM BOOK_MEMBER 
+	    	  WHERE CLUB_CODE = BOOK_CLUB.CLUB_CODE) AS CLUB_NUMBER_PEOPLE
 	    	, CLUB_INFO
 	    	, CLUB_PLACE
 	    	, CB_AT_NAME
-		FROM
-		(
-			SELECT CLUB_CODE
-			    , CLUB_NAME
-			    , CLUB_HEAD_CNT
-			    , CLUB_INTRO
-			    , TO_DATE(CLUB_DATE, 'YYYY-MM-DD') AS CLUB_DATE
-			    , MEM_ID
-			    , MEM_NAME
-			    , (SELECT COUNT(MEM_ID)
-		    	  FROM BOOK_MEMBER 
-		    	  WHERE CLUB_CODE = BOOK_CLUB.CLUB_CODE) AS CLUB_NUMBER_PEOPLE
-		    	, CLUB_INFO
-		    	, CLUB_PLACE
-		    	, CB_AT_NAME
-			FROM BOOK_CLUB
-			WHERE CLUB_CODE = #{clubCode}
-		)
+		FROM BOOK_CLUB
+		WHERE CLUB_CODE = #{clubCode}
 	</select>
 	
 	<!-- 북클럽 내용 수정 -->

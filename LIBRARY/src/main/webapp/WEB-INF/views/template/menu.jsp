@@ -80,10 +80,10 @@
 	<nav>
 	</nav>
 	<div class="nav-main-menu">
-		<div class="topMenu">
+		<div class="topMenu" id="header">
 			<ul class="menu01">
 				<li><a href="/admin/libraryInfo">도서관소개</a>
-					<ul class="dept01">
+					<ul class="dept01" id="gnb">
 						<li id="nop" ><a href="/admin/libraryInfo">인삿말</a></li>
 						<li id="nop" ><a href="/admin/libraryHistory">연혁</a></li>
 						<li id="nop" ><a href="/admin/libraryLocation">찾아오시는길</a></li>

@@ -138,32 +138,32 @@ select{
 		</div>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 	   <form action="/clubAdmin/UpdateMonthlyBook" id ="monthlyBookForm" method="post">
-			<input type="hidden" name="clubCode" value="${sessionScope.loginInfo.clubCode }">
+			<input type="hidden" name="clubCode" value="${monthlyBk.clubCode }">
 			<div class="monthlyBookForm">
 				<table class="form">
 				<tr>
 					<td>제목</td>
-					<td><input type="text" name="mbTitle" >
+					<td><input type="text" name="mbTitle" value="${monthlyBk.mbTitle }">
 						<button type="button" data-toggle="modal" data-target="#searchBook" class="btn btn-success btn-sm justify-content-md-end" onclick="showModal();">책 검색하기</button>
 					</td>
 				</tr>
 				<tr>
 					<td>저자</td>
-					<td><input type="text"  name="mbWriter" ></td>
+					<td><input type="text"  name="mbWriter" value="${monthlyBk.mbWriter }"></td>
 				</tr>
 				<tr>
 					<td>출판사</td>
-					<td><input type="text"  name="mbPublisher" ></td>
+					<td><input type="text"  name="mbPublisher" value="${monthlyBk.mbPublisher }"></td>
 				</tr>
 				<tr>
 					<td>표지</td>
-					<td><input type="text"  name="mbThumbnail" ></td>
+					<td><input type="text"  name="mbThumbnail" value="${monthlyBk.mbThumbnail }"></td>
 				</tr>
 				
 			</table>
 		</div>
 		<div class="btnDiv">
-			<button class="btn btn-success btn-sm justify-content-md-end" onclick="submit();" >등록하기</button>
+			<button class="btn btn-success btn-sm justify-content-md-end" onclick="submit();" >수정하기</button>
 				</div>
 			</form>
 			
@@ -211,6 +211,6 @@ select{
 	</div>	
 </div>
 
-<script type="text/javascript" src="/resources/js/club/club_monthly_book.js"></script>
+<script type="text/javascript" src="/resources/js/club/update_club_monthly_book.js"></script>
 </body>
 </html>

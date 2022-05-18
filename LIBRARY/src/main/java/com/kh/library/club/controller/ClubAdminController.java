@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.library.admin.vo.MessageVO;
 import com.kh.library.club.service.ClubAdminService;
@@ -75,7 +76,8 @@ public class ClubAdminController {
 	
 	//이달의 책 수정페이지
 	@GetMapping("/monthlyBookUpdate")
-	public String monthlyBookUpdate() {
+	public String monthlyBookUpdate(Model model, String clubCode) {
+		model.addAttribute("monthlyBk", clubAdminService.selectMonthlyBook(clubCode));
 		return "club/update_club_monthly_book";
 	}
 	
@@ -83,7 +85,7 @@ public class ClubAdminController {
 	@PostMapping("/UpdateMonthlyBook")
 	public String UpdateMonthlyBook(String clubCode) {
 		clubAdminService.updateMonthlyBook(clubCode);
-		return "redirect:/club/clubDetail?clubCode=" + clubCode;
+		return "redirect:/club/clubDetail";
 	}
 	
 	

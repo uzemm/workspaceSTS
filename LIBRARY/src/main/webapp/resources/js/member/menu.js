@@ -228,10 +228,10 @@ $(document).on('mouseover', '.nav-main-menu li', function() {
     $('.dept01').slideDown(500);
 });
 
-$(document).on('mouseover', 'nav-main-menu', function () {
+/*$(document).on('mouseover', '.nav-main-menu', function () {
     if (!$(this).hasClass('topMenu')) {
         $('.dept01').slideUp(500);
     }
-});
+});*/
 
 
