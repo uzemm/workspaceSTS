@@ -1,4 +1,8 @@
 INSERT INTO BOOK_MEMBER VALUES('admin', '1111', '모임장', '울산', '1111', '1111', null, '남', '2022/04/18' ,  'N', 'Y', 'Y', null );
+update borrow
+set rt_date='2022/05/13'
+where br_code='BR002';
+
 
 select * from book_member;
 select * from book_club;
