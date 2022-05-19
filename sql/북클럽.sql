@@ -20,7 +20,8 @@ SELECT * FROM BOOK_IMAGE;
 select * from MONTHLY_BOOK;
 select * from hope_book;
 
-delete MONTHLY_BOOK;
+delete MONTHLY_BOOK
+where club_code = 'CLUB_001';
 
 select * from MONTHLY_BOOK
 where club_code = 'CLUB_007';
