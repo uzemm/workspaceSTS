@@ -161,13 +161,13 @@ function msgList(getId){
 				
 					if(item.isRead == 'Y'){
 						str += '<tr class="msgDetail">';
-						str += '<td style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden; color:gray;" id="open-msgDetail" data-msgCode="'+ item.msgCode +'" data-isRead="'+ item.isRead +'">'+ item.msgContent +'</span></td>';
+						str += '<td style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden; color:gray;" id="open-msgDetail-menu" data-msgCode="'+ item.msgCode +'" data-isRead="'+ item.isRead +'">'+ item.msgContent +'</span></td>';
 						str += '<td style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;color:gray;">'+ item.sendDate +'</td>';
 						str += '</tr>';
 					}
 					else{
 						str += '<tr class="msgDetail">';
-						str += '<td style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;" id="open-msgDetail" data-msgCode="'+ item.msgCode +'" data-isRead="'+ item.isRead +'">'+ item.msgContent +'</span></td>';
+						str += '<td style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;" id="open-msgDetail-menu" data-msgCode="'+ item.msgCode +'" data-isRead="'+ item.isRead +'">'+ item.msgContent +'</span></td>';
 						str += '<td style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">'+ item.sendDate +'</td>';
 						str += '</tr>';
 					}
@@ -185,7 +185,7 @@ function msgList(getId){
 
 
 // 알림창 상세조회
-$(document).on('click', '#open-msgDetail' , function() {
+$(document).on('click', '#open-msgDetail-menu' , function() {
 	var msgContent= $(this).text();
 	var sendDate = $(this).next().text();
 	var msgCode = $(this).attr('data-msgCode');
