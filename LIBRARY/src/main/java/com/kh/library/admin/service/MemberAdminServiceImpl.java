@@ -64,8 +64,8 @@ public class MemberAdminServiceImpl implements MemberAdminService{
 	}
 
 	@Override
-	public void insertHopeBookMessage(MessageVO messageVO) {
-		sqlSession.insert("adminMapper.insertHopeBookMessage", messageVO);
+	public void insertBookMessage(String getId) {
+		sqlSession.insert("adminMapper.insertBookMessage", getId);
 	}
 
 	@Override

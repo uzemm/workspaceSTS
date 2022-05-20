@@ -113,6 +113,6 @@
 		</div>
 	</div>
 </div>
-<script type="text/javascript" src="/resources/js/club/club_manage.js?ver=8"></script>
+<script type="text/javascript" src="/resources/js/club/club_manage.js?ver=9"></script>
 </body>
 </html>

@@ -524,6 +524,30 @@
 		AND to_char(LAST_DAY(LOCALTIMESTAMP),'yyyy/mm/dd') &gt;= COMPLIT_DATE
 	</select>
 	
+	<!-- 북클럽 랭킹 -->
+	<select id="selectRanking" resultMap="memberMapper.member">
+		SELECT MEM_ID
+		    , MEM_NAME
+		    , MEM_IMAGE
+		    , CLUB_CODE
+		    , BOOK_COMPLIT_CNT
+		  FROM (
+		         SELECT MEM_ID
+		                , MEM_NAME
+		                , MEM_IMAGE
+		                , CLUB_CODE
+		                , (SELECT COUNT(COMPLIT_CODE)
+		                            FROM BOOK_COMPLIT
+		                            WHERE MEM_ID = BM.MEM_ID
+		                            AND to_char(LOCALTIMESTAMP,'yyyy/mm') || '/01' &lt;= COMPLIT_DATE
+		                            AND to_char(LAST_DAY(LOCALTIMESTAMP),'yyyy/mm/dd') &gt;= COMPLIT_DATE
+		                            ) AS BOOK_COMPLIT_CNT
+		            FROM BOOK_MEMBER BM
+		            WHERE CLUB_CODE = #{clubCode}
+		            ORDER BY BOOK_COMPLIT_CNT DESC
+		       )
+		 WHERE ROWNUM &lt;= 3
+	</select>
 
 
 	<!-- ///////////////////// 북클럽 관리 ///////////////////////////// -->
@@ -636,9 +660,8 @@
 		UPDATE BOOK_MEMBER
 		SET
 		CLUB_CODE = NULL
-		CLUB_ADMIN = 'N'
-		WHERE MEM_ID = #{memId}
-		AND CLUB_CODE = #{clubCode}
+		, CLUB_ADMIN = 'N'
+		WHERE CLUB_CODE = #{clubCode}
 	</update>	
 	
 	<!-- 클럽 삭제시 알림보내기 -->
@@ -649,7 +672,7 @@
 			, MSG_CONTENT
 		) VALUES (
 			(SELECT 'MSG_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(MSG_CODE, 5))), 0) + 1, 3, 0) AS MSG_CODE FROM MESSAGE)
-			, #{getId}
+			, (SELECT MEM_ID FROM BOOK_MEMBER WHERE CLUB_CODE = #{clubCode} AND CLUB_ADMIN = 'N')
 			, '가입된 북클럽이 클럽장의 요청으로 삭제되었습니다. 새로운 북클럽에 가입해보세요.'
 		)		
 	</insert>

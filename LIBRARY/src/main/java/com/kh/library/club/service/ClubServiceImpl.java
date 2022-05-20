@@ -189,5 +189,11 @@ public class ClubServiceImpl implements ClubService {
 	public List<ClubBoardVO> selectNoticBoardList(ClubBoardVO clubBoardVO) {
 		return sqlSession.selectList("clubMapper.selectNoticBoardList", clubBoardVO);
 	}
+	
+	//랭킹
+	@Override
+	public List<MemberVO> selectRanking(String clubCode) {
+		return sqlSession.selectList("clubMapper.selectRanking", clubCode);
+	}
 
 }

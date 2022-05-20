@@ -97,9 +97,8 @@ public class ClubAdminController {
 	//북클럽 삭제
 	@ResponseBody
 	@PostMapping("/deleteClub")
-	public void deleteClub(String clubCode, ClubVO clubVO) {
-		//String getId = clubVO.getMemId();
-		clubAdminService.deleteClub(clubCode, clubVO);
+	public void deleteClub(String clubCode) {
+		clubAdminService.deleteClub(clubCode);
 	}
 	
 	

@@ -101,6 +101,10 @@ public interface ClubService {
 	//공지사항 조회
 	List<ClubBoardVO> selectNoticBoardList(ClubBoardVO clubBoardVO);
 	
+	//랭킹
+	List<MemberVO> selectRanking(String clubCode);
+	
+	
 	/////////////////////////알림함/////////////////////////////
 	
 	//알림 갯수

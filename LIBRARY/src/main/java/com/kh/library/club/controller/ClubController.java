@@ -158,6 +158,9 @@ public class ClubController {
 		model.addAttribute("noticeList", clubService.selectNoticBoardList(clubBoardVO));
 		//이달의책 조회
 		model.addAttribute("monthlyBk", clubAdminService.selectMonthlyBook(clubCode));
+		//랭킹 조회
+		model.addAttribute("rkList", clubService.selectRanking(clubCode));
+		
 	
 		
 		if(session.getAttribute("loginInfo") != null) {
