@@ -36,12 +36,25 @@ SELECT MEM_ID
                             AND to_char(LOCALTIMESTAMP,'yyyy/mm') || '/01' >= COMPLIT_DATE
                             AND to_char(LAST_DAY(LOCALTIMESTAMP),'yyyy/mm/dd') <= COMPLIT_DATE
                             ) AS BOOK_COMPLIT_CNT
-              , DENSE_RANK() OVER(ORDER BY BOOK_COMPLIT_CNT DESC) AS rnk
             FROM BOOK_MEMBER BM
             WHERE CLUB_CODE = 'CLUB_001'
             ORDER BY BOOK_COMPLIT_CNT DESC
        )
- WHERE rnk <= 3;
+ WHERE rownum = 1;
+ 
+         SELECT MEM_ID
+                , MEM_NAME
+                , MEM_IMAGE
+                , CLUB_CODE
+                , (SELECT COUNT(COMPLIT_CODE)
+                            FROM BOOK_COMPLIT
+                            WHERE MEM_ID = BM.MEM_ID
+                            AND to_char(LOCALTIMESTAMP,'yyyy/mm') || '/01' >= COMPLIT_DATE
+                            AND to_char(LAST_DAY(LOCALTIMESTAMP),'yyyy/mm/dd') <= COMPLIT_DATE
+                            ) AS BOOK_COMPLIT_CNT
+            FROM BOOK_MEMBER BM
+            WHERE CLUB_CODE = 'CLUB_001'
+            ORDER BY BOOK_COMPLIT_CNT DESC;
 
 delete MONTHLY_BOOK
 where club_code = 'CLUB_001';
@@ -80,6 +93,20 @@ select count(msg_code)
 from message
 where get_id = 'java1'
 AND IS_READ = 'Y';
+
+SELECT MEM_ID
+    , MEM_NAME
+    , MEM_IMAGE
+    , CLUB_CODE
+    , (SELECT COUNT(COMPLIT_CODE)
+                FROM BOOK_COMPLIT
+                WHERE MEM_ID = BM.MEM_ID
+                AND to_char(LOCALTIMESTAMP,'yyyy/mm') || '/01' >= COMPLIT_DATE
+                AND to_char(LAST_DAY(LOCALTIMESTAMP),'yyyy/mm/dd') <= COMPLIT_DATE
+                ) AS BOOK_COMPLIT_CNT
+FROM BOOK_MEMBER BM
+WHERE CLUB_CODE = 'CLUB_001'
+and rownum <= 3;
 
 
 SELECT BM.MEM_ID
