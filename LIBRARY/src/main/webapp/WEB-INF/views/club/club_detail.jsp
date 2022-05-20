@@ -55,7 +55,8 @@ svg {
 				<div class="month-book">
 					이달의 책
 					<c:if test="${sessionScope.loginInfo.clubAdmin eq 'Y' and sessionScope.loginInfo.clubCode eq club.clubCode}">
-						<button type="button" class="book-btn btn btn-sm" onclick="location.href='/clubAdmin/monthlyBook?clubCode=${club.clubCode}';">수정하기</button>
+						<button type="button" class="book-btn btn btn-sm" onclick="location.href='/clubAdmin/monthlyBook?clubCode=${club.clubCode}';">등록</button>
+						<button type="button" class="book-btn btn btn-sm" onclick="location.href='/clubAdmin/monthlyBookUpdate?clubCode=${club.clubCode}';">수정</button>
 					</c:if>
 					<div class="book-bg">
 							<div><img class="thumbnail" alt="" src="${monthlyBk.mbThumbnail }"></div>
@@ -191,7 +192,7 @@ svg {
 					</c:if>
 				</div>
 				<div class="row">
-					<div class="col-6">
+					<div class="col-6" >
 						<div class="d-grid gap-2 d-md-flex justify-content-center">
 							<nav aria-label="Page navigation example">
 								<ul class="pagination pagination-sm">
@@ -210,7 +211,6 @@ svg {
 							</nav>
 						</div>
 					</div>
-				</div>
 				<div class="d-grid gap-2 d-md-flex justify-content-end">
 					<form action="/club/clubDetail" method="post" id="searchForm">
 					<input type="hidden" value="1" id="nowPage" name="nowPage">
@@ -226,43 +226,26 @@ svg {
 					</form>
 				</div>
 			</div>
-			<div class="col-2">
-				<span class="ranking-title">5월 독서 랭킹📖</span>
-				<table class="rankingT table table-hover">
-					<c:forEach items="${memList }" var="mem" varStatus="status">
-						<tr>
-							<td>
-								<div class="ranking">${status.index + 1 }위</div>
-								<div class="user-info__img"><img alt="" src="/resources/images/member/${mem.memImage }" >
-									<div class="ranking-name">${mem.memName }
-									${mem.bookComplitCnt }권</div>
-								</div>
-							</td>
-						</tr>
-					</c:forEach>
-				</table>
-				</div>
-			</div>
+		</div>
+		<div class="col-2">
+			<span class="ranking-title">5월 독서 랭킹📖</span>
+			<table class="rankingT table table-hover">
+				<c:forEach items="${memList }" var="mem" varStatus="status">
+					<tr>
+						<td>
+							<div class="ranking">${status.index + 1 }위</div>
+							<div class="user-info__img"><img alt="" src="/resources/images/member/${mem.memImage }" >
+								<div class="ranking-name">${mem.memName }
+								${mem.bookComplitCnt }권</div>
+							</div>
+						</td>
+					</tr>
+				</c:forEach>
+			</table>
+		</div>
 	</div>
-
-<!-- 도서관 책 검색 -->
-<div class="modal fade" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Modal body text goes here.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
 </div>
+
 
 <script type="text/javascript" src="/resources/js/club/club_detail.js"></script>
 </body>

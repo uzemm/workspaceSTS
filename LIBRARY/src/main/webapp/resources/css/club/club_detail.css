@@ -205,8 +205,9 @@ details{
 	margin-left: 800px;
 }
 .write-btn {
-	background-color: #ffa900;
 	color: white;
+    background-color: #72a37c;
+    border-color: #72a37c;
 }
 .book-btn{
 	border-color: #ffa900;

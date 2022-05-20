@@ -626,6 +626,34 @@
 		WHERE CLUB_CODE = #{clubCode}
 	</select>
 	
+	<!-- 북클럽 삭제 -->
+	<delete id="deleteClub">
+		DELETE BOOK_CLUB
+		WHERE CLUB_CODE = #{clubCode}
+	</delete>
+	
+	<update id="updateClubDelete">
+		UPDATE BOOK_MEMBER
+		SET
+		CLUB_CODE = NULL
+		CLUB_ADMIN = 'N'
+		WHERE MEM_ID = #{memId}
+		AND CLUB_CODE = #{clubCode}
+	</update>	
+	
+	<!-- 클럽 삭제시 알림보내기 -->
+	<insert id="insertClubDeleteMessage">
+		INSERT INTO MESSAGE (
+			MSG_CODE
+			, GET_ID
+			, MSG_CONTENT
+		) VALUES (
+			(SELECT 'MSG_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(MSG_CODE, 5))), 0) + 1, 3, 0) AS MSG_CODE FROM MESSAGE)
+			, #{getId}
+			, '가입된 북클럽이 클럽장의 요청으로 삭제되었습니다. 새로운 북클럽에 가입해보세요.'
+		)		
+	</insert>
+	
 	<!-- ////////////////////////알림함///////////////////////////// -->	
 	<!-- 알림함 조회 -->
 	<select id="selectGetMsgList" resultMap="adminMapper.msg">

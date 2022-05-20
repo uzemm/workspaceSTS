@@ -86,6 +86,14 @@ public class ClubAdminServiceImpl implements ClubAdminService{
 	}
 
 
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public void deleteClub(String clubCode, ClubVO clubVO) {
+		sqlSession.delete("clubMapper.deleteClub", clubCode);
+		sqlSession.update("clubMapper.updateClubDelete", clubVO);
+	}
+
+
 
 
 }

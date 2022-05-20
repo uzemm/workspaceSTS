@@ -134,7 +134,7 @@ public class ClubController {
 	      }
 	      
 		
-		return "redirect:/clubAdmin/monthlyBook?clubCode=" + clubVO.getClubCode();
+		return "redirect:/club/clubDetail?clubCode=" + clubVO.getClubCode();
 	}
 	//북클럽 상세조회 + 검색
 	@RequestMapping("/clubDetail")

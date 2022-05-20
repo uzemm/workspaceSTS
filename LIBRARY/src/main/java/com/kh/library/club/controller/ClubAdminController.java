@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.library.admin.vo.MessageVO;
 import com.kh.library.club.service.ClubAdminService;
+import com.kh.library.club.service.ClubService;
 import com.kh.library.club.service.MessageService;
 import com.kh.library.club.vo.ClubApplyVO;
 import com.kh.library.club.vo.ClubVO;
@@ -29,6 +30,9 @@ public class ClubAdminController {
 	
 	@Resource(name = "messageService")
 	private MessageService messageService;
+
+	@Resource(name = "clubService")
+	private ClubService clubService;
 
 	//클럽관리
 	@GetMapping("/clubAdmin")
@@ -69,9 +73,10 @@ public class ClubAdminController {
 	
 	//이달의책 등록
 	@PostMapping("/regMonthlyBook")
-	public String regMonthlyBook(MonthlyBookVO monthlyBookVO) {
+	public String regMonthlyBook(MonthlyBookVO monthlyBookVO, String clubCode, RedirectAttributes redirectAttributes) {
 		clubAdminService.insertMonthlyBook(monthlyBookVO);
-		return "redirect:/club/clubDetail?clubCode=" + monthlyBookVO.getClubCode();
+		redirectAttributes.addAttribute("clubCode", clubCode);
+		return "redirect:/club/clubDetail";
 	}
 	
 	//이달의 책 수정페이지
@@ -83,9 +88,18 @@ public class ClubAdminController {
 	
 	//이달의책 수정
 	@PostMapping("/UpdateMonthlyBook")
-	public String UpdateMonthlyBook(String clubCode) {
+	public String UpdateMonthlyBook(String clubCode, RedirectAttributes redirectAttributes) {
 		clubAdminService.updateMonthlyBook(clubCode);
+		redirectAttributes.addAttribute("clubCode", clubCode);
 		return "redirect:/club/clubDetail";
+	}
+	
+	//북클럽 삭제
+	@ResponseBody
+	@PostMapping("/deleteClub")
+	public void deleteClub(String clubCode, ClubVO clubVO) {
+		//String getId = clubVO.getMemId();
+		clubAdminService.deleteClub(clubCode, clubVO);
 	}
 	
 	

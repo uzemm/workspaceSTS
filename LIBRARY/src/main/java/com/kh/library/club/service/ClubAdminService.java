@@ -36,4 +36,7 @@ public interface ClubAdminService {
 	
 	//이달의책 조회
 	MonthlyBookVO selectMonthlyBook(String clubCode);
+	
+	//북클럽 삭제
+	void deleteClub(String clubCode, ClubVO clubVO);
 }

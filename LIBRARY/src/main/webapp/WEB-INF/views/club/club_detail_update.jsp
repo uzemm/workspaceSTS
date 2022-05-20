@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="/resources/css/common/infoBar.css" rel="stylesheet">
 <style type="text/css">
 	/* hs-write-form 작성폼 */
    .hs-write-form{
@@ -17,30 +18,18 @@
       display: flex;
        justify-content: center;
    }
-   .hs-write-form-top div:nth-child(1){
-      flex-grow: 90;
-   }
-   .hs-write-form-top div:nth-child(2){
-      margin-left: 10px;
-      flex-grow: 0;
-      width: 17%;
-   }
-   .hs-write-form-top div:nth-child(2) input[type="text"]{
-      text-align: center;
-   }
-   
-   
    .hs-write-form input[type="text"]{
-      width: 100%;
+      width: 50%;
       border: none;
       border-bottom: 1px solid #d4d4d4;
       padding: 5px;
+      margin-bottom: 10px;
    }
    .hs-write-form input[type="text"]:focus{
       border-bottom: 1px solid #16784B;
    }
    .hs-write-form-bottom textarea{
-      width: 100%;
+      width: 80%;
       margin: 1rem auto;
       padding: 5px;
       border: 1px solid #d4d4d4;
@@ -50,9 +39,6 @@
    .hs-write-form-bottom textarea:focus {
       border: 1px solid #16784B;;
       outline: none;
-   }
-   .hs-write-form-bottom {
-      text-align: right;
    }
    .hs-write-form-bottom button{
       margin-right: 2px;
@@ -72,15 +58,29 @@
    		color: white;
    		border-color: #72a37c;
    }
+   	.hs-write-form input[type="number"]{
+		width: 50%;
+		margin-bottom: 10px;
+	}
+	.hs-write-form input[type="date"]{
+		width: 50%;
+	}
+	.hs-write-form input[type="file"]{
+		width: 50%;
+	}
 </style>
 </head>
 <body>
 <div class="container">
+	<div class="subTit">
+      <div class="line_map">홈 > 북클럽 > 북클럽 수정</div>
+      <div class="tit">북클럽 수정</div>
+   	</div>
 	<div class="hs-write-form">
 		<form action="/club/clubDetailUpdate" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="clubCode" value="${club.clubCode }">
 			<div><input type="text" name="clubName" value="${club.clubName }" placeholder="북클럽명"></div>
-			<div><input type="number" class="form-control" name="clubHeadCnt" value="${club.clubHeadCnt }" placeholder="인원"></div>
+			<div><input type="number" class="form-control" name="clubHeadCnt" value="${club.clubHeadCnt }" placeholder="인원" min="3" max="10"></div>
 			<div><input type="text" name="clubPlace" value="${club.clubPlace }" placeholder="모임 장소"></div>
 			<div><input type="text" name="clubIntro" value="${club.clubIntro }" placeholder="한줄소개"></div>
 			<div class="club-info">

@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="/resources/css/common/infoBar.css" rel="stylesheet">
 <script type="text/javascript" src="/resources/js/club/club_list1.js"></script>
 <style type="text/css">
 .row{
@@ -50,19 +51,6 @@
 .btn_area{
 	position: fixed;
 	bottom: 0;
-}
-.subTit {
-    border-bottom: 1px solid #dddddd;
-    padding: 15px 0px 15px 0px;
-    margin: 0 auto; 
-    margin-bottom: 20px;
-}
-
-.subTit .line_map {
-    float: right;
-    width: 45%;
-    font-size: 12px;
-    text-align: right;
 }
 .club-btn{
 	margin-bottom: 20px;
@@ -109,11 +97,11 @@ img{
 <div class="container">
 		<div class="subTit" >
 			<div class="line_map">홈 > 북클럽 > 북클럽 조회</div>
-			  <h2>북클럽 조회</h2>
+			   <div class="tit">북클럽 조회</div>
 		</div>
 		
 		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-			<button type="button" class="club-btn btn btn-sm"  onclick="createClub();" >북클럽 생성</button>
+			<button type="button" class="club-btn btn btn-sm me-md-2"  onclick="createClub();" >북클럽 생성</button>
 			<input type="hidden" id="memId" value="${sessionScope.loginInfo.memId }">
 			<input type="hidden" id="clubAdmin" value="${sessionScope.loginInfo.clubAdmin }">
 			<input type="hidden" id="clubCode" value="${sessionScope.loginInfo.clubCode }">

@@ -65,6 +65,10 @@
 							</c:forEach>
 						</tbody>
 					</table>
+					<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+					  <button class="btn btn-success btn-sm me-md-2" type="button" onclick="location.href='/club/clubDetail?clubCode=${sessionScope.loginInfo.clubCode}';">북클럽 이동</button>
+					  <button class="btn btn-danger btn-sm me-md-2" type="button" onclick="deleteClub('${sessionScope.loginInfo.clubCode}', '${clubMem.memId }');">북클럽 삭제</button>
+					</div>
 				</div>
 			</div>
 			<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -109,6 +113,6 @@
 		</div>
 	</div>
 </div>
-<script type="text/javascript" src="/resources/js/club/club_manage.js?ver=7"></script>
+<script type="text/javascript" src="/resources/js/club/club_manage.js?ver=8"></script>
 </body>
 </html>

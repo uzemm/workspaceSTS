@@ -97,10 +97,10 @@ function pickSearch(selected){
 	
 	$('#searchForm').click(function (){
 		
-		$('input[name=mbThumbnail]').attr('value',thumbnail);
 		$('input[name=mbTitle]').attr('value',title);
 		$('input[name=mbWriter]').attr('value',writer);
 		$('input[name=mbPublisher]').attr('value',publisher);
+		$('input[name=mbThumbnail]').attr('value',thumbnail);
 		$('#searchBook').modal('hide');
 	});
 	
@@ -108,7 +108,7 @@ function pickSearch(selected){
 
 function submit(){
 	
-	var formTag = document.getElementById('monthlyBookForm');
+	var formTag = document.getElementById('monthlyBookFormUpdate');
 	formTag.submit();
 }
 

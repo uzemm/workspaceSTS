@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="/resources/css/common/infoBar.css" rel="stylesheet">
 <style type="text/css">
 table tr td:nth-child(odd){
 	text-align: right;
@@ -26,6 +27,7 @@ table tr td:nth-child(odd){
       border: none;
       border-bottom: 1px solid #d4d4d4;
       padding: 5px;
+      margin-bottom: 10px;
    }
    .hs-write-form input[type="text"]:focus{
       border-bottom: 1px solid #16784B;
@@ -41,8 +43,6 @@ table tr td:nth-child(odd){
    .hs-write-form-bottom textarea:focus {
       border: 1px solid #16784B;;
       outline: none;
-   }
-   .hs-write-form-bottom {
    }
    .hs-write-form-bottom button{
       margin-right: 2px;
@@ -66,6 +66,7 @@ table tr td:nth-child(odd){
 	}
 	.hs-write-form input[type="number"]{
 		width: 50%;
+		margin-bottom: 10px;
 	}
 	.hs-write-form input[type="date"]{
 		width: 50%;
@@ -81,7 +82,7 @@ table tr td:nth-child(odd){
 <body>
 <div class="container">
 	<div class="subTit" >
-		  <h2>북클럽 생성</h2>
+		   <div class="tit">북클럽 생성</div>
 	</div>
 	<div class="text-right">
 		<form class="row g-3" action="/club/clubCreate" method="post" id="regClub" enctype="multipart/form-data">
@@ -109,7 +110,7 @@ table tr td:nth-child(odd){
 						</div>
 					</div>
 					<div class="hs-write-form-bottom ">
-						<textarea rows="25" cols="50" name="clubInfo" onkeyup="byteCheck(this, '5000');" placeholder="북클럽 소개말"></textarea>
+						<textarea rows="20" cols="30" name="clubInfo" onkeyup="byteCheck(this, '5000');" placeholder="북클럽 소개말"></textarea>
 						<div class="d-grid gap-2 d-md-flex justify-content-md-end"><span class="byteSpan"><span id="byteInfo">0</span> /5000bytes </span>
 						<button type="button" class="btn btn-success" onclick="clubCreate(this);">모임생성</button></div>
 					</div>
