@@ -53,6 +53,11 @@
    .form-control{
    		width: 50%;
    }
+   .update-btn{
+   		background-color: #72a37c;
+   		color: white;
+   		border-color: #72a37c;
+   }
    	.hs-write-form input[type="number"]{
 		width: 50%;
 		margin-bottom: 10px;
@@ -63,10 +68,6 @@
 	.hs-write-form input[type="file"]{
 		width: 50%;
 	}
-	 .byteSpan{
-	  margin-left: 350px;
-	  font-size: 14px;
-   }
 </style>
 </head>
 <body>
@@ -90,8 +91,8 @@
 			<div class="hs-write-form-bottom">
 				<textarea rows="10" cols="50" name="clubInfo" onkeyup="byteCheck(this, '500');" placeholder="북클럽 소개말">${club.clubInfo }</textarea>
 			</div>
-				<div class="d-grid gap-2 d-md-flex justify-content-md-end"><span class="byteSpan"><span id="byteInfo">0</span> /500bytes</span>
-				<button type="submit" class="btn btn-success">수정 완료</button></div>
+				<div style="text-align: right;"><span id="byteInfo">0</span> /500bytes</div>
+				<button type="submit" class="update-btn btn btn-success">수정 완료</button>
 		</form>
 	</div>
 </div>

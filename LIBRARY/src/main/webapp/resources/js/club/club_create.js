@@ -3,11 +3,6 @@ function clubCreate(tag){
 	alert("클럽명을 정확히 입력해주세요");
 	return;
 }
-if ($("#clubName").val().length <= 1) {
-	alert("이름을 정확히 입력해주세요");
-	return;
-}
-
 	else{
 		var result = confirm('모임을 생성하시겠습니까?');
 		var formTag = document.getElementById('regClub');

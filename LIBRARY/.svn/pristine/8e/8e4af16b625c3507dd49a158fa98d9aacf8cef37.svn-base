@@ -58,6 +58,12 @@ table tr td:nth-child(odd){
    .club-info{
 	   	margin-top: 5px;
    }
+   .subTit {
+	    border-bottom: 1px solid #dddddd;
+	    padding: 15px 0px 15px 0px;
+	    margin: 0 auto; 
+	    margin-bottom: 20px;
+	}
 	.hs-write-form input[type="number"]{
 		width: 50%;
 		margin-bottom: 10px;

@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="/resources/css/common/infoBar.css" rel="stylesheet">
 <style type="text/css">
 .club-name{
 	font-size: 25px;
@@ -42,10 +41,6 @@
 </head>
 <body>
 <div class="container">
-		<div class="subTit" >
-			<div class="line_map">홈 > 북클럽 > 북클럽 가입</div>
-		   <div class="tit">북클럽 가입</div>
-	</div>
 	<div class="row">
 		<div class="col-6">
 			<img class="club-img" src="/resources/images/club/${club.cbAtName }">

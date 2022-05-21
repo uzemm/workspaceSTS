@@ -321,9 +321,6 @@ public class BookController {
 		bookAdminService.borrowBook(reserveVO, memberVO);
 		/* memberAdminService.insertSendMessage(messageVO); */
 		
-      String getId = memberVO.getMemId();
-      memberAdminService.insertBookMessage(getId);
-		
 		return "redirect:/book/reserveListAdmin";
 	}
 	
