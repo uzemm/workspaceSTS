@@ -57,7 +57,7 @@ SELECT MEM_ID
             ORDER BY BOOK_COMPLIT_CNT DESC;
 
 delete MONTHLY_BOOK
-where club_code = 'CLUB_001';
+where club_code = 'CLUB_011';
 
 select * from MONTHLY_BOOK
 where club_code = 'CLUB_007';
