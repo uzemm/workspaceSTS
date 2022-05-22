@@ -8,45 +8,7 @@
 <title>Insert title here</title>
 <link href="/resources/css/club/club_detail.css" rel="stylesheet">
 <style type="text/css">
-.book-bg{
- 	background-color: #F7F7F5;
- 	text-align: center;
- 	height: 250px;
- 	width: 250px;
-}
-.book-bg img{
-	width: 110px;
-	height: 164px;
-	image-rendering: -webkit-optimize-contrast;
-	border-radius: 0;
-	margin-top: 5px;
-	margin-bottom: 10px;
-}
-.ranking-title{
-	font-size: 20px;
-}
-.mb-title{
-	font-size: 15px;
-	color: blue;
-}
-.mb-writer{
-	font-size: 14px;
-}
-.month-book{
-	 font-size: 18px;
-	 display: inline-block;
-}
-.club-img{
-	display: inline-block;
-	margin-right: 150px;
-}
-img,
-svg {
-  vertical-align: baseline;
-}
-.pagination{
-	margin-bottom: 20px;
-}
+
 </style>
 </head>
 <body>
@@ -80,7 +42,7 @@ svg {
 					</a>
 						<div class="dropdown-menu" aria-labelledby="triggerId3">
 							<table class="memListT table table-hover">
-								<tr>
+								<tr  style="width: 300px;">
 									<c:forEach items="${memList }" var="mem" >
 											<td>
 												<div class="user-info__img"><img src="/resources/images/member/${mem.memImage }"></div>
@@ -227,12 +189,16 @@ svg {
 				</div>
 			</div>
 		<div class="col-2">
-			<span class="ranking-title">5월 독서 랭킹📖</span>
+			<span class="ranking-title"><span id="month"></span>월 독서 랭킹📖</span>
 			<table class="rankingT table table-hover">
 				<c:forEach items="${rkList }" var="rk" varStatus="status">
 					<tr>
 						<td>
-							<div class="ranking">${status.index + 1 }위</div>
+							<div class="ranking"><span class="rk">${status.index + 1 }위</span>
+								<c:if test="${status.index + 1 eq 1}"> 🥇&nbsp;</c:if>
+								<c:if test="${status.index + 1 eq 2}"> 🥈&nbsp;</c:if>
+								<c:if test="${status.index + 1 eq 3}"> 🥉&nbsp;</c:if>
+							</div>
 							<div class="user-info__img"><img alt="" src="/resources/images/member/${rk.memImage }" >
 								<div class="ranking-name">${rk.memName }
 								${rk.bookComplitCnt }권</div>

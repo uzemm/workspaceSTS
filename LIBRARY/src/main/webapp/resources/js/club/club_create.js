@@ -54,10 +54,65 @@ function byteCheck(obj, maxByte){
      }	
 }
 
+//아이디 중복검사
+$('#clubName').on("propertychange change keyup paste input", function(){
+
+var clubName = $('#clubName').val();			// .id_input에 입력되는 값
+	var data = {clubName : clubName}				// '컨트롤에 넘길 데이터 이름' : '데이터(.id_input에 입력되는 값)'
+	
+	$.ajax({
+		type : "post",
+		url : "/club/clubNameChk",
+		data : data,
+		success : function(result){
+			
+				if(result != 'fail'){
+				$('.name_input_re_1').css("display","inline-block");
+				$('.name_input_re_2').css("display", "none");				
+			} else {
+				$('.name_input_re_2').css("display","inline-block");
+				$('.name_input_re_1').css("display", "none");				
+			}			
+		}
+	}); // ajax 종료
+});
 
 
-
-
+$('#regClub').validate({
+	//true : 유효성 검사 성공 시에도 submit이 되지 않음.
+	debug: false,
+	
+	//유효성 검사 대상 설정 
+	rules: {
+		clubName: { //input 태그의 name 속성으로 검사 대상을 지정
+			required: true, //필수입력
+			minlength: 2, //최소길이
+			maxlength: 10 //최대길이
+		}
+	},
+	//유효성 검사 실패 시 나타날 메세지 설정
+	messages: {
+		clubName: {//input 태그의 name 속성으로 검사 대상을 지정
+			required: "북클럽명을 입력하시오.",
+			minlength: "이름은 2자 이상 입력해주세요!",
+			maxlength: "이름은 10글자 이하로 작성해주세요."
+		}
+	},
+	//유효성 실패 시 추가할 태그 (defalut:label)
+	errorElement: 'div',
+	//유효성 검사 실패 시 메세지 출력 방식
+	errorPlacement: function(error, element) {
+		//element: 유효성 검사 실패한 태그(input)
+		//error: 검사 실패 시 자동 추가되는 태그
+		error.insertAfter(element);
+		error.css('color', 'red');
+		error.css('font-size','14px');
+	},
+	//유효성 검사 성공 시 실행
+	submitHandler: function(form) {
+		form.submit();   //유효성 검사를 통과시 전송
+	}
+});
 
 
 

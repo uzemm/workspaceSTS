@@ -52,7 +52,6 @@
 		<result column="CLUB_CODE" 			property="clubCode"/>
 		<result column="MEM_ID" 			property="memId"/>
 		<result column="MEM_NAME" 			property="memName"/>
-		<result column="CLUB_APPLY_DATE" 	property="clubApplyDate"/>
 		<result column="CLUB_NAME" 			property="clubName"/>
 		<result column="MEM_IMAGE" 			property="memImage"/>
 	</resultMap>
@@ -549,7 +548,13 @@
 		       )
 		 WHERE ROWNUM &lt;= 3
 	</select>
-
+	
+	<!-- 아이디 중복검사 -->
+  	<select id="clubNameCheck" resultType="int">
+  		SELECT COUNT(*) 
+  		FROM BOOK_CLUB
+  		WHERE CLUB_NAME = #{clubName}
+  	</select>
 
 	<!-- ///////////////////// 북클럽 관리 ///////////////////////////// -->
 	<!-- 신청회원 리스트 -->
@@ -689,6 +694,19 @@
 			(SELECT 'MSG_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(MSG_CODE, 5))), 0) + 1, 3, 0) AS MSG_CODE FROM MESSAGE)
 			, #{getId}
 			, '북클럽 신청이 거절되었습니다. 다른 북클럽에 가입해보세요!'
+		)		
+	</insert>
+	
+	<!-- 클럽 강퇴시 알림보내기 -->
+	<insert id="insertClubKickMessage">
+		INSERT INTO MESSAGE (
+			MSG_CODE
+			, GET_ID
+			, MSG_CONTENT
+		) VALUES (
+			(SELECT 'MSG_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(MSG_CODE, 5))), 0) + 1, 3, 0) AS MSG_CODE FROM MESSAGE)
+			, #{getId}
+			, '가입된 북클럽에서 강퇴 당하였습니다. 사유는 클럽장에게 문의 부탁드립니다. 다른 북클럽에 가입해보세요.'
 		)		
 	</insert>
 	

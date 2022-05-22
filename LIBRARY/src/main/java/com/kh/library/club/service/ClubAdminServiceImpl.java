@@ -57,11 +57,13 @@ public class ClubAdminServiceImpl implements ClubAdminService{
 	public List<MemberVO> selectClubAdminMemberList(MemberVO memberVO) {
 		return sqlSession.selectList("clubMapper.selectClubAdminMemberList", memberVO);
 	}
-
-
+	
+	//모임 강퇴
 	@Override
-	public void clubMemberKick(MemberVO memberVO) {
+	@Transactional(rollbackFor = Exception.class)
+	public void clubMemberKick(MemberVO memberVO, String getId) {
 		sqlSession.update("clubMapper.clubMemberKick", memberVO);
+		sqlSession.insert("clubMapper.insertClubKickMessage", getId);
 	}
 
 	@Override

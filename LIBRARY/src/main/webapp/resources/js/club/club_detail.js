@@ -27,4 +27,9 @@ function clubJoin(clubCode, clubApplyCode){
 		location.href = '/club/clubJoinWrite?clubCode=' + clubCode ;
 	}
 }
+$(document).ready(function(){
+	var now = new Date();	// 현재 날짜 및 시간
+	var month = now.getMonth();	// 월
+	$('#month').text(month + 1);
 
+});

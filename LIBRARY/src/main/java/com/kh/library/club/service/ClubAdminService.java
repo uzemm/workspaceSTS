@@ -23,7 +23,7 @@ public interface ClubAdminService {
 	List<MemberVO> selectClubAdminMemberList(MemberVO memberVO);
 	
 	//모임 강퇴
-	void clubMemberKick(MemberVO memberVO);
+	void clubMemberKick(MemberVO memberVO, String getId);
 	
 	//북클럽 알림 전송
 	void insertClubJoinMessage(MessageVO messageVO);

@@ -5,7 +5,6 @@ public class ClubApplyVO {
 	private String clubCode;
 	private String memId;
 	private String memName;
-	private String clubApplyDate;
 	private String clubName;
 	private String memImage;
 	
@@ -32,12 +31,6 @@ public class ClubApplyVO {
 	}
 	public void setMemName(String memName) {
 		this.memName = memName;
-	}
-	public String getClubApplyDate() {
-		return clubApplyDate;
-	}
-	public void setClubApplyDate(String clubApplyDate) {
-		this.clubApplyDate = clubApplyDate;
 	}
 	public String getClubName() {
 		return clubName;

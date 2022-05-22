@@ -19,7 +19,7 @@
    }
    
    .hs-write-form input[type="text"]{
-      width: 50%;
+      width: 80%;
       border: none;
       border-bottom: 1px solid #d4d4d4;
       padding: 5px;
@@ -59,13 +59,23 @@
 		margin-bottom: 10px;
 	}
 	.hs-write-form input[type="date"]{
-		width: 50%;
+		width: 80%;
 	}
 	.hs-write-form input[type="file"]{
-		width: 50%;
+		width: 80%;
 	}
 	.d-grid{
 		margin-right: 250px;
+	}
+	/* 중복이름 존재하지 않는경우 */
+	.name_input_re_1{
+		color : green;
+		display : none;
+	}
+	/* 중복이름 존재하는 경우 */
+	.name_input_re_2{
+		color : red;
+		display : none;
 	}
 </style>
 </head>
@@ -80,8 +90,12 @@
 			<input type="hidden" name="memName" value="${sessionScope.loginInfo.memName}">
 				<div class="hs-write-form">
 					<div class="hs-write-form-top">
-						<div>
-							<input type="text" id="clubName" name="clubName" placeholder="북클럽 이름">
+						<div class="name_wrap">
+							<div>
+								<input type="text" id="clubName" name="clubName" placeholder="북클럽 이름">
+							</div>
+							<span class="name_input_re_1">사용 가능한 이름입니다.</span>
+							<span class="name_input_re_2">이미 사용 중입니다. 다른 이름을 입력해주세요.</span>
 						</div>
 						<div>
 							<input type="number" class="form-control" name="clubHeadCnt" placeholder="인원" min="3" max="10">
@@ -109,6 +123,9 @@
 	</div>
 </div>
 
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <script type="text/javascript" src="/resources/js/club/club_create.js?ver=9"></script>
+
 </body>
 </html>

@@ -201,4 +201,9 @@ public class ClubServiceImpl implements ClubService {
 		sqlSession.delete("clubMapper.deleteMsg", msgCode);
 	}
 
+	@Override
+	public int clubNameCheck(String clubName) throws Exception {
+		return sqlSession.selectOne("clubMapper.clubNameCheck", clubName);
+	}
+
 }

@@ -63,7 +63,8 @@ public class ClubAdminController {
 	@ResponseBody
 	@PostMapping("/clubMemKick")
 	public void clubMemKick(MemberVO memberVO) {
-		clubAdminService.clubMemberKick(memberVO);
+		String getId = memberVO.getMemId();
+		clubAdminService.clubMemberKick(memberVO, getId);
 	}
 	
 	//이달의 책 등록페이지
