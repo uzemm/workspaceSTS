@@ -30,7 +30,7 @@
 			  </thead>
 			  <tbody>
 			    <tr>
-			      <td>${myBookClubApply.clubName }</td>
+			      <td><a href="/club/clubDetail?clubCode=${myBookClubApply.clubCode }">${myBookClubApply.clubName }</a></td>
 			      <td>${myBookClubApply.clubApplyDate}</td>
 			      <td>승낙대기중…</td>
 			      <td>

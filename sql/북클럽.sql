@@ -56,8 +56,8 @@ SELECT MEM_ID
             WHERE CLUB_CODE = 'CLUB_001'
             ORDER BY BOOK_COMPLIT_CNT DESC;
 
-delete MONTHLY_BOOK
-where club_code = 'CLUB_011';
+delete BOOK_CLUB_APPLY
+where club_apply_code = 'APPLY_001';
 
 select * from MONTHLY_BOOK
 where club_code = 'CLUB_007';
