@@ -56,8 +56,8 @@ SELECT MEM_ID
             WHERE CLUB_CODE = 'CLUB_001'
             ORDER BY BOOK_COMPLIT_CNT DESC;
 
-delete BOOK_CLUB_APPLY
-where club_apply_code = 'APPLY_001';
+delete MONTHLY_BOOK
+where club_code = 'CLUB_012';
 
 select * from MONTHLY_BOOK
 where club_code = 'CLUB_007';
@@ -65,15 +65,15 @@ where club_code = 'CLUB_007';
 delete book_club
 where club_code = 'CLUB_007';
 
-update MONTHLY_BOOK
+update book_club
 set 
-club_code = 'CLUB_001'
-WHERE MB_CODE = 'MB_001';
+cb_at_name = 'club_sample.jsp'
+WHERE club_code = 'CLUB_012';
 
 update book_member
 set
 club_admin = 'N'
-where mem_id = 'java4';
+where mem_id = 'java6';
 
 select * from book_club_board
 where cb_pin = 1;
