@@ -106,6 +106,7 @@ function pickSearch(selected){
 
 function submit(){
 	
+	alert('이달의 책이 등록되었습니다.');
 	var formTag = document.getElementById('monthlyBookForm');
 	formTag.submit();
 }
