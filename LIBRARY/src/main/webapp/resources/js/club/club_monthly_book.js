@@ -28,7 +28,6 @@ $(document).ready(function (){
 		if(searchSub == 'title'){
 			//var searchTxt = $('.searchBar #bookName').val();
 			const searchTxt = document.getElementById('bookName').value;
-			alert(searchTxt);
 			$.ajax({
 				method: 'GET',
 				url: "https://dapi.kakao.com/v3/search/book?target=title",
@@ -54,7 +53,6 @@ $(document).ready(function (){
 		}
 		else{
 			const searchTxt = document.getElementById('bookName').value;
-			alert(searchTxt);
 			$.ajax({
 				method: 'GET',
 				url: "https://dapi.kakao.com/v3/search/book?target=authors",
