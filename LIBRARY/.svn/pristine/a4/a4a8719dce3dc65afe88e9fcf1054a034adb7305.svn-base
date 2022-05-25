@@ -20,7 +20,6 @@ $('#searchBook').on('hidden.bs.modal', function (e) {
 	$('div').removeClass("active");
 });
 
-
 //제출 버튼$. 클릭 시 실행
 $(document).ready(function (){
 	$('.searchBar #search').click(function (){
@@ -29,7 +28,6 @@ $(document).ready(function (){
 		if(searchSub == 'title'){
 			//var searchTxt = $('.searchBar #bookName').val();
 			const searchTxt = document.getElementById('bookName').value;
-			alert(searchTxt);
 			$.ajax({
 				method: 'GET',
 				url: "https://dapi.kakao.com/v3/search/book?target=title",
@@ -43,7 +41,7 @@ $(document).ready(function (){
 						for(let i = 0 ; i < 10 ; i++){
 							
 							var authors = bk.documents[i].authors.join();
-							str += '<div class="result-row-tbody1" onclick="pickSearch(this)"><div class="img"><img src="'+bk.documents[i].thumbnail+'"onload="resize(this)" ></div>';
+							str += '<div class="result-row-tbody1" onclick="pickSearch(this)"><div class="img"><img src="'+bk.documents[i].thumbnail+'"onload="resize(this) id="mbThumbnail" ></div>';
 							str += '<div>' + bk.documents[i].title+'</div>';
 							str += '<div>' +authors +'</div>';
 							str += '<div>' + bk.documents[i].publisher+'</div></div>';
@@ -55,7 +53,6 @@ $(document).ready(function (){
 		}
 		else{
 			const searchTxt = document.getElementById('bookName').value;
-			alert(searchTxt);
 			$.ajax({
 				method: 'GET',
 				url: "https://dapi.kakao.com/v3/search/book?target=authors",
@@ -69,7 +66,7 @@ $(document).ready(function (){
 						for(let i = 0 ; i < 10 ; i++){
 							
 							var authors = bk.documents[i].authors.join();
-							str += '<div calss="result-row-tbody2"  onclick="pickSearch(this)" style="border-bottom: 1px solid #dddddd;padding-bottom: 10px;"><div class="img" style="height: 90px;width:25%; display: inline-block;text-align: center;padding-top: 0px;paddin-bottom:20px; "><img src="'+bk.documents[i].thumbnail+'"onload="resize(this)"></div>';
+							str += '<div calss="result-row-tbody2"  onclick="pickSearch(this)" style="border-bottom: 1px solid #dddddd;padding-bottom: 10px;"><div class="img" style="height: 90px;width:25%; display: inline-block;text-align: center;padding-top: 0px;paddin-bottom:20px; "><img src="'+bk.documents[i].thumbnail+'"onload="resize(this)" id="mbThumbnail"></div>';
 							str += '<div style="height: 90px;width:25%; display: inline-block;text-align: center;padding-top: 40px;">' + bk.documents[i].title+'</div>';
 							str += '<div style="height: 90px;width:25%; display: inline-block;text-align: center;padding-top: 40px;">' +authors +'</div>';
 							str += '<div style="height: 90px;width:25%; display: inline-block;text-align: center;padding-top: 40px;">' + bk.documents[i].publisher+'</div></div>';
@@ -87,14 +84,10 @@ $(document).ready(function (){
 
 function pickSearch(selected){
 	
-	
+	var thumbnail = $('#mbThumbnail').attr("src");
 	var title = selected.childNodes[1].innerText;
 	var writer = selected.childNodes[2].innerText;
 	var publisher = selected.childNodes[3].innerText;
-	
-
-		
-
 		
 	$('div').removeClass("active");
 	$(selected).addClass("active");
@@ -102,79 +95,20 @@ function pickSearch(selected){
 	
 	$('#searchForm').click(function (){
 		
-		$('input[name=title]').attr('value',title);
-		$('input[name=writer]').attr('value',writer);
-		$('input[name=publisher]').attr('value',publisher);
+		$('input[name=mbThumbnail]').attr('value',thumbnail);
+		$('input[name=mbTitle]').attr('value',title);
+		$('input[name=mbWriter]').attr('value',writer);
+		$('input[name=mbPublisher]').attr('value',publisher);
 		$('#searchBook').modal('hide');
 	});
 	
 }
 
-function submitHp(){
+function submit(){
 	
-	var memId = $('#hpBookForm #memId').val();
-	var title = $('#hpBookForm #title').val();
-	var writer = $('#hpBookForm #writer').val();
-	
-	$('#submitHpBook').unbind('click');
-	
-		if(title == ''){
-			alert('도서명은 필수입력입니다.');
-			return;
-		}	
-	
-	$.ajax({
-		async : false,
-		url: '/book/selectHpCnt',
-		type: 'post',
-		data: {'memId':memId},
-		success:function(result){
-			if($.trim(result)>=5){
-				alert('개인당 5권까지 신청할 수 있습니다.');
-				location.href='book/hopeBookInfo';
-				return;
-			}
-			else{
-				$.ajax({
-					async : false,
-					url: '/book/selectHpInfo',
-					type: 'post',
-					data: {'title':title
-							, 'writer' : writer },
-					success:function(hCode){
-						if($.trim(hCode)!=0){
-							alert('해당도서는 이미 신청되었습니다.');
-							return;
-						}
-						else{
-							$.ajax({
-								async : false,
-								url: '/book/selectIsStock',
-								type: 'post',
-								data: {'title':title
-										, 'writer' : writer },
-								success:function(bCode){
-									if($.trim(bCode)!=0){
-										alert('해당도서는 이미 비치되어 있습니다.');
-										return;
-									}
-									else{
-										
-										alert('도서가 신청되었습니다.\n신청목록은 마이페이지에서 확인 가능합니다.');
-	
-										var formTag = document.getElementById('regBookForm');
-										formTag.submit();
-									}
-								}
-							});
-						}
-					}
-				});
-			}
-		}
-	});
-	
-
+	alert('이달의 책이 등록되었습니다.');
+	var formTag = document.getElementById('monthlyBookForm');
+	formTag.submit();
 }
 
 //이미지 크기 조정
@@ -205,4 +139,5 @@ function resize(img){
    img.width = resizeWidth;
    img.height = resizeHeight;
 }
+
 
